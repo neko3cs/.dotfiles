@@ -1,2 +1,3 @@
 # neko3cs dotfiles
-dotfiles管理用のRepoです。
+
+dotfiles管理用のリポジトリ
