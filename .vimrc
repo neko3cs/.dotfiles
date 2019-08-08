@@ -24,10 +24,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/minaton/.vim/bundle/neobundle.vim/
+set runtimepath+=/Users/neko3cs/.vim/bundle/neobundle.vim/
 
 " Required:
-call neobundle#begin(expand('/Users/minaton/.vim/bundle'))
+call neobundle#begin(expand('/Users/neko3cs/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
