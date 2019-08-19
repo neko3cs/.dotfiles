@@ -25,6 +25,7 @@ brew install automake
 brew install azure-cli
 brew tap azure/functions; brew install azure-functions-core-tools
 brew install boost
+brew install git
 brew install node
 brew install oauth-toolkit
 brew install open-cobol
