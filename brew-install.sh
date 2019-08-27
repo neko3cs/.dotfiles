@@ -15,4 +15,5 @@ brew install rbenv
 brew install redis
 brew install sqlite
 brew install wget
+brew install yarn
 
