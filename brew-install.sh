@@ -16,4 +16,5 @@ brew install redis
 brew install sqlite
 brew install wget
 brew install yarn
+brew install go
 
