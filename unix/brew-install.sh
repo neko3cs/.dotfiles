@@ -1,20 +1,49 @@
 #!/bin/bash
 
-brew update
+type brew >/dev/null 2>&1 || {
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
 
-brew install automake
-brew install azure-cli
-brew tap azure/functions; brew install azure-functions-core-tools
-brew install boost
-brew install git
-brew install node
-brew install oauth-toolkit
-brew install open-cobol
-brew cask install powershell
-brew install rbenv
-brew install redis
-brew install sqlite
-brew install wget
-brew install yarn
-brew install go
+type brew >/dev/null 2>&1 && {
+  brew doctor
+  brew update
+  brew upgrade
+}
 
+taps=(
+  azure/functions
+)
+
+formulas=(
+  git
+  node
+  yarn
+  azure-cli
+  azure-functions-core-tools
+  wget
+  redis
+  sqlite
+  rbenv
+  automake
+  boost
+  go
+  open-cobol
+)
+
+casks=(
+  powershell
+)
+
+for tap in "${taps[@]}"; do
+  brew tap $tap
+done
+
+for formula in "${formulas[@]}"; do
+  brew install $formula || brew upgrade $formula
+done
+
+for cask in "${casks[@]}"; do
+  brew install $cask || brew upgrade $cask
+done
+
+brew cleanup
