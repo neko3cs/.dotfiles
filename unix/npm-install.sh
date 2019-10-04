@@ -1,10 +1,24 @@
 #!/bin/bash
 
-npm i -g npm
-npm i -g @angular/cli
-npm i -g @vue/cli
-npm i -g create-react-app
-npm i -g bower
-npm i -g typescript
-npm i -g webpack
+type brew >/dev/null 2>&1 || {
+  echo "please install homebrew before run this script."
+  exit
+}
 
+type npm >/dev/null 2>&1 || {
+  brew install node
+}
+
+packages=(
+  npm
+  @angular/cli
+  @vue/cli
+  create-react-app
+  bower
+  typescript
+  webpack
+)
+
+for package in "${packages[@]}"; do
+  npm install -g $package
+done
