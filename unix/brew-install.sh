@@ -31,6 +31,13 @@ formulas=(
 )
 
 casks=(
+  # evernote
+  # google-chrome
+  # slack
+  # visual-studio-code
+  # visual-studio
+  # docker
+  # appcleaner
   powershell
 )
 
