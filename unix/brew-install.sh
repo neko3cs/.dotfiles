@@ -37,6 +37,7 @@ formulas=(
 # docker
 # appcleaner
 casks=(
+  github
   powershell
 )
 
@@ -49,7 +50,7 @@ for formula in "${formulas[@]}"; do
 done
 
 for cask in "${casks[@]}"; do
-  brew install $cask || brew upgrade $cask
+  brew cask install $cask || brew cask upgrade $cask
 done
 
 brew cleanup
