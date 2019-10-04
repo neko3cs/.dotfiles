@@ -4,11 +4,9 @@ type brew >/dev/null 2>&1 || {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
-type brew >/dev/null 2>&1 && {
-  brew doctor
-  brew update
-  brew upgrade
-}
+brew doctor
+brew update
+brew upgrade
 
 taps=(
   azure/functions
@@ -30,14 +28,15 @@ formulas=(
   open-cobol
 )
 
+# TODO: someday add casks...
+# evernote
+# google-chrome
+# slack
+# visual-studio-code
+# visual-studio
+# docker
+# appcleaner
 casks=(
-  # evernote
-  # google-chrome
-  # slack
-  # visual-studio-code
-  # visual-studio
-  # docker
-  # appcleaner
   powershell
 )
 
