@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 type brew >/dev/null 2>&1 || {
   echo "please install homebrew before run this script."
