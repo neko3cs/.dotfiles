@@ -28,17 +28,16 @@ formulas=(
   open-cobol
 )
 
-# TODO: someday add casks...
-# evernote
-# google-chrome
-# slack
-# visual-studio-code
-# visual-studio
-# docker
-# appcleaner
 casks=(
+  appcleaner
+  docker
+  google-chrome
   github
+  hub
+  kindle
   powershell
+  visual-studio-code
+  visual-studio
 )
 
 for tap in "${taps[@]}"; do
