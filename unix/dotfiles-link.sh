@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ln -sf ~/dotfiles/unix/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/unix/.zsh_profile ~/.zsh_profile
+ln -sf ~/dotfiles/unix/.zprofile ~/.zprofile

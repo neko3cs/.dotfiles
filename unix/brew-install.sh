@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 type brew >/dev/null 2>&1 || {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -28,17 +28,16 @@ formulas=(
   open-cobol
 )
 
-# TODO: someday add casks...
-# evernote
-# google-chrome
-# slack
-# visual-studio-code
-# visual-studio
-# docker
-# appcleaner
 casks=(
+  appcleaner
+  docker
+  google-chrome
   github
+  hub
+  kindle
   powershell
+  visual-studio-code
+  visual-studio
 )
 
 for tap in "${taps[@]}"; do

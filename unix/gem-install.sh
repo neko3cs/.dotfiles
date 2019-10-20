@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # gem is built in macOS
 
