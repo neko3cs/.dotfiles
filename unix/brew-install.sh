@@ -31,6 +31,7 @@ formulas=(
 casks=(
   appcleaner
   docker
+  osxfuse
   google-chrome
   github
   hub
