@@ -13,19 +13,20 @@ taps=(
 )
 
 formulas=(
-  git
-  node
-  yarn
   azure-cli
   azure-functions-core-tools
-  wget
-  redis
-  sqlite
-  rbenv
   automake
   boost
+  git
   go
+  node
+  ntfs-3g
   open-cobol
+  rbenv
+  redis
+  sqlite
+  wget
+  yarn
 )
 
 casks=(
