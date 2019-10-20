@@ -20,7 +20,6 @@ formulas=(
   git
   go
   node
-  ntfs-3g
   open-cobol
   rbenv
   redis
@@ -32,7 +31,6 @@ formulas=(
 casks=(
   appcleaner
   docker
-  osxfuse
   google-chrome
   github
   hub
