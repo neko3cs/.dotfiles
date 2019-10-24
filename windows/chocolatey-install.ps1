@@ -23,13 +23,8 @@ if (!(Get-Command choco -ea SilentlyContinue)) {
 choco install chocolatey-package.config -y
 
 switch ($UseFor) {
-    UseFor.Private { 
-        choco install chocolatey-package-private.config -y
-    }
-    UseFor.Work {
-        choco install chocolatey-package-work.config -y
-    }
-    Default {
-        choco install chocolatey-package-private.config -y
-    }
+    UseFor.Private { choco install chocolatey-package.private.config -y }
+    UseFor.Work { choco install chocolatey-package.work.config -y }
+    Default { choco install chocolatey-package.private.config -y }
 }
+
