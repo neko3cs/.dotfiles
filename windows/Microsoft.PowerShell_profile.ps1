@@ -9,3 +9,4 @@ function Get-ChildItem-All {
     Get-ChildItem -Force
 }
 Set-Alias -Name la -Value Get-ChildItem-All
+Set-Alias -Name grep -Value Select-String
