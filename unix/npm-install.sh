@@ -13,10 +13,14 @@ packages=(
   npm
   @angular/cli
   @vue/cli
+  react
+  react-dom
+  react-native-cli
   create-react-app
   bower
   typescript
   webpack
+  webpack-cli
 )
 
 for package in "${packages[@]}"; do
