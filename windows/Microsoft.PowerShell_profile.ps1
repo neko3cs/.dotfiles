@@ -10,3 +10,11 @@ function Get-ChildItem-All {
 }
 Set-Alias -Name la -Value Get-ChildItem-All
 Set-Alias -Name grep -Value Select-String
+function Find-ChildItem {
+    # TODO: linuxのfindコマンドと同じようになるように修正する
+    param (
+        [string]$name
+    )
+    Get-ChildItem -Recurse -Include $name
+}
+Set-Alias -Name find -Value Find-ChildItem
