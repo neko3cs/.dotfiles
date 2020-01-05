@@ -7,8 +7,8 @@ dotfiles=(
 )
 
 for dotfile in "${dotfiles[@]}"; do
-  ln -sf ~/dotfiles/unix/$dotfile ~/$dotfile
+  ln -sf $(pwd)/$dotfile ~/$dotfile
 done
 
 source ~/.zprofile
-source ~/.zshrc # TODO: maybe, is it unnecessary?
+source ~/.zshrc
