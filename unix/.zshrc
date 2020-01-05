@@ -14,5 +14,6 @@ compinit
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
+alias cls='clear'
 alias boost='-I/opt/local/include'
 alias chrome='open -a "Google Chrome"'
