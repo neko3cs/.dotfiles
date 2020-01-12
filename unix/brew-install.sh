@@ -17,6 +17,7 @@ formulas=(
   azure-functions-core-tools
   automake
   boost
+  ghc
   git
   go
   node
