@@ -30,6 +30,7 @@ formulas=(
 )
 
 casks=(
+  amethyst
   appcleaner
   docker
   google-chrome
