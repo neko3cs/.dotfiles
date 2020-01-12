@@ -22,6 +22,7 @@ formulas=(
   go
   node
   open-cobol
+  tmux
   rbenv
   redis
   sqlite
