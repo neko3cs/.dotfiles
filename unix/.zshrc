@@ -16,4 +16,6 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias cls='clear'
 alias boost='-I/opt/local/include'
+alias amethyst='open -a "Amethyst"'
 alias chrome='open -a "Google Chrome"'
+
