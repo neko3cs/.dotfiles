@@ -23,6 +23,7 @@ formulas=(
   node
   open-cobol
   tmux
+  reattach-to-user-namespace
   rbenv
   redis
   sqlite
