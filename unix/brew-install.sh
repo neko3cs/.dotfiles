@@ -28,6 +28,8 @@ formulas=(
   sqlite
   wget
   yarn
+  zsh
+  zsh-completions
 )
 
 casks=(
