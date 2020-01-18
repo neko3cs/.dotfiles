@@ -10,6 +10,7 @@ brew upgrade
 
 taps=(
   azure/functions
+  pivotal/tap
 )
 
 formulas=(
@@ -40,8 +41,10 @@ casks=(
   google-chrome
   github
   hub
+  java
   kindle
   powershell
+  springboot
   visual-studio-code
   visual-studio
 )
