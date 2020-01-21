@@ -1,6 +1,6 @@
 #!/bin/sh
 
-type brew >/dev/null 2>&1 && {
+type brew >/dev/null 2>&1 || {
   echo "  command 'brew' not found!"
   echo "  please run 'brew-install.sh' before this."
   exit;
