@@ -2,7 +2,7 @@
 
 Param (
     [ValidateScript( { [Enum]::GetValues([UseFor]) -contains $_ })]
-    [string]$UseFor
+    [string]$UseFor = "Private"
 )
 
 enum UseFor {
@@ -27,4 +27,3 @@ switch ($UseFor) {
     UseFor.Work { choco install chocolatey-package.work.config -y }
     Default { choco install chocolatey-package.private.config -y }
 }
-
