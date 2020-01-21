@@ -21,7 +21,6 @@ casks=(
   github
   hub
   java
-  kindle
   powershell
   springboot
   visual-studio-code
