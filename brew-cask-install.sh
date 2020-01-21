@@ -11,6 +11,7 @@ brew update
 brew upgrade
 
 taps=(
+  caskroom/cask
 )
 
 casks=(
