@@ -24,6 +24,7 @@ casks=(
   java
   powershell
   springboot
+  steam
   visual-studio-code
   visual-studio
 )
