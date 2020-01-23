@@ -24,7 +24,7 @@ formulas=(
   node
   open-cobol
   tmux
-  reattach-to-user-namespace
+  reattach-to-user-namespace # for tmux
   rbenv
   redis
   sqlite
