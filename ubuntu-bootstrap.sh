@@ -29,3 +29,7 @@ activate_ubuntu
 install_linuxbrew
 
 sh ./brew-install.sh
+sh ./vim-install.sh
+sh ./dotfiles-link.sh
+
+sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
