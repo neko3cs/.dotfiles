@@ -3,7 +3,7 @@
 sudo apt update
 sudo apt upgrade
 
-# change dash->bash
+# change dash->bash by selecting <No>
 dpkg-reconfigure dash
 # japanese lang pack
 sudo apt install -y language-pack-ja
