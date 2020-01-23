@@ -1,4 +1,4 @@
-# Windows PowerShell
+# PowerShell Core
 
 $extentions = @(
     ms-ceintl.vscode-language-pack-ja

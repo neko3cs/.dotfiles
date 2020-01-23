@@ -13,4 +13,3 @@ done
 
 source ~/.zprofile
 source ~/.zshrc
-
