@@ -27,3 +27,5 @@ sudo apt upgrade
 
 activate_ubuntu
 install_linuxbrew
+
+sh ./brew-install.sh
