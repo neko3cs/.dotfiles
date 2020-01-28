@@ -7,6 +7,7 @@ function Get-ChildItem-All {
     Get-ChildItem -Force
 }
 Set-Alias -Name la -Value Get-ChildItem-All
+Set-Alias -Name touch -Value New-Item
 
 switch ($env:COMPUTERNAME) {
     "NEKO3CS-PARALLE" { 
