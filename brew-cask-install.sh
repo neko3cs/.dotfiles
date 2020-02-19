@@ -27,6 +27,7 @@ casks=(
   steam
   visual-studio-code
   visual-studio
+  xmind
 )
 
 for tap in "${taps[@]}"; do
