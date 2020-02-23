@@ -5,6 +5,7 @@ $extentions = @(
     ms-vscode.csharp
     visualstudioexptteam.vscodeintellicode
     ms-vsliveshare.vsliveshare
+    ms-vscode.cmake-tools
     ms-vscode.powershell
     ms-vscode.azure-account
     ms-mssql.mssql
