@@ -1,15 +1,16 @@
 # PowerShell Core
 
 $extentions = @(
-    ms-ceintl.vscode-language-pack-ja
-    ms-vscode.csharp
-    visualstudioexptteam.vscodeintellicode
-    ms-vsliveshare.vsliveshare
-    ms-vscode.cmake-tools
-    ms-vscode.powershell
     ms-vscode.azure-account
+    ms-vscode.csharp
+    ms-vscode.cmake-tools
+    ms-ceintl.vscode-language-pack-ja
+    ms-vsliveshare.vsliveshare
+    ms-vscode.powershell
     ms-mssql.mssql
+    jtlowe.vscode-icon-theme
     gruntfuggly.todo-tree
+    visualstudioexptteam.vscodeintellicode
 )
 
 foreach ($extention in $extentions) {    
