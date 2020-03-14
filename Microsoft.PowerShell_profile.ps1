@@ -18,3 +18,12 @@ switch ($env:COMPUTERNAME) {
         Set-Alias -Name winmerge -Value "C:\Program Files\WinMerge\WinMergeU.exe"
     }
 }
+
+$MyPSModules = (
+    'C:\Repos\pwsh-tools\modules\PwshTools.CryptSecretString\'
+)
+foreach ($module in $MyPSModules) {
+    if (Test-Path $module) {
+        Import-Module $module
+    }
+}
