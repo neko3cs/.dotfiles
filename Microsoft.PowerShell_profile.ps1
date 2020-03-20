@@ -19,8 +19,9 @@ switch ($env:COMPUTERNAME) {
     }
 }
 
-$MyPSModules = (
-    'C:\Repos\pwsh-tools\modules\PwshTools.CryptSecretString\'
+$MyPSModules = @(
+    "C:\Repos\pwsh-tools\modules\PwshTools.CryptSecretString\"
+    "C:\Repos\pwsh-tools\modules\PwshTools.ArchiveWithPassword\"
 )
 foreach ($module in $MyPSModules) {
     if (Test-Path $module) {
