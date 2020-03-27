@@ -15,7 +15,6 @@ taps=(
 )
 
 casks=(
-  amethyst
   appcleaner
   docker
   google-chrome
