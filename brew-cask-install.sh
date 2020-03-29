@@ -18,6 +18,7 @@ casks=(
   appcleaner
   docker
   google-chrome
+  google-japanese-ime
   github
   hub
   java
