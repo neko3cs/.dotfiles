@@ -24,6 +24,7 @@ casks=(
   java
   powershell
   springboot
+  unity-hub
   visual-studio-code
   visual-studio
   xmind
