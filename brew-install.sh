@@ -20,6 +20,7 @@ formulas=(
   boost
   ghc
   git
+  github/gh/gh
   go
   node
   open-cobol
