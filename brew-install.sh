@@ -22,6 +22,7 @@ formulas=(
   git
   github/gh/gh
   go
+  jq
   node
   open-cobol
   tmux
