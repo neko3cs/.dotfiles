@@ -7,7 +7,7 @@ export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:/Users/neko3cs/.dotnet/tools"
-export JAVA_HOME=`/usr/libexec/java_home -v "13"`
+export JAVA_HOME="/usr/libexec/java_home"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 type rbenv >/dev/null 2>&1 && {
