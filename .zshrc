@@ -4,6 +4,7 @@ setopt correct
 setopt list_packed
 setopt auto_param_slash
 setopt auto_param_slash
+setopt nonomatch
 
 # zsh options
 typeset -U path cdpath fpath manpath
