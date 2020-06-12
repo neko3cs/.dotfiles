@@ -22,6 +22,7 @@ casks=(
   github
   hub
   java
+  microsoft-edge
   powershell
   springboot
   unity-hub
