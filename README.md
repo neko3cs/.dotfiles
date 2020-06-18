@@ -1,30 +1,26 @@
 # neko3cs dotfiles
 
-## macos
+## macOS
 
-run this.
+Run this.
 
 ```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/dotfiles/master/macOS-bootstrap.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh)"
 ```
 
 ## ubuntu
 
-run this.
+Run this.
 
 ```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/dotfiles/master/ubuntu-bootstrap.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh)"
 ```
 
 ## windows
 
-nothing bootstrap script.
-
-so self run this.
+Run this.
 
 ```
-PS> .\pwsh-profile-link.ps1
-PS> .\chocolatey-install.ps1
-PS> .\vscode-extensions-install.ps1
+PS> Set-ExecutionPolicy RemoteSigned
+PS> Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1'))
 ```
-
