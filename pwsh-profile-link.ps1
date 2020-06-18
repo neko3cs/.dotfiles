@@ -5,4 +5,5 @@ if (Test-Path $PROFILE) {
 }
 
 # Can not 'New-Item -ItemType SymbolicLink'; it's specified file, so copy this.
-Copy-Item .\Microsoft.PowerShell_profile.ps1 $PROFILE
+New-Item -ItemType File -Path $PROFILE -Force
+Copy-Item .\Microsoft.PowerShell_profile.ps1 $PROFILE -Force
