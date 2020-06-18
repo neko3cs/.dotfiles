@@ -23,3 +23,6 @@ alias boost='-I/opt/local/include'
 alias amethyst='open -a "Amethyst"'
 alias chrome='open -a "Google Chrome"'
 alias visualstudio='open -a "Visual Studio"'
+
+# run app
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
