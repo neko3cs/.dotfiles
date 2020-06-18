@@ -5,7 +5,7 @@
 run this.
 
 ```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/dotfiles/master/macos-bootstrap.sh)"
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/dotfiles/master/macOS-bootstrap.sh)"
 ```
 
 ## ubuntu
@@ -24,7 +24,7 @@ so self run this.
 
 ```
 PS> .\pwsh-profile-link.ps1
-PS> .\chocolatey-install.ps1 -UseFor (Private|Work)
-PS> .\vscode-install.ps1
+PS> .\chocolatey-install.ps1
+PS> .\vscode-extensions-install.ps1
 ```
 
