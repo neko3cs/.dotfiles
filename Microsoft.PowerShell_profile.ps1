@@ -1,4 +1,4 @@
-# PowerShell Profile
+#!pwsh
 
 Set-Alias -Name acrobat -Value 'C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe'
 Set-Alias -Name open -Value 'C:\Windows\explorer.exe'

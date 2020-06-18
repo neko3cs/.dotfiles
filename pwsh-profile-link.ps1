@@ -1,4 +1,4 @@
-# Windows Powershell
+#!pwsh
 
 if (Test-Path $PROFILE) {
     Remove-Item -Force $PROFILE
