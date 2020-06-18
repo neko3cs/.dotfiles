@@ -22,6 +22,12 @@ install_linuxbrew() {
   echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 }
 
+echo "clone .dotfiles repo and run bootstrap scripts."
+read -p "ok?(y/N): " yn; case "$yn" in [yY]*) ;; *) exit;; esac
+
+git clone https://github.com/neko3cs/.dotfiles.git
+cd .dotfiles
+
 sudo apt update
 sudo apt upgrade
 
