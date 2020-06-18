@@ -10,6 +10,9 @@ setopt nonomatch
 typeset -U path cdpath fpath manpath
 autoload -U compinit
 compinit
+autoload -Uz colors
+colors
+PROMPT='%F{green}%m@%n%f %F{cyan}%~%f$ '
 
 # alias
 alias la='ls -a'
