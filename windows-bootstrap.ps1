@@ -1,4 +1,4 @@
-#!/usr/local/bin/pwsh
+#!pwsh
 
 $title = "clone .dotfiles repo and run bootstrap scripts."
 $message = "ok?: "
