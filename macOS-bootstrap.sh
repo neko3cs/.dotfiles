@@ -12,3 +12,4 @@ sh ./dotfiles-link.sh
 sh ./vim-install.sh
 sh ./brew-install.sh
 sh ./brew-cask-install.sh
+pwsh ./vscode-extensions-install.ps1

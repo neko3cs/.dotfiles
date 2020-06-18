@@ -37,5 +37,6 @@ install_linuxbrew
 sh ./brew-install.sh
 sh ./vim-install.sh
 sh ./dotfiles-link.sh
+pwsh ./vscode-extensions-install.ps1
 
 sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
