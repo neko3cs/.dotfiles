@@ -19,6 +19,7 @@ $extensions = @(
     "jtlowe.vscode-icon-theme"
     "gruntfuggly.todo-tree"
     "visualstudioexptteam.vscodeintellicode"
+    "tomoki1207.pdf"
 )
 
 foreach ($extension in $extensions) {
