@@ -9,7 +9,12 @@ $options = [System.Management.Automation.Host.ChoiceDescription[]](
 $result = $Host.UI.PromptForChoice($title, $message, $options, 1)
 if ($result -ne 0) { exit } 
 
-# FIXME: windows is not installed default git
+# windows is not default installed git.
+if (!(Get-Command choco -ea SilentlyContinue)) {
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
+
 git clone https://github.com/neko3cs/.dotfiles.git
 Set-Location .dotfiles
 
