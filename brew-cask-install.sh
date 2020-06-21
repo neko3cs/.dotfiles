@@ -18,17 +18,13 @@ casks=(
   appcleaner
   docker
   google-chrome
-  google-japanese-ime
   github
-  hub
   java
-  microsoft-edge
+  mysqlworkbench
   powershell
-  springboot
   unity-hub
   visual-studio-code
   visual-studio
-  xmind
 )
 
 for tap in "${taps[@]}"; do

@@ -23,6 +23,7 @@ formulas=(
   github/gh/gh
   go
   jq
+  mysql
   node
   open-cobol
   tmux
