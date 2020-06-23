@@ -21,6 +21,3 @@ alias lla='ls -la'
 alias cls='clear'
 alias chrome='open -a "Google Chrome"'
 alias visualstudio='open -a "Visual Studio"'
-
-# run app
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux

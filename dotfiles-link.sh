@@ -5,6 +5,7 @@ dotfiles=(
   .tmux.conf
   .zprofile
   .zshrc
+  .zlogin
 )
 
 for dotfile in "${dotfiles[@]}"; do
@@ -13,3 +14,4 @@ done
 
 source ~/.zprofile
 source ~/.zshrc
+source ~/.zlogin
