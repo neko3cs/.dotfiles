@@ -1,4 +1,11 @@
 #!/bin/zsh
 
 # run tmux when login
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+if [[ ! -n $TMUX ]]; then
+  ID="`tmux list-sessions`"
+  if [[ -z "$ID" ]]; then
+    tmux new-session
+  fi
+  ID="`echo $ID | $PERCOL | cut -d: -f1`"
+  tmux attach-session -t "$ID"
+fi
