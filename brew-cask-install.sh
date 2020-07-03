@@ -17,6 +17,7 @@ taps=(
 casks=(
   appcleaner
   docker
+  dropbox
   google-chrome
   github
   java
