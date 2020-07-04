@@ -23,6 +23,7 @@ formulas=(
   github/gh/gh
   go
   jq
+  mas
   mysql
   node
   open-cobol
