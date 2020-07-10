@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 type mas >/dev/null 2>&1 || {
   echo "mas-cli not installed!"

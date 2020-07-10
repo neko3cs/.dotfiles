@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 type brew >/dev/null 2>&1 || {
   echo "  command 'brew' not found!"
