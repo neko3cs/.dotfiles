@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 activate_ubuntu() {
   # change dash->bash by selecting <No>
@@ -13,15 +13,6 @@ activate_ubuntu() {
   sudo apt install -y manpages-ja manpages-ja-dev
 }
 
-install_linuxbrew() {
-  sudo apt install build-essential curl file git
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-  test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-}
-
 echo "clone .dotfiles repo and run bootstrap scripts."
 read -p "ok?(y/N): " yn; case "$yn" in [yY]*) ;; *) exit;; esac
 
@@ -32,11 +23,7 @@ sudo apt update
 sudo apt upgrade
 
 activate_ubuntu
-install_linuxbrew
 
-bash ./brew-install.sh
-bash ./vim-install.sh
-bash ./dotfiles-link.sh
-pwsh ./vscode-extensions-install.ps1
-
-sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
+./apt-install.sh
+./vim-install.sh
+./dotfiles-link.sh
