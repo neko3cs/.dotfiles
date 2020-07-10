@@ -8,14 +8,6 @@ Run this.
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh)"
 ```
 
-## ubuntu
-
-Run this.
-
-```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh)"
-```
-
 ## windows
 
 Run this.
