@@ -1,7 +1,8 @@
 #!pwsh
 
 param(
-    [switch]$Force
+    [switch]$Force,
+    [switch]$Private
 )
 
 if (!(Get-Command choco -ea SilentlyContinue)) {
@@ -13,4 +14,11 @@ if ($Force) {
 }
 else {
     choco install chocolatey-package.config --yes
+}
+
+if ($Private -and $Force) {
+    choco install chocolatey-package.private.config --force --yes
+}
+elseif ($Private) {
+    choco install chocolatey-package.private.config --yes
 }
