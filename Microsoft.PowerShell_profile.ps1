@@ -26,3 +26,6 @@ function which {
     )
     return (Get-Command -Name $command -ShowCommandInfo).Definition
 }
+function zsh {
+    wsl zsh
+}
