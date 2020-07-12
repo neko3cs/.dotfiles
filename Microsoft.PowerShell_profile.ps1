@@ -16,8 +16,13 @@ if ($IsWindows) {
 }
 
 Set-Alias -Name ll -Value Get-ChildItem
-function Get-ChildItemAll {
+function la {
     Get-ChildItem -Force
 }
-Set-Alias -Name la -Value Get-ChildItemAll
 Set-Alias -Name touch -Value New-Item
+function which {
+    param(
+        [parameter(Mandatory, ValueFromPipeline)][string]$command
+    )
+    Get-Command -Name $command -ShowCommandInfo | Select-Object Definition
+}
