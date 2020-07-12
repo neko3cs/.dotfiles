@@ -24,5 +24,5 @@ function which {
     param(
         [parameter(Mandatory, ValueFromPipeline)][string]$command
     )
-    Get-Command -Name $command -ShowCommandInfo | Select-Object Definition
+    return (Get-Command -Name $command -ShowCommandInfo).Definition
 }
