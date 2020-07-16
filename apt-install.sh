@@ -1,10 +1,11 @@
 #!/bin/bash
 
-sudo apt update 
+sudo apt update
 sudo apt upgrade
 
 pkgs=(
   git
+  nkf
   tmux
   reattach-to-user-namespace # for tmux
   zsh
