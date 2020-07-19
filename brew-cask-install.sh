@@ -16,6 +16,7 @@ taps=(
 
 casks=(
   appcleaner
+  discord
   docker
   dropbox
   google-chrome
