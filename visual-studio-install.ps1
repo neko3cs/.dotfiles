@@ -5,15 +5,14 @@ param(
     [string]$Edition = "Community"
 )
 
-[string]$vsInstallerName;
+[string]$vsInstallerName
 switch ($Edition) {
-    "Community" { $vsInstallerName = "vs_community.exe"; }
-    "Professional" { $vsInstallerName = "vs_professional.exe"; }
-    "Enterprise" { $vsInstallerName = "vs_enterprise.exe"; }
+    "Community" { $vsInstallerName = "vs_community.exe" }
+    "Professional" { $vsInstallerName = "vs_professional.exe" }
+    "Enterprise" { $vsInstallerName = "vs_enterprise.exe" }
 }
 
-$vswherePath = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe";
-if (!(& $vswherePath -ErrorAction SilentlyContinue)) {
+if ((vswhere -utf8 -format json | ConvertFrom-Json).Length -eq 0) {
     Write-Host `
         "Install Visual Studio ${Edition}...`n" `
         -ForegroundColor Green
