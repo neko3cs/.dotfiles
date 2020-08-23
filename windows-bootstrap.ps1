@@ -21,3 +21,5 @@ Set-Location .dotfiles
 pwsh -File .\pwsh-profile-link.ps1
 pwsh -File .\chocolatey-install.ps1
 pwsh -File .\vscode-extensions-install.ps1
+pwsh -File .\visual-studio-install.ps1
+pwsh -File .\sqlserver-management-studio-install.ps1
