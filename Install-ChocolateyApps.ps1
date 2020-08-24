@@ -10,15 +10,15 @@ if (!(Get-Command choco -ea SilentlyContinue)) {
 }
 
 if ($Force) {
-    choco install chocolatey-package.config --force --yes
+    choco install .\ChocolateyPackage.config --force --yes
 }
 else {
-    choco install chocolatey-package.config --yes
+    choco install .\ChocolateyPackage.config --yes
 }
 
 if ($Private -and $Force) {
-    choco install chocolatey-package.private.config --force --yes
+    choco install .\ChocolateyPackageForPrivate.config --force --yes
 }
 elseif ($Private) {
-    choco install chocolatey-package.private.config --yes
+    choco install .\ChocolateyPackageForPrivate.config --yes
 }
