@@ -18,8 +18,8 @@ choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
 git clone https://github.com/neko3cs/.dotfiles.git
 Set-Location .dotfiles
 
-pwsh -File .\pwsh-profile-link.ps1
-pwsh -File .\chocolatey-install.ps1
-pwsh -File .\vscode-extensions-install.ps1
-pwsh -File .\visual-studio-install.ps1
-pwsh -File .\sqlserver-management-studio-install.ps1
+pwsh -File .\Set-PwshProfile.ps1
+pwsh -File .\Install-ChocolateyApps.ps1
+pwsh -File .\Install-VisualStudioCodeExtensions.ps1
+pwsh -File .\Install-VisualStudio.ps1
+pwsh -File .\Install-SQLServerManagementStudio.ps1
