@@ -2,7 +2,8 @@
 
 param(
     [switch]$Force,
-    [switch]$Private
+    [ValidateSet("Private", "Work")]
+    [string]$UseFor = "Private"
 )
 
 if (!(Get-Command choco -ea SilentlyContinue)) {
@@ -16,9 +17,19 @@ else {
     choco install .\ChocolateyPackage.config --yes
 }
 
-if ($Private -and $Force) {
-    choco install .\ChocolateyPackageForPrivate.config --force --yes
+if ($UseFor -eq "Private") {
+    if ($Force) {
+        choco install .\ChocolateyPackageForPrivate.config --force --yes
+    }
+    else {
+        choco install .\ChocolateyPackageForPrivate.config --yes
+    }
 }
-elseif ($Private) {
-    choco install .\ChocolateyPackageForPrivate.config --yes
+elseif ($UseFor -eq "Work") {
+    if ($Force) {
+        choco install .\ChocolateyPackageForWork.config --force --yes
+    }
+    else {
+        choco install .\ChocolateyPackageForWork.config --yes
+    }
 }
