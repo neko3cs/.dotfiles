@@ -23,6 +23,7 @@ casks=(
   github
   java
   mysqlworkbench
+  notion
   powershell
   unity-hub
   visual-studio-code
