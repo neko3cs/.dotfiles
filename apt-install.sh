@@ -5,6 +5,7 @@ sudo apt upgrade
 
 pkgs=(
   build-essential
+  cmake
   git
   nkf
   tmux
