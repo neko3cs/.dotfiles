@@ -4,6 +4,7 @@ sudo apt update
 sudo apt upgrade
 
 pkgs=(
+  cmake
   git
   nkf
   tmux
