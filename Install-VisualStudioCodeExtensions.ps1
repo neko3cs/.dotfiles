@@ -4,6 +4,8 @@
 # PS> code --list-extensions | select { "`"$_`"" }
 $extensions = @(
     "Angular.ng-template"
+    "eamodio.gitlens"
+    "eightHundreds.vscode-drawio"
     "Gruntfuggly.todo-tree"
     "humao.rest-client"
     "jebbs.plantuml"
@@ -19,6 +21,7 @@ $extensions = @(
     "ms-vscode.cpptools"
     "ms-vscode.powershell"
     "ms-vsliveshare.vsliveshare"
+    "rust-lang.rust"
     "tomoki1207.pdf"
     "VisualStudioExptTeam.vscodeintellicode"
     "yzane.markdown-pdf"
