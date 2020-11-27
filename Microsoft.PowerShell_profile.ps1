@@ -10,6 +10,14 @@ if ($IsWindows) {
         Select-Object -ExpandProperty productPath
         Set-Alias -Name visualstudio -Value $visualstudioPath
     }
+    if (Get-Command dotnet -ea SilentlyContinue) {
+        Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+            param($commandName, $wordToComplete, $cursorPosition)
+            dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
+                [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+            }
+        }
+    }
 }
 
 Set-Alias -Name ll -Value Get-ChildItem
