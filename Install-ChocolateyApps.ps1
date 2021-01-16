@@ -19,17 +19,17 @@ else {
 
 if ($UseFor -eq "Private") {
     if ($Force) {
-        choco install .\ChocolateyPackageForPrivate.config --force --yes
+        choco install .\ChocolateyPackage.Private.config --force --yes
     }
     else {
-        choco install .\ChocolateyPackageForPrivate.config --yes
+        choco install .\ChocolateyPackage.Private.config --yes
     }
 }
 elseif ($UseFor -eq "Work") {
     if ($Force) {
-        choco install .\ChocolateyPackageForWork.config --force --yes
+        choco install .\ChocolateyPackage.Work.config --force --yes
     }
     else {
-        choco install .\ChocolateyPackageForWork.config --yes
+        choco install .\ChocolateyPackage.Work.config --yes
     }
 }
