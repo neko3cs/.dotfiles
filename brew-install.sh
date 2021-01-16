@@ -31,6 +31,7 @@ formulas=(
   reattach-to-user-namespace # for tmux
   rbenv
   redis
+  rust
   sqlite
   wget
   yarn
