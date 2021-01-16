@@ -23,4 +23,3 @@ pwsh -File .\Install-ChocolateyApps.ps1
 pwsh -File .\Install-VisualStudioCodeExtensions.ps1
 pwsh -File .\Install-VisualStudio.ps1
 pwsh -File .\Install-SQLServerManagementStudio.ps1
-pwsh -File .\Install-DockerDesktopForWindows.ps1
