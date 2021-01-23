@@ -1,18 +1,18 @@
 #!/bin/zsh
-# complement options
-setopt correct
-setopt list_packed
-setopt auto_param_slash
-setopt auto_param_slash
-setopt nonomatch
-
 # zsh options
-typeset -U path cdpath fpath manpath
-autoload -U compinit
-compinit
-autoload -Uz colors
-colors
+typeset -U path cdpath fpath manpath && \
+autoload -Uz compinit && \
+compinit -i && \
+autoload -Uz colors && \
+colors && \
 PROMPT='%F{green}%m@%n%f %F{cyan}%~%f$ '
+
+# complement options
+setopt correct && \
+setopt list_packed && \
+setopt auto_param_slash && \
+setopt auto_param_slash && \
+setopt nonomatch
 
 # alias
 alias la='ls -a'
