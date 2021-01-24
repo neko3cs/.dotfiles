@@ -20,6 +20,7 @@ casks=(
   docker
   dropbox
   google-chrome
+  google-japanese-ime
   github
   java
   mysqlworkbench
@@ -35,7 +36,7 @@ for tap in "${taps[@]}"; do
 done
 
 for cask in "${casks[@]}"; do
-  brew cask install $cask || brew cask upgrade $cask
+  brew install --cask $cask || brew upgrade --cask $cask
 done
 
 brew cleanup
