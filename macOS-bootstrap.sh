@@ -10,7 +10,6 @@ xcode-select --install
 
 ./dotfiles-link.sh
 ./brew-install.sh
-./brew-cask-install.sh
 ./vim-install.sh
 pwsh ./vscode-extensions-install.ps1
 
