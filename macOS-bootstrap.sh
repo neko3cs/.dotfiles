@@ -8,6 +8,12 @@ cd .dotfiles
 
 xcode-select --install
 
+# docker completion
+if [ ! -e ~/.zsh/completion/_docker-compose ]; then
+    mkdir -p ~/.zsh/completion
+    curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+fi
+
 ./dotfiles-link.sh
 ./brew-install.sh
 ./vim-install.sh
