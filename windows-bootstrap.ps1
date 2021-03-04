@@ -9,6 +9,10 @@ $options = [System.Management.Automation.Host.ChoiceDescription[]](
 $result = $Host.UI.PromptForChoice($title, $message, $options, 1)
 if ($result -ne 0) { exit } 
 
+# set posh setting
+if (!(Get-Command Get-PoshThemes -ea SilentlyContinue)) {
+    Install-Module oh-my-posh -AllowPrerelease -Force
+}
 # windows is not default installed git.
 if (!(Get-Command choco -ea SilentlyContinue)) {
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))

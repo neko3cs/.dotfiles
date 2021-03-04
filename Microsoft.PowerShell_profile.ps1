@@ -18,6 +18,10 @@ if ($IsWindows) {
             }
         }
     }
+    if (Get-Command Get-PoshThemes -ea SilentlyContinue) {
+        Import-Module oh-my-posh
+        Set-PoshPrompt -Theme agnosterplus
+    }
 }
 
 Set-Alias -Name ll -Value Get-ChildItem
