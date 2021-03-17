@@ -4,8 +4,10 @@
 # PS> code --list-extensions | select { "`"$_`"" }
 $extensions = @(
     "Angular.ng-template"
+    "chrmarti.regex"
     "eamodio.gitlens"
     "eightHundreds.vscode-drawio"
+    "esbenp.prettier-vscode"
     "Gruntfuggly.todo-tree"
     "humao.rest-client"
     "jebbs.plantuml"
@@ -14,6 +16,8 @@ $extensions = @(
     "MS-CEINTL.vscode-language-pack-ja"
     "ms-dotnettools.csharp"
     "ms-mssql.mssql"
+    "ms-python.python"
+    "ms-toolsai.jupyter"
     "ms-vscode-remote.remote-containers"
     "ms-vscode-remote.remote-wsl"
     "ms-vscode.azure-account"
@@ -22,10 +26,11 @@ $extensions = @(
     "ms-vscode.cpptools"
     "ms-vscode.powershell"
     "ms-vsliveshare.vsliveshare"
+    "oderwat.indent-rainbow"
     "ritwickdey.LiveServer"
-    "rust-lang.rust"
     "techer.open-in-browser"
     "tomoki1207.pdf"
+    "twxs.cmake"
     "VisualStudioExptTeam.vscodeintellicode"
     "yzane.markdown-pdf"
 )
