@@ -32,3 +32,4 @@ The ones that don't get scripted.
 - [Logicool Options](https://www.logicool.co.jp/ja-jp/product/options)
 - [Origin](https://www.origin.com/jpn/ja-jp/store/download)
 - [Razer Surround Sound](https://www2.razer.com/jp-jp/7.1-surround-sound)
+- [Soundflower](https://github.com/mattingalls/Soundflower)
