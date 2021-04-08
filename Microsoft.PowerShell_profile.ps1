@@ -22,6 +22,9 @@ if ($IsWindows) {
         Import-Module oh-my-posh
         Set-PoshPrompt -Theme agnosterplus
     }
+    if (Get-Command Get-SqlCmd -ea SilentlyContinue) {
+        Import-Module sqlserver
+    }
 }
 
 Set-Alias -Name ll -Value Get-ChildItem
