@@ -1,4 +1,4 @@
-#!pwsh
+# Windows PowerShell
 
 $title = "clone .dotfiles repo and run bootstrap scripts."
 $message = "ok?: "
@@ -22,8 +22,8 @@ choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
 git clone https://github.com/neko3cs/.dotfiles.git
 Set-Location .dotfiles
 
-pwsh -File .\Set-PwshProfile.ps1
-pwsh -File .\Install-ChocolateyApps.ps1
-pwsh -File .\Install-VisualStudioCodeExtensions.ps1
-pwsh -File .\Install-VisualStudio.ps1
-pwsh -File .\Install-SQLServerManagementStudio.ps1
+powershell -File .\Set-PwshProfile.ps1
+powershell -File .\Install-ChocolateyApps.ps1
+powershell -File .\Install-VisualStudioCodeExtensions.ps1
+powershell -File .\Install-VisualStudio.ps1
+powershell -File .\Install-SQLServerManagementStudio.ps1
