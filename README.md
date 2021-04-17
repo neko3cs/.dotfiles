@@ -25,6 +25,7 @@ The ones that don't get scripted.
     - ASUS Driver Manager
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
     - Oh My Posh Font
+    - add [ `"fontFace": "CaskaydiaCove Nerd Font"` ] to Windows Terminal Settings
 - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
 - [Genshin](https://genshin.mihoyo.com/ja/download)
 - [iTunes](https://support.apple.com/ja-jp/HT210384)
