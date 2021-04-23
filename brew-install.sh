@@ -54,6 +54,7 @@ casks=(
   unity-hub
   visual-studio-code
   visual-studio
+  zoom
 )
 
 for tap in "${taps[@]}"; do
