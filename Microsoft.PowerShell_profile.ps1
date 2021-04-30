@@ -5,14 +5,18 @@ function Set-PSModule {
         Import-Module oh-my-posh
         Set-PoshPrompt -Theme agnosterplus
     }
+    if (!(Get-Command Get-GitStatus -ea SilentlyContinue)) {
+        Import-Module -Name posh-git
+    }
+    $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+    if (Test-Path($ChocolateyProfile)) {
+        Import-Module "$ChocolateyProfile"
+    }
     if (Get-Command Get-SqlCmd -ea SilentlyContinue) {
         Import-Module sqlserver
     }
     if (!(Get-Command Import-Excel -ea SilentlyContinue)) {
         Import-Module -Name ImportExcel
-    }
-    if (!(Get-Command Get-GitStatus -ea SilentlyContinue)) {
-        Import-Module -Name posh-git
     }
 }
 
@@ -29,6 +33,7 @@ if ($IsWindows) {
         Set-Alias -Name visualstudio -Value $visualstudioPath
     }
 
+    # dotnet completion
     if (Get-Command dotnet -ea SilentlyContinue) {
         Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
             param($commandName, $wordToComplete, $cursorPosition)
