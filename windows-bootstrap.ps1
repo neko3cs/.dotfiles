@@ -11,11 +11,11 @@ $result = $Host.UI.PromptForChoice($title, $message, $options, 1)
 if ($result -ne 0) { exit } 
 
 # Install Chocolatey
-if (!(Get-Command choco -ea SilentlyContinue)) {
+if (-not (Get-Command choco -ea SilentlyContinue)) {
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 # Windows is not default installed git
-if (!(Get-Command git -ea SilentlyContinue)) {
+if (-not (Get-Command git -ea SilentlyContinue)) {
     choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
 }
 
@@ -26,7 +26,6 @@ if (!(Test-Path $HOME\.dotfiles)) {
 }
 
 # Run PSScripts
-powershell -File .\Install-PwshModule.ps1
 powershell -File .\Set-PwshProfile.ps1
 powershell -File .\Install-ChocolateyApps.ps1
 powershell -File .\Install-VisualStudioCodeExtensions.ps1

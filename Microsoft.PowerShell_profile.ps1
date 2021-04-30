@@ -1,37 +1,68 @@
 #!pwsh
 
+function Install-PSModule {
+    if (-not (Get-Module -ListAvailable -Name oh-my-posh)) {
+        Install-Module -Name oh-my-posh -AllowPrerelease -Force
+    }
+    if (-not (Get-Module -ListAvailable -Name posh-git)) {
+        Install-Module -Name posh-git
+    }
+    if (-not (Get-Module -ListAvailable -Name SqlServer)) {
+        Install-Module -Name SqlServer
+    }
+    if (-not (Get-Module -ListAvailable -Name ImportExcel)) {
+        Install-Module -Name ImportExcel
+    }
+}
+
 function Set-PSModule {
-    if (Get-Command Get-PoshThemes -ea SilentlyContinue) {
+    if (-not (Get-Module -Name oh-my-posh)) {
         Import-Module oh-my-posh
         Set-PoshPrompt -Theme agnosterplus
     }
-    if (!(Get-Command Get-GitStatus -ea SilentlyContinue)) {
+    if (-not (Get-Module -Name posh-git)) {
         Import-Module -Name posh-git
     }
     $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-    if (Test-Path($ChocolateyProfile)) {
+    if ((Test-Path($ChocolateyProfile)) -and (-not (Get-Module -Name chocolateyProfile))) {
         Import-Module "$ChocolateyProfile"
     }
-    if (Get-Command Get-SqlCmd -ea SilentlyContinue) {
+    if (-not (Get-Module -Name SqlServer)) {
         Import-Module sqlserver
     }
-    if (!(Get-Command Import-Excel -ea SilentlyContinue)) {
+    if (-not (Get-Module -Name ImportExcel)) {
         Import-Module -Name ImportExcel
     }
 }
 
 if ($IsWindows) {
+    # Alias
     Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
     Set-Alias -Name winmerge -Value "C:\Program Files\WinMerge\WinMergeU.exe"
-    
-    Set-PSModule
-    
+    Set-Alias -Name ll -Value Get-ChildItem
+    function lla {
+        Get-ChildItem -Force
+    }
+    Set-Alias -Name touch -Value New-Item
+    function which {
+        param(
+            [parameter(Mandatory, ValueFromPipeline)][string]$command
+        )
+        return (Get-Command -Name $command -ShowCommandInfo).Definition
+    }
+    function zsh {
+        ubuntu zsh
+    }
     if ((vswhere -utf8 -format json | ConvertFrom-Json).Length -ne 0) {
         $visualstudioPath = (vswhere -utf8 -format json) |
         ConvertFrom-Json |
         Select-Object -ExpandProperty productPath
         Set-Alias -Name visualstudio -Value $visualstudioPath
     }
+
+    # PowerShell Module
+    Install-PSModule
+    Set-PSModule
 
     # dotnet completion
     if (Get-Command dotnet -ea SilentlyContinue) {
@@ -42,19 +73,4 @@ if ($IsWindows) {
             }
         }
     }
-}
-
-Set-Alias -Name ll -Value Get-ChildItem
-function lla {
-    Get-ChildItem -Force
-}
-Set-Alias -Name touch -Value New-Item
-function which {
-    param(
-        [parameter(Mandatory, ValueFromPipeline)][string]$command
-    )
-    return (Get-Command -Name $command -ShowCommandInfo).Definition
-}
-function zsh {
-    ubuntu zsh
 }
