@@ -28,7 +28,7 @@ function Set-PSModule {
         Import-Module "$ChocolateyProfile"
     }
     if (-not (Get-Module -Name SqlServer)) {
-        Import-Module sqlserver
+        Import-Module SqlServer
     }
     if (-not (Get-Module -Name ImportExcel)) {
         Import-Module -Name ImportExcel
