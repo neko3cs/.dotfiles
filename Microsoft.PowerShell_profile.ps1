@@ -11,6 +11,9 @@ function Set-PSModule {
     if (!(Get-Command Import-Excel -ea SilentlyContinue)) {
         Import-Module -Name ImportExcel
     }
+    if (!(Get-Command Get-GitStatus -ea SilentlyContinue)) {
+        Import-Module -Name posh-git
+    }
 }
 
 if ($IsWindows) {
