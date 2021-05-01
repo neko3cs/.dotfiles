@@ -27,3 +27,5 @@ activate_ubuntu
 ./apt-install.sh
 ./vim-install.sh
 ./dotfiles-link.sh
+
+chsh -s $(which zsh)
