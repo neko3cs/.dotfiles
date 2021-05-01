@@ -54,6 +54,7 @@ casks=(
   unity-hub
   visual-studio-code
   visual-studio
+  vlc
   zoom
 )
 
