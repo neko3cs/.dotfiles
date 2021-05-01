@@ -51,7 +51,7 @@ if ($IsWindows) {
         return (Get-Command -Name $command -ShowCommandInfo).Definition
     }
     function zsh {
-        ubuntu zsh
+        wsl zsh
     }
     if ((vswhere -utf8 -format json | ConvertFrom-Json).Length -ne 0) {
         $visualstudioPath = (vswhere -utf8 -format json) |
