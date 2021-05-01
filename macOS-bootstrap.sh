@@ -16,7 +16,7 @@ fi
 
 ./dotfiles-link.sh
 ./brew-install.sh
-./vim-install.sh
+pwsh ./Install-NeoBundleVim.ps1
 pwsh ./vscode-extensions-install.ps1
 
 echo 'NAME="macOS"' > /etc/os-release
