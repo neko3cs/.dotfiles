@@ -4,17 +4,25 @@
 
 Run this.
 
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh)"
 ```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh)"
+
+## ubuntu
+
+Run this.
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh)"
 ```
 
 ## windows
 
 Run this.
 
-```
-PS> Set-ExecutionPolicy RemoteSigned
-PS> Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1'))
+```pwsh
+Set-ExecutionPolicy RemoteSigned
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1'))
 ```
 
 ## Windows Installer Link
