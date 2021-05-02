@@ -46,6 +46,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'OmniSharp/omnisharp-vim'
+NeoBundle 'chrisbra/csv.vim'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
