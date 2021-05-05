@@ -37,6 +37,7 @@ The ones that don't get scripted.
 - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
 - [Genshin](https://genshin.mihoyo.com/ja/download)
 - [iTunes](https://support.apple.com/ja-jp/HT210384)
+- [iVCam](https://www.e2esoft.com/ivcam/)
 - [Kindle Previewer](https://kdp.amazon.co.jp/ja_JP/help/topic/G202131170)
 - [Logicool Options](https://www.logicool.co.jp/ja-jp/product/options)
 - [Origin](https://www.origin.com/jpn/ja-jp/store/download)
