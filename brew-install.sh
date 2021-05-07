@@ -44,6 +44,7 @@ casks=(
   discord
   docker
   dropbox
+  microsoft-edge
   google-chrome
   google-japanese-ime
   github
