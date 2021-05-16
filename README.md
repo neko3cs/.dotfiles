@@ -21,8 +21,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/u
 Run this.
 
 ```pwsh
-Set-ExecutionPolicy RemoteSigned
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1'))
+powershell `
+-ExecutionPolicy ByPass `
+-Command {
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1'))
+}
 ```
 
 ## Windows Installer Link
@@ -30,10 +33,10 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw
 The ones that don't get scripted.
 
 - [ArmouryCrateInstallTool](https://www.asus.com/supportonly/Armoury%20Crate/HelpDesk_Download/)
-    - ASUS Driver Manager
+  - ASUS Driver Manager
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
-    - Oh My Posh Font
-    - add [ `"fontFace": "CaskaydiaCove Nerd Font"` ] to Windows Terminal Settings
+  - Oh My Posh Font
+  - add [ `"fontFace": "CaskaydiaCove Nerd Font"` ] to Windows Terminal Settings
 - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
 - [Genshin](https://genshin.mihoyo.com/ja/download)
 - [iTunes](https://support.apple.com/ja-jp/HT210384)

@@ -10,6 +10,9 @@ $options = [System.Management.Automation.Host.ChoiceDescription[]](
 $result = $Host.UI.PromptForChoice($title, $message, $options, 1)
 if ($result -ne 0) { exit } 
 
+# Set Execution Polycy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
 # Install Chocolatey
 if (-not (Get-Command choco -ea SilentlyContinue)) {
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
