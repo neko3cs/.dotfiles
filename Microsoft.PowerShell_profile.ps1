@@ -53,12 +53,6 @@ if ($IsWindows) {
     function zsh {
         wsl zsh
     }
-    if ((vswhere -utf8 -format json | ConvertFrom-Json).Length -ne 0) {
-        $visualstudioPath = (vswhere -utf8 -format json) |
-        ConvertFrom-Json |
-        Select-Object -ExpandProperty productPath
-        Set-Alias -Name visualstudio -Value $visualstudioPath
-    }
 
     # PowerShell Module
     Install-PSModule
