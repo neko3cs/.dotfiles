@@ -1,14 +1,14 @@
 # Windows PowerShell
 
 # Confirmation to run
-$title = "clone .dotfiles repo and run bootstrap scripts."
-$message = "ok?: "
-$options = [System.Management.Automation.Host.ChoiceDescription[]](
-    (New-Object System.Management.Automation.Host.ChoiceDescription "Yes", "実行する"),
-    (New-Object System.Management.Automation.Host.ChoiceDescription "No", "実行しない")
-)
-$result = $Host.UI.PromptForChoice($title, $message, $options, 1)
-if ($result -ne 0) { exit } 
+# $title = "clone .dotfiles repo and run bootstrap scripts."
+# $message = "ok?: "
+# $options = [System.Management.Automation.Host.ChoiceDescription[]](
+#     (New-Object System.Management.Automation.Host.ChoiceDescription#  "&Yes", "実行する"),
+#     (New-Object System.Management.Automation.Host.ChoiceDescription "# &No", "実行しない")
+# )
+# $result = $Host.UI.PromptForChoice($title, $message, $options, 1)
+# if ($result -ne 0) { exit } 
 
 # Set Execution Polycy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
