@@ -21,9 +21,13 @@ if (!(Test-Path $HOME\.dotfiles)) {
     git clone https://github.com/neko3cs/.dotfiles.git
     Set-Location .dotfiles
 }
-# Run PSScripts
-powershell -File .\Set-PwshProfile.ps1
-powershell -File .\Install-ChocolateyApps.ps1
-powershell -File .\Install-VisualStudioCodeExtensions.ps1
-powershell -File .\Install-VisualStudio.ps1
-powershell -File .\Install-SQLServerManagementStudio.ps1
+# Encourage run PSScripts
+Write-Host "Please run this script!"
+Get-ChildItem -Filter "Set-*" | 
+ForEach-Object {
+    Write-Output "- $($_.Name)" 
+}
+Get-ChildItem -Filter "Install-*" | 
+ForEach-Object {
+    Write-Output "- $($_.Name)" 
+}
