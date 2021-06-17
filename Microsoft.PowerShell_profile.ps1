@@ -10,6 +10,9 @@ function Install-PSModule {
     if (-not (Get-Module -ListAvailable -Name SqlServer)) {
         Install-Module -Name SqlServer
     }
+    if (-not (Get-Module -ListAvailable -Name ClassExplorer)) {
+        Install-Module -Name ClassExplorer
+    }
     if (-not (Get-Module -ListAvailable -Name ImportExcel)) {
         Install-Module -Name ImportExcel
     }
@@ -29,6 +32,9 @@ function Set-PSModule {
     }
     if (-not (Get-Module -Name SqlServer)) {
         Import-Module SqlServer
+    }
+    if (-not (Get-Module -Name ClassExplorer)) {
+        Import-Module ClassExplorer
     }
     if (-not (Get-Module -Name ImportExcel)) {
         Import-Module -Name ImportExcel
