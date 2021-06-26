@@ -3,8 +3,15 @@
 param(
     [switch]$Force,
     [ValidateSet("Private", "Work")]
-    [string]$UseFor = "Private"
+    [string]$UseFor
 )
+
+if ([string]::IsNullOrEmpty($UseFor)) {
+    Write-Host `
+        "Error: UseFor option is required!" `
+        -ForegroundColor Red
+    exit
+}
 
 if (!(Get-Command choco -ea SilentlyContinue)) {
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
