@@ -1,7 +1,7 @@
 #!pwsh
 
 # Execute this command and copy & paste to array initialization.
-# PS> code --list-extensions | select { "`"$_`"" }
+# PS> code --list-extensions | Select-Object @{Name="Extensions";Expression={ "`"$_`"" }}
 $extensions = @(
     "Angular.ng-template"
     "chrmarti.regex"
