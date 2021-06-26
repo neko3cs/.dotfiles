@@ -2,8 +2,15 @@
 
 param(
     [ValidateSet("Community", "Professional", "Enterprise")]
-    [string]$Edition = "Community"
+    [string]$Edition
 )
+
+if ([string]::IsNullOrEmpty($Edition)) {
+    Write-Host `
+        "Error: Edition option is required!" `
+        -ForegroundColor Red
+    exit
+}
 
 [string]$vsInstallerName
 switch ($Edition) {
