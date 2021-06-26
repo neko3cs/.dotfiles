@@ -17,6 +17,7 @@ $extensions = @(
     "ms-dotnettools.csharp"
     "ms-mssql.mssql"
     "ms-python.python"
+    "ms-python.vscode-pylance"
     "ms-toolsai.jupyter"
     "ms-vscode-remote.remote-containers"
     "ms-vscode-remote.remote-wsl"
