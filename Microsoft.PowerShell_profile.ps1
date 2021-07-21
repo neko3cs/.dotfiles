@@ -73,4 +73,9 @@ if ($IsWindows) {
             }
         }
     }
+
+    # github completion
+    (& gh completion -s powershell) |
+    Out-String |
+    Invoke-Expression
 }
