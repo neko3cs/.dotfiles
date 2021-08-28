@@ -44,12 +44,9 @@ casks=(
   discord
   docker
   dropbox
-  microsoft-edge
   google-chrome
-  google-japanese-ime
   github
   java
-  mysqlworkbench
   notion
   powershell
   unity-hub
