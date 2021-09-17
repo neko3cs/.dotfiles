@@ -33,6 +33,7 @@ formulas=(
   redis
   rust
   sqlite
+  watchman
   wget
   yarn
   zsh
