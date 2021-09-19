@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # zsh options
 typeset -U path cdpath fpath manpath && \
 autoload -Uz compinit && \
