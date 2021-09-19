@@ -1,7 +1,7 @@
 #!/bin/bash
 
 type brew >/dev/null 2>&1 || {
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 brew doctor
@@ -18,6 +18,7 @@ formulas=(
   azure-functions-core-tools
   automake
   boost
+  cmake
   ghc
   git
   github/gh/gh
@@ -25,6 +26,7 @@ formulas=(
   jq
   mas
   mysql
+  nkf
   node
   open-cobol
   tmux
