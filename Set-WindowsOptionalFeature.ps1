@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 $OptionalFeatures = @(
   "Microsoft-Hyper-V-All"
