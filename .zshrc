@@ -1,4 +1,7 @@
-#!/usr/bin/env zsh
+#
+# neko3cs's .zshrc
+#
+
 # zsh options
 typeset -U path cdpath fpath manpath && \
 autoload -Uz compinit && \

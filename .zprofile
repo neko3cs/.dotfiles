@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh
+#
+# neko3cs's .zprofile
+#
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -10,6 +12,7 @@ export PATH="$PATH:/Users/neko3cs/.dotnet/tools"
 export JAVA_HOME="/usr/libexec/java_home"
 export PATH="$JAVA_HOME/bin:$PATH"
 
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 type rbenv >/dev/null 2>&1 && {
   eval "$(rbenv init -)"
 }
