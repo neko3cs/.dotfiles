@@ -1,4 +1,4 @@
-#!Windows PowerShell
+#!/usr/bin/env Windows PowerShell
 
 [Security.Principal.WindowsPrincipal]$CurrentPrincipal = [Security.Principal.WindowsIdentity]::GetCurrent()
 if (-not($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))) {

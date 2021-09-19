@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 param(
     [switch]$Force,

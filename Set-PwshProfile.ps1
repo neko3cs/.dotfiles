@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 if (Test-Path $PROFILE) {
     Remove-Item -Force $PROFILE
