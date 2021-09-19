@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 echo "clone .dotfiles repo and run bootstrap scripts."
 read -p "ok?(y/N): " yn; case "$yn" in [yY]*) ;; *) exit;; esac
