@@ -2,7 +2,6 @@
 
 dotfiles=(
   .vimrc
-  .tmux.conf
   .zprofile
   .zshrc
 )
