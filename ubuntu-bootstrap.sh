@@ -25,7 +25,7 @@ sudo apt upgrade
 activate_ubuntu
 
 ./apt-install.sh
-pwsh ./Install-NeoBundleVim.ps1
+./vim-install.sh
 ./dotfiles-link.sh
 
 chsh -s $(which zsh)
