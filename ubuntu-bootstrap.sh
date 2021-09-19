@@ -19,13 +19,6 @@ install_zsh_completions() {
   rm -f ~/.zcompdump; compinit
 }
 
-add_homebrew_path() {
-  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.bash_profile
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.profile
-}
-
 echo "clone .dotfiles repo and run bootstrap scripts."
 read -p "ok?(y/N): " yn; case "$yn" in [yY]*) ;; *) exit;; esac
 
@@ -41,9 +34,6 @@ activate_ubuntu
 sudo apt-get install build-essential procps curl file git
 
 ./brew-install.sh
-
-add_homebrew_path
-
 ./vim-install.sh
 ./dotfiles-link.sh
 
