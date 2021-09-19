@@ -71,11 +71,10 @@ for formula in "${formulas[@]}"; do
   brew install $formula || brew upgrade $formula
 done
 
-# only macOS
-type sw_vers >/dev/null 2>&1 && {
+if [ "$(uname -s)" == "Darwin" ]; then
   for cask in "${casks[@]}"; do
     brew install --cask $cask || brew upgrade --cask $cask
   done
-}
+fi
 
 brew cleanup
