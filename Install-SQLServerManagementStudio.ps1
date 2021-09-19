@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 $Headers = @{
     "Accept-Language" = "ja-jp"

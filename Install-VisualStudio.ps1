@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 param(
     [ValidateSet("Community", "Professional", "Enterprise")]

@@ -1,4 +1,4 @@
-#!pwsh
+#!/usr/bin/env pwsh
 
 function Install-PSModule {
     if (-not (Get-Module -ListAvailable -Name oh-my-posh)) {
