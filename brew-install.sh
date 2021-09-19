@@ -1,7 +1,7 @@
 #!/bin/bash
 
 type brew >/dev/null 2>&1 || {
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 brew doctor
@@ -18,17 +18,16 @@ formulas=(
   azure-functions-core-tools
   automake
   boost
+  cmake
   ghc
   git
-  github/gh/gh
+  gh
   go
   jq
-  mas
   mysql
+  nkf
   node
   open-cobol
-  tmux
-  reattach-to-user-namespace # for tmux
   rbenv
   redis
   rust
@@ -65,8 +64,11 @@ for formula in "${formulas[@]}"; do
   brew install $formula || brew upgrade $formula
 done
 
-for cask in "${casks[@]}"; do
-  brew install --cask $cask || brew upgrade --cask $cask
-done
+# only macOS
+type sw_vers >/dev/null 2>&1 && {
+  for cask in "${casks[@]}"; do
+    brew install --cask $cask || brew upgrade --cask $cask
+  done
+}
 
 brew cleanup
