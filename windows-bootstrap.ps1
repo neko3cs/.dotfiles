@@ -26,6 +26,8 @@ if (!(Test-Path $HOME\.dotfiles)) {
 . .\Set-WindowsOptionalFeature.ps1
 . .\Install-SQLServerManagementStudio.ps1
 
-# 以下のスクリプトはオプション指定が必要なため手動で入れる
-# - Install-ChocolateyApps.ps1
-# - Install-VisualStudio.ps1
+Write-Output @"
+Please run this script...
+- Install-ChocolateyApps.ps1 -UseFor (Private|Work)
+- Install-VisualStudio.ps1 -Edition (Community|Enterprise|Professional)
+"@
