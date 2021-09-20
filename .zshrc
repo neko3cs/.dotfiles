@@ -8,7 +8,8 @@ autoload -Uz compinit && \
 compinit -i && \
 autoload -Uz colors && \
 colors && \
-PROMPT='%F{green}%m@%n%f %F{cyan}%~%f$ '
+PROMPT='%F{yellow}%n@%m%f%F{cyan} %~ %f$ '
+RPROMPT='%F{magenta}%D{%Y/%m/%d} %*%f'
 
 # complement options
 setopt correct && \
