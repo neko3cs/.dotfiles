@@ -39,7 +39,5 @@ sudo apt-get install build-essential procps curl file git
 
 install_zsh_completions
 
-chsh -s $(which zsh)
-
 sudo apt autoremove
 sudo apt autoclean
