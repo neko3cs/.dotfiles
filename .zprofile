@@ -12,10 +12,12 @@ export PATH="$PATH:/Users/neko3cs/.dotnet/tools"
 export JAVA_HOME="/usr/libexec/java_home"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 type rbenv >/dev/null 2>&1 && {
   eval "$(rbenv init -)"
 }
 type pyenv >/dev/null 2>&1 && {
   eval "$(pyenv init -)"
 }
+if [ "$(uname -s)" = "Linux" ]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
