@@ -25,6 +25,6 @@ alias cls='clear'
 alias chrome='open -a "Google Chrome"'
 alias visualstudio='open -a "Visual Studio"'
 
-if [ "$(uname -s)" == "Linux" ]; then
+if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'
 fi
