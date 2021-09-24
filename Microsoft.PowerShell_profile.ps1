@@ -46,7 +46,6 @@ if ($IsWindows) {
     Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
     Set-Alias -Name winmerge -Value "C:\Program Files\WinMerge\WinMergeU.exe"
     Set-Alias -Name ll -Value Get-ChildItem
-    Set-Alias -Name zsh -Value "ubuntu.exe"
     function lla {
         Get-ChildItem -Force
     }
