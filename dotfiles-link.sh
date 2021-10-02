@@ -2,6 +2,8 @@
 
 dotfiles=(
   .vimrc
+)
+dotfiles_need_source=(
   .zprofile
   .zshrc
 )
@@ -9,6 +11,7 @@ dotfiles=(
 for dotfile in "${dotfiles[@]}"; do
   ln -sf $(pwd)/$dotfile ~/$dotfile
 done
-
-source ~/.zprofile
-source ~/.zshrc
+for dotfile in "${dotfiles_need_source[@]}"; do
+  ln -sf $(pwd)/$dotfile ~/$dotfile
+  source $(pwd)/$dotfile
+done
