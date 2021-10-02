@@ -19,7 +19,7 @@ read -q && echo "continue..." || exit 0
 git clone https://github.com/neko3cs/.dotfiles.git
 cd .dotfiles
 
-xcode-select --install
+softwareupdate --install
 
 install_vim_plug
 ./brew-install.sh
