@@ -13,11 +13,6 @@ activate_ubuntu() {
   sudo apt install -y manpages-ja manpages-ja-dev
 }
 
-install_vim_plug() {
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
 install_apt_package_for_linuxbrew() {
   sudo apt-get install \
     build-essential \
@@ -47,7 +42,7 @@ sudo apt upgrade
 
 activate_ubuntu
 
-install_vim_plug
+./vimplug-install.sh
 install_apt_package_for_linuxbrew
 ./brew-install.sh
 install_zsh_completions

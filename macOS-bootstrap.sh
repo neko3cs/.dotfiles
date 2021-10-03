@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-install_vim_plug() {
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
 install_docker_completion() {
   if [ ! -e ~/.zsh/completion/_docker-compose ]; then
     mkdir -p ~/.zsh/completion
@@ -21,7 +16,7 @@ cd .dotfiles
 
 softwareupdate --install
 
-install_vim_plug
+./vimplug-install.sh
 ./brew-install.sh
 install_docker_completion
 pwsh ./vscode-extensions-install.ps1
