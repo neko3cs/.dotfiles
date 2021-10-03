@@ -30,6 +30,23 @@ install_zsh_completions() {
   compinit
 }
 
+install_pwsh() {
+  # Update the list of packages
+  sudo apt-get update
+  # Install pre-requisite packages.
+  sudo apt-get install -y wget apt-transport-https software-properties-common
+  # Download the Microsoft repository GPG keys
+  wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+  # Register the Microsoft repository GPG keys
+  sudo dpkg -i packages-microsoft-prod.deb
+  # Update the list of packages after we added packages.microsoft.com
+  sudo apt-get update
+  # Install PowerShell
+  sudo apt-get install -y powershell
+  # Delete deb file
+  rm ./packages-microsoft-prod.deb
+}
+
 echo "clone .dotfiles repo and run bootstrap scripts."
 read -n1 -p "ok? (y/N): " yn
 [[ $yn = [yY] ]] && echo "continue..." || exit 0
@@ -46,6 +63,7 @@ activate_ubuntu
 install_apt_package_for_linuxbrew
 ./brew-install.sh
 install_zsh_completions
+install_pwsh
 ./dotfiles-link.sh
 
 sudo apt autoremove
