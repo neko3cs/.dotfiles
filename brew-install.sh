@@ -21,6 +21,7 @@ taps=(
 )
 
 formulas=(
+  awscli
   azure-cli
   azure-functions-core-tools
   automake
