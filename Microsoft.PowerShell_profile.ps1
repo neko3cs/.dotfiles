@@ -7,6 +7,9 @@ function Install-PSModule {
     if (-not (Get-Module -ListAvailable -Name posh-git)) {
         Install-Module -Name posh-git
     }
+    if (-not (Get-Module -ListAvailable -Name powershell-yaml)) {
+        Install-Module -Name powershell-yaml
+    }
     if (-not (Get-Module -ListAvailable -Name SqlServer)) {
         Install-Module -Name SqlServer
     }
@@ -25,6 +28,9 @@ function Set-PSModule {
     }
     if (-not (Get-Module -Name posh-git)) {
         Import-Module -Name posh-git
+    }
+    if (-not (Get-Module -Name powershell-yaml)) {
+        Import-Module -Name powershell-yaml
     }
     $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
     if ((Test-Path($ChocolateyProfile)) -and (-not (Get-Module -Name chocolateyProfile))) {
