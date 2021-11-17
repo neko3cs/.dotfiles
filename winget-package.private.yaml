@@ -3,17 +3,11 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: Discord.Discord
-        Version: 1.0.9003
       - Id: Amazon.Kindle
-        Version: 1.32.0.61109
       - Id: Notion.Notion
-        Version: 2.0.18
       - Id: Microsoft.VisualStudio.2022.Community
-        Version: 17.0.1
       - Id: Valve.Steam
-        Version: 2.10.91.91
       - Id: VideoLAN.VLC
-        Version: 3.0.16
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
