@@ -3,14 +3,10 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: JetBrains.dotUltimate
-        Version: 2021.2.2
       - Id: Microsoft.VisualStudio.2022.Professional
-        Version: 17.0.1
       - Id: Microsoft.VisualStudio.2019.Professional
-        Version: 16.11.7
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
       Name: winget
       Type: Microsoft.PreIndexed.Package
-
