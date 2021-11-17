@@ -20,6 +20,8 @@ Sources:
         Version: 96.0.4664.45
       - Id: OpenJS.NodeJS.LTS
         Version: 16.13.0
+      - Id: Microsoft.SQLServerManagementStudio
+        Version: 15.0.18390.0
       - Id: Microsoft.PowerShell
         Version: 7.2.0.0
       - Id: Microsoft.PowerToys
