@@ -1,7 +1,6 @@
 #!/usr/bin/env pwsh
 
 param(
-    [switch]$Force,
     [ValidateSet("Private", "Work")]
     [string]$UseFor
 )
