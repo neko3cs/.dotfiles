@@ -1,5 +1,12 @@
 #!Windows PowerShell
 
+function Install-ChocolateyApps {
+  if (!(Get-Command choco -ea SilentlyContinue)) {
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  }
+  choco install .\ChocolateyPackage.config --yes
+}
+
 function Set-Wsl2Ubuntu {
   wsl --install --distribution Ubuntu
   wsl --set-default Ubuntu
@@ -22,12 +29,11 @@ if (!(Test-Path $HOME\.dotfiles)) {
 }
 
 . .\Set-DotFiles.ps1
-. .\Set-WindowsOptionalFeature.ps1
-
+Install-ChocolateyApps
 Set-Wsl2Ubuntu
+. .\Set-WindowsOptionalFeature.ps1
 
 Write-Output @"
 Please run this script...
 - Install-WingetPackage.ps1 -UseFor (Private|Work)
-- Install-ChocolateyApps.ps1 -UseFor (Private|Work)
 "@
