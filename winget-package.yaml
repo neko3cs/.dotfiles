@@ -5,6 +5,7 @@ Sources:
       - Id: 7zip.7zip
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
+      - Id: Canonical.Ubuntu
       - Id: Microsoft.AzureCLI
       - Id: Docker.DockerDesktop
       - Id: GitHub.cli
@@ -16,7 +17,9 @@ Sources:
       - Id: Microsoft.PowerToys
       - Id: NickeManarin.ScreenToGif
       - Id: SlackTechnologies.Slack
+      - Id: Microsoft.MSIXPackagingTool
       - Id: Microsoft.VisualStudioCode
+      - Id: Microsoft.WindowsTerminal
       - Id: vim.vim
       - Id: WinMerge.WinMerge
       - Id: Zoom.Zoom
