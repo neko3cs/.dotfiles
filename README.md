@@ -40,7 +40,6 @@ The ones that don't get scripted.
     - add [ `"fontFace": "CaskaydiaCove Nerd Font"` ] to Windows Terminal Settings
   - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
   - [Genshin](https://genshin.mihoyo.com/ja/download)
-  - [iTunes](https://support.apple.com/ja-jp/HT210384)
   - [Logicool Options](https://www.logicool.co.jp/ja-jp/product/options)
   - [Origin](https://www.origin.com/jpn/ja-jp/store/download)
   - [Razer Surround Sound](https://www2.razer.com/jp-jp/7.1-surround-sound)
