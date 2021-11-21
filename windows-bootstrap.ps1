@@ -14,28 +14,20 @@ if (-not($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
-if (-not (Get-Command choco -ea SilentlyContinue)) {
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-
-if (-not (Get-Command git -ea SilentlyContinue)) {
-  choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
-}
+winget install --id Git.Git --exact --silent
 
 if (!(Test-Path $HOME\.dotfiles)) {
   git clone https://github.com/neko3cs/.dotfiles.git
   Set-Location -Path .dotfiles
 }
 
-. .\Set-PwshProfile.ps1
-. .\Set-VimConfigs.ps1
+. .\Set-DotFiles.ps1
 . .\Set-WindowsOptionalFeature.ps1
-. .\Install-SQLServerManagementStudio.ps1
 
 Set-Wsl2Ubuntu
 
 Write-Output @"
 Please run this script...
+- Install-WingetPackage.ps1 -UseFor (Private|Work)
 - Install-ChocolateyApps.ps1 -UseFor (Private|Work)
-- Install-VisualStudio.ps1 -Edition (Community|Enterprise|Professional)
 "@
