@@ -1,5 +1,12 @@
 #!Windows PowerShell
 
+function Install-ChocolateyApps {
+  if (!(Get-Command choco -ea SilentlyContinue)) {
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  }
+  choco install .\ChocolateyPackage.config --yes
+}
+
 function Set-Wsl2Ubuntu {
   wsl --install --distribution Ubuntu
   wsl --set-default Ubuntu
@@ -14,28 +21,19 @@ if (-not($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
-if (-not (Get-Command choco -ea SilentlyContinue)) {
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-
-if (-not (Get-Command git -ea SilentlyContinue)) {
-  choco install git.install --yes --params="'/NoShellIntegration /NoAutoCrlf'"
-}
+winget install --id Git.Git --exact --silent
 
 if (!(Test-Path $HOME\.dotfiles)) {
   git clone https://github.com/neko3cs/.dotfiles.git
   Set-Location -Path .dotfiles
 }
 
-. .\Set-PwshProfile.ps1
-. .\Set-VimConfigs.ps1
-. .\Set-WindowsOptionalFeature.ps1
-. .\Install-SQLServerManagementStudio.ps1
-
+. .\Set-DotFiles.ps1
+Set-ChocolateyApps
 Set-Wsl2Ubuntu
+. .\Set-WindowsOptionalFeature.ps1
 
 Write-Output @"
 Please run this script...
-- Install-ChocolateyApps.ps1 -UseFor (Private|Work)
-- Install-VisualStudio.ps1 -Edition (Community|Enterprise|Professional)
+- Install-WingetPackage.ps1 -UseFor (Private|Work)
 "@
