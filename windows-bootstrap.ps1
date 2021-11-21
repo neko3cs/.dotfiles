@@ -29,7 +29,7 @@ if (!(Test-Path $HOME\.dotfiles)) {
 }
 
 . .\Set-DotFiles.ps1
-Install-ChocolateyApps
+Set-ChocolateyApps
 Set-Wsl2Ubuntu
 . .\Set-WindowsOptionalFeature.ps1
 
