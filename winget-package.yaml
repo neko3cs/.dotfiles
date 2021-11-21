@@ -1,0 +1,31 @@
+$schema: https://aka.ms/winget-packages.schema.1.0.json
+WinGetVersion: 0.3.11201
+Sources:
+  - Packages:
+      - Id: 7zip.7zip
+      - Id: Amazon.AWSCLI
+      - Id: Amazon.SAM-CLI
+      - Id: Canonical.Ubuntu
+      - Id: Microsoft.AzureCLI
+      - Id: Docker.DockerDesktop
+      - Id: GitHub.cli
+      - Id: Git.Git
+      - Id: Google.Chrome
+      - Id: LINQPad.LINQPad.6
+      - Id: OpenJS.NodeJS.LTS
+      - Id: Microsoft.SQLServerManagementStudio
+      - Id: Microsoft.PowerShell
+      - Id: Microsoft.PowerToys
+      - Id: NickeManarin.ScreenToGif
+      - Id: SlackTechnologies.Slack
+      - Id: Microsoft.MSIXPackagingTool
+      - Id: Microsoft.VisualStudioCode
+      - Id: Microsoft.WindowsTerminal
+      - Id: vim.vim
+      - Id: WinMerge.WinMerge
+      - Id: Zoom.Zoom
+    SourceDetails:
+      Argument: https://winget.azureedge.net/cache
+      Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
+      Name: winget
+      Type: Microsoft.PreIndexed.Package
