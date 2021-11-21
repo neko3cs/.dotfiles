@@ -8,6 +8,7 @@ Sources:
       - Id: LINE.LINE
       - Id: Notion.Notion
       - Id: Microsoft.VisualStudio.2022.Community
+      - Id: Mojang.MinecraftLauncher
       - Id: Valve.Steam
       - Id: VideoLAN.VLC
     SourceDetails:
