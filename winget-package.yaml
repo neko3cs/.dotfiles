@@ -11,6 +11,7 @@ Sources:
       - Id: GitHub.cli
       - Id: Git.Git
       - Id: Google.Chrome
+      - Id: LINQPad.LINQPad.6
       - Id: OpenJS.NodeJS.LTS
       - Id: Microsoft.SQLServerManagementStudio
       - Id: Microsoft.PowerShell
