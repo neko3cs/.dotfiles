@@ -11,12 +11,17 @@ if ([string]::IsNullOrEmpty($UseFor)) {
         -ForegroundColor Red
     exit
 }
-
 if (!(Get-Command winget -ea SilentlyContinue)) {
     Write-Host `
         "Error: winget has not installed! please install from Microsoft Store." `
         -ForegroundColor Red
     exit
+}
+if (-not (Get-Module -ListAvailable -Name powershell-yaml)) {
+    Install-Module -Name powershell-yaml
+}
+if (-not (Get-Module -Name powershell-yaml)) {
+    Import-Module -Name powershell-yaml
 }
 
 Get-ChildItem .\winget-package*.yaml |
