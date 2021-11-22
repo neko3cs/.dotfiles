@@ -67,6 +67,18 @@ if ($IsWindows) {
     Install-PSModule
     Set-PSModule
 
+    # winget completion
+    if (Get-Command winget -ea SilentlyContinue) {
+        Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
+            param($wordToComplete, $commandAst, $cursorPosition)
+            [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
+            $Local:word = $wordToComplete.Replace('"', '""')
+            $Local:ast = $commandAst.ToString().Replace('"', '""')
+            winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
+                [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+            }
+        }
+    }    
     # dotnet completion
     if (Get-Command dotnet -ea SilentlyContinue) {
         Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
