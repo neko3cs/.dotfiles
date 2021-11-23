@@ -32,10 +32,6 @@ function Set-PSModule {
     if (-not (Get-Module -Name powershell-yaml)) {
         Import-Module -Name powershell-yaml
     }
-    $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-    if ((Test-Path($ChocolateyProfile)) -and (-not (Get-Module -Name chocolateyProfile))) {
-        Import-Module "$ChocolateyProfile"
-    }
     if (-not (Get-Module -Name SqlServer)) {
         Import-Module SqlServer
     }
