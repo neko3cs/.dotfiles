@@ -3,11 +3,14 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: 7zip.7zip
+      - Id: alcpu.CoreTemp
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
       - Id: Canonical.Ubuntu
+      - Id: CPUID.CPU-Z
       - Id: Microsoft.AzureCLI
       - Id: Docker.DockerDesktop
+      - Id: gerardog.gsudo
       - Id: GitHub.cli
       - Id: Git.Git
       - Id: Google.Chrome
