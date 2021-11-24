@@ -1,47 +1,13 @@
 #!/usr/bin/env pwsh
 
-function Install-PSModule {
-    if (-not (Get-Module -ListAvailable -Name oh-my-posh)) {
-        Install-Module -Name oh-my-posh -AllowPrerelease -Force
-    }
-    if (-not (Get-Module -ListAvailable -Name posh-git)) {
-        Install-Module -Name posh-git
-    }
-    if (-not (Get-Module -ListAvailable -Name powershell-yaml)) {
-        Install-Module -Name powershell-yaml
-    }
-    if (-not (Get-Module -ListAvailable -Name SqlServer)) {
-        Install-Module -Name SqlServer
-    }
-    if (-not (Get-Module -ListAvailable -Name ClassExplorer)) {
-        Install-Module -Name ClassExplorer
-    }
-    if (-not (Get-Module -ListAvailable -Name ImportExcel)) {
-        Install-Module -Name ImportExcel
-    }
-}
-
-function Set-PSModule {
-    if (-not (Get-Module -Name oh-my-posh)) {
-        Import-Module oh-my-posh
-        Set-PoshPrompt -Theme agnosterplus
-    }
-    if (-not (Get-Module -Name posh-git)) {
-        Import-Module -Name posh-git
-    }
-    if (-not (Get-Module -Name powershell-yaml)) {
-        Import-Module -Name powershell-yaml
-    }
-    if (-not (Get-Module -Name SqlServer)) {
-        Import-Module SqlServer
-    }
-    if (-not (Get-Module -Name ClassExplorer)) {
-        Import-Module ClassExplorer
-    }
-    if (-not (Get-Module -Name ImportExcel)) {
-        Import-Module -Name ImportExcel
-    }
-}
+$PowerShellModules = @(
+    "oh-my-posh"
+    "posh-git"
+    "powershell-yaml"
+    "SqlServer"
+    "ClassExplorer"
+    "ImportExcel"
+)
 
 if ($IsWindows) {
     # Alias
@@ -60,8 +26,15 @@ if ($IsWindows) {
     }
 
     # PowerShell Module
-    Install-PSModule
-    Set-PSModule
+    foreach ($module in $PowerShellModules) {
+        if (-not (Get-Module -ListAvailable -Name $module)) {
+            Install-Module -Name $module
+        }
+        if (-not (Get-Module -Name $module)) {
+            Import-Module -Name $module
+        }
+    }
+    Set-PoshPrompt -Theme agnosterplus # oh-my-posh settings
 
     # winget completion
     if (Get-Command winget -ea SilentlyContinue) {
@@ -74,7 +47,7 @@ if ($IsWindows) {
                 [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
             }
         }
-    }    
+    }
     # dotnet completion
     if (Get-Command dotnet -ea SilentlyContinue) {
         Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
