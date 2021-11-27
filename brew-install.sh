@@ -16,12 +16,14 @@ brew update
 brew upgrade
 
 taps=(
+  aws/tap
   azure/functions
   pivotal/tap
 )
 
 formulas=(
   awscli
+  aws-sam-cli
   azure-cli
   azure-functions-core-tools
   automake
@@ -43,6 +45,7 @@ formulas=(
   watchman
   wget
   yarn
+  yq
   zsh
   zsh-completions
 )
