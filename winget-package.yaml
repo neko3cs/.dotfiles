@@ -13,6 +13,7 @@ Sources:
       - Id: Docker.DockerDesktop
       - Id: gerardog.gsudo
       - Id: GitHub.cli
+      - Id: GitHub.GitHubDesktop
       - Id: Git.Git
       - Id: Google.Chrome
       - Id: LINQPad.LINQPad.6
