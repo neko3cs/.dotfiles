@@ -14,6 +14,7 @@ Sources:
       - Id: gerardog.gsudo
       - Id: GitHub.cli
       - Id: Git.Git
+      - Id: GoLang.Go
       - Id: Google.Chrome
       - Id: LINQPad.LINQPad.6
       - Id: OpenJS.NodeJS.LTS
