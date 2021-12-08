@@ -10,6 +10,7 @@ Sources:
       - Id: Canonical.Ubuntu
       - Id: CPUID.CPU-Z
       - Id: Microsoft.AzureCLI
+      - Id: Microsoft.PowerAutomateDesktop
       - Id: Docker.DockerDesktop
       - Id: gerardog.gsudo
       - Id: GitHub.cli
