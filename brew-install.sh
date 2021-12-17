@@ -58,6 +58,7 @@ casks=(
   docker
   dropbox
   google-chrome
+  google-drive
   github
   notion
   powershell
