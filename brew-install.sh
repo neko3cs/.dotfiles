@@ -18,6 +18,7 @@ brew upgrade
 taps=(
   aws/tap
   azure/functions
+  homebrew/cask-versions
   pivotal/tap
 )
 
@@ -34,6 +35,7 @@ formulas=(
   gh
   go
   jq
+  java
   mysql
   nkf
   node
@@ -57,7 +59,6 @@ casks=(
   dropbox
   google-chrome
   github
-  java
   notion
   powershell
   unity-hub
