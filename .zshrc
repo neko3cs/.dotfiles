@@ -3,6 +3,12 @@
 #
 
 # zsh options
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
 typeset -U path cdpath fpath manpath && \
 autoload -Uz compinit && \
 compinit -i && \
