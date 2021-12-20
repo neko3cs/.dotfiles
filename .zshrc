@@ -16,7 +16,7 @@ typeset -U path cdpath fpath manpath &&
   colors &&
   RPROMPT='%F{magenta}%D{%Y/%m/%d} %*%f' &&
   PROMPT='
-%F{blue}┌ %n@%m%f%F{cyan} %~%f
+%F{blue}┌ %n@%m%f%F{cyan} %C%f
 %F{blue}└ $ %f'
 
 # complement options
