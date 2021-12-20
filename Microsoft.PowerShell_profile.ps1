@@ -34,7 +34,7 @@ if ($IsWindows) {
             Import-Module -Name $module
         }
     }
-    Set-PoshPrompt -Theme agnosterplus # oh-my-posh settings
+    Set-PoshPrompt -Theme stelbent.minimal # oh-my-posh settings
 
     # winget completion
     if (Get-Command winget -ea SilentlyContinue) {
