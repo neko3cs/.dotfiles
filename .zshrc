@@ -9,20 +9,22 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
-typeset -U path cdpath fpath manpath && \
-autoload -Uz compinit && \
-compinit -i && \
-autoload -Uz colors && \
-colors && \
-PROMPT='%F{yellow}%n@%m%f%F{cyan} %~ %f$ '
-RPROMPT='%F{magenta}%D{%Y/%m/%d} %*%f'
+typeset -U path cdpath fpath manpath &&
+  autoload -Uz compinit &&
+  compinit -i &&
+  autoload -Uz colors &&
+  colors &&
+  RPROMPT='%F{magenta}%D{%Y/%m/%d} %*%f' &&
+  PROMPT='
+%F{blue}┌ %n@%m%f%F{cyan} %~%f
+%F{blue}└ $ %f'
 
 # complement options
-setopt correct && \
-setopt list_packed && \
-setopt auto_param_slash && \
-setopt auto_param_slash && \
-setopt nonomatch
+setopt correct &&
+  setopt list_packed &&
+  setopt auto_param_slash &&
+  setopt auto_param_slash &&
+  setopt nonomatch
 
 # alias
 alias la='ls -a'
