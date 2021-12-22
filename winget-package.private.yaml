@@ -5,6 +5,7 @@ Sources:
       - Id: Apple.iTunes
       - Id: Discord.Discord
       - Id: Amazon.Kindle
+      - Id: Google.Drive
       - Id: LINE.LINE
       - Id: Notion.Notion
       - Id: Microsoft.VisualStudio.2022.Community
