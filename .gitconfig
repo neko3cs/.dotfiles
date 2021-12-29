@@ -1,0 +1,15 @@
+[user]
+	name = neko3cs
+	email = minaton.0722.net@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	ff = only
+	default = current
+[push]
+	default = current
+[color]
+	ui = auto
