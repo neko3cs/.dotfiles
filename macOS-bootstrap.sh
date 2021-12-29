@@ -16,8 +16,8 @@ cd .dotfiles
 
 softwareupdate --install
 
+./dotfiles-link.sh
 ./vimplug-install.sh
 ./brew-install.sh
 install_docker_completion
 pwsh ./vscode-extensions-install.ps1
-./dotfiles-link.sh
