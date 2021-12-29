@@ -1,7 +1,7 @@
 #!/bin/bash
 
 type brew >/dev/null 2>&1 || {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >/dev/null
 }
 
 if [ "$(uname -s)" = "Linux" ]; then
@@ -11,76 +11,20 @@ if [ "$(uname -s)" = "Linux" ]; then
   echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.profile
 fi
 
-brew doctor
-brew update
-brew upgrade
+echo "🍺 tap homebrew/bundle..."
+brew tap homebrew/bundle >/dev/null
 
-taps=(
-  aws/tap
-  azure/functions
-  homebrew/cask-versions
-  pivotal/tap
-)
+echo "🍺 doctor..."
+brew doctor >/dev/null
 
-formulas=(
-  awscli
-  aws-sam-cli
-  azure-cli
-  azure-functions-core-tools
-  automake
-  boost
-  cmake
-  ghc
-  git
-  gh
-  go
-  jq
-  java
-  mysql
-  nkf
-  node
-  open-cobol
-  rbenv
-  redis
-  rust
-  sqlite
-  watchman
-  wget
-  yarn
-  yq
-  zsh
-  zsh-completions
-)
+echo "🍺 update..."
+brew update >/dev/null
 
-casks=(
-  appcleaner
-  discord
-  docker
-  dropbox
-  google-chrome
-  google-drive
-  github
-  notion
-  powershell
-  unity-hub
-  visual-studio-code
-  visual-studio
-  vlc
-  zoom
-)
+echo "🍺 upgrade..."
+brew upgrade >/dev/null
 
-for tap in "${taps[@]}"; do
-  brew tap $tap
-done
+echo "🍺 cleanup..."
+brew cleanup >/dev/null
 
-for formula in "${formulas[@]}"; do
-  brew install $formula || brew upgrade $formula
-done
-
-if [ "$(uname -s)" = "Darwin" ]; then
-  for cask in "${casks[@]}"; do
-    brew install --cask $cask || brew upgrade --cask $cask
-  done
-fi
-
-brew cleanup
+echo "🍺 bundle..."
+brew bundle >/dev/null
