@@ -2,6 +2,7 @@
 
 dotfiles=(
   .vimrc
+  .gitconfig
   Brewfile
 )
 dotfiles_need_source=(
