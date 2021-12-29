@@ -5,7 +5,7 @@
 Run this.
 
 ```sh
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh)"
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh | zsh
 ```
 
 ## ubuntu
@@ -13,7 +13,7 @@ zsh -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/
 Run this.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh)"
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh | bash
 ```
 
 ## windows
