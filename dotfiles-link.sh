@@ -2,6 +2,7 @@
 
 dotfiles=(
   .vimrc
+  Brewfile
 )
 dotfiles_need_source=(
   .zprofile
