@@ -1,21 +1,33 @@
 #!/usr/bin/env pwsh
 
-if (Test-Path $PROFILE) {
-  Remove-Item `
-    -Path $PROFILE `
-    -Force
-}
-if (Test-Path -Path $HOME/.vimrc) {
-  Remove-Item `
-    -Path $HOME/.vimrc `
+function Set-PSProfile {
+  if (Test-Path $PROFILE) {
+    Remove-Item `
+      -Path $PROFILE `
+      -Force
+  }
+  Copy-Item `
+    -Path .\Microsoft.PowerShell_profile.ps1 `
+    -Destination $PROFILE `
     -Force
 }
 
-Copy-Item `
-  -Path .\Microsoft.PowerShell_profile.ps1 `
-  -Destination $PROFILE `
-  -Force
-Copy-Item `
-  -Path $HOME\.dotfiles\.vimrc `
-  -Destination $HOME\.vimrc `
-  -Force
+$dotfiles = @(
+  ".vimrc"
+  ".gitconfig"
+)
+
+Set-PSProfile
+
+foreach ($dotfile in $dotfiles) {
+  if (Test-Path -Path $HOME/$dotfile) {
+    Remove-Item `
+      -Path $HOME/$dotfile `
+      -Force
+  }
+  New-Item `
+    -ItemType SymbolicLink `
+    -Path $HOME/$dotfile `
+    -Value $pwd/$dotfile `
+    -Force
+}
