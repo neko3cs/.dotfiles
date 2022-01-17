@@ -3,10 +3,12 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: Apple.iTunes
+      - Id: CPUID.CPU-Z
       - Id: Discord.Discord
       - Id: Amazon.Kindle
       - Id: Google.Drive
       - Id: LINE.LINE
+      - Id: NickeManarin.ScreenToGif
       - Id: Notion.Notion
       - Id: Microsoft.VisualStudio.2022.Community
       - Id: Mojang.MinecraftLauncher
