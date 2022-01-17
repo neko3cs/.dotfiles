@@ -41,7 +41,6 @@ The ones that don't get scripted.
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - Change `"CaskaydiaCove Nerd Font"` on Windows Terminal Settings
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
-- [microsoft/vswhere: Locate Visual Studio 2017 and newer installations](https://github.com/microsoft/vswhere)
 - [Process Explorer - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/ja-jp/sysinternals/downloads/process-explorer)
 - [Logicool Options](https://www.logicool.co.jp/ja-jp/product/options)
 - [Razer Surround Sound](https://www2.razer.com/jp-jp/7.1-surround-sound)
