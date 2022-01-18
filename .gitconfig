@@ -13,3 +13,5 @@
 	default = current
 [color]
 	ui = auto
+[fetch]
+	prune = true
