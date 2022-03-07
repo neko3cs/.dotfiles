@@ -16,4 +16,5 @@
 [fetch]
 	prune = true
 [core]
+	autocrlf = false
 	quotepath = false
