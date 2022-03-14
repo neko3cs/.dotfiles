@@ -12,8 +12,9 @@ Sources:
       - Id: Microsoft.PowerAutomateDesktop
       - Id: Docker.DockerDesktop
       - Id: gerardog.gsudo
-      - Id: GitHub.cli
       - Id: Git.Git
+      - Id: GitHub.cli
+      - Id: GitHub.GitHubDesktop
       - Id: GoLang.Go
       - Id: Google.Chrome
       - Id: OpenJS.NodeJS.LTS
@@ -21,7 +22,6 @@ Sources:
       - Id: Microsoft.PowerShell
       - Id: Microsoft.PowerToys
       - Id: SlackTechnologies.Slack
-      - Id: TortoiseGit.TortoiseGit
       - Id: Microsoft.MSIXPackagingTool
       - Id: Microsoft.VisualStudioCode
       - Id: Microsoft.WindowsTerminal
