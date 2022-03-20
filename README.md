@@ -45,9 +45,9 @@ The ones that don't get scripted.
 - [Logicool Options](https://www.logicool.co.jp/ja-jp/product/options)
 - [Razer Surround Sound](https://www2.razer.com/jp-jp/7.1-surround-sound)
 - [かざぐるマウス](https://www.gigafree.net/utility/mouse/kazaguru.html)
-- [Genshin](https://genshin.mihoyo.com/ja/download)s
+- [Genshin](https://genshin.mihoyo.com/ja/download)
 - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
-- [Origin](https://www.origin.com/jpn/ja-jp/store/download)
+- [EA app オープンベータ](https://www.ea.com/ja-jp/ea-app-beta)
 
 ### macOS
 
