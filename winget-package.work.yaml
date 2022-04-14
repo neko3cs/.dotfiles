@@ -5,7 +5,6 @@ Sources:
       - Id: Cisco.CiscoWebexMeetings
       - Id: CubeSoft.CubePDF
       - Id: Microsoft.VisualStudio.2022.Professional
-      - Id: JetBrains.dotUltimate # VSの後じゃないとダメ
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
