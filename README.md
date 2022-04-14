@@ -49,6 +49,7 @@ The ones that don't get scripted.
 - [Genshin](https://genshin.mihoyo.com/ja/download)
 - [FF14](https://www.finalfantasyxiv.com/freetrial/download/)
 - [EA app オープンベータ](https://www.ea.com/ja-jp/ea-app-beta)
+- [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
 
 ### macOS
 
