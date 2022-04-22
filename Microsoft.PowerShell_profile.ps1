@@ -50,7 +50,7 @@ if ($IsWindows) {
 
     # Alias
     Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
-    Set-Alias -Name winmerge -Value "C:\Program Files (x86)\WinMerge\WinMergeU.exe"
+    Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
     Set-Alias -Name ll -Value Get-ChildItem
     function lla {
         Get-ChildItem -Force
