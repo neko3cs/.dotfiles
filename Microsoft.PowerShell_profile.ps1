@@ -49,8 +49,9 @@ if ($IsWindows) {
     Register-DotNetCompletion
 
     # Alias
-    Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
     Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
+    Set-Alias -Name vim -Value 'C:\Program Files\Vim\vim82\vim.exe'
+    Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
     Set-Alias -Name ll -Value Get-ChildItem
     function lla {
         Get-ChildItem -Force
