@@ -48,8 +48,7 @@ install_pwsh() {
 }
 
 echo "clone .dotfiles repo and run bootstrap scripts."
-read -n1 -p "ok? (y/N): " yn
-[[ $yn = [yY] ]] && echo "continue..." || exit 0
+read -p "ok? (y/N): " yn; case "$yn" in [yY]*) echo "continue..." *) exit 0;; esac
 
 git clone https://github.com/neko3cs/.dotfiles.git
 cd .dotfiles
