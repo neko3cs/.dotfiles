@@ -12,6 +12,13 @@ if (-not($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
   exit
 }
 
+while ($true) {
+  $useFor = Read-Host "Private? Work?"
+  if (@("Private", "Work").Contains($useFor)) {
+    break;
+  }
+}
+
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 winget install --id Git.Git --exact --silent
@@ -24,8 +31,4 @@ if (!(Test-Path $HOME\.dotfiles)) {
 . .\Set-DotFiles.ps1
 . .\Set-WindowsOptionalFeature.ps1
 Set-Wsl2Ubuntu
-
-Write-Output @"
-Please run this script...
-- Install-WingetPackage.ps1 -UseFor (Private|Work)
-"@
+. .\Install-WingetPackage.ps1 -UseFor $useFor
