@@ -47,9 +47,6 @@ install_pwsh() {
   rm ./packages-microsoft-prod.deb
 }
 
-echo "clone .dotfiles repo and run bootstrap scripts."
-read -p "ok? (y/N): " yn; case "$yn" in [yY]*) echo "continue..." *) exit 0;; esac
-
 git clone https://github.com/neko3cs/.dotfiles.git
 cd .dotfiles
 
