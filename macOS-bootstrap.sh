@@ -7,10 +7,6 @@ install_docker_completion() {
   fi
 }
 
-echo "clone .dotfiles repo and run bootstrap scripts."
-echo -n "ok?(y/N): "
-read -q && echo "continue..." || exit 0
-
 git clone https://github.com/neko3cs/.dotfiles.git
 cd .dotfiles
 
