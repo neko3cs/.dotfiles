@@ -27,6 +27,7 @@ Sources:
       - Id: Microsoft.WindowsTerminal
       - Id: vim.vim
       - Id: WinMerge.WinMerge
+      - Id: Wondershare.PDFelement
       - Id: Zoom.Zoom
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
