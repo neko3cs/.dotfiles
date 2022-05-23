@@ -5,7 +5,6 @@ Sources:
       - Id: Apple.iTunes
       - Id: CPUID.CPU-Z
       - Id: Discord.Discord
-      - Id: Amazon.Kindle
       - Id: Google.Drive
       - Id: LINE.LINE
       - Id: NickeManarin.ScreenToGif
