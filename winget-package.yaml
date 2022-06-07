@@ -8,6 +8,7 @@ Sources:
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
       - Id: Canonical.Ubuntu
+      - Id: JanDeDobbeleer.OhMyPosh
       - Id: Microsoft.AzureCLI
       - Id: Microsoft.PowerAutomateDesktop
       - Id: Docker.DockerDesktop
