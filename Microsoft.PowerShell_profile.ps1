@@ -1,7 +1,6 @@
 #!/usr/bin/env pwsh
 
 $PowerShellModules = @(
-    "oh-my-posh"
     "posh-git"
     "powershell-yaml"
     "SqlServer"
@@ -17,7 +16,6 @@ function Register-PowerShellModule {
             Import-Module -Name $module
         }
     }
-    Set-PoshPrompt -Theme stelbent.minimal # oh-my-posh settings
 }
 function Register-WingetCompletion {
     if (Get-Command winget -ea SilentlyContinue) {
@@ -42,11 +40,17 @@ function Register-DotNetCompletion {
         }
     }
 }
+function Register-OhMyPoshSettings {
+    oh-my-posh init pwsh `
+        --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/stelbent.minimal.omp.json' | 
+    Invoke-Expression
+}
 
 if ($IsWindows) {
     Register-PowerShellModule
     Register-WingetCompletion
     Register-DotNetCompletion
+    Register-OhMyPoshSettings
 
     # Alias
     Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
