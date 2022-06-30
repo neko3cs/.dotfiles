@@ -22,13 +22,11 @@ Sources:
       - Id: Microsoft.SQLServerManagementStudio
       - Id: Microsoft.PowerShell
       - Id: Microsoft.PowerToys
-      - Id: SlackTechnologies.Slack
       - Id: Microsoft.MSIXPackagingTool
       - Id: Microsoft.VisualStudioCode
       - Id: Microsoft.WindowsTerminal
       - Id: vim.vim
       - Id: WinMerge.WinMerge
-      - Id: Wondershare.PDFelement
       - Id: Zoom.Zoom
     SourceDetails:
       Argument: https://winget.azureedge.net/cache

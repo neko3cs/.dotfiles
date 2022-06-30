@@ -12,6 +12,7 @@ Sources:
       - Id: Notion.Notion
       - Id: Microsoft.VisualStudio.2022.Community
       - Id: Mojang.MinecraftLauncher
+      - Id: SlackTechnologies.Slack
       - Id: Valve.Steam
       - Id: VideoLAN.VLC
     SourceDetails:
