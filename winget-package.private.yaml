@@ -2,19 +2,11 @@ $schema: https://aka.ms/winget-packages.schema.1.0.json
 WinGetVersion: 0.3.11201
 Sources:
   - Packages:
-      - Id: Amazon.Kindle
-      - Id: Apple.iTunes
       - Id: CPUID.CPU-Z
-      - Id: Discord.Discord
       - Id: Google.Drive
-      - Id: LINE.LINE
       - Id: NickeManarin.ScreenToGif
-      - Id: Notion.Notion
       - Id: Microsoft.VisualStudio.2022.Community
-      - Id: Mojang.MinecraftLauncher
-      - Id: SlackTechnologies.Slack
       - Id: Valve.Steam
-      - Id: VideoLAN.VLC
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe

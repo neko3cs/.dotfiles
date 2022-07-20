@@ -5,6 +5,7 @@ Sources:
       - Id: Cisco.CiscoWebexMeetings
       - Id: CubeSoft.CubePDF
       - Id: Microsoft.VisualStudio.2022.Professional
+      - Id: Zoom.Zoom
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
