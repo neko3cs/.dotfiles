@@ -34,6 +34,7 @@ brew "yq"
 brew "zsh"
 brew "zsh-completions"
 # brew --cask
+cask "android-studio"
 cask "appcleaner"
 cask "discord"
 cask "docker"
