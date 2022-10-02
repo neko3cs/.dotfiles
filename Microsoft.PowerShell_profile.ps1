@@ -46,21 +46,14 @@ function Register-OhMyPoshSettings {
     Invoke-Expression
 }
 
+# Windows Only
 if ($IsWindows) {
-    Register-PowerShellModule
     Register-WingetCompletion
-    Register-DotNetCompletion
-    Register-OhMyPoshSettings
 
-    # Alias
+    ## Alias
     Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
     Set-Alias -Name vim -Value 'C:\Program Files\Vim\vim82\vim.exe'
     Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
-    Set-Alias -Name ll -Value Get-ChildItem
-    function lla {
-        Get-ChildItem -Force
-    }
-    Set-Alias -Name touch -Value New-Item
     function which {
         param(
             [parameter(Mandatory, ValueFromPipeline)][string]$command
@@ -68,3 +61,15 @@ if ($IsWindows) {
         return (Get-Command -Name $command -ShowCommandInfo).Definition
     }
 }
+
+# All Platform
+Register-PowerShellModule
+Register-OhMyPoshSettings
+Register-DotNetCompletion
+
+## Alias
+Set-Alias -Name ll -Value Get-ChildItem
+function lla {
+    Get-ChildItem -Force
+}
+Set-Alias -Name touch -Value New-Item

@@ -12,22 +12,24 @@ function Set-PSProfile {
     -Force
 }
 
-$dotfiles = @(
-  ".vimrc"
-  ".gitconfig"
-)
+if ($IsWindows) {
+  $dotfiles = @(
+    ".vimrc"
+    ".gitconfig"
+  )
 
-Set-PSProfile
+  Set-PSProfile
 
-foreach ($dotfile in $dotfiles) {
-  if (Test-Path -Path $HOME/$dotfile) {
-    Remove-Item `
+  foreach ($dotfile in $dotfiles) {
+    if (Test-Path -Path $HOME/$dotfile) {
+      Remove-Item `
+        -Path $HOME/$dotfile `
+        -Force
+    }
+    New-Item `
+      -ItemType SymbolicLink `
       -Path $HOME/$dotfile `
+      -Value $pwd/$dotfile `
       -Force
   }
-  New-Item `
-    -ItemType SymbolicLink `
-    -Path $HOME/$dotfile `
-    -Value $pwd/$dotfile `
-    -Force
 }
