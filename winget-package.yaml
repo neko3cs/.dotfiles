@@ -3,6 +3,7 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: 7zip.7zip
+      - Id: Adobe.Acrobat.Reader.32-bit
       - Id: AgileBits.1Password
       - Id: alcpu.CoreTemp
       - Id: Amazon.AWSCLI
