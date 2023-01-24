@@ -52,7 +52,7 @@ if ($IsWindows) {
 
     ## Alias
     Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
-    Set-Alias -Name vim -Value 'C:\Program Files\Vim\vim82\vim.exe'
+    Set-Alias -Name vim -Value 'C:\Program Files\Vim\vim90\vim.exe'
     Set-Alias -Name open -Value 'C:\Windows\explorer.exe'
     function which {
         param(
