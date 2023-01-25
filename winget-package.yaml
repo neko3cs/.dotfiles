@@ -27,6 +27,7 @@ Sources:
       - Id: Microsoft.WindowsTerminal
       - Id: vim.vim
       - Id: WinMerge.WinMerge
+      - Id: Yarn.Yarn
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
