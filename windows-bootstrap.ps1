@@ -1,15 +1,11 @@
-#!Windows PowerShell
+# Windows PowerShell
+#Requires -Version 5.1
+#Requires -RunAsAdministrator
 
 function Set-Wsl2Ubuntu {
   wsl --install --distribution Ubuntu
   wsl --set-default Ubuntu
   wsl --set-default-version 2
-}
-
-[Security.Principal.WindowsPrincipal]$CurrentPrincipal = [Security.Principal.WindowsIdentity]::GetCurrent()
-if (-not($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))) {
-  Write-Output "It must be run as administrator!"
-  exit
 }
 
 while ($true) {
