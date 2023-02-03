@@ -8,9 +8,6 @@ Sources:
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
       - Id: Canonical.Ubuntu
-      - Id: JanDeDobbeleer.OhMyPosh
-      - Id: Microsoft.AzureCLI
-      - Id: Microsoft.PowerAutomateDesktop
       - Id: Docker.DockerDesktop
       - Id: gerardog.gsudo
       - Id: Git.Git
@@ -18,13 +15,19 @@ Sources:
       - Id: GitHub.GitHubDesktop
       - Id: GoLang.Go
       - Id: Google.Chrome
-      - Id: OpenJS.NodeJS.LTS
-      - Id: Microsoft.SQLServerManagementStudio
+      - Id: JanDeDobbeleer.OhMyPosh
+      - Id: Microsoft.AzureCLI
+      - Id: Microsoft.MSIXPackagingTool
+      - Id: Microsoft.PowerAutomateDesktop
       - Id: Microsoft.PowerShell
       - Id: Microsoft.PowerToys
-      - Id: Microsoft.MSIXPackagingTool
+      - Id: Microsoft.SQLServerManagementStudio
       - Id: Microsoft.VisualStudioCode
       - Id: Microsoft.WindowsTerminal
+      - Id: NickeManarin.ScreenToGif
+      - Id: OpenJS.NodeJS.LTS
+      - Id: Rustlang.Rustup
+      - Id: stedolan.jq
       - Id: vim.vim
       - Id: WinMerge.WinMerge
       - Id: Yarn.Yarn
