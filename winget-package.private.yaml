@@ -2,11 +2,7 @@ $schema: https://aka.ms/winget-packages.schema.1.0.json
 WinGetVersion: 0.3.11201
 Sources:
   - Packages:
-      - Id: CPUID.CPU-Z
-      - Id: Google.Drive
-      - Id: NickeManarin.ScreenToGif
       - Id: Microsoft.VisualStudio.2022.Community
-      - Id: Valve.Steam
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
