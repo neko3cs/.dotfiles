@@ -4,12 +4,14 @@
 - chrmarti.regex
 - DavidAnson.vscode-markdownlint
 - eamodio.gitlens
+- EditorConfig.EditorConfig
 - eightHundreds.vscode-drawio
 - formulahendry.vscode-mysql
-- foxundermoon.shell-format
 - golang.go
 - Gruntfuggly.todo-tree
+- hediet.vscode-drawio
 - humao.rest-client
+- ICS.japanese-proofreading
 - jebbs.plantuml
 - jtlowe.vscode-icon-theme
 - ms-azuretools.vscode-docker
@@ -17,12 +19,16 @@
 - ms-dotnettools.csharp
 - ms-mssql.data-workspace-vscode
 - ms-mssql.mssql
+- ms-mssql.sql-bindings-vscode
 - ms-mssql.sql-database-projects-vscode
+- ms-python.isort
 - ms-python.python
 - ms-python.vscode-pylance
 - ms-toolsai.jupyter
 - ms-toolsai.jupyter-keymap
 - ms-toolsai.jupyter-renderers
+- ms-toolsai.vscode-jupyter-cell-tags
+- ms-toolsai.vscode-jupyter-slideshow
 - ms-vscode-remote.remote-containers
 - ms-vscode-remote.remote-wsl
 - ms-vscode.azure-account
@@ -35,9 +41,12 @@
 - oderwat.indent-rainbow
 - redhat.vscode-yaml
 - ritwickdey.LiveServer
+- rust-lang.rust-analyzer
+- styled-components.vscode-styled-components
 - techer.open-in-browser
 - tomoki1207.pdf
 - twxs.cmake
+- VisualStudioExptTeam.intellicode-api-usage-examples
 - VisualStudioExptTeam.vscodeintellicode
 - yzane.markdown-pdf
 
