@@ -17,3 +17,6 @@ softwareupdate --install
 ./brew-install.sh
 install_docker_completion
 pwsh ./vscode-extensions-install.ps1
+
+rustup component add rustfmt-preview --toolchain stable-x86_64-apple-darwin
+
