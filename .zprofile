@@ -4,6 +4,8 @@
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
 export GOPATH="$HOME/gopath"
 export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
 export PYENV_ROOT="$HOME/.pyenv"
