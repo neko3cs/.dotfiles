@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+#Requires -RunAsAdministrator
 
 function Set-PSProfile {
   if (Test-Path $PROFILE) {
