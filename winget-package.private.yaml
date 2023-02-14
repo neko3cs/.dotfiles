@@ -5,7 +5,6 @@ Sources:
       - Id: Google.Drive
       - Id: NickeManarin.ScreenToGif
       - Id: Microsoft.VisualStudio.2022.Community
-      - Id: Valve.Steam
     SourceDetails:
       Argument: https://winget.azureedge.net/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
