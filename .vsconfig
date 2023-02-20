@@ -148,6 +148,7 @@
     "Microsoft.VisualStudio.Component.VC.ASAN",
     "Microsoft.VisualStudio.Component.Windows10SDK.19041",
     "Microsoft.VisualStudio.Component.Windows10SDK.18362",
+    "Microsoft.VisualStudio.Workload.NativeDesktop",
     "Microsoft.Component.NetFX.Native",
     "Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard",
     "Microsoft.VisualStudio.Component.Graphics",
