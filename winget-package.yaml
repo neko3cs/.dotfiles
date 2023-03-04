@@ -14,6 +14,7 @@ Sources:
       - Id: Git.Git
       - Id: GitHub.cli
       - Id: GitHub.GitHubDesktop
+      - Id: GNU.Nano
       - Id: GoLang.Go
       - Id: Google.Chrome
       - Id: JanDeDobbeleer.OhMyPosh
