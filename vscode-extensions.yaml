@@ -1,6 +1,7 @@
 - ajhyndman.jslint
 - amazonwebservices.aws-toolkit-vscode
 - Angular.ng-template
+- bierner.markdown-mermaid
 - chrmarti.regex
 - csstools.postcss
 - DavidAnson.vscode-markdownlint
@@ -11,7 +12,6 @@
 - golang.go
 - Gruntfuggly.todo-tree
 - hediet.vscode-drawio
-- humao.rest-client
 - ICS.japanese-proofreading
 - jebbs.plantuml
 - jtlowe.vscode-icon-theme
