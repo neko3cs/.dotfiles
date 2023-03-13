@@ -3,7 +3,6 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: Google.Drive
-      - Id: NickeManarin.ScreenToGif
       - Id: Microsoft.VisualStudio.2022.Community
     SourceDetails:
       Argument: https://winget.azureedge.net/cache

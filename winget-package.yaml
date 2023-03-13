@@ -8,13 +8,13 @@ Sources:
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
       - Id: Canonical.Ubuntu
+      - Id: CubeSoft.CubePDF
       - Id: Docker.DockerDesktop
       - Id: MikeFarah.yq
       - Id: gerardog.gsudo
       - Id: Git.Git
       - Id: GitHub.cli
       - Id: GitHub.GitHubDesktop
-      - Id: GNU.Nano
       - Id: GoLang.Go
       - Id: Google.Chrome
       - Id: JanDeDobbeleer.OhMyPosh
@@ -30,7 +30,6 @@ Sources:
       - Id: OpenJS.NodeJS.LTS
       - Id: Rustlang.Rustup
       - Id: stedolan.jq
-      - Id: vim.vim
       - Id: WinMerge.WinMerge
       - Id: Yarn.Yarn
     SourceDetails:
