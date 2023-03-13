@@ -15,7 +15,6 @@ function Set-PSProfile {
 
 if ($IsWindows) {
   $dotfiles = @(
-    ".vimrc"
     ".gitconfig"
   )
 
