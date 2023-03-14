@@ -68,6 +68,11 @@ Register-PowerShellModule
 Register-OhMyPoshSettings
 Register-DotNetCompletion
 
+# PowerShell Customize
+Set-PSReadLineOption `
+    -PredictionSource History `
+    -PredictionViewStyle ListView
+
 ## Alias
 Set-Alias -Name ll -Value Get-ChildItem
 function lla {
