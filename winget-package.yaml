@@ -28,6 +28,7 @@ Sources:
       - Id: Microsoft.WindowsTerminal
       - Id: NickeManarin.ScreenToGif
       - Id: OpenJS.NodeJS.LTS
+      - Id: Postman.Postman
       - Id: Rustlang.Rustup
       - Id: stedolan.jq
       - Id: WinMerge.WinMerge
