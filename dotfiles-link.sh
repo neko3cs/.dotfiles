@@ -11,9 +11,9 @@ dotfiles_need_source=(
 )
 
 for dotfile in "${dotfiles[@]}"; do
-  ln -sf $(pwd)/$dotfile ~/$dotfile
+  ln -sf $(pwd)/config/$dotfile ~/$dotfile
 done
 for dotfile in "${dotfiles_need_source[@]}"; do
-  ln -sf $(pwd)/$dotfile ~/$dotfile
-  source $(pwd)/$dotfile
+  ln -sf $(pwd)/config/$dotfile ~/$dotfile
+  source ~/$dotfile
 done
