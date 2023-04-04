@@ -7,6 +7,18 @@ install_docker_completion() {
   fi
 }
 
+install_code_extensions() {
+  extensions=($(yq -r '.[]' ./config/vscode-extensions.yaml))
+  for ext in "${extensions[@]}"
+  do
+    code --install-extension "$ext"
+  done
+}
+
+install_rust() {
+  rustup component add rustfmt-preview --toolchain stable-x86_64-apple-darwin
+}
+
 git clone https://github.com/neko3cs/.dotfiles.git
 cd .dotfiles
 
@@ -16,7 +28,5 @@ softwareupdate --install
 ./vimplug-install.sh
 ./brew-install.sh
 install_docker_completion
-pwsh ./vscode-extensions-install.ps1
-
-rustup component add rustfmt-preview --toolchain stable-x86_64-apple-darwin
-
+install_code_extensions
+install_rust
