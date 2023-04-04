@@ -8,7 +8,7 @@ function Set-PSProfile {
       -Force
   }
   Copy-Item `
-    -Path .\Microsoft.PowerShell_profile.ps1 `
+    -Path $PWD\config\Microsoft.PowerShell_profile.ps1 `
     -Destination $PROFILE `
     -Force
 }
@@ -29,7 +29,7 @@ if ($IsWindows) {
     New-Item `
       -ItemType SymbolicLink `
       -Path $HOME/$dotfile `
-      -Value $pwd/$dotfile `
+      -Value $PWD/config/$dotfile `
       -Force
   }
 }

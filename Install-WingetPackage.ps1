@@ -24,34 +24,34 @@ if (-not (Get-Module -Name powershell-yaml)) {
     Import-Module -Name powershell-yaml
 }
 
-Get-ChildItem .\winget-package*.yaml |
+Get-ChildItem .\config\winget-package*.yaml |
 ForEach-Object {
     Get-Content $_.FullName |
     ConvertFrom-Yaml |
     ConvertTo-Json -Depth 4 |
-    Out-File ($_.FullName -replace ".yaml", ".json")
+    Out-File (Join-Path $PWD ($_.Name -replace ".yaml", ".json"))
 }
 
 winget import `
-    --import-file .\winget-package.json `
+    --import-file $PWD\winget-package.json `
     --ignore-unavailable `
     --accept-package-agreements `
     --accept-source-agreements
 
 if ($UseFor -eq "Private") {
     winget import `
-        --import-file .\winget-package.private.json `
+        --import-file $PWD\winget-package.private.json `
         --ignore-unavailable `
         --accept-package-agreements `
         --accept-source-agreements
 }
 elseif ($UseFor -eq "Work") {
     winget import `
-        --import-file .\winget-package.work.json `
+        --import-file $PWD\winget-package.work.json `
         --ignore-unavailable `
         --accept-package-agreements `
         --accept-source-agreements
 }
 
-Get-ChildItem .\winget-package*.json |
+Get-ChildItem $PWD\winget-package*.json |
 Remove-Item
