@@ -3,6 +3,7 @@ WinGetVersion: 0.3.11201
 Sources:
   - Packages:
       - Id: Cisco.CiscoWebexMeetings
+      - Id: CubeSoft.CubePDF
       - Id: Microsoft.VisualStudio.2022.Professional
       - Id: Zoom.Zoom
     SourceDetails:
