@@ -1,7 +1,6 @@
 # cask args
 cask_args appdir: "/Applications"
 # tap
-tap "aws/tap"
 tap "azure/functions"
 tap "homebrew/cask-versions"
 tap "pivotal/tap"
