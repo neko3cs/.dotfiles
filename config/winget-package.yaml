@@ -28,6 +28,7 @@ Sources:
       - Id: Postman.Postman
       - Id: Rustlang.Rustup
       - Id: stedolan.jq
+      - Id: SQLite.SQLite
       - Id: WinMerge.WinMerge
       - Id: Yarn.Yarn
     SourceDetails:
