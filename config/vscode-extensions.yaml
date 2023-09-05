@@ -5,6 +5,7 @@
 - chrmarti.regex
 - csstools.postcss
 - DavidAnson.vscode-markdownlint
+- dbaeumer.vscode-eslint
 - eamodio.gitlens
 - EditorConfig.EditorConfig
 - eightHundreds.vscode-drawio
@@ -12,12 +13,13 @@
 - golang.go
 - Gruntfuggly.todo-tree
 - hediet.vscode-drawio
+- humao.rest-client
 - ICS.japanese-proofreading
 - jebbs.plantuml
-- jtlowe.vscode-icon-theme
 - ms-azuretools.vscode-docker
 - MS-CEINTL.vscode-language-pack-ja
 - ms-dotnettools.csharp
+- ms-dotnettools.vscode-dotnet-runtime
 - ms-mssql.data-workspace-vscode
 - ms-mssql.mssql
 - ms-mssql.sql-bindings-vscode
@@ -40,6 +42,8 @@
 - ms-vsliveshare.vsliveshare
 - msjsdiag.vscode-react-native
 - oderwat.indent-rainbow
+- PKief.material-icon-theme
+- pspester.pester-test
 - redhat.vscode-yaml
 - ritwickdey.LiveServer
 - rust-lang.rust-analyzer
