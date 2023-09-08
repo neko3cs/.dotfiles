@@ -2,6 +2,7 @@
 
 $PowerShellModules = @(
     "posh-git"
+    "Pester"
     "powershell-yaml"
     "SqlServer"
     "ClassExplorer"
