@@ -16,7 +16,6 @@ Sources:
       - Id: JanDeDobbeleer.OhMyPosh
       - Id: Microsoft.AzureCLI
       - Id: Microsoft.MSIXPackagingTool
-      - Id: Microsoft.PowerAutomateDesktop
       - Id: Microsoft.PowerShell
       - Id: Microsoft.PowerToys
       - Id: Microsoft.SQLServerManagementStudio
