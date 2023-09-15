@@ -18,8 +18,11 @@
 - jebbs.plantuml
 - ms-azuretools.vscode-docker
 - MS-CEINTL.vscode-language-pack-ja
+- ms-dotnettools.csdevkit
 - ms-dotnettools.csharp
+- ms-dotnettools.dotnet-maui
 - ms-dotnettools.vscode-dotnet-runtime
+- ms-dotnettools.vscodeintellicode-csharp
 - ms-mssql.data-workspace-vscode
 - ms-mssql.mssql
 - ms-mssql.sql-bindings-vscode
