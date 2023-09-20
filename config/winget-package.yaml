@@ -8,6 +8,7 @@ Sources:
       - Id: Amazon.SAM-CLI
       - Id: ApacheFriends.Xampp.8.2
       - Id: Canonical.Ubuntu
+      - Id: DBBrowserForSQLite.DBBrowserForSQLite
       - Id: MikeFarah.yq
       - Id: gerardog.gsudo
       - Id: Git.Git
