@@ -38,7 +38,6 @@ brew "zsh"
 brew "zsh-completions"
 # brew --cask
 cask "appcleaner"
-cask "azure-data-studio"
 cask "db-browser-for-sqlite"
 cask "discord"
 cask "docker"
