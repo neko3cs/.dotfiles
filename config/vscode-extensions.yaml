@@ -17,6 +17,10 @@
 - ms-dotnettools.dotnet-maui
 - ms-dotnettools.vscode-dotnet-runtime
 - ms-dotnettools.vscodeintellicode-csharp
+- ms-mssql.data-workspace-vscode
+- ms-mssql.mssql
+- ms-mssql.sql-bindings-vscode
+- ms-mssql.sql-database-projects-vscode
 - ms-vscode-remote.remote-wsl
 - ms-vscode.cmake-tools
 - ms-vscode.cpptools
@@ -25,7 +29,6 @@
 - ms-vscode.powershell
 - ms-vsliveshare.vsliveshare
 - msjsdiag.vscode-react-native
-- oderwat.indent-rainbow
 - pkief.material-icon-theme
 - quantum.qsharp-lang-vscode
 - redhat.vscode-yaml
