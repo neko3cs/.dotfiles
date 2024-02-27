@@ -6,8 +6,6 @@ Sources:
       - Id: AgileBits.1Password
       - Id: Amazon.AWSCLI
       - Id: Amazon.SAM-CLI
-      - Id: ApacheFriends.Xampp.8.2
-      - Id: Canonical.Ubuntu
       - Id: DBBrowserForSQLite.DBBrowserForSQLite
       - Id: MikeFarah.yq
       - Id: gerardog.gsudo
