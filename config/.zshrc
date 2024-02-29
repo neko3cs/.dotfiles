@@ -26,6 +26,20 @@ setopt correct &&
   setopt auto_param_slash &&
   setopt nonomatch
 
+# dotnet completion
+# see this: https://learn.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete#zsh
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+  _values = "${(ps:\n:)completions}"
+}
+compdef _dotnet_zsh_complete dotnet
+
 # alias
 alias la='ls -a'
 alias ll='ls -l'
