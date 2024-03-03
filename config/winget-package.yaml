@@ -21,6 +21,7 @@ Sources:
       - Id: Microsoft.SQLServerManagementStudio
       - Id: Microsoft.VisualStudioCode
       - Id: Microsoft.WindowsTerminal
+      - Id: nepnep.neofetch-win
       - Id: NickeManarin.ScreenToGif
       - Id: OpenJS.NodeJS.LTS
       - Id: Rustlang.Rustup
