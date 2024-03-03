@@ -21,6 +21,7 @@ brew "jandedobbeleer/oh-my-posh/oh-my-posh"
 brew "java"
 brew "mono-libgdiplus" # for ImportExcel
 brew "mysql"
+brew "neofetch"
 brew "nkf"
 brew "node"
 brew "open-cobol"
