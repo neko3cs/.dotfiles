@@ -14,6 +14,7 @@ Sources:
       - Id: GoLang.Go
       - Id: Google.Chrome
       - Id: JanDeDobbeleer.OhMyPosh
+      - Id: Logitech.OptionsPlus
       - Id: Microsoft.AzureCLI
       - Id: Microsoft.MSIXPackagingTool
       - Id: Microsoft.PowerShell
