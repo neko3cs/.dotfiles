@@ -34,13 +34,11 @@ powershell `
 
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - Change `"CaskaydiaCove Nerd Font"` on Terminal Settings
-- [Logicool Options+](https://www.logicool.co.jp/ja-jp/software/logi-options-plus)
 
 ### Windows
 
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - Change `"CaskaydiaCove Nerd Font"` on Windows Terminal Settings
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
-- [Logicool Options+](https://www.logicool.co.jp/ja-jp/software/logi-options-plus)
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
 - [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
