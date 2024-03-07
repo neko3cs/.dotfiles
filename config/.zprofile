@@ -14,7 +14,7 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export GOPATH="$HOME/gopath"
 export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
 ## dotnet
-export PATH="$PATH:/Users/neko3cs/.dotnet/tools"
+export PATH="$PATH:$HOME/.dotnet/tools"
 ## java
 export JAVA_HOME="/usr/libexec/java_home"
 export PATH="$JAVA_HOME/bin:$PATH"
