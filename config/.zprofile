@@ -22,7 +22,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 type rbenv >/dev/null 2>&1 && {
   eval "$(rbenv init -)"
 }
-## linuxbrew
-if [ "$(uname -s)" = "Linux" ]; then
-  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-fi
+# python
+type pyenv >/dev/null 2>&1 && {
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+}
