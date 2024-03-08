@@ -57,7 +57,7 @@ if ($IsWindows) {
     Set-Alias -Name jq -Value "$HOME\AppData\Local\Microsoft\WinGet\Packages\stedolan.jq_Microsoft.Winget.Source_8wekyb3d8bbwe\jq-win64.exe"
     Set-Alias -Name yq -Value "$HOME\AppData\Local\Microsoft\WinGet\Packages\MikeFarah.yq_Microsoft.Winget.Source_8wekyb3d8bbwe\yq_windows_amd64.exe"
     function zsh {
-        wsl /home/linuxbrew/.linuxbrew/bin/zsh
+        wsl /usr/bin/zsh
     }
     function which {
         param(
