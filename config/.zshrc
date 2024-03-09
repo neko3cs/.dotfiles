@@ -14,10 +14,10 @@ typeset -U path cdpath fpath manpath &&
   compinit -i &&
   autoload -Uz colors &&
   colors &&
-  RPROMPT='%F{magenta}%D{%Y/%m/%d} %*%f' &&
+  RPROMPT='%F{green}%D{%Y/%m/%d} %*%f' &&
   PROMPT='
-%F{blue}┌ %n@%m%f%F{cyan} %C%f
-%F{blue}└ $ %f'
+%F{cyan}┌ %n@%m%f%F{081} %C%f
+%F{cyan}└ $ %f'
 
 # complement options
 setopt correct &&
