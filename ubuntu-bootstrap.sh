@@ -34,6 +34,15 @@ install_pwsh() {
   # Delete deb file
   rm ./packages-microsoft-prod.deb
 }
+install_docker() {
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt update
+  sudo apt install docker-ce docker-ce-cli containerd.io -y
+  sudo apt install docker-compose -y
+  sudo service docker start
+  sudo gpasswd -a $USER docker
+}
 install_yq() {
   sudo curl -fsSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/bin/yq
   sudo chmod +x /usr/bin/yq
@@ -64,6 +73,7 @@ activate_ubuntu
 sudo apt install $(cat ./config/packages.txt)
 install_zsh_completions
 install_pwsh
+install_docker
 install_yq
 install_rustup
 install_azure_cli
