@@ -53,9 +53,8 @@ if ($IsWindows) {
 
     ## Alias
     Set-Alias -Name open -Value 'explorer.exe'
+    Set-Alias -Name jq -Value 'jq-win64.exe'
     Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
-    Set-Alias -Name jq -Value "$HOME\AppData\Local\Microsoft\WinGet\Packages\stedolan.jq_Microsoft.Winget.Source_8wekyb3d8bbwe\jq-win64.exe"
-    Set-Alias -Name yq -Value "$HOME\AppData\Local\Microsoft\WinGet\Packages\MikeFarah.yq_Microsoft.Winget.Source_8wekyb3d8bbwe\yq_windows_amd64.exe"
     function zsh {
         wsl /usr/bin/zsh
     }
