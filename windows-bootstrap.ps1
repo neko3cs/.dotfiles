@@ -1,9 +1,7 @@
-# Windows PowerShell
-#Requires -Version 5.1
 #Requires -RunAsAdministrator
 
 function Set-Wsl2Ubuntu {
-  wsl --install --distribution Ubuntu
+  wsl --install --no-launch --distribution Ubuntu
   wsl --set-default Ubuntu
   wsl --set-default-version 2
 }
@@ -14,27 +12,24 @@ if (!(Get-Command winget -ea SilentlyContinue)) {
     -ForegroundColor Red
   exit
 }
-
 while ($true) {
   $useFor = Read-Host "Private? Work?"
   if (@("Private", "Work").Contains($useFor)) {
     break;
   }
 }
-
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+winget install --silent --exact --id Git.Git
 
-winget install --id Git.Git --exact --silent
-
-# 別セッションで実行することでGitのパスが通った状態で実行する
-Invoke-Command -NoNewScope -ScriptBlock {
+Invoke-Command -ScriptBlock {
+  Set-Location $HOME
   if (!(Test-Path $HOME\.dotfiles)) {
     git clone https://github.com/neko3cs/.dotfiles.git
-    Set-Location -Path .dotfiles
   }
-  
-  . .\Set-DotFiles.ps1
-  . .\Set-WindowsOptionalFeature.ps1
+  Set-Location -Path .dotfiles
+
+  & .\Enable-WindowsOptionalFeature.ps1
   Set-Wsl2Ubuntu
-  . .\Install-WingetPackage.ps1 -UseFor $useFor  
+  & .\Install-WingetPackage.ps1 -UseFor $useFor
+  pwsh -Command { & .\Set-DotFiles.ps1 }
 }

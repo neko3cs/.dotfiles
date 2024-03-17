@@ -62,7 +62,10 @@ install_aws_sam_cli() {
   sudo ~/sam-installer/install && rm -rf ~/sam-installer/
 }
 
-git clone https://github.com/neko3cs/.dotfiles.git
+cd $HOME
+if  [ ! -d ./.dotfiles ]; then
+  git clone https://github.com/neko3cs/.dotfiles.git
+fi
 cd .dotfiles
 
 sudo apt update
