@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+#Requires -RunAsAdministrator
 
 param(
     [ValidateSet("Private", "Work")]
