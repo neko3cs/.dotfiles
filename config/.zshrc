@@ -1,33 +1,49 @@
 #
-# neko3cs's .zshrc
+# neko3cs .zshrc
 #
 
-# zsh options
+# PATH
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+export GOPATH="$HOME/gopath"
+export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/.dotnet/tools"
+export JAVA_HOME="/usr/libexec/java_home"
+export PATH="$JAVA_HOME/bin:$PATH"
+type rbenv >/dev/null 2>&1 && {
+  eval "$(rbenv init -)"
+}
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+type pyenv >/dev/null 2>&1 && {
+  eval "$(pyenv init --path)"
+}
+
+# ZSH OPTIONS
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
   autoload -Uz compinit
   compinit
 fi
 typeset -U path cdpath fpath manpath &&
-  autoload -Uz compinit &&
-  compinit -i &&
-  autoload -Uz colors &&
-  colors &&
-  RPROMPT='%F{green}%D{%Y/%m/%d} %*%f' &&
-  PROMPT='
+autoload -Uz compinit &&
+compinit -i &&
+autoload -Uz colors &&
+colors &&
+PROMPT='
 %F{cyan}┌ %n@%m%f%F{081} %C%f
-%F{cyan}└ $ %f'
-
-# complement options
+%F{cyan}└ $ %f' &&
+RPROMPT='%F{green}%D{%Y/%m/%d} %*%f' &&
 setopt correct &&
-  setopt list_packed &&
-  setopt auto_param_slash &&
-  setopt auto_param_slash &&
-  setopt nonomatch
+setopt list_packed &&
+setopt auto_param_slash &&
+setopt auto_param_slash &&
+setopt nonomatch
 
-# dotnet completion
-# see this: https://learn.microsoft.com/ja-jp/dotnet/core/tools/enable-tab-autocomplete#zsh
+# DOTNET COMPLETION
 _dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
@@ -40,14 +56,12 @@ _dotnet_zsh_complete()
 }
 compdef _dotnet_zsh_complete dotnet
 
-# alias
+# ALIAS
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 alias cls='clear'
 alias chrome='open -a "Google Chrome"'
-alias visualstudio='open -a "Visual Studio"'
-
 if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'
 fi
