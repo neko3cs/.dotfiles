@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+#Requires -PSEdition Core
 
 $PowerShellModules = @(
     "posh-git"
