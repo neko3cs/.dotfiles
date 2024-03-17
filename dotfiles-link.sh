@@ -6,7 +6,6 @@ dotfiles=(
   Brewfile
 )
 dotfiles_need_source=(
-  .zprofile
   .zshrc
 )
 
