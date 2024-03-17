@@ -1,4 +1,3 @@
-#!/usr/bin/env pwsh
 #Requires -RunAsAdministrator
 
 function Set-PSProfile {

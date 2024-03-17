@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+#Requires -RunAsAdministrator
 
 $OptionalFeatures = @(
   "Microsoft-Hyper-V-All"
