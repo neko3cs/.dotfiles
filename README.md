@@ -5,13 +5,13 @@
 ### macOS
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/macOS-bootstrap.sh | zsh
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/macOS-bootstrap.sh | zsh
 ```
 
 ### Ubuntu
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/master/ubuntu-bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/ubuntu-bootstrap.sh | bash
 ```
 
 ### Windows
@@ -21,7 +21,7 @@ powershell `
 -ExecutionPolicy ByPass `
 -Command {
   Invoke-RestMethod `
-    -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/master/windows-bootstrap.ps1' |
+    -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/windows-bootstrap.ps1' |
   Invoke-Expression
 }
 ```
