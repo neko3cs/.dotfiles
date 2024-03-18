@@ -33,11 +33,13 @@ powershell `
 ### macOS
 
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
+  - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
   - Change `"CaskaydiaCove Nerd Font"` on Terminal Settings
 
 ### Windows
 
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
+  - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
   - Change `"CaskaydiaCove Nerd Font"` on Windows Terminal Settings
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
