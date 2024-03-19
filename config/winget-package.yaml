@@ -27,6 +27,7 @@ Sources:
       - Id: OpenJS.NodeJS.LTS
       - Id: Rustlang.Rustup
       - Id: stedolan.jq
+      - Id: waterlan.dos2unix
       - Id: WinMerge.WinMerge
       - Id: Yarn.Yarn
     SourceDetails:
