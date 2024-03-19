@@ -30,6 +30,11 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'nosami/Omnisharp'
+Plug 'carlsmedstad/vim-bicep'
 call plug#end()
 
 "" vim-airline ----------------------------------
@@ -86,3 +91,10 @@ highlight GitGutterDelete ctermfg=red
 
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
+
+"" Omnisharp -------------------------------------
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
+
