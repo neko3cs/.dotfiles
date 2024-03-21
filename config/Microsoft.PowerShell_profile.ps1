@@ -51,6 +51,9 @@ function Register-OhMyPoshSettings {
 if ($IsWindows) {
     Register-WingetCompletion
 
+    ## Environment Variables
+    $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
+    $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
     ## Alias
     Set-Alias -Name open -Value 'explorer.exe'
     Set-Alias -Name jq -Value 'jq-win64.exe'

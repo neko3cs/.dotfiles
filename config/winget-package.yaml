@@ -12,6 +12,7 @@ Sources:
       - Id: Git.Git
       - Id: GitHub.cli
       - Id: GoLang.Go
+      - Id: Google.AndroidStudio
       - Id: Google.Chrome
       - Id: JanDeDobbeleer.OhMyPosh
       - Id: Logitech.OptionsPlus
