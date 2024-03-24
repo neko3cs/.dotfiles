@@ -17,13 +17,10 @@ curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/ubuntu-boots
 ### Windows
 
 ```pwsh
-powershell `
--ExecutionPolicy ByPass `
--Command {
-  Invoke-RestMethod `
-    -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/windows-bootstrap.ps1' |
-  Invoke-Expression
-}
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+winget install --silent --exact --id Git.Git
+# ここでGitのパスを通すためにターミナルを管理者権限で再起動
+Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/windows-bootstrap.ps1' | Invoke-Expression
 ```
 
 ## インストーラーリンク集
