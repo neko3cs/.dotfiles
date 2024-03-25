@@ -1,10 +1,11 @@
-$schema: https://aka.ms/winget-packages.schema.1.0.json
-WinGetVersion: 0.3.11201
+$schema: https://aka.ms/winget-packages.schema.2.0.json
+CreationDate: 2024-03-25T18:22:21.5270000+09:00
 Sources:
   - Packages:
-      - Id: Microsoft.VisualStudio.2022.Community
+      - PackageIdentifier: Microsoft.VisualStudio.2022.Community
     SourceDetails:
-      Argument: https://winget.azureedge.net/cache
+      Argument: https://cdn.winget.microsoft.com/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
       Name: winget
       Type: Microsoft.PreIndexed.Package
+WinGetVersion: 1.7.10661
