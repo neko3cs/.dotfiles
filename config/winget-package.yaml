@@ -1,38 +1,40 @@
-$schema: https://aka.ms/winget-packages.schema.1.0.json
-WinGetVersion: 0.3.11201
+$schema: https://aka.ms/winget-packages.schema.2.0.json
+CreationDate: 2024-03-25T18:22:21.5270000+09:00
 Sources:
   - Packages:
-      - Id: 7zip.7zip
-      - Id: AgileBits.1Password
-      - Id: Amazon.AWSCLI
-      - Id: Amazon.SAM-CLI
-      - Id: DBBrowserForSQLite.DBBrowserForSQLite
-      - Id: MikeFarah.yq
-      - Id: gerardog.gsudo
-      - Id: Git.Git
-      - Id: GitHub.cli
-      - Id: GoLang.Go
-      - Id: Google.AndroidStudio
-      - Id: Google.Chrome
-      - Id: JanDeDobbeleer.OhMyPosh
-      - Id: Logitech.OptionsPlus
-      - Id: Microsoft.AzureCLI
-      - Id: Microsoft.MSIXPackagingTool
-      - Id: Microsoft.PowerShell
-      - Id: Microsoft.PowerToys
-      - Id: Microsoft.SQLServerManagementStudio
-      - Id: Microsoft.VisualStudioCode
-      - Id: Microsoft.WindowsTerminal
-      - Id: nepnep.neofetch-win
-      - Id: NickeManarin.ScreenToGif
-      - Id: OpenJS.NodeJS.LTS
-      - Id: Rustlang.Rustup
-      - Id: stedolan.jq
-      - Id: waterlan.dos2unix
-      - Id: WinMerge.WinMerge
-      - Id: Yarn.Yarn
+      - PackageIdentifier: 7zip.7zip
+      - PackageIdentifier: AgileBits.1Password
+      - PackageIdentifier: Amazon.AWSCLI
+      - PackageIdentifier: Amazon.SAM-CLI
+      - PackageIdentifier: DBBrowserForSQLite.DBBrowserForSQLite
+      - PackageIdentifier: MikeFarah.yq
+      - PackageIdentifier: gerardog.gsudo
+      - PackageIdentifier: Git.Git
+      - PackageIdentifier: GitHub.cli
+      - PackageIdentifier: GoLang.Go
+      - PackageIdentifier: Google.AndroidStudio
+      - PackageIdentifier: Google.Chrome
+      - PackageIdentifier: JanDeDobbeleer.OhMyPosh
+      - PackageIdentifier: Microsoft.AppInstaller
+      - PackageIdentifier: Microsoft.AzureCLI
+      - PackageIdentifier: Microsoft.MSIXPackagingTool
+      - PackageIdentifier: Microsoft.OpenJDK.17
+      - PackageIdentifier: Microsoft.PowerShell
+      - PackageIdentifier: Microsoft.PowerToys
+      - PackageIdentifier: Microsoft.SQLServerManagementStudio
+      - PackageIdentifier: Microsoft.VisualStudioCode
+      - PackageIdentifier: Microsoft.WindowsTerminal
+      - PackageIdentifier: nepnep.neofetch-win
+      - PackageIdentifier: NickeManarin.ScreenToGif
+      - PackageIdentifier: OpenJS.NodeJS.LTS
+      - PackageIdentifier: Rustlang.Rustup
+      - PackageIdentifier: stedolan.jq
+      - PackageIdentifier: waterlan.dos2unix
+      - PackageIdentifier: WinMerge.WinMerge
+      - PackageIdentifier: Yarn.Yarn
     SourceDetails:
-      Argument: https://winget.azureedge.net/cache
+      Argument: https://cdn.winget.microsoft.com/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
       Name: winget
       Type: Microsoft.PreIndexed.Package
+WinGetVersion: 1.7.10661
