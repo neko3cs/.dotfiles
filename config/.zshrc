@@ -5,6 +5,7 @@
 # PATH
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/Cellar"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export GOPATH="$HOME/gopath"
 export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
