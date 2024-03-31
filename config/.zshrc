@@ -67,3 +67,6 @@ alias chrome='open -a "Google Chrome"'
 if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'
 fi
+
+# SPECIFIC VARIABLE
+UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
