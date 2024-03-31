@@ -3,22 +3,22 @@
 #
 
 # PATH
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export CARGO_HOME="$HOME/.cargo"
-export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:$HOME/.dotnet/tools"
 export GOPATH="$HOME/gopath"
 export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
-export PATH="$PATH:$HOME/.dotnet/tools"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:/usr/local/opt/openjdk/bin"
+export PATH="$PATH:/usr/local/opt/qt/bin"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$PATH:$JAVA_HOME/bin"
 type rbenv >/dev/null 2>&1 && {
   eval "$(rbenv init -)"
 }
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PATH:$PYENV_ROOT/bin"
 type pyenv >/dev/null 2>&1 && {
   eval "$(pyenv init --path)"
 }
