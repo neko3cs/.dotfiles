@@ -21,6 +21,7 @@ Sources:
       - PackageIdentifier: Microsoft.OpenJDK.17
       - PackageIdentifier: Microsoft.PowerShell
       - PackageIdentifier: Microsoft.PowerToys
+      - PackageIdentifier: Microsoft.Sqlcmd
       - PackageIdentifier: Microsoft.SQLServerManagementStudio
       - PackageIdentifier: Microsoft.VisualStudioCode
       - PackageIdentifier: Microsoft.WindowsTerminal
