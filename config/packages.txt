@@ -19,6 +19,7 @@ openjdk-21-jdk
 procps
 rbenv
 redis
+sqlcmd
 sqlite
 watchman
 yarn
