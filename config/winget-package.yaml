@@ -6,7 +6,6 @@ Sources:
       - PackageIdentifier: AgileBits.1Password
       - PackageIdentifier: Amazon.AWSCLI
       - PackageIdentifier: Amazon.SAM-CLI
-      - PackageIdentifier: DBBrowserForSQLite.DBBrowserForSQLite
       - PackageIdentifier: MikeFarah.yq
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
