@@ -34,4 +34,7 @@ Set-Location -Path .dotfiles
 & .\Enable-WindowsOptionalFeature.ps1
 Set-Wsl2Ubuntu
 & .\Install-WingetPackage.ps1 -UseFor $useFor
-pwsh -Command { & .\Set-DotFiles.ps1 }
+pwsh -Command {
+  Set-ExecutionPolicy RemoteSigned
+  & .\Set-DotFiles.ps1
+}
