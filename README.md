@@ -32,6 +32,8 @@ Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
   - Change `"CaskaydiaCove Nerd Font"` on Terminal Settings
+- [RunCat](https://kyome.io/runcat/)
+  - App Storeからダウンロード
 
 ### Windows
 
@@ -40,4 +42,6 @@ Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main
   - Change `"CaskaydiaCove Nerd Font"` on Windows Terminal Settings
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
+- [RunCat](https://kyome.io/runcat/)
+  - 一番下の **RunCat for Windows** のリンクからダウンロード
 - [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
