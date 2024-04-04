@@ -59,10 +59,11 @@ _dotnet_zsh_complete()
 compdef _dotnet_zsh_complete dotnet
 
 # ALIAS
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
+alias la='ls -ah'
+alias ll='ls -lh'
+alias lla='ls -lah'
 alias cls='clear'
+alias lg='lazygit'
 alias chrome='open -a "Google Chrome"'
 if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'
