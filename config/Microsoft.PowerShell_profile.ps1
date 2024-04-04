@@ -2,7 +2,7 @@
 using namespace System.Management.Automation           # for Register-DenoCompletion
 using namespace System.Management.Automation.Language  # for Register-DenoCompletion
 
-# Functions
+#region Functions
 $PowerShellModules = @(
   "posh-git"
   "Pester"
@@ -65,7 +65,7 @@ function Register-AzureCliCompletion {
 }
 function Register-OhMyPoshSettings {
   oh-my-posh init pwsh `
-    --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/stelbent.minimal.omp.json' | 
+    --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/stelbent.minimal.omp.json' |
   Invoke-Expression
 }
 function Register-DenoCompletion {
@@ -1687,8 +1687,9 @@ If value is not provided, defaults to "deno.lock" in the current working directo
     Sort-Object -Property ListItemText
   }
 }
+#endregion
 
-# Settings
+#region Settings
 if ($IsWindows) {
   # Completion
   Register-WingetCompletion
@@ -1727,3 +1728,9 @@ Set-Alias -Name ll -Value Get-ChildItem
 function lla {
   Get-ChildItem -Force
 }
+function Clear-AllHistory {
+  Clear-History &&
+  Write-Output '' |
+  Out-File -FilePath (Get-PSReadLineOption).HistorySavePath
+}
+#endregion
