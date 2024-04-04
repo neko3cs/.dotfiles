@@ -14,6 +14,7 @@ Sources:
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
       - PackageIdentifier: JanDeDobbeleer.OhMyPosh
+      - PackageIdentifier: JesseDuffield.lazygit
       - PackageIdentifier: Microsoft.AppInstaller
       - PackageIdentifier: Microsoft.AzureCLI
       - PackageIdentifier: Microsoft.MSIXPackagingTool

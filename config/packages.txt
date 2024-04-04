@@ -10,6 +10,7 @@ gh
 git
 golang-go
 jq
+lazygit
 libboost-all-dev
 neofetch
 nkf
