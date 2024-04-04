@@ -61,6 +61,9 @@ install_aws_sam_cli() {
   unzip ~/aws-sam-cli-linux-x86_64.zip -d ~/sam-installer
   sudo ~/sam-installer/install && rm -rf ~/sam-installer/
 }
+install_deno() {
+  curl -fsSL https://deno.land/install.sh | sh
+}
 
 cd $HOME
 if  [ ! -d ./.dotfiles ]; then
@@ -81,6 +84,7 @@ install_yq
 install_rustup
 install_azure_cli
 install_aws_sam_cli
+install_deno
 ./vimplug-install.sh
 ./dotfiles-link.sh
 
