@@ -15,6 +15,7 @@ Sources:
       - PackageIdentifier: Google.Chrome
       - PackageIdentifier: JanDeDobbeleer.OhMyPosh
       - PackageIdentifier: JesseDuffield.lazygit
+      - PackageIdentifier: mbuilov.sed
       - PackageIdentifier: Microsoft.AppInstaller
       - PackageIdentifier: Microsoft.AzureCLI
       - PackageIdentifier: Microsoft.MSIXPackagingTool
