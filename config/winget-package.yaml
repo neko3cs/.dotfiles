@@ -7,6 +7,7 @@ Sources:
       - PackageIdentifier: Amazon.AWSCLI
       - PackageIdentifier: Amazon.SAM-CLI
       - PackageIdentifier: MikeFarah.yq
+      - PackageIdentifier: DenoLand.Deno
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
       - PackageIdentifier: GitHub.cli
