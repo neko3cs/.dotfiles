@@ -23,27 +23,24 @@ export PYENV_ROOT="$HOME/.pyenv"
 type pyenv >/dev/null 2>&1 && {
   eval "$(pyenv init --path)"
 }
+export STARSHIP_CONFIG=$HOME/.starship/starship.toml
+export STARSHIP_CACHE=$HOME/.starship/cache
 
 # ZSH OPTIONS
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  autoload -Uz compinit
-  compinit
 fi
-typeset -U path cdpath fpath manpath &&
-autoload -Uz compinit &&
-compinit -i &&
-autoload -Uz colors &&
-colors &&
-PROMPT='
-%F{cyan}┌ %n@%m%f%F{081} %C%f
-%F{cyan}└ $ %f' &&
-RPROMPT='%F{green}%D{%Y/%m/%d} %*%f' &&
-setopt correct &&
-setopt list_packed &&
-setopt auto_param_slash &&
-setopt auto_param_slash &&
+typeset -U path cdpath fpath manpath
+autoload -Uz compinit
+compinit -i
+setopt correct
+setopt list_packed
 setopt nonomatch
+setopt auto_param_slash
+
+# STARSHIP INIT
+eval "$(starship init zsh)"
+source $HOME/.dotfiles/config/starship.zsh
 
 # DOTNET COMPLETION
 _dotnet_zsh_complete()
