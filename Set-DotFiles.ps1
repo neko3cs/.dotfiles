@@ -1,34 +1,11 @@
 #Requires -RunAsAdministrator
 
-function Set-PSProfile {
-  if (Test-Path $PROFILE) {
-    Remove-Item `
-      -Path $PROFILE `
-      -Force
-  }
-  Copy-Item `
-    -Path $PWD\config\Microsoft.PowerShell_profile.ps1 `
-    -Destination $PROFILE `
-    -Force
-}
-
 if ($IsWindows) {
-  $dotfiles = @(
-    ".gitconfig"
-  )
-
-  Set-PSProfile
-
-  foreach ($dotfile in $dotfiles) {
-    if (Test-Path -Path $HOME/$dotfile) {
-      Remove-Item `
-        -Path $HOME/$dotfile `
-        -Force
-    }
-    New-Item `
-      -ItemType SymbolicLink `
-      -Path $HOME/$dotfile `
-      -Value $PWD/config/$dotfile `
-      -Force
-  }
+  New-Item -ItemType File -Force -Path $PROFILE
+  Copy-Item -Force -Path $PWD\config\Microsoft.PowerShell_profile.ps1 -Destination $PROFILE
+  New-Item -ItemType SymbolicLink -Force -Path $HOME/.gitconfig -Value $PWD/config/.gitconfig
+  New-Item -ItemType SymbolicLink -Force -Path $HOME/.starship/starship.toml -Value $PWD/config/starship.toml
+}
+elseif ($IsMacOS) {
+  Copy-Item -Force -Path ./config/Microsoft.PowerShell_profile.ps1 -Destination $PROFILE
 }
