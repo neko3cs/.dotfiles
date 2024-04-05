@@ -14,7 +14,6 @@ Sources:
       - PackageIdentifier: GoLang.Go
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
-      - PackageIdentifier: JanDeDobbeleer.OhMyPosh
       - PackageIdentifier: JesseDuffield.lazygit
       - PackageIdentifier: mbuilov.sed
       - PackageIdentifier: Microsoft.AppInstaller
@@ -31,6 +30,7 @@ Sources:
       - PackageIdentifier: NickeManarin.ScreenToGif
       - PackageIdentifier: OpenJS.NodeJS.LTS
       - PackageIdentifier: Rustlang.Rustup
+      - PackageIdentifier: Starship.Starship
       - PackageIdentifier: stedolan.jq
       - PackageIdentifier: waterlan.dos2unix
       - PackageIdentifier: WinMerge.WinMerge
