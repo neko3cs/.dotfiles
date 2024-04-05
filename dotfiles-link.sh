@@ -1,18 +1,8 @@
 #!/usr/bin/env zsh
 
-dotfiles=(
-  .vimrc
-  .gitconfig
-  Brewfile
-)
-dotfiles_need_source=(
-  .zshrc
-)
-
-for dotfile in "${dotfiles[@]}"; do
-  ln -sf $(pwd)/config/$dotfile ~/$dotfile
-done
-for dotfile in "${dotfiles_need_source[@]}"; do
-  ln -sf $(pwd)/config/$dotfile ~/$dotfile
-  source ~/$dotfile
-done
+ln -sf $(pwd)/config/.zshrc $HOME/.zshrc
+source ~/.zshrc
+ln -sf $(pwd)/config/starship.toml $HOME/.starship/starship.toml
+ln -sf $(pwd)/config/.vimrc $HOME/.vimrc
+ln -sf $(pwd)/config/.gitconfig $HOME/.gitconfig
+ln -sf $(pwd)/config/Brewfile $HOME/Brewfile
