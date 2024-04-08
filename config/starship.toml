@@ -1,7 +1,9 @@
 format = """
 [░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
+[  ](fg:#090c0c bg:#a3aed2)\
+$os\
+$shell\
+[](fg:#5e7fc0 bg:#769ff0)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
@@ -15,6 +17,20 @@ $php\
 $time\
 [ ](fg:#1d2230)\
 \n$character"""
+
+[os]
+disabled = false
+style = "fg:#e3e5e5 bg:#5e7fc0"
+format = "[ $symbol - ]($style)"
+
+[os.symbols]
+Windows = "Windows"
+
+[shell]
+disabled = false
+style = "fg:#e3e5e5 bg:#5e7fc0"
+format = '[$indicator$shlvl ]($style)'
+pwsh_indicator = "pwsh"
 
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
