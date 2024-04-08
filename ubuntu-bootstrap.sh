@@ -34,6 +34,9 @@ install_pwsh() {
   # Delete deb file
   rm ./packages-microsoft-prod.deb
 }
+install_starship() {
+  curl -sS https://starship.rs/install.sh | sh
+}
 install_docker() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
   echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -79,6 +82,7 @@ activate_ubuntu
 sudo apt install $(cat ./config/packages.txt)
 install_zsh_completions
 install_pwsh
+install_starship
 install_docker
 install_yq
 install_rustup
