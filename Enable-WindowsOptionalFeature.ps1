@@ -4,7 +4,6 @@ $OptionalFeatures = @(
   "Microsoft-Hyper-V-All"
   "Microsoft-Windows-Subsystem-Linux"
   "VirtualMachinePlatform"
-  "IIS-WebServerRole"
 )
 
 $EnabledFeature = $false
