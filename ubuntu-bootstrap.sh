@@ -67,6 +67,12 @@ install_aws_sam_cli() {
 install_deno() {
   curl -fsSL https://deno.land/install.sh | sh
 }
+install_lazygit() {
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit /usr/local/bin
+}
 
 cd $HOME
 if  [ ! -d ./.dotfiles ]; then
@@ -89,6 +95,7 @@ install_rustup
 install_azure_cli
 install_aws_sam_cli
 install_deno
+install_lazygit
 ./vimplug-install.sh
 ./dotfiles-link.sh
 
