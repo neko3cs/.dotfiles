@@ -11,6 +11,7 @@ Sources:
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
       - PackageIdentifier: GitHub.cli
+      - PackageIdentifier: GNU.Nano
       - PackageIdentifier: GoLang.Go
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
