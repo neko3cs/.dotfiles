@@ -33,6 +33,7 @@ Sources:
       - PackageIdentifier: Rustlang.Rustup
       - PackageIdentifier: Starship.Starship
       - PackageIdentifier: stedolan.jq
+      - PackageIdentifier: UB-Mannheim.TesseractOCR
       - PackageIdentifier: waterlan.dos2unix
       - PackageIdentifier: WinMerge.WinMerge
       - PackageIdentifier: Yarn.Yarn
