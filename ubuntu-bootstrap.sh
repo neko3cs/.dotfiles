@@ -13,10 +13,9 @@ activate_ubuntu() {
   sudo apt install -y manpages-ja manpages-ja-dev
 }
 install_zsh_completions() {
-  git clone git@github.com:zsh-users/zsh-completions.git ~/zsh-completions
-  fpath=(~/zsh-completions/src $fpath)
-  rm -f ~/.zcompdump
-  compinit
+  git clone git@github.com:zsh-users/zsh-completions.git ~/.zsh/zsh-completions
+  fpath=(~/.zsh/zsh-completions/src $fpath)
+  rm -f ~/.zcompdump && compinit
 }
 install_pwsh() {
   # Update the list of packages
