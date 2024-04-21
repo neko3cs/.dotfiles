@@ -1,7 +1,6 @@
-#
-# neko3cs .zshrc
-#
-
+# ---------------------------
+#       neko3cs .zshrc
+# ---------------------------
 # PATH
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/local/sbin"
@@ -31,18 +30,19 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 typeset -U path cdpath fpath manpath
-autoload -Uz compinit
-compinit -i
+autoload -Uz compinit && compinit -i
+autoload bashcompinit && bashcompinit
 setopt correct
 setopt list_packed
 setopt nonomatch
 setopt auto_param_slash
-
 # STARSHIP INIT
 eval "$(starship init zsh)"
 source $HOME/.dotfiles/config/starship.zsh
-
-# DOTNET COMPLETION
+# COMPLETIONS
+## AZURE_CLI
+source $(brew --prefix)/etc/bash_completion.d/az
+## DOTNET_CLI
 _dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
@@ -54,7 +54,6 @@ _dotnet_zsh_complete()
   _values = "${(ps:\n:)completions}"
 }
 compdef _dotnet_zsh_complete dotnet
-
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
@@ -65,6 +64,5 @@ alias chrome='open -a "Google Chrome"'
 if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'
 fi
-
 # SPECIFIC VARIABLE
 UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
