@@ -41,7 +41,9 @@ eval "$(starship init zsh)"
 source $HOME/.dotfiles/config/starship.zsh
 # COMPLETIONS
 ## AZURE_CLI
-source $(brew --prefix)/etc/bash_completion.d/az
+if type brew &>/dev/null; then
+  source $(brew --prefix)/etc/bash_completion.d/az
+fi
 ## DOTNET_CLI
 _dotnet_zsh_complete()
 {
