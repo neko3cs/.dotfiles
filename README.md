@@ -5,13 +5,13 @@
 ### macOS
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/macOS-bootstrap.sh | zsh
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_macOS.sh | zsh
 ```
 
 ### Ubuntu
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/ubuntu-bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_ubuntu.sh | bash
 ```
 
 ### Windows
@@ -20,7 +20,7 @@ curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/ubuntu-boots
 winget install --silent --exact --id Git.Git
 # ここでGitのパスを通すためにターミナルを再起動
 # ※管理者権限で起動しておくとwinget向けUACダイアログが1回で済む
-irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/windows-bootstrap.ps1' | iex
+irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.ps1' | iex
 ```
 
 ## インストーラーリンク集
