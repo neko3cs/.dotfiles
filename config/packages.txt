@@ -3,6 +3,7 @@ all,awscli
 all,azure-functions-core-tools
 all,automake
 all,build-essential
+all,clisp
 all,cmake
 all,curl
 all,dos2unix
