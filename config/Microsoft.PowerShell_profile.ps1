@@ -95,8 +95,8 @@ elseif ($IsMacOS) {
 
 # Completion
 Register-PowerShellModule
-. $HOME/.dotfiles/config/Register-StarshipCompletion.ps1
-. $HOME/.dotfiles/config/Register-DenoCompletion.ps1
+& $HOME/.dotfiles/config/Register-StarshipCompletion.ps1
+& $HOME/.dotfiles/config/Register-DenoCompletion.ps1
 Register-DotNetCompletion
 Register-AzureCliCompletion
 # PowerShell Options
