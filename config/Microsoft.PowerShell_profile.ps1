@@ -103,15 +103,14 @@ Register-AzureCliCompletion
 Set-PSReadLineOption `
   -PredictionSource History `
   -PredictionViewStyle ListView `
-  -HistoryNoDuplicates
+  -MaximumHistoryCount 100 `
+  -HistorySearchCaseSensitive `
+  -HistorySearchCursorMovesToEnd `
+  -HistoryNoDuplicates `
+  -BellStyle Visual
 # Alias
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name ll -Value Get-ChildItem
 function lla {
   Get-ChildItem -Force
-}
-function Clear-AllHistory {
-  Clear-History &&
-  Write-Output '' |
-  Out-File -FilePath (Get-PSReadLineOption).HistorySavePath
 }
