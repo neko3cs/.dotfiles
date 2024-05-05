@@ -24,6 +24,7 @@ type pyenv >/dev/null 2>&1 && {
 }
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
+export AWS_DEFAULT_PROFILE=awscli
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
 # ZSH OPTIONS
 if type brew &>/dev/null; then
