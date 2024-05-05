@@ -34,6 +34,8 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
   - Windows: リンク先最下部のGitHubリンクから
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
+- [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)
+  - WindowsはVisual Studioから入れても良い
 
 ### Windows
 
