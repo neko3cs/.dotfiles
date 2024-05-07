@@ -108,6 +108,7 @@ Set-PSReadLineOption `
   -HistorySearchCursorMovesToEnd `
   -HistoryNoDuplicates `
   -BellStyle Visual
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
 # Alias
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name ll -Value Get-ChildItem
