@@ -33,7 +33,8 @@ if type brew &>/dev/null; then
 fi
 typeset -U path cdpath fpath manpath
 autoload -Uz compinit && compinit -i
-autoload bashcompinit && bashcompinit
+autoload -Uz bashcompinit && bashcompinit
+autoload -Uz zmv
 setopt correct
 setopt list_packed
 setopt nonomatch
