@@ -15,6 +15,7 @@ Sources:
       - PackageIdentifier: GoLang.Go
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
+      - PackageIdentifier: gsass1.NTop
       - PackageIdentifier: JesseDuffield.lazygit
       - PackageIdentifier: mbuilov.sed
       - PackageIdentifier: Microsoft.AppInstaller
