@@ -17,6 +17,7 @@ ics.japanese-proofreading
 ionic.ionic
 jebbs.plantuml
 mechatroner.rainbow-csv
+ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-bicep
 ms-azuretools.vscode-docker
 ms-ceintl.vscode-language-pack-ja
@@ -25,8 +26,14 @@ ms-dotnettools.csharp
 ms-dotnettools.dotnet-maui
 ms-dotnettools.vscode-dotnet-runtime
 ms-dotnettools.vscodeintellicode-csharp
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
 ms-vscode-remote.remote-containers
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.remote-wsl
+ms-vscode-remote.vscode-remote-extensionpack
 ms-vscode.azure-account
 ms-vscode.azurecli
 ms-vscode.cmake-tools
@@ -34,8 +41,11 @@ ms-vscode.cpptools
 ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 ms-vscode.powershell
+ms-vscode.remote-explorer
+ms-vscode.remote-server
 ms-vscode.theme-markdownkit
 ms-vsliveshare.vsliveshare
+ms-windows-ai-studio.windows-ai-studio
 msjsdiag.vscode-react-native
 oderwat.indent-rainbow
 pkief.material-icon-theme
