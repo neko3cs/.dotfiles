@@ -18,12 +18,6 @@ if (!(Get-Command git -ea SilentlyContinue)) {
     -ForegroundColor Red
   exit
 }
-while ($true) {
-  $useFor = Read-Host "Private? Work?"
-  if (@("Private", "Work").Contains($useFor)) {
-    break;
-  }
-}
 
 Set-Location $HOME
 if (!(Test-Path $HOME\.dotfiles)) {
@@ -33,7 +27,7 @@ Set-Location -Path .dotfiles
 
 & .\Enable-WindowsOptionalFeature.ps1
 Set-Wsl2Ubuntu
-& .\Install-WingetPackage.ps1 -UseFor $useFor
+& .\Install-WingetPackage.ps1
 pwsh -Command {
   Set-ExecutionPolicy RemoteSigned
   & .\Set-DotFiles.ps1
