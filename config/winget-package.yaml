@@ -5,8 +5,9 @@ Sources:
       - PackageIdentifier: 7zip.7zip
       - PackageIdentifier: AgileBits.1Password
       - PackageIdentifier: Amazon.AWSCLI
+      - PackageIdentifier: Cisco.Webex
+      - PackageIdentifier: CubeSoft.CubePDF
       - PackageIdentifier: Discord.Discord
-      - PackageIdentifier: MikeFarah.yq
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
       - PackageIdentifier: GitHub.cli
@@ -14,6 +15,7 @@ Sources:
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
       - PackageIdentifier: JesseDuffield.lazygit
+      - PackageIdentifier: Logitech.OptionsPlus
       - PackageIdentifier: mbuilov.sed
       - PackageIdentifier: Microsoft.AzureCLI
       - PackageIdentifier: Microsoft.OpenJDK.17
@@ -21,8 +23,10 @@ Sources:
       - PackageIdentifier: Microsoft.PowerToys
       - PackageIdentifier: Microsoft.Sqlcmd
       - PackageIdentifier: Microsoft.SQLServerManagementStudio
+      - PackageIdentifier: Microsoft.VisualStudio.2022.Professional
       - PackageIdentifier: Microsoft.VisualStudioCode
       - PackageIdentifier: Microsoft.WindowsTerminal
+      - PackageIdentifier: MikeFarah.yq
       - PackageIdentifier: OpenJS.NodeJS.LTS
       - PackageIdentifier: Python.Python.3.12
       - PackageIdentifier: Rustlang.Rustup
@@ -32,6 +36,7 @@ Sources:
       - PackageIdentifier: waterlan.dos2unix
       - PackageIdentifier: WinMerge.WinMerge
       - PackageIdentifier: Yarn.Yarn
+      - PackageIdentifier: Zoom.Zoom
     SourceDetails:
       Argument: https://cdn.winget.microsoft.com/cache
       Identifier: Microsoft.Winget.Source_8wekyb3d8bbwe
