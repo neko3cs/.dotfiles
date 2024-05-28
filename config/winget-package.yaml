@@ -5,6 +5,7 @@ Sources:
       - PackageIdentifier: 7zip.7zip
       - PackageIdentifier: AgileBits.1Password
       - PackageIdentifier: Amazon.AWSCLI
+      - PackageIdentifier: Discord.Discord
       - PackageIdentifier: MikeFarah.yq
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
