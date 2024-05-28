@@ -53,6 +53,7 @@ Register-PowerShellModule
 . $DotfilesConfigDir/Register-StarshipCompletion.ps1
 . $DotfilesConfigDir/Register-DenoCompletion.ps1
 . $DotfilesConfigDir/Register-DotNetCompletion.ps1
+. $DotfilesConfigDir/Register-PipCompletion.ps1
 . $DotfilesConfigDir/Register-AzureCliCompletion.ps1
 # PowerShell Options
 Set-PSReadLineOption `
