@@ -1,6 +1,6 @@
 format = """
 [░▒▓](#a3aed2)\
-[  ](fg:#090c0c bg:#a3aed2)\
+[ 🍕 ](fg:#090c0c bg:#a3aed2)\
 $os\
 $shell\
 [](fg:#5e7fc0 bg:#769ff0)\
