@@ -15,6 +15,7 @@ hediet.vscode-drawio
 humao.rest-client
 ics.japanese-proofreading
 ionic.ionic
+james-yu.latex-workshop
 jebbs.plantuml
 mechatroner.rainbow-csv
 ms-azuretools.vscode-azureresourcegroups
@@ -26,6 +27,7 @@ ms-dotnettools.csharp
 ms-dotnettools.dotnet-maui
 ms-dotnettools.vscode-dotnet-runtime
 ms-dotnettools.vscodeintellicode-csharp
+ms-python.black-formatter
 ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
@@ -51,6 +53,7 @@ oderwat.indent-rainbow
 pkief.material-icon-theme
 pspester.pester-test
 redhat.vscode-yaml
+richie5um2.vscode-sort-json
 ritwickdey.liveserver
 rust-lang.rust-analyzer
 styled-components.vscode-styled-components
