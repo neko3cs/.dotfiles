@@ -1,0 +1,11 @@
+beautifulsoup4
+matplotlib
+numpy
+openai
+openpyxl
+pandas
+python-dotenv
+requests
+scikit-learn
+seaborn
+tensorflow
