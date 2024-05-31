@@ -1,0 +1,127 @@
+{
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "black-formatter.args": [
+        "--line-length=80"
+    ],
+    "cmake.configureOnOpen": true,
+    "cmake.showOptionsMovedNotification": false,
+    "dart.openDevTools": "flutter",
+    "diffEditor.renderSideBySide": false,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.accessibilitySupport": "off",
+    "editor.minimap.enabled": false,
+    "editor.snippetSuggestions": "top",
+    "editor.suggest.preview": true,
+    "editor.suggest.showMethods": true,
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 2,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": true,
+    "files.autoGuessEncoding": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.openRepositoryInParentFolders": "always",
+    "go.toolsManagement.autoUpdate": true,
+    "hediet.vscode-drawio.resizeImages": null,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "json.schemas": [],
+    "maui.configuration.androidSdkPreferredPath": "/Users/neko3cs/Library/Android/sdk",
+    "powershell.integratedConsole.startInBackground": true,
+    "powershell.pester.codeLens": false,
+    "powershell.promptToUpdatePowerShell": false,
+    "react-native-tools.showUserTips": false,
+    "redhat.telemetry.enabled": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "sortJSON.contextMenu": {
+        "sortJSON": true,
+        "sortJSONAlphaNum": false,
+        "sortJSONAlphaNumReverse": false,
+        "sortJSONKeyLength": false,
+        "sortJSONKeyLengthReverse": false,
+        "sortJSONReverse": true,
+        "sortJSONType": false,
+        "sortJSONTypeReverse": false,
+        "sortJSONValues": false,
+        "sortJSONValuesReverse": false
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": "auto",
+    "terminal.integrated.fontFamily": "CaskaydiaCove nerd Font",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "update.showReleaseNotes": false,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Visual Studio 2019 Light",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ]
+}
