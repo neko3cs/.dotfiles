@@ -28,3 +28,4 @@ all,yarn
 all,zsh
 pacman,lazygit
 pacman,ttf-cascadia-code-nerd
+pacman,rio
