@@ -28,8 +28,8 @@ if ($IsWindows) {
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
-  $ENV:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
-  $ENV:STARSHIP_CACHE = "$HOME\.starship\cache"
+  $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
+  $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
   # Alias
   Set-Alias -Name open -Value 'explorer.exe'
   Set-Alias -Name lg -Value 'lazygit.exe'
@@ -69,5 +69,5 @@ Set-PSReadLineOption `
 # Alias
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name ll -Value Get-ChildItem
-function la { Get-ChildItem -Force }
-function lla { Get-ChildItem -Force }
+function la { param($Path = ".") Get-ChildItem -Path $Path -Force }
+function lla { param($Path = ".") Get-ChildItem -Path $Path -Force }
