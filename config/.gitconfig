@@ -1,17 +1,19 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = false
+	quotepath = false
+[color]
+	ui = auto
+[fetch]
+	prune = true
 [pull]
 	ff = only
 	default = current
 [push]
 	default = current
-[color]
-	ui = auto
-[fetch]
-	prune = true
-[core]
-	autocrlf = false
-	quotepath = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
