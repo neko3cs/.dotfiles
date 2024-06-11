@@ -41,4 +41,5 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
 
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
+- [ULE4JIS/publish at master · dezz/ULE4JIS](https://github.com/dezz/ULE4JIS/tree/master/publish)
 - [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
