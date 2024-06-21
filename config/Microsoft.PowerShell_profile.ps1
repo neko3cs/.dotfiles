@@ -60,7 +60,7 @@ Register-PowerShellModule
 Set-PSReadLineOption `
   -PredictionSource History `
   -PredictionViewStyle ListView `
-  -MaximumHistoryCount 100 `
+  -MaximumHistoryCount 200 `
   -HistorySearchCaseSensitive `
   -HistorySearchCursorMovesToEnd `
   -HistoryNoDuplicates `
