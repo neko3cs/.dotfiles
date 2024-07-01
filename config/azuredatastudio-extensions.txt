@@ -4,7 +4,6 @@ Microsoft.agent
 Microsoft.azure-cosmosdb-ads-extension
 Microsoft.azuredatastudio-mysql
 Microsoft.azuredatastudio-postgresql
-Microsoft.azuredatastudio-sqlite
 Microsoft.dacpac
 Microsoft.import
 Microsoft.net-6-runtime
@@ -13,4 +12,3 @@ Microsoft.profiler
 Microsoft.schema-compare
 Microsoft.sql-assessment
 Microsoft.sql-migration
-ms-vscode.powershell
