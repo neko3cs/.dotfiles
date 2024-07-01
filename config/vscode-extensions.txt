@@ -9,6 +9,8 @@ dbaeumer.vscode-eslint
 denoland.vscode-deno
 editorconfig.editorconfig
 eighthundreds.vscode-drawio
+github.copilot
+github.copilot-chat
 golang.go
 gruntfuggly.todo-tree
 hediet.vscode-drawio
@@ -47,7 +49,6 @@ ms-vscode.remote-explorer
 ms-vscode.remote-server
 ms-vscode.theme-markdownkit
 ms-vsliveshare.vsliveshare
-ms-windows-ai-studio.windows-ai-studio
 msjsdiag.vscode-react-native
 oderwat.indent-rainbow
 pkief.material-icon-theme
