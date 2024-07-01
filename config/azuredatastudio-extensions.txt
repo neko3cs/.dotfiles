@@ -14,3 +14,4 @@ Microsoft.schema-compare
 Microsoft.sql-assessment
 Microsoft.sql-migration
 ms-vscode.powershell
+msrvida.azdata-sanddance
