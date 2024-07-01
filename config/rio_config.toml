@@ -164,7 +164,7 @@ height = 600
 #
 # Example:
 [fonts]
-size = 14
+size = 16
 
 [fonts.regular]
 family = "CaskaydiaCove Nerd Font"
