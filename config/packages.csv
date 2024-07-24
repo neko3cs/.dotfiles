@@ -26,6 +26,8 @@ all,sqlite
 all,watchman
 all,yarn
 all,zsh
+apt,wireshark
 pacman,lazygit
 pacman,ttf-cascadia-code-nerd
 pacman,rio
+pacman,wireshark-cli
