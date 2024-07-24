@@ -36,6 +36,7 @@ Sources:
       - PackageIdentifier: UB-Mannheim.TesseractOCR
       - PackageIdentifier: waterlan.dos2unix
       - PackageIdentifier: WinMerge.WinMerge
+      - PackageIdentifier: WiresharkFoundation.Wireshark
       - PackageIdentifier: Yarn.Yarn
       - PackageIdentifier: Zoom.Zoom
     SourceDetails:
