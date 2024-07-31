@@ -19,6 +19,7 @@ Sources:
       - PackageIdentifier: Logitech.OptionsPlus
       - PackageIdentifier: mbuilov.sed
       - PackageIdentifier: Microsoft.AzureCLI
+      - PackageIdentifier: Microsoft.Azure.FunctionsCoreTools
       - PackageIdentifier: Microsoft.OpenJDK.17
       - PackageIdentifier: Microsoft.PowerShell
       - PackageIdentifier: Microsoft.PowerToys
