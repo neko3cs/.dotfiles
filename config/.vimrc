@@ -7,6 +7,7 @@ if has("win32") || has("win64")
   set t_Co=256
 endif
 colorscheme codedark
+highlight CursorLine ctermbg=darkgray guibg=darkgray
 " オプション
 syntax enable
 set encoding=utf-8
