@@ -35,6 +35,7 @@ Sources:
       - PackageIdentifier: Starship.Starship
       - PackageIdentifier: stedolan.jq
       - PackageIdentifier: UB-Mannheim.TesseractOCR
+      - PackageIdentifier: vim.vim
       - PackageIdentifier: waterlan.dos2unix
       - PackageIdentifier: WinMerge.WinMerge
       - PackageIdentifier: WiresharkFoundation.Wireshark
