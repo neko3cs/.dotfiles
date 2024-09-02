@@ -7,7 +7,6 @@ Sources:
       - PackageIdentifier: Amazon.AWSCLI
       - PackageIdentifier: Cisco.Webex
       - PackageIdentifier: CubeSoft.CubePDF
-      - PackageIdentifier: Discord.Discord
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
       - PackageIdentifier: GitHub.cli
