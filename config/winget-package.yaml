@@ -5,7 +5,6 @@ Sources:
       - PackageIdentifier: 7zip.7zip
       - PackageIdentifier: AgileBits.1Password
       - PackageIdentifier: Amazon.AWSCLI
-      - PackageIdentifier: Cisco.Webex
       - PackageIdentifier: CubeSoft.CubePDF
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
