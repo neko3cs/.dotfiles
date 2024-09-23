@@ -2,7 +2,6 @@
 # neko3cs rio config
 #
 
-cursor = '▇'
 blinking-cursor = false
 confirm-before-quit = false
 
