@@ -9,6 +9,7 @@ Sources:
       - PackageIdentifier: gerardog.gsudo
       - PackageIdentifier: Git.Git
       - PackageIdentifier: GitHub.cli
+      - PackageIdentifier: GitHub.GitHubDesktop
       - PackageIdentifier: GoLang.Go
       - PackageIdentifier: Google.AndroidStudio
       - PackageIdentifier: Google.Chrome
