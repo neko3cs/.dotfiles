@@ -14,20 +14,20 @@ size = 14
 
 [fonts.regular]
 family = "CaskaydiaCove Nerd Font"
-style = "normal"
+style = "Normal"
 weight = 400
 
 [fonts.bold]
 family = "CaskaydiaCove Nerd Font"
-style = "normal"
+style = "Normal"
 weight = 800
 
 [fonts.italic]
 family = "CaskaydiaCove Nerd Font"
-style = "italic"
+style = "Italic"
 weight = 400
 
 [fonts.bold-italic]
 family = "CaskaydiaCove Nerd Font"
-style = "italic"
+style = "Italic"
 weight = 800
