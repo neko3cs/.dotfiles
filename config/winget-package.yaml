@@ -20,6 +20,7 @@ Sources:
       - PackageIdentifier: Microsoft.AzureCLI
       - PackageIdentifier: Microsoft.Azure.FunctionsCoreTools
       - PackageIdentifier: Microsoft.OpenJDK.17
+      - PackageIdentifier: Microsoft.PowerAutomateDesktop
       - PackageIdentifier: Microsoft.PowerShell
       - PackageIdentifier: Microsoft.PowerToys
       - PackageIdentifier: Microsoft.Sqlcmd
