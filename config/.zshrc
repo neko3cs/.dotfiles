@@ -75,6 +75,8 @@ else
   # eval/source/. command, register function for later
   compdef __pip -P 'pip[0-9.]#'
 fi
+### AWS_CLI
+complete -C '/usr/local/bin/aws_completer' aws
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
