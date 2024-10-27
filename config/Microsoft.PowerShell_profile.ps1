@@ -58,6 +58,7 @@ Register-PowerShellModule
 . $DotfilesConfigDir/Register-DotNetCompletion.ps1
 . $DotfilesConfigDir/Register-PipCompletion.ps1
 . $DotfilesConfigDir/Register-AzureCliCompletion.ps1
+. $DotfilesConfigDir/Register-AwsCliCompletion.ps1
 . $DotfilesConfigDir/Register-SqlcmdCompletion.ps1
 # PowerShell Options
 Set-PSReadLineOption `
