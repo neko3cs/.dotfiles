@@ -31,6 +31,7 @@ Sources:
       - PackageIdentifier: MikeFarah.yq
       - PackageIdentifier: OpenJS.NodeJS.LTS
       - PackageIdentifier: Python.Python.3.12
+      - PackageIdentifier: raphamorim.rio
       - PackageIdentifier: Rustlang.Rustup
       - PackageIdentifier: Starship.Starship
       - PackageIdentifier: stedolan.jq
