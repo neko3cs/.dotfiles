@@ -12,8 +12,8 @@
 - Id: Google.CloudSDK
 - Id: JesseDuffield.lazygit
 - Id: mbuilov.sed
-- Id: Microsoft.AzureCLI
 - Id: Microsoft.Azure.FunctionsCoreTools
+- Id: Microsoft.AzureCLI
 - Id: Microsoft.OpenJDK.17
 - Id: Microsoft.PowerAutomateDesktop
 - Id: Microsoft.PowerShell
