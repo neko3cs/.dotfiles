@@ -6,23 +6,19 @@ if (!(Get-Command winget -ea SilentlyContinue)) {
         -ForegroundColor Red
     exit
 }
-if (-not (Get-Module -ListAvailable -Name powershell-yaml)) {
-    Install-Module -Name powershell-yaml
-}
 if (-not (Get-Module -Name powershell-yaml)) {
+    Install-Module -Name powershell-yaml
     Import-Module -Name powershell-yaml
 }
 
-Get-Content .\config\winget-package.yaml |
-ConvertFrom-Yaml |
-ConvertTo-Json -Depth 4 |
-Out-File (Join-Path $PWD winget-package.json)
-
-winget import `
-    --import-file $PWD\winget-package.json `
-    --ignore-unavailable `
-    --accept-package-agreements `
-    --accept-source-agreements
-
-Get-ChildItem $PWD\winget-package.json |
-Remove-Item
+$packages = Get-Content -Path .\config\winget-package.yaml | ConvertFrom-Yaml
+foreach ($package in $packages) {
+    if ($null -ne $packages.Options) {
+        Write-Output "Install $($package.Id) with options: '$($package.Options)'"
+        winget install --id $package.Id --override $package.Options `
+            --exact --silent --accept-package-agreements --accept-source-agreements
+    }
+    Write-Output "Install $($package.Id)"
+    winget install --id $package.Id `
+        --exact --silent --accept-package-agreements --accept-source-agreements
+}
