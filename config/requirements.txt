@@ -5,6 +5,7 @@ openai
 openpyxl
 pandas
 python-dotenv
+pywin32
 requests
 scikit-learn
 seaborn
