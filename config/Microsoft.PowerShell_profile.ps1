@@ -42,6 +42,30 @@ if ($IsWindows) {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$command)
     return (Get-Command -Name $command -ShowCommandInfo).Definition
   }
+  function ConvertTo-WslPath {
+    param([Parameter(Mandatory, ValueFromPipeline)][string]$Path)
+    return wsl --exec wslpath $Path
+  }
+  function nano {
+    param([string]$Path)
+    if ([string]::IsNullOrEmpty($Path)) { 
+      wsl --exec nano
+    }
+    else {
+      $WslPath = ConvertTo-WslPath -Path $Path
+      wsl --exec nano $WslPath
+    }
+  }
+  function vim {
+    param ([string]$Path)
+    if ([string]::IsNullOrEmpty($Path)) { 
+      wsl vim
+    }
+    else {
+      $WslPath = ConvertTo-WslPath -Path $Path
+      wsl vim $WslPath
+    }
+  }
 }
 elseif ($IsMacOS) {
   # Prompt Design
