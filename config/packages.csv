@@ -8,6 +8,7 @@ all,cmake
 all,curl
 all,dos2unix
 all,file
+all,fzf
 all,gh
 all,git
 all,golang-go
