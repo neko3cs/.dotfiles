@@ -23,6 +23,7 @@ all,rbenv
 all,redis
 all,sqlcmd
 all,sqlite
+all,vim
 all,watchman
 all,yarn
 all,zsh
