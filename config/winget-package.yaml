@@ -11,6 +11,7 @@
 - Id: Google.Chrome
 - Id: Google.CloudSDK
 - Id: JesseDuffield.lazygit
+- Id: junegunn.fzf
 - Id: mbuilov.sed
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
