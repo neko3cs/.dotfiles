@@ -1,5 +1,9 @@
 beautifulsoup4
+jupyter
+jupyter_http_over_ws
+jupyterlab
 matplotlib
+notebook
 numpy
 openai
 openpyxl
