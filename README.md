@@ -43,3 +43,6 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
 - [ULE4JIS/publish at master · dezz/ULE4JIS](https://github.com/dezz/ULE4JIS/tree/master/publish)
 - [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
+- [Less for Windows](https://gnuwin32.sourceforge.net/packages/less.htm)
+- [pdf_as | ファイルの部屋-Dream Space-](http://uchijyu.s601.xrea.com/wordpress/pdf_as/)
+- [プロセス エクスプローラー - Sysinternals | Microsoft Learn](https://learn.microsoft.com/ja-jp/sysinternals/downloads/process-explorer)
