@@ -61,6 +61,8 @@ _dotnet_zsh_complete()
   _values = "${(ps:\n:)completions}"
 }
 compdef _dotnet_zsh_complete dotnet
+## Angular CLI
+source <(ng completion script)
 ## PIP
 #compdef -P pip[0-9.]#
 __pip() {
