@@ -77,8 +77,10 @@ else
   # eval/source/. command, register function for later
   compdef __pip -P 'pip[0-9.]#'
 fi
-### AWS_CLI
+## AWS_CLI
 complete -C '/usr/local/bin/aws_completer' aws
+## zsh-autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
