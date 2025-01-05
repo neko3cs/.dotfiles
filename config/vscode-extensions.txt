@@ -12,6 +12,8 @@ eighthundreds.vscode-drawio
 github.copilot
 github.copilot-chat
 golang.go
+google.geminicodeassist
+googlecloudtools.cloudcode
 gruntfuggly.todo-tree
 hediet.vscode-drawio
 humao.rest-client
