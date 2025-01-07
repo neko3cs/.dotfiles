@@ -87,7 +87,7 @@ Register-PowerShellModule
 # PowerShell Options
 Set-PSReadLineOption `
   -PredictionSource History `
-  -PredictionViewStyle ListView `
+  -PredictionViewStyle InlineView `
   -MaximumHistoryCount 200 `
   -HistorySearchCaseSensitive `
   -HistorySearchCursorMovesToEnd `
