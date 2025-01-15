@@ -31,6 +31,13 @@ if ($IsWindows) {
   $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
   $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
   $Env:AWS_DEFAULT_PROFILE = "default"
+  $paths = @(
+    "$($Env:LOCALAPPDATA)\DotNetVersions"
+    "$($Env:LOCALAPPDATA)\less-394-bin\bin"
+    "$($Env:LOCALAPPDATA)\ProcessExplorer"
+    "$($Env:LOCALAPPDATA)\ULE4JIS"
+  )
+  $Env:Path = ([string]::Join(";", $paths) + ";" + $Env:Path)
   # Alias
   Set-Alias -Name open -Value 'explorer.exe'
   Set-Alias -Name lg -Value 'lazygit.exe'
