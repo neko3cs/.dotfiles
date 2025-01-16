@@ -2,6 +2,8 @@
 	defaultBranch = main
 [core]
 	autocrlf = false
+	editor = code --wait
+	ignorecase = false
 	quotepath = false
 [color]
 	ui = auto
@@ -14,6 +16,14 @@
 	default = current
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+	smudge = git-lfs smudge -- %f
+[alias]
+	ci = commit
+	st = status
+	br = branch
+	sw = switch
+	co = checkout
+[include]
+	path = .gitconfig.local
