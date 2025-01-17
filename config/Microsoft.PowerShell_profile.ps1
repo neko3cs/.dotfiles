@@ -33,7 +33,6 @@ if ($IsWindows) {
   $Env:AWS_DEFAULT_PROFILE = "default"
   $paths = @(
     "$($Env:LOCALAPPDATA)\DotNetVersions"
-    "$($Env:LOCALAPPDATA)\less-394-bin\bin"
     "$($Env:LOCALAPPDATA)\ProcessExplorer"
     "$($Env:LOCALAPPDATA)\ULE4JIS"
   )
@@ -72,6 +71,11 @@ if ($IsWindows) {
       $WslPath = ConvertTo-WslPath -Path $Path
       wsl vim $WslPath
     }
+  }
+  function less {
+    param ([Parameter(Mandatory = $true, ValueFromPipeline = $true)][string]$Path)
+    $WslPath = ConvertTo-WslPath -Path $Path
+    wsl less $WslPath
   }
 }
 elseif ($IsMacOS) {
