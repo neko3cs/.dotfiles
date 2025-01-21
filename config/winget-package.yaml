@@ -2,6 +2,7 @@
 - Id: AgileBits.1Password
 - Id: Amazon.AWSCLI
 - Id: Amazon.Kindle
+- Id: 9PFHDD62MXS1 # Apple.Music
 - Id: CubeSoft.CubePDF
 - Id: Discord.Discord
 - Id: gerardog.gsudo
@@ -13,17 +14,21 @@
 - Id: JesseDuffield.lazygit
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
+- Id: 9P1HQ5TQZMGD # Microsoft.Loop
 - Id: Microsoft.OpenJDK.17
 - Id: Microsoft.PowerAutomateDesktop
 - Id: Microsoft.PowerShell
 - Id: Microsoft.PowerToys
+- Id: Microsoft.RemoteDesktopClient
 - Id: Microsoft.Sqlcmd
 - Id: Microsoft.SQLServerManagementStudio
+- Id: 9NBLGGH5R558 # Microsoft.ToDo
 - Id: Microsoft.VisualStudio.2022.Professional
 - Id: Microsoft.VisualStudioCode
   Options: "/VERYSILENT /NORESTART /MERGETASKS=!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"
 - Id: Microsoft.WindowsTerminal
 - Id: MikeFarah.yq
+- Id: Logitech.OptionsPlus
 - Id: OpenJS.NodeJS.LTS
 - Id: Python.Python.3.12
 - Id: raphamorim.rio
