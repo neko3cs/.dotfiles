@@ -2,7 +2,7 @@
 	defaultBranch = main
 [core]
 	autocrlf = false
-	editor = code --wait
+	editor = vi
 	ignorecase = false
 	quotepath = false
 [color]
