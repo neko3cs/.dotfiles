@@ -14,6 +14,9 @@
 - Id: JesseDuffield.lazygit
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
+- Id: Microsoft.DotNet.SDK.9
+- Id: Microsoft.DotNet.SDK.8
+- Id: Microsoft.DotNet.SDK.6
 - Id: 9P1HQ5TQZMGD # Microsoft.Loop
 - Id: Microsoft.OpenJDK.17
 - Id: Microsoft.PowerAutomateDesktop
