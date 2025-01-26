@@ -27,22 +27,24 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
 
 各リポジトリになかったり、公式から取ってきた方がいいやつ。
 
-### All
+### macOS
 
 - [RunCat](https://kyome.io/runcat/)
-  - macOS: App Storeから
-  - Windows: リンク先最下部のGitHubリンクから
+  - App Storeから
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
 - [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)
-  - WindowsはVisual Studioから入れても良い
+  - homebrewにもあるけど、旧バージョンも入れたいなら個別に入れたほうがいい
 
 ### Windows
 
 - [Ctrl2cap - Windows Sysinternals | Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)
-- [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
 - [ULE4JIS/publish at master · dezz/ULE4JIS](https://github.com/dezz/ULE4JIS/tree/master/publish)
-- [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
-- [Less for Windows](https://gnuwin32.sourceforge.net/packages/less.htm)
+- [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
+  - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
+- [RunCat](https://kyome.io/runcat/)
+  - リンク先最下部のGitHubリンクから
+- [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
 - [pdf_as | ファイルの部屋-Dream Space-](http://uchijyu.s601.xrea.com/wordpress/pdf_as/)
 - [プロセス エクスプローラー - Sysinternals | Microsoft Learn](https://learn.microsoft.com/ja-jp/sysinternals/downloads/process-explorer)
+- [dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)
