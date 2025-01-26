@@ -16,9 +16,9 @@ foreach ($package in $packages) {
     if ($null -ne $packages.Options) {
         Write-Output "Install $($package.Id) with options: '$($package.Options)'"
         winget install --id $package.Id --override $package.Options `
-            --exact --silent --accept-package-agreements --accept-source-agreements
+            --silent --accept-package-agreements --accept-source-agreements
     }
     Write-Output "Install $($package.Id)"
     winget install --id $package.Id `
-        --exact --silent --accept-package-agreements --accept-source-agreements
+        --silent --accept-package-agreements --accept-source-agreements
 }
