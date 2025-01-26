@@ -80,7 +80,9 @@ fi
 ## AWS_CLI
 complete -C '/usr/local/bin/aws_completer' aws
 ## zsh-autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if type brew &>/dev/null; then
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
