@@ -17,6 +17,7 @@ all,nkf
 all,nodejs
 all,mysql-server
 all,openjdk-21-jdk
+all,podman
 all,procps
 all,rbenv
 all,redis
