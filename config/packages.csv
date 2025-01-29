@@ -1,6 +1,4 @@
 pkgmng,pkgname
-all,awscli
-all,azure-functions-core-tools
 all,automake
 all,build-essential
 all,clisp
@@ -22,14 +20,16 @@ all,openjdk-21-jdk
 all,procps
 all,rbenv
 all,redis
-all,sqlcmd
-all,sqlite
 all,vim
 all,watchman
 all,yarn
 all,zsh
 apt,wireshark
+pacman,awscli
+pacman,azure-functions-core-tools
 pacman,lazygit
 pacman,ttf-cascadia-code-nerd
 pacman,rio
+pacman,sqlcmd
+pacman,sqlite
 pacman,wireshark-cli
