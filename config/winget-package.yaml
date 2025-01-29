@@ -35,6 +35,7 @@
 - Id: OpenJS.NodeJS.LTS
 - Id: Python.Python.3.12
 - Id: raphamorim.rio
+- Id: RedHat.Podman
 - Id: Rustlang.Rustup
 - Id: Starship.Starship
 - Id: stedolan.jq
