@@ -2,7 +2,6 @@
 cask_args appdir: "/Applications"
 # tap
 tap "azure/functions"
-tap "homebrew/cask-versions"
 tap "pivotal/tap"
 # brew
 brew "awscli"
@@ -22,7 +21,7 @@ brew "go"
 brew "htop"
 brew "jq"
 brew "java"
-brew "mono-libgdiplus" # for ImportExcel
+brew "mono"
 brew "mysql"
 brew "neofetch"
 brew "nkf"
