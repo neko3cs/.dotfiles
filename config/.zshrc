@@ -83,6 +83,10 @@ complete -C '/usr/local/bin/aws_completer' aws
 if type brew &>/dev/null; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+## minikube
+if type minikube &>/dev/null; then
+  source <(minikube completion zsh)
+fi
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
