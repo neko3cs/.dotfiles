@@ -43,6 +43,7 @@ if ($IsWindows) {
   Set-Alias -Name ads -Value 'azuredatastudio.cmd'
   Set-Alias -Name jq -Value 'jq-win64.exe'
   Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
+  Set-Alias -Name docker -Value "podman"
   function zsh { wsl /usr/bin/zsh }
   function which {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$command)
