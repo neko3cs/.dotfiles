@@ -93,6 +93,10 @@ fi
 if type minikube &>/dev/null; then
   source <(minikube completion zsh)
 fi
+## sqlcmd
+if type sqlcmd &>/dev/null; then
+  source <(sqlcmd completion zsh)
+fi
 # ALIAS
 alias la='ls -ah'
 alias ll='ls -lh'
