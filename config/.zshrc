@@ -50,19 +50,23 @@ if type brew &>/dev/null; then
   source $(brew --prefix)/etc/bash_completion.d/az
 fi
 ## DOTNET_CLI
-_dotnet_zsh_complete()
-{
-  local completions=("$(dotnet complete "$words")")
-  if [ -z "$completions" ]
-  then
-    _arguments '*::arguments: _normal'
-    return
-  fi
-  _values = "${(ps:\n:)completions}"
-}
-compdef _dotnet_zsh_complete dotnet
+if type dotnet &>/dev/null; then
+  _dotnet_zsh_complete()
+  {
+    local completions=("$(dotnet complete "$words")")
+    if [ -z "$completions" ]
+    then
+      _arguments '*::arguments: _normal'
+      return
+    fi
+    _values = "${(ps:\n:)completions}"
+  }
+  compdef _dotnet_zsh_complete dotnet
+fi
 ## Angular CLI
-source <(ng completion script)
+if type ng &>/dev/null; then
+  source <(ng completion script)
+fi
 ## PIP
 #compdef -P pip[0-9.]#
 __pip() {
@@ -78,7 +82,9 @@ else
   compdef __pip -P 'pip[0-9.]#'
 fi
 ## AWS_CLI
-complete -C '/usr/local/bin/aws_completer' aws
+if type aws &>/dev/null; then
+  complete -C '/usr/local/bin/aws_completer' aws
+fi
 ## zsh-autosuggestions
 if type brew &>/dev/null; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
