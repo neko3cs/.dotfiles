@@ -40,7 +40,6 @@ if ($IsWindows) {
   # Alias
   Set-Alias -Name open -Value 'explorer.exe'
   Set-Alias -Name lg -Value 'lazygit.exe'
-  Set-Alias -Name ads -Value 'azuredatastudio.cmd'
   Set-Alias -Name jq -Value 'jq-win64.exe'
   Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
   Set-Alias -Name docker -Value "podman"
@@ -84,7 +83,6 @@ elseif ($IsMacOS) {
   Invoke-Expression (& '/usr/local/bin/starship' init powershell --print-full-init | Out-String)
   # Alias
   Set-Alias -Name lg -Value 'lazygit'
-  Set-Alias -Name ads -Value 'azuredatastudio'
 }
 
 # Completion
