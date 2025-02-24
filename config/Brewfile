@@ -46,8 +46,6 @@ brew "zsh-completions"
 # brew --cask
 cask "android-studio"
 cask "appcleaner"
-cask "arc"
-cask "azure-data-studio"
 cask "discord"
 cask "flutter"
 cask "google-chrome"
