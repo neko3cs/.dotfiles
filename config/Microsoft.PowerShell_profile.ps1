@@ -77,6 +77,43 @@ if ($IsWindows) {
     $WslPath = ConvertTo-WslPath -Path $Path
     wsl less $WslPath
   }
+  function refreshenv {
+    try {
+      $systemEnv = Get-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -ErrorAction Stop
+      $userEnv = Get-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -ErrorAction Stop
+    }
+    catch {
+      Write-Error "Can not load env from registory.: $_"
+      return
+    }
+
+    foreach ($prop in $systemEnv.PSObject.Properties) {
+      if ($prop.Name -like "PS*") { continue }
+      if ($prop.Name -eq "Path") { continue }
+      ${env:$($prop.Name)} = $prop.Value
+    }
+    foreach ($prop in $userEnv.PSObject.Properties) {
+      if ($prop.Name -like "PS*") { continue }
+      if ($prop.Name -eq "Path") { continue }
+      ${env:$($prop.Name)} = $prop.Value
+    }
+
+    $systemPath = $systemEnv.Path
+    $userPath = $userEnv.Path
+
+    if ($systemPath -and $userPath) {
+      $env:Path = "$systemPath;$userPath"
+    }
+    elseif ($systemPath) {
+      $env:Path = $systemPath
+    }
+    elseif ($userPath) {
+      $env:Path = $userPath
+    }
+    else {
+      $env:Path = ""
+    }
+  }
 }
 elseif ($IsMacOS) {
   # Prompt Design
