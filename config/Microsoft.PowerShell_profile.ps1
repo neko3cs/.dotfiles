@@ -25,6 +25,7 @@ if ($IsWindows) {
   Invoke-Expression (&starship init powershell)
   # Completion
   . $PwshCompletionsDir/Register-WingetCompletion.ps1
+  podman completion powershell | Out-String | Invoke-Expression
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
