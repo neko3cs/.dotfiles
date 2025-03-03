@@ -25,7 +25,6 @@ if ($IsWindows) {
   Invoke-Expression (&starship init powershell)
   # Completion
   . $PwshCompletionsDir/Register-WingetCompletion.ps1
-  podman completion powershell | Out-String | Invoke-Expression
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
@@ -122,13 +121,13 @@ elseif ($IsMacOS) {
   # Alias
   Set-Alias -Name lg -Value 'lazygit'
 }
-
-# Completion
+# Import Module
 Register-PowerShellModule
-. $PwshCompletionsDir/Register-StarshipCompletion.ps1
-. $PwshCompletionsDir/Register-DenoCompletion.ps1
+# Completion
+starship completions powershell | Out-String | Invoke-Expression
+podman completion powershell | Out-String | Invoke-Expression
+pip completion --powershell | Out-String | Invoke-Expression
 . $PwshCompletionsDir/Register-DotNetCompletion.ps1
-. $PwshCompletionsDir/Register-PipCompletion.ps1
 . $PwshCompletionsDir/Register-AzureCliCompletion.ps1
 . $PwshCompletionsDir/Register-AwsCliCompletion.ps1
 . $PwshCompletionsDir/Register-SqlcmdCompletion.ps1
