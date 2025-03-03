@@ -130,7 +130,6 @@ pip completion --powershell | Out-String | Invoke-Expression
 . $PwshCompletionsDir/Register-DotNetCompletion.ps1
 . $PwshCompletionsDir/Register-AzureCliCompletion.ps1
 . $PwshCompletionsDir/Register-AwsCliCompletion.ps1
-. $PwshCompletionsDir/Register-SqlcmdCompletion.ps1
 # PowerShell Options
 Set-PSReadLineOption `
   -PredictionSource History `
