@@ -49,9 +49,6 @@ install_yq() {
   sudo curl -fsSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/bin/yq
   sudo chmod +x /usr/bin/yq
 }
-install_rustup() {
-  curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh
-}
 install_pyenv() {
   curl https://pyenv.run | bash
 }
@@ -90,7 +87,6 @@ install_pwsh
 install_starship
 install_docker
 install_yq
-install_rustup
 install_azure_cli
 install_aws_sam_cli
 install_deno
