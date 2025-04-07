@@ -12,6 +12,7 @@
 - Id: Google.Chrome
 - Id: Google.CloudSDK
 - Id: JesseDuffield.lazygit
+- Id: JGraph.Draw
 - Id: Kubernetes.minikube
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
