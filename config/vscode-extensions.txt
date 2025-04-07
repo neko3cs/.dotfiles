@@ -5,12 +5,10 @@ dart-code.flutter
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
 editorconfig.editorconfig
-eighthundreds.vscode-drawio
 github.copilot
 github.copilot-chat
 golang.go
 gruntfuggly.todo-tree
-hediet.vscode-drawio
 humao.rest-client
 ics.japanese-proofreading
 ionic.ionic
