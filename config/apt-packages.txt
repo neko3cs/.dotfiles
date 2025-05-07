@@ -16,7 +16,6 @@ neofetch
 nkf
 nodejs
 openjdk-21-jdk
-podman
 procps
 rbenv
 redis
