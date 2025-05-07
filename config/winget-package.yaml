@@ -13,7 +13,6 @@
 - Id: Google.CloudSDK
 - Id: JesseDuffield.lazygit
 - Id: JGraph.Draw
-- Id: Kubernetes.minikube
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
 - Id: Microsoft.DotNet.SDK.9
@@ -36,7 +35,6 @@
 - Id: OpenJS.NodeJS.LTS
 - Id: Python.Python.3.12
 - Id: raphamorim.rio
-- Id: RedHat.Podman
 - Id: Starship.Starship
 - Id: stedolan.jq
 - Id: waterlan.dos2unix

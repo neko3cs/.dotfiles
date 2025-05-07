@@ -103,7 +103,6 @@ alias ll='ls -lh'
 alias lla='ls -lah'
 alias cls='clear'
 alias lg='lazygit'
-alias docker='podman'
 alias chrome='open -a "Google Chrome"'
 if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='clip.exe'

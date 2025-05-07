@@ -42,7 +42,6 @@ if ($IsWindows) {
   Set-Alias -Name lg -Value 'lazygit.exe'
   Set-Alias -Name jq -Value 'jq-win64.exe'
   Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
-  Set-Alias -Name docker -Value "podman"
   function zsh { wsl /usr/bin/zsh }
   function which {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$command)
@@ -125,7 +124,6 @@ elseif ($IsMacOS) {
 Register-PowerShellModule
 # Completion
 starship completions powershell | Out-String | Invoke-Expression
-podman completion powershell | Out-String | Invoke-Expression
 pip completion --powershell | Out-String | Invoke-Expression
 . $PwshCompletionsDir/Register-DotNetCompletion.ps1
 . $PwshCompletionsDir/Register-AzureCliCompletion.ps1
