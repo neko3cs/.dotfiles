@@ -81,7 +81,7 @@ sudo apt upgrade
 
 activate_ubuntu
 
-sudo apt install $(cat ./config/packages.txt)
+./install_apt-packages.sh
 install_zsh_completions
 install_pwsh
 install_starship
