@@ -43,7 +43,7 @@ setopt nonomatch
 setopt auto_param_slash
 # STARSHIP INIT
 eval "$(starship init zsh)"
-source $HOME/.dotfiles/config/starship.zsh
+source $HOME/.dotfiles/starship.zsh
 # COMPLETIONS
 ## AZURE_CLI
 if type brew &>/dev/null; then
