@@ -18,12 +18,74 @@ function Register-PowerShellModule {
     }
   }
 }
+function Register-AwsCliCompletion {
+  if (Get-Command -Name aws -ea SilentlyContinue) {
+    Register-ArgumentCompleter -Native -CommandName aws -ScriptBlock {
+      param($commandName, $wordToComplete, $cursorPosition)
+      $env:COMP_LINE = $wordToComplete
+      if ($env:COMP_LINE.Length -lt $cursorPosition) {
+        $env:COMP_LINE = $env:COMP_LINE + " "
+      }
+      $env:COMP_POINT = $cursorPosition
+      aws_completer.exe | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+      }
+      Remove-Item Env:\COMP_LINE
+      Remove-Item Env:\COMP_POINT
+    }
+  }
+}
+function Register-AzureCliCompletion {
+  if (Get-Command -Name az -ea SilentlyContinue) {
+    Register-ArgumentCompleter -Native -CommandName az -ScriptBlock {
+      param($commandName, $wordToComplete, $cursorPosition)
+      $completion_file = New-TemporaryFile
+      $env:ARGCOMPLETE_USE_TEMPFILES = 1
+      $env:_ARGCOMPLETE_STDOUT_FILENAME = $completion_file
+      $env:COMP_LINE = $wordToComplete
+      $env:COMP_POINT = $cursorPosition
+      $env:_ARGCOMPLETE = 1
+      $env:_ARGCOMPLETE_SUPPRESS_SPACE = 0
+      $env:_ARGCOMPLETE_IFS = "`n"
+      $env:_ARGCOMPLETE_SHELL = 'powershell'
+      az 2>&1 | Out-Null
+      Get-Content $completion_file | Sort-Object | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, "ParameterValue", $_)
+      }
+      Remove-Item $completion_file, Env:\_ARGCOMPLETE_STDOUT_FILENAME, Env:\ARGCOMPLETE_USE_TEMPFILES, Env:\COMP_LINE, Env:\COMP_POINT, Env:\_ARGCOMPLETE, Env:\_ARGCOMPLETE_SUPPRESS_SPACE, Env:\_ARGCOMPLETE_IFS, Env:\_ARGCOMPLETE_SHELL
+    }  
+  }
+}
+function Register-DotNetCompletion {
+  if (Get-Command -Name dotnet -ea SilentlyContinue) {
+    Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+      param($commandName, $wordToComplete, $cursorPosition)
+      dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+      }
+    }
+  }
+}
+function Register-WingetCompletion {
+  if (Get-Command -Name winget -ea SilentlyContinue) {
+    Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
+      param($wordToComplete, $commandAst, $cursorPosition)
+      [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
+      $Local:word = $wordToComplete.Replace('"', '""')
+      $Local:ast = $commandAst.ToString().Replace('"', '""')
+      winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+      }
+    }
+  }
+}
+
 
 if ($IsWindows) {
   # Prompt Design
   Invoke-Expression (&starship init powershell)
   # Completion
-  . $HOME/.dotfiles/Register-WingetCompletion.ps1
+  Register-WingetCompletion
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
@@ -119,14 +181,15 @@ elseif ($IsMacOS) {
   # Alias
   Set-Alias -Name lg -Value 'lazygit'
 }
+
 # Import Module
 Register-PowerShellModule
 # Completion
 starship completions power-shell | Out-String | Invoke-Expression
 pip completion --powershell | Out-String | Invoke-Expression
-. $HOME/.dotfiles/Register-DotNetCompletion.ps1
-. $HOME/.dotfiles/Register-AzureCliCompletion.ps1
-. $HOME/.dotfiles/Register-AwsCliCompletion.ps1
+Register-AwsCliCompletion
+Register-AzureCliCompletion
+Register-DotNetCompletion
 # PowerShell Options
 Set-PSReadLineOption `
   -PredictionSource History `
