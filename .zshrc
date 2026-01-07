@@ -20,9 +20,9 @@ type rbenv >/dev/null 2>&1 && {
 }
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PATH:$PYENV_ROOT/bin"
-type pyenv >/dev/null 2>&1 && {
-  eval "$(pyenv init --path)"
-}
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
 export AWS_DEFAULT_PROFILE=awscli
