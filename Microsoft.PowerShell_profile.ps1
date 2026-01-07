@@ -1,6 +1,5 @@
 #Requires -PSEdition Core
 
-$PwshCompletionsDir = "$HOME/.dotfiles/config/pwsh_completions"
 $PowerShellModules = @(
   "posh-git"
   "Pester"
@@ -24,7 +23,7 @@ if ($IsWindows) {
   # Prompt Design
   Invoke-Expression (&starship init powershell)
   # Completion
-  . $PwshCompletionsDir/Register-WingetCompletion.ps1
+  . $HOME/.dotfiles/Register-WingetCompletion.ps1
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
@@ -125,9 +124,9 @@ Register-PowerShellModule
 # Completion
 starship completions power-shell | Out-String | Invoke-Expression
 pip completion --powershell | Out-String | Invoke-Expression
-. $PwshCompletionsDir/Register-DotNetCompletion.ps1
-. $PwshCompletionsDir/Register-AzureCliCompletion.ps1
-. $PwshCompletionsDir/Register-AwsCliCompletion.ps1
+. $HOME/.dotfiles/Register-DotNetCompletion.ps1
+. $HOME/.dotfiles/Register-AzureCliCompletion.ps1
+. $HOME/.dotfiles/Register-AwsCliCompletion.ps1
 # PowerShell Options
 Set-PSReadLineOption `
   -PredictionSource History `
