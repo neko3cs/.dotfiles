@@ -33,6 +33,7 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
   - App Storeから
 - [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)
   - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
+- [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)
 - [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)
   - homebrewにもあるけど、旧バージョンも入れたいなら個別に入れたほうがいい
 
@@ -44,6 +45,7 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
   - [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)
 - [RunCat](https://kyome.io/runcat/)
   - リンク先最下部のGitHubリンクから
+- [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)
 - [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)
 - [pdf_as | ファイルの部屋-Dream Space-](http://uchijyu.s601.xrea.com/wordpress/pdf_as/)
 - [プロセス エクスプローラー - Sysinternals | Microsoft Learn](https://learn.microsoft.com/ja-jp/sysinternals/downloads/process-explorer)
