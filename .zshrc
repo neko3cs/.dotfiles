@@ -63,10 +63,6 @@ if type dotnet &>/dev/null; then
   }
   compdef _dotnet_zsh_complete dotnet
 fi
-## Angular CLI
-if type ng &>/dev/null; then
-  source <(ng completion script)
-fi
 ## PIP
 #compdef -P pip[0-9.]#
 __pip() {
@@ -88,14 +84,6 @@ fi
 ## zsh-autosuggestions
 if type brew &>/dev/null; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-## minikube
-if type minikube &>/dev/null; then
-  source <(minikube completion zsh)
-fi
-## sqlcmd
-if type sqlcmd &>/dev/null; then
-  source <(sqlcmd completion zsh)
 fi
 # ALIAS
 alias la='ls -ah'
