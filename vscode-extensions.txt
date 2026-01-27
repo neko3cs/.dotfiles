@@ -4,6 +4,7 @@ dart-code.dart-code
 dart-code.flutter
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
+denoland.vscode-deno
 docker.docker
 editorconfig.editorconfig
 eighthundreds.vscode-drawio
