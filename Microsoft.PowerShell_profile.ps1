@@ -185,6 +185,7 @@ elseif ($IsMacOS) {
 # Import Module
 Register-PowerShellModule
 # Completion
+deno completions powershell | Out-String | Invoke-Expression
 starship completions power-shell | Out-String | Invoke-Expression
 pip completion --powershell | Out-String | Invoke-Expression
 Register-AwsCliCompletion
