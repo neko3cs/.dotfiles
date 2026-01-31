@@ -1,5 +1,6 @@
 angular.ng-template
 bierner.markdown-mermaid
+bradlc.vscode-tailwindcss
 dart-code.dart-code
 dart-code.flutter
 davidanson.vscode-markdownlint
@@ -9,6 +10,8 @@ docker.docker
 editorconfig.editorconfig
 eighthundreds.vscode-drawio
 esbenp.prettier-vscode
+github.copilot
+github.copilot-chat
 golang.go
 gruntfuggly.todo-tree
 hediet.vscode-drawio
