@@ -36,6 +36,7 @@
 - Id: OpenJS.NodeJS.LTS
 - Id: Python.Python.3.12
 - Id: raphamorim.rio
+- Id: Rustlang.Rustup
 - Id: sharkdp.bat
 - Id: SST.opencode
 - Id: Starship.Starship
