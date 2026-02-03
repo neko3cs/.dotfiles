@@ -53,9 +53,9 @@ ms-vsliveshare.vsliveshare
 oderwat.indent-rainbow
 pkief.material-icon-theme
 pspester.pester-test
-redhat.vscode-yaml
 richie5um2.vscode-sort-json
 ritwickdey.liveserver
+rust-lang.rust-analyzer
 tomoki1207.pdf
 twxs.cmake
 webnative.webnative
