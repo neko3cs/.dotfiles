@@ -22,5 +22,5 @@ redis
 vim
 watchman
 wireshark
-yarn
+xmake
 zsh
