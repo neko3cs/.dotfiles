@@ -58,5 +58,6 @@ ritwickdey.liveserver
 rust-lang.rust-analyzer
 tomoki1207.pdf
 twxs.cmake
+visualstudiotoolsforunity.vstuc
 webnative.webnative
 yzane.markdown-pdf
