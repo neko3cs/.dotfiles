@@ -12,6 +12,7 @@
 - Id: GoLang.Go
 - Id: Google.Chrome
 - Id: Google.CloudSDK
+- Id: Google.Protobuf
 - Id: JesseDuffield.lazygit
 - Id: JGraph.Draw
 - Id: Microsoft.Azure.FunctionsCoreTools
