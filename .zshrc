@@ -25,7 +25,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
-export AWS_DEFAULT_PROFILE=awscli
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
