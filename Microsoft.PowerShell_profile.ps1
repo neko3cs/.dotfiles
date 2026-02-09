@@ -91,7 +91,6 @@ if ($IsWindows) {
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
   $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
   $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
-  $Env:AWS_DEFAULT_PROFILE = "default"
   $paths = @(
     "$($Env:LOCALAPPDATA)\DotNetVersions"
     "$($Env:LOCALAPPDATA)\ProcessExplorer"
