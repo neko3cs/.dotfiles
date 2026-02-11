@@ -1,0 +1,17 @@
+#
+# neko3cs ghostty config
+#
+
+# カーソルの点滅設定
+cursor-style-blink = false
+
+# 終了時の確認
+confirm-close-surface = false
+
+# ウィンドウサイズ
+window-width = 140
+window-height = 45
+
+# フォント設定
+font-family = "CaskaydiaCove Nerd Font"
+font-size = 14
