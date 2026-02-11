@@ -1,60 +1,88 @@
 # ---------------------------
 #       neko3cs .zshrc
 # ---------------------------
-# ENVIRONMENT VALUES
-export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:/usr/local/Cellar"
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH="$PATH:$HOME/.dotnet/tools"
-export GOPATH="$HOME/gopath"
-export PATH="$PATH:$HOME/go/bin:$GOPATH/bin"
-export CARGO_HOME="$HOME/.cargo"
-export PATH="$PATH:$CARGO_HOME/bin"
-export PATH="$PATH:/usr/local/opt/openjdk/bin"
-export PATH="$PATH:/usr/local/opt/qt/bin"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-export PATH="$PATH:$JAVA_HOME/bin"
-type rbenv >/dev/null 2>&1 && {
-  eval "$(rbenv init -)"
-}
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PATH:$PYENV_ROOT/bin"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+
+# HOMEBREW SETUP (First priority for performance)
+if (( $+commands[brew] )); then
+  # Cache brew prefix to avoid multiple slow 'brew --prefix' calls
+  export HOMEBREW_PREFIX=$(brew --prefix)
 fi
+
+# ENVIRONMENT VALUES
+export DOTNET_ROOT=$HOME/.dotnet
+export GOPATH="$HOME/gopath"
+export CARGO_HOME="$HOME/.cargo"
+export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
+# Note: Keep original path for TESSDATA if it exists
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
-# ZSH OPTIONS
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
+
+# PATH CONFIGURATION
+# Use zsh's path array for cleaner and duplicate-free management
 typeset -U path cdpath fpath manpath
+path=(
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/local/Cellar
+  $HOME/.dotnet/tools
+  $HOME/go/bin
+  $GOPATH/bin
+  $CARGO_HOME/bin
+  ${HOMEBREW_PREFIX}/opt/openjdk/bin
+  ${HOMEBREW_PREFIX}/opt/qt/bin
+  $PYENV_ROOT/bin
+  $JAVA_HOME/bin
+  $path
+)
+
+# CPPFLAGS
+export CPPFLAGS="-I${HOMEBREW_PREFIX:-/usr/local}/opt/openjdk/include"
+
+# TOOL INITIALIZATION
+# Ruby (rbenv)
+if (( $+commands[rbenv] )); then
+  eval "$(rbenv init -)"
+fi
+
+# Python (pyenv)
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+fi
+
+# ZSH OPTIONS & COMPLETIONS
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+  fpath=($HOMEBREW_PREFIX/share/zsh-completions $fpath)
+fi
+
 autoload -Uz compinit && compinit -i
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz zmv
+
 setopt correct
 setopt list_packed
 setopt nonomatch
 setopt auto_param_slash
+
 # STARSHIP INIT
-eval "$(starship init zsh)"
-source $HOME/.dotfiles/starship.zsh
-# COMPLETIONS
-## AZURE_CLI
-if type brew &>/dev/null; then
-  source $(brew --prefix)/etc/bash_completion.d/az
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+  [[ -f $HOME/.dotfiles/starship.zsh ]] && source $HOME/.dotfiles/starship.zsh
 fi
+
+# TOOL SPECIFIC COMPLETIONS
+## AZURE_CLI
+if [[ -n "$HOMEBREW_PREFIX" && -f "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]; then
+  source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
+fi
+
 ## DOTNET_CLI
-if type dotnet &>/dev/null; then
-  _dotnet_zsh_complete()
-  {
+if (( $+commands[dotnet] )); then
+  _dotnet_zsh_complete() {
     local completions=("$(dotnet complete "$words")")
-    if [ -z "$completions" ]
-    then
+    if [ -z "$completions" ]; then
       _arguments '*::arguments: _normal'
       return
     fi
@@ -62,37 +90,39 @@ if type dotnet &>/dev/null; then
   }
   compdef _dotnet_zsh_complete dotnet
 fi
+
 ## PIP
-#compdef -P pip[0-9.]#
 __pip() {
   compadd $( COMP_WORDS="$words[*]" \
              COMP_CWORD=$((CURRENT-1)) \
              PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null )
 }
-if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
-  # autoload from fpath, call function directly
-  __pip "$@"
-else
-  # eval/source/. command, register function for later
-  compdef __pip -P 'pip[0-9.]#'
-fi
+compdef __pip -P 'pip[0-9.]#'
+
 ## AWS_CLI
-if type aws &>/dev/null; then
-  complete -C '/usr/local/bin/aws_completer' aws
+if (( $+commands[aws] )); then
+  # Prefer searching for aws_completer if not at fixed path
+  local aws_comp_path=$(command -v aws_completer)
+  [[ -n "$aws_comp_path" ]] && complete -C "$aws_comp_path" aws
 fi
+
 ## zsh-autosuggestions
-if type brew &>/dev/null; then
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+  local autosuggest="$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  [[ -f "$autosuggest" ]] && source "$autosuggest"
 fi
-# ALIAS
+
+# ALIASES
 alias la='ls -ah'
 alias ll='ls -lh'
 alias lla='ls -lah'
 alias cls='clear'
 alias lg='lazygit'
 alias chrome='open -a "Google Chrome"'
-if [ "$(uname -s)" = "Linux" ]; then
+
+if [[ "$(uname -s)" == "Linux" ]]; then
   alias pbcopy='clip.exe'
 fi
-# SPECIFIC VARIABLE
-UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
+
+# UTILS
+export UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
