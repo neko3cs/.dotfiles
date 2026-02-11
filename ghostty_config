@@ -12,6 +12,9 @@ confirm-close-surface = false
 window-width = 140
 window-height = 45
 
+# テーマ
+theme = TokyoNight
+
 # フォント設定
 font-family = "CaskaydiaCove Nerd Font"
 font-size = 14
