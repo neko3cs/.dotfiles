@@ -1,0 +1,6 @@
+npm
+corepack
+@angular/cli
+firebase-tools
+jslint
+takt
