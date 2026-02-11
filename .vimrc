@@ -1,60 +1,85 @@
-" -----------------------------------------------
+" -----------------------------------------------------------
 "                neko3cs .vimrc
-" -----------------------------------------------
+" -----------------------------------------------------------
 
-"" vim ------------------------------------------
+" === 1. GENERAL SETTINGS ===
+set nocompatible
+filetype plugin indent on
+syntax enable
+
+set encoding=utf-8
+set fileencoding=utf-8
+set number          " Show line numbers
+set cursorline      " Highlight current line
+set laststatus=2    " Always show status line
+set noswapfile      " Disable swap files
+set updatetime=250  " Faster updates (for gitgutter etc.)
+set mouse=a         " Enable mouse support
+set backspace=indent,eol,start
+
+" Search settings
+set hlsearch        " Highlight search results
+set ignorecase      " Ignore case when searching
+set smartcase       " Override ignorecase if search contains uppercase
+
+" Indentation
+set expandtab       " Use spaces instead of tabs
+set tabstop=2       " Number of spaces a <Tab> counts for
+set shiftwidth=2    " Number of spaces for autoindent
+set autoindent
+set smartindent
+
+" UI Colors
 if has("win32") || has("win64")
   set t_Co=256
 endif
-colorscheme codedark
-highlight CursorLine ctermbg=darkgray guibg=darkgray
-" オプション
-syntax enable
-set encoding=utf-8
-set fileencoding=utf-8
-set number
-set cursorline
-set laststatus=0
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set noswapfile
-set hlsearch
-set backspace=indent,eol,start
 
-"" vim-plug -------------------------------------
-call plug#begin()
-Plug 'tomasiser/vim-code-dark'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/neocomplcache.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'nosami/Omnisharp'
-Plug 'carlsmedstad/vim-bicep'
+" === 2. PLUGIN MANAGEMENT (vim-plug) ===
+" Auto-install vim-plug if not exists
+let s:plug_path = expand('~/.vim/autoload/plug.vim')
+if !filereadable(s:plug_path)
+  execute 'silent !curl -fLo ' . s:plug_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+  " Appearance
+  Plug 'tomasiser/vim-code-dark'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  
+  " File Explorer
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-git-status.vim'
+  Plug 'lambdalisue/nerdfont.vim'
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+  Plug 'lambdalisue/glyph-palette.vim'
+  
+  " Git integration
+  Plug 'airblade/vim-gitgutter'
+  
+  " Completion & LSP
+  Plug 'Shougo/neocomplcache.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'nosami/Omnisharp'
+  
+  " Language specific
+  Plug 'carlsmedstad/vim-bicep'
 call plug#end()
 
-"" vim-airline ----------------------------------
-" テーマの設定
+" Apply colorscheme after plugin definition
+if (has("termguicolors"))
+  set termguicolors
+endif
+silent! colorscheme codedark
+highlight CursorLine ctermbg=darkgray guibg=darkgray
+
+" === 3. PLUGIN SPECIFIC SETTINGS ===
+
+" --- vim-airline ---
 let g:airline_theme = 'codedark'
-" ステータスラインに表示する項目を変更する
-let g:airline#extensions#default#layout = [
-  \ [ 'a', 'b', 'c' ],
-  \ ['z']
-  \ ]
-let g:airline_section_c = '%t %M'
-let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
-" 変更がなければdiffの行数を表示しない
-let g:airline#extensions#hunks#non_zero_only = 1
-" tablineの有効化/無効化
 let g:airline#extensions#tabline#enabled = 1
-" タブラインの表示を変更する
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_splits = 0
@@ -62,42 +87,39 @@ let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#hunks#non_zero_only = 1
 
-"" fern.vim -------------------------------------
-" Ctrl+nでファイルツリーを表示/非表示する
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
-let g:fern#default_hidden=1
+let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ],
+  \ ['z']
+  \ ]
+let g:airline_section_c = '%t %M'
+let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
+
+" --- fern.vim ---
+nnoremap <silent> <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+let g:fern#default_hidden = 1
 let g:fern#renderer = 'nerdfont'
 
-"" glyph-palette.vim ----------------------------
-" アイコンに色をつける
+" --- glyph-palette.vim ---
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
   autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
 
-"" vim-gitgutter --------------------------------
-"" git操作
-" g]で前の変更箇所へ移動する
-nnoremap g[ :GitGutterPrevHunk<CR>
-" g[で次の変更箇所へ移動する
-nnoremap g] :GitGutterNextHunk<CR>
-" ghでdiffをハイライトする
-nnoremap gh :GitGutterLineHighlightsToggle<CR>
-" gpでカーソル行のdiffを表示する
-nnoremap gp :GitGutterPreviewHunk<CR>
-" 記号の色を変更する
-highlight GitGutterAdd ctermfg=green
+" --- vim-gitgutter ---
+nnoremap <silent> g[ :GitGutterPrevHunk<CR>
+nnoremap <silent> g] :GitGutterNextHunk<CR>
+nnoremap <silent> gh :GitGutterLineHighlightsToggle<CR>
+nnoremap <silent> gp :GitGutterPreviewHunk<CR>
+
+highlight GitGutterAdd    ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 
-"" 反映時間を短くする(デフォルトは4000ms)
-set updatetime=250
-
-"" Omnisharp -------------------------------------
+" --- Omnisharp & Completion ---
 if !exists('g:neocomplcache_force_omni_patterns')
   let g:neocomplcache_force_omni_patterns = {}
 endif
 let g:neocomplcache_force_omni_patterns.cs = '[^.]\.\%(\u\{2,}\)\?'
-
