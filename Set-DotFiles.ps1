@@ -5,6 +5,7 @@ if ($IsWindows) {
   Copy-Item -Force -Path $PWD\Microsoft.PowerShell_profile.ps1 -Destination $PROFILE | Out-Null
   New-Item -ItemType SymbolicLink -Force -Path $HOME/.gitconfig -Value $PWD\.gitconfig | Out-Null
   New-Item -ItemType SymbolicLink -Force -Path $HOME/.starship/starship.toml -Value $PWD\starship.toml | Out-Null
+  New-Item -ItemType SymbolicLink -Force -Path $HOME/.config/bat/config -Value $PWD\bat_config | Out-Null
 }
 elseif ($IsMacOS) {
   Copy-Item -Force -Path ./Microsoft.PowerShell_profile.ps1 -Destination $PROFILE | Out-Null
