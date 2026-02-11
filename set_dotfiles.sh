@@ -12,6 +12,9 @@ ln -sf $(pwd)/starship.toml $HOME/.starship/starship.toml
 # ghostty
 mkdir -p $HOME/.config/ghostty
 ln -sf $(pwd)/ghostty_config $HOME/.config/ghostty/config
+# bat
+mkdir -p $HOME/.config/bat
+ln -sf $(pwd)/bat_config $HOME/.config/bat/config
 # .vimrc
 ln -sf $(pwd)/.vimrc $HOME/.vimrc
 # .gitconfig
