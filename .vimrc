@@ -81,7 +81,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 silent! colorscheme codedark
-highlight CursorLine ctermbg=darkgray guibg=darkgray
+highlight CursorLine cterm=NONE ctermbg=236 gui=NONE guibg=#2a2a2a
 
 " === 3. PLUGIN SPECIFIC SETTINGS ===
 
