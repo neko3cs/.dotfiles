@@ -79,7 +79,7 @@ sudo apt upgrade
 activate_ubuntu
 
 ./install_apt-packages.sh
-./install_npm-packages.sh
+./install_pnpm-packages.sh
 install_zsh_completions
 install_pwsh
 install_starship
