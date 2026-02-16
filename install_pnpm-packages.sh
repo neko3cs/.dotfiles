@@ -4,9 +4,16 @@ set -e
 
 PACKAGES_FILE="$(dirname "$0")/pnpm-global-packages.txt"
 
+# Ensure corepack is installed
+if ! command -v corepack &> /dev/null; then
+    echo "corepack not found. Installing corepack via npm..."
+    npm install -g corepack
+fi
+
+# Ensure pnpm is enabled
 if ! command -v pnpm &> /dev/null; then
-    echo "Error: pnpm is not installed. Please install pnpm first."
-    exit 1
+    echo "pnpm not found or not enabled. Enabling pnpm via corepack..."
+    corepack use pnpm@latest
 fi
 
 if [ -f "$PACKAGES_FILE" ]; then
