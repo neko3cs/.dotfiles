@@ -12,7 +12,6 @@ $git_state\
 [](fg:#394260 bg:#1d2230)\
 $cmd_duration\
 $memory_usage\
-$battery\
 $time\
 [ ](fg:#1d2230)\
 \n$character"""
@@ -67,18 +66,6 @@ threshold = -1
 style = "fg:#a0a9cb bg:#1d2230"
 format = "[ 󰍛 $percentage ]($style)"
 disabled = false
-
-[battery]
-full_symbol = "󰁹 "
-charging_symbol = "󰂄 "
-discharging_symbol = "󰂃 "
-format = "[$symbol$percentage]($style)"
-[[battery.display]]
-threshold = 10
-style = "fg:#ff5555 bg:#1d2230"
-[[battery.display]]
-threshold = 100
-style = "fg:#a0a9cb bg:#1d2230"
 
 [time]
 disabled = false
