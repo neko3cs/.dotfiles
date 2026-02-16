@@ -26,7 +26,7 @@ cd .dotfiles
 softwareupdate --install
 
 ./brew-install.sh
-./install_npm-packages.sh
+./install_pnpm-packages.sh
 setup_java
 setup_completions
 ./vimplug-install.sh
