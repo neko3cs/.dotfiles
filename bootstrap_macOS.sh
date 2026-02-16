@@ -31,3 +31,5 @@ setup_java
 setup_completions
 ./vimplug-install.sh
 ./dotfiles-link.sh
+./set_macOS_defaults.sh
+
