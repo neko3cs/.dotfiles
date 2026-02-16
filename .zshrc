@@ -17,6 +17,7 @@ export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
+export PNPM_HOME="$HOME/Library/pnpm"
 # Note: Keep original path for TESSDATA if it exists
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
 
@@ -35,6 +36,7 @@ path=(
   ${HOMEBREW_PREFIX}/opt/qt/bin
   $PYENV_ROOT/bin
   $JAVA_HOME/bin
+  $PNPM_HOME
   $path
 )
 
