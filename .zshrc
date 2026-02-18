@@ -9,15 +9,18 @@ if (( $+commands[brew] )); then
 fi
 
 # ENVIRONMENT VALUES
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export CARGO_HOME="$HOME/.cargo"
 export DOTNET_ROOT=$HOME/.dotnet
 export GOPATH="$HOME/gopath"
-export CARGO_HOME="$HOME/.cargo"
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
+export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
-export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
-export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
-export PNPM_HOME="$HOME/Library/pnpm"
 # Note: Keep original path for TESSDATA if it exists
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
 
@@ -28,20 +31,24 @@ path=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/Cellar
+  $ANDROID_HOME/emulator
+  $ANDROID_HOME/platform-tools
+  $ANDROID_HOME/cmdline-tools/latest/bin
+  $ANDROID_HOME/tools
+  $ANDROID_HOME/tools/bin
+  $CARGO_HOME/bin
+  $GOPATH/bin
   $HOME/.dotnet/tools
   $HOME/go/bin
-  $GOPATH/bin
-  $CARGO_HOME/bin
-  ${HOMEBREW_PREFIX}/opt/openjdk/bin
   ${HOMEBREW_PREFIX}/opt/qt/bin
-  $PYENV_ROOT/bin
   $JAVA_HOME/bin
   $PNPM_HOME
+  $PYENV_ROOT/bin
   $path
 )
 
 # CPPFLAGS
-export CPPFLAGS="-I${HOMEBREW_PREFIX:-/usr/local}/opt/openjdk/include"
+export CPPFLAGS="-I$JAVA_HOME/include"
 
 # TOOL INITIALIZATION
 # Ruby (rbenv)
