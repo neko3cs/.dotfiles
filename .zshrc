@@ -40,6 +40,7 @@ path=(
   $GOPATH/bin
   $HOME/.dotnet/tools
   $HOME/go/bin
+  ${HOMEBREW_PREFIX}/opt/postgresql@17/bin
   ${HOMEBREW_PREFIX}/opt/qt/bin
   $JAVA_HOME/bin
   $PNPM_HOME
