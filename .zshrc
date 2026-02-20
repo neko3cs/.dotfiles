@@ -2,10 +2,11 @@
 #       neko3cs .zshrc
 # ---------------------------
 
-# HOMEBREW SETUP (First priority for performance)
-if (( $+commands[brew] )); then
-  # Cache brew prefix to avoid multiple slow 'brew --prefix' calls
-  export HOMEBREW_PREFIX=$(brew --prefix)
+# HOMEBREW SETUP
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # ENVIRONMENT VALUES
@@ -21,27 +22,19 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
-# Note: Keep original path for TESSDATA if it exists
 export TESSDATA_PREFIX='/usr/local/Cellar/tesseract/5.3.4_1/share/tessdata/'
 
 # PATH CONFIGURATION
-# Use zsh's path array for cleaner and duplicate-free management
 typeset -U path cdpath fpath manpath
 path=(
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/local/Cellar
   $ANDROID_HOME/emulator
   $ANDROID_HOME/platform-tools
   $ANDROID_HOME/cmdline-tools/latest/bin
   $ANDROID_HOME/tools
   $ANDROID_HOME/tools/bin
   $CARGO_HOME/bin
+  $DOTNET_ROOT/tools
   $GOPATH/bin
-  $HOME/.dotnet/tools
-  $HOME/go/bin
-  ${HOMEBREW_PREFIX}/opt/postgresql@17/bin
-  ${HOMEBREW_PREFIX}/opt/qt/bin
   $JAVA_HOME/bin
   $PNPM_HOME
   $PYENV_ROOT/bin
