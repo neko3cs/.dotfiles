@@ -37,6 +37,7 @@ ms-vscode.powershell
 ms-vsliveshare.vsliveshare
 oderwat.indent-rainbow
 pkief.material-icon-theme
+richie5um2.vscode-sort-json
 rust-lang.rust-analyzer
 tboox.xmake-vscode
 visualstudiotoolsforunity.vstuc
