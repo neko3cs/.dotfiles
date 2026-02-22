@@ -36,6 +36,7 @@
 - Id: Microsoft.WindowsTerminal
 - Id: MikeFarah.yq
 - Id: Logitech.OptionsPlus
+- Id: Ollama.Ollama
 - Id: OpenJS.NodeJS.LTS
 - Id: Python.Python.3.12
 - Id: Rustlang.Rustup
