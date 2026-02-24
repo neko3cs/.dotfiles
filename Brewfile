@@ -1,12 +1,9 @@
 # cask args
 cask_args appdir: "/Applications"
-# tap
-tap "azure/functions"
-tap "pivotal/tap"
 # brew
 brew "awscli"
 brew "azure-cli"
-brew "azure-functions-core-tools"
+brew "azure/functions/azure-functions-core-tools"
 brew "automake"
 brew "bat"
 brew "clisp"
