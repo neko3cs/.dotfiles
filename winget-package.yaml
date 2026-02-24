@@ -38,6 +38,7 @@
 - Id: Logitech.OptionsPlus
 - Id: Ollama.Ollama
 - Id: OpenJS.NodeJS.LTS
+- Id: Oven-sh.Bun
 - Id: Python.Python.3.12
 - Id: Rustlang.Rustup
 - Id: sharkdp.bat
