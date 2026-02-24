@@ -13,6 +13,9 @@ brew upgrade >/dev/null
 echo "🍺 bundle..."
 brew bundle --file=$(pwd)/Brewfile
 
+echo "🍺 autoremove..."
+brew autoremove >/dev/null
+
 echo "🍺 cleanup..."
 brew cleanup >/dev/null
 
