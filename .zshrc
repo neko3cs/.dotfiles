@@ -70,13 +70,14 @@ setopt list_packed
 setopt nonomatch
 setopt auto_param_slash
 
-# STARSHIP INIT
-if (( $+commands[starship] )); then
-  eval "$(starship init zsh)"
-  [[ -f $HOME/.dotfiles/starship.zsh ]] && source $HOME/.dotfiles/starship.zsh
+# TOOL SPECIFIC COMPLETIONS
+## AWS_CLI
+if (( $+commands[aws] )); then
+  # Prefer searching for aws_completer if not at fixed path
+  local aws_comp_path=$(command -v aws_completer)
+  [[ -n "$aws_comp_path" ]] && complete -C "$aws_comp_path" aws
 fi
 
-# TOOL SPECIFIC COMPLETIONS
 ## AZURE_CLI
 if [[ -n "$HOMEBREW_PREFIX" && -f "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]; then
   source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
@@ -103,11 +104,9 @@ __pip() {
 }
 compdef __pip -P 'pip[0-9.]#'
 
-## AWS_CLI
-if (( $+commands[aws] )); then
-  # Prefer searching for aws_completer if not at fixed path
-  local aws_comp_path=$(command -v aws_completer)
-  [[ -n "$aws_comp_path" ]] && complete -C "$aws_comp_path" aws
+## STARSHIP INIT
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
 fi
 
 ## zsh-autosuggestions
