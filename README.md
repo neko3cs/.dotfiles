@@ -40,6 +40,7 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
 
 |パッケージ名|補足|
 |--|--|
+|[.NET SDK](https://dotnet.microsoft.com/ja-jp/download)|VS Installerからインストールできるが、最新版がほしいなどの場合は個別に入れる|
 |[Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)|[Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip)|
 |[Ctrl2cap - Windows Sysinternals - Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)|-|
 |[dotUltimate: 必要なすべての .NET と VS ツールを 1 つのパックで](https://www.jetbrains.com/ja-jp/dotnet/)|-|
