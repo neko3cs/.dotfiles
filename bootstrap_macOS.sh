@@ -7,7 +7,6 @@ setup_completions() {
   curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
   deno completions zsh > ~/.zsh/completion/_deno
   minikube completion zsh > ~/.zsh/completion/_minikube
-  pnpx @angular/cli completion script > ~/.zsh/completion/_ng
   starship completion zsh > ~/.zsh/completion/_starship
   sqlcmd completion zsh > ~/.zsh/completion/_sqlcmd
 }
