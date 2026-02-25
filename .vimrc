@@ -140,6 +140,7 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> gr <plug>(lsp-references)
   nmap <buffer> gi <plug>(lsp-implementation)
   nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> <leader>ca <plug>(lsp-code-action)
   nmap <buffer> <leader>rn <plug>(lsp-rename)
   nmap <buffer> [g <plug>(lsp-previous-diagnostic)
   nmap <buffer> ]g <plug>(lsp-next-diagnostic)
@@ -152,6 +153,27 @@ augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" --- csharp-ls ---
+" IMPORTANT: Ensure install csharp-ls, if not; run 'dotnet tool install --global csharp-ls'
+if executable('csharp-ls')
+  augroup LspCSharp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'csharp-ls',
+      \ 'cmd': {server_info->['csharp-ls']},
+      \ 'allowlist': ['cs'],
+      \ 'initialization_options': {
+      \   'solutionPath': lsp#utils#find_nearest_parent_file_directory(
+      \       lsp#utils#get_buffer_path(), 
+      \       ['*.slnx', '*.sln', '.git']
+      \   ),
+      \ },
+      \ })
+  augroup END
+endif
+" Set indentation for C# files
+autocmd FileType cs setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " --- fzf.vim ---
 nnoremap <silent> <C-p> :Files<CR>
