@@ -4,13 +4,11 @@ setup_completions() {
   if [ ! -d ~/.zsh/completion ]; then
     mkdir -p ~/.zsh/completion
   fi
-  if [ ! -e ~/.zsh/completion/_docker-compose ]; then
-    mkdir -p ~/.zsh/completion
-    curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose >~/.zsh/completion/_docker-compose
-  fi
+  curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
   deno completions zsh > ~/.zsh/completion/_deno
-  pnpx @angular/cli completion script > ~/.zsh/completion/_ng
   minikube completion zsh > ~/.zsh/completion/_minikube
+  pnpx @angular/cli completion script > ~/.zsh/completion/_ng
+  starship completion zsh > ~/.zsh/completion/_starship
   sqlcmd completion zsh > ~/.zsh/completion/_sqlcmd
 }
 
