@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # General: 外観モードを「自動」に設定
 defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true

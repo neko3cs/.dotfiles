@@ -21,4 +21,3 @@ ln -sf $(pwd)/.vimrc $HOME/.vimrc
 ln -sf $(pwd)/.gitconfig $HOME/.gitconfig
 # Homebrew
 ln -sf $(pwd)/Brewfile $HOME/Brewfile
-

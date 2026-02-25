@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -e
 
 activate_ubuntu() {
   # change dash->bash by selecting <No>
@@ -90,6 +92,7 @@ install_aws_sam_cli
 install_lazygit
 ./install_vimplug.sh
 ./set_dotfiles.sh
+./set_completions.sh
 
 sudo apt autoremove
 sudo apt autoclean
