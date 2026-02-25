@@ -1,8 +1,10 @@
 #!/bin/sh
 
+PACKAGES_FILE="$(dirname "$0")/apt-packages.txt"
+
 while IFS= read -r package; do
   if [ -n "$package" ]; then
     [[ -z "$package" || "$package" =~ ^# ]] && continue
     sudo apt install -y "$package" > /dev/null
   fi
-done < "$HOME/.dotfiles/apt-packages.txt"
+done < "$PACKAGES_FILE"

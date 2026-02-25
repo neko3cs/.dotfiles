@@ -12,7 +12,7 @@ setup_completions() {
     curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose >~/.zsh/completion/_docker-compose
   fi
   deno completions zsh > ~/.zsh/completion/_deno
-  deno run -A npm:@angular/cli completion script > ~/.zsh/completion/_ng
+  pnpx @angular/cli completion script > ~/.zsh/completion/_ng
   minikube completion zsh > ~/.zsh/completion/_minikube
   sqlcmd completion zsh > ~/.zsh/completion/_sqlcmd
 }
@@ -25,11 +25,10 @@ cd .dotfiles
 
 softwareupdate --install
 
-./install_brewfomulas.sh
+./install_brewformulas.sh
 ./install_pnpm-packages.sh
 setup_java
 setup_completions
-./vimplug-install.sh
+./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_macOS_defaults.sh
-
