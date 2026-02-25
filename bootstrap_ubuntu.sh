@@ -88,8 +88,8 @@ install_yq
 install_azure_cli
 install_aws_sam_cli
 install_lazygit
-./vimplug-install.sh
-./dotfiles-link.sh
+./install_vimplug.sh
+./set_dotfiles.sh
 
 sudo apt autoremove
 sudo apt autoclean
