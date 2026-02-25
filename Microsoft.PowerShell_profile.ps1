@@ -179,10 +179,11 @@ elseif ($IsMacOS) {
 # Import Module
 Register-PowerShellModule
 # Completion
-deno completions powershell | Out-String | Invoke-Expression
-dotnet completions script pwsh | Out-String | Invoke-Expression
-starship completions power-shell | Out-String | Invoke-Expression
-pip completion --powershell | Out-String | Invoke-Expression
+$completionDir = Join-Path $HOME '.config/powershell/completions'
+if (Test-Path $completionDir) {
+  Get-ChildItem $completionDir -Filter '*.ps1' -File -ErrorAction SilentlyContinue |
+  ForEach-Object { try { . $_.FullName } catch { } }
+}
 Register-AwsCliCompletion
 Register-AzureCliCompletion
 # PowerShell Options

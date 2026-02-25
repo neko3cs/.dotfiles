@@ -34,6 +34,7 @@ Set-Location -Path $dotfilesPath
 & (Join-Path $PSScriptRoot 'Install-WingetPackage.ps1')
 & (Join-Path $PSScriptRoot 'Install-PnpmPackage.ps1')
 & (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
+& (Join-Path $PSScriptRoot 'Set-Completions.ps1')
 Set-Wsl2Ubuntu
 
 if (Test-Path $PROFILE) {
