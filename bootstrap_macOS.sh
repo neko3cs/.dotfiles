@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-setup_java() {
-  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-}
 setup_completions() {
   if [ ! -d ~/.zsh/completion ]; then
     mkdir -p ~/.zsh/completion
@@ -27,8 +24,7 @@ softwareupdate --install
 
 ./install_brewformulas.sh
 ./install_pnpm-packages.sh
-setup_java
-setup_completions
 ./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_macOS_defaults.sh
+setup_completions
