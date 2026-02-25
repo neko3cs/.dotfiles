@@ -1,4 +1,6 @@
 #Requires -RunAsAdministrator
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
 
 if ($IsWindows) {
   New-Item -ItemType File -Force -Path $PROFILE | Out-Null

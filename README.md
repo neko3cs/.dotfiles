@@ -17,8 +17,9 @@ curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_ub
 ### Windows
 
 ```pwsh
-winget install --silent --exact --id Git.Git
+winget install --silent --exact --id Git.Git && winget install --silent --exact --id Microsoft.PowerShell
 # ここでGitのパスを通すためにターミナルを再起動
+# 以降はPowerShell Core 7.0以上を使うこと
 # ※管理者権限で起動しておくとwinget向けUACダイアログが1回で済む
 irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.ps1' | iex
 ```

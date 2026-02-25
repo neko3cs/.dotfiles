@@ -1,26 +1,40 @@
 #Requires -RunAsAdministrator
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
-if (!(Get-Command winget -ea SilentlyContinue)) {
-    Write-Host `
-        "Error: winget has not installed! please install from Microsoft Store." `
-        -ForegroundColor Red
-    exit
+try {
+  Get-Command winget -ErrorAction Stop | Out-Null
 }
-if (-not (Get-Module -Name powershell-yaml)) {
-    Install-Module -Name powershell-yaml
-    Import-Module -Name powershell-yaml
+catch {
+  throw 'winget is not installed. Install it from Microsoft Store.'
+}
+if (-not (Get-Module -ListAvailable -Name powershell-yaml)) {
+  Write-Host 'Installing powershell-yaml module...'
+  Install-Module powershell-yaml -Scope CurrentUser -Force
+}
+Import-Module powershell-yaml -ErrorAction Stop
+
+$packageFilePath = Join-Path $PSScriptRoot 'winget-package.yaml'
+if (-not (Test-Path $packageFilePath)) {
+  throw "YAML file not found: $packageFilePath"
 }
 
-$packages = Get-Content -Path .\winget-package.yaml | ConvertFrom-Yaml
+$packages = Get-Content -Path $packageFilePath -Raw | ConvertFrom-Yaml
 foreach ($package in $packages) {
-    if ($null -ne $packages.Options) {
-        Write-Output "Install $($package.Id) with options: '$($package.Options)'"
-        winget install --id $package.Id --override $package.Options `
-            --silent --accept-package-agreements --accept-source-agreements
-    }
-    else {
-        Write-Output "Install $($package.Id)"
-        winget install --id $package.Id `
-            --silent --accept-package-agreements --accept-source-agreements
-    }
+  if ($null -ne $package.Options) {
+    winget install `
+      --id $package.Id `
+      --override $package.Options `
+      --silent `
+      --accept-package-agreements `
+      --accept-source-agreements
+  }
+  else {
+    winget install `
+      --id $package.Id `
+      --silent `
+      --accept-package-agreements `
+      --accept-source-agreements
+  }
 }

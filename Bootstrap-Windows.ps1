@@ -1,4 +1,7 @@
 #Requires -RunAsAdministrator
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 function Set-Wsl2Ubuntu {
   wsl --install --no-launch --distribution Ubuntu
@@ -6,28 +9,33 @@ function Set-Wsl2Ubuntu {
   wsl --set-default-version 2
 }
 
-if (!(Get-Command winget -ea SilentlyContinue)) {
-  Write-Host `
-    "Error: winget has not installed! Please install from Microsoft Store." `
-    -ForegroundColor Red
-  exit
+try {
+  Get-Command winget -ErrorAction Stop | Out-Null
 }
-if (!(Get-Command git -ea SilentlyContinue)) {
-  Write-Host `
-    "Error: git has not installed! Please install it in the following this:`r`nPS1> winget install --silent --exact --id Git.Git" `
-    -ForegroundColor Red
-  exit
+catch {
+  Write-Error 'winget is not installed. Please install it from Microsoft Store.'
 }
 
-Set-Location $HOME
-if (!(Test-Path $HOME\.dotfiles)) {
-  git clone https://github.com/neko3cs/.dotfiles.git
+try {
+  Get-Command git -ErrorAction Stop | Out-Null
 }
-Set-Location -Path .dotfiles
+catch {
+  Write-Error "git is not installed. Install it with:`nwinget install --silent --exact --id Git.Git"
+}
 
-& .\Enable-WindowsOptionalFeature.ps1
+Set-Location -Path $HOME
+$dotfilesPath = Join-Path $HOME '.dotfiles'
+if (-not (Test-Path $dotfilesPath)) {
+  git clone https://github.com/neko3cs/.dotfiles.git $dotfilesPath
+}
+Set-Location -Path $dotfilesPath
+
+& (Join-Path $PSScriptRoot 'Enable-WindowsOptionalFeature.ps1')
+& (Join-Path $PSScriptRoot 'Install-WingetPackage.ps1')
+& (Join-Path $PSScriptRoot 'Install-PnpmPackage.ps1')
+& (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
 Set-Wsl2Ubuntu
-& .\Install-WingetPackage.ps1
-& .\Install-PnpmPackage.ps1
-& .\Set-DotFiles.ps1
-. $PROFILE
+
+if (Test-Path $PROFILE) {
+  . $PROFILE
+}
