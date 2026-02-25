@@ -13,7 +13,7 @@ fi
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export CARGO_HOME="$HOME/.cargo"
-export DOTNET_ROOT=$HOME/.dotnet
+export DOTNET_ROOT="/usr/local/share/dotnet"
 export GOPATH="$HOME/gopath"
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
@@ -33,8 +33,9 @@ path=(
   $ANDROID_HOME/tools
   $ANDROID_HOME/tools/bin
   $CARGO_HOME/bin
-  $DOTNET_ROOT/tools
+  $DOTNET_ROOT
   $GOPATH/bin
+  $HOME/.dotnet/tools
   $JAVA_HOME/bin
   $PNPM_HOME
   $PYENV_ROOT/bin
