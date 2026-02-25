@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 PACKAGES_FILE="$(dirname "$0")/apt-packages.txt"
 
