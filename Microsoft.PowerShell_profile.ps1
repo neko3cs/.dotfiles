@@ -1,4 +1,5 @@
-#Requires -PSEdition Core
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
 
 $PowerShellModules = @(
   "posh-git"
@@ -19,7 +20,7 @@ function Register-PowerShellModule {
   }
 }
 function Register-AwsCliCompletion {
-  if (Get-Command -Name aws -ea SilentlyContinue) {
+  if (Get-Command -Name aws -ErrorAction Ignore) {
     Register-ArgumentCompleter -Native -CommandName aws -ScriptBlock {
       param($commandName, $wordToComplete, $cursorPosition)
       $env:COMP_LINE = $wordToComplete
@@ -36,7 +37,7 @@ function Register-AwsCliCompletion {
   }
 }
 function Register-AzureCliCompletion {
-  if (Get-Command -Name az -ea SilentlyContinue) {
+  if (Get-Command -Name az -ErrorAction Ignore) {
     Register-ArgumentCompleter -Native -CommandName az -ScriptBlock {
       param($commandName, $wordToComplete, $cursorPosition)
       $completion_file = New-TemporaryFile
@@ -56,18 +57,8 @@ function Register-AzureCliCompletion {
     }  
   }
 }
-function Register-DotNetCompletion {
-  if (Get-Command -Name dotnet -ea SilentlyContinue) {
-    Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
-      param($commandName, $wordToComplete, $cursorPosition)
-      dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
-        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
-      }
-    }
-  }
-}
 function Register-WingetCompletion {
-  if (Get-Command -Name winget -ea SilentlyContinue) {
+  if (Get-Command -Name winget -ErrorAction Ignore) {
     Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
       param($wordToComplete, $commandAst, $cursorPosition)
       [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
@@ -83,7 +74,7 @@ function Register-WingetCompletion {
 
 if ($IsWindows) {
   # Prompt Design
-  Invoke-Expression (&starship init powershell)
+  (& starship init powershell) | Out-String | Invoke-Expression
   # Completion
   Register-WingetCompletion
   # Env
@@ -96,7 +87,11 @@ if ($IsWindows) {
     "$($Env:LOCALAPPDATA)\ProcessExplorer"
     "$($Env:LOCALAPPDATA)\ULE4JIS"
   )
-  $Env:Path = ([string]::Join(";", $paths) + ";" + $Env:Path)
+  foreach ($path in $paths) {
+    if (-not ($Env:Path -split ';' | Where-Object { $_ -eq $path })) {
+      $Env:Path = "$path;$Env:Path"
+    }
+  }
   # Alias
   Set-Alias -Name open -Value 'explorer.exe'
   Set-Alias -Name lg -Value 'lazygit.exe'
@@ -185,11 +180,11 @@ elseif ($IsMacOS) {
 Register-PowerShellModule
 # Completion
 deno completions powershell | Out-String | Invoke-Expression
+dotnet completions script pwsh | Out-String | Invoke-Expression
 starship completions power-shell | Out-String | Invoke-Expression
 pip completion --powershell | Out-String | Invoke-Expression
 Register-AwsCliCompletion
 Register-AzureCliCompletion
-Register-DotNetCompletion
 # PowerShell Options
 Set-PSReadLineOption `
   -PredictionSource History `

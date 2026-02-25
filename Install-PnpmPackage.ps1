@@ -1,27 +1,40 @@
-$ErrorActionPreference = "Stop"
+#Requires -Version 7.5
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$PackagesFile = Join-Path $ScriptDir "npm-packages.txt"
+$PackagesFile = Join-Path $PSScriptRoot 'npm-packages.txt'
 
-if (-not (Get-Command corepack -ErrorAction SilentlyContinue)) {
-  Write-Host "corepack not found. Installing corepack via npm..."
+try {
+  Get-Command corepack -ErrorAction Stop | Out-Null
+}
+catch {
+  Write-Host 'corepack not found. Installing via npm...'
   npm install -g corepack
-}
-if (-not (Get-Command pnpm -ErrorAction SilentlyContinue)) {
-  Write-Host "pnpm not found or not enabled. Enabling pnpm via corepack..."
-  corepack use pnpm@latest
-}
-
-if (Test-Path $PackagesFile) {
-  Get-Content $PackagesFile | ForEach-Object {
-    $package = $_.Trim()
-    if ([string]::IsNullOrWhiteSpace($package) -or $package.StartsWith("#")) {
-      return
-    }
-    pnpm add -g $package
+  if ($LASTEXITCODE -ne 0) {
+    throw 'Failed to install corepack.'
   }
 }
-else {
-  Write-Host "Error: $PackagesFile not found."
-  exit 1
+try {
+  Get-Command pnpm -ErrorAction Stop | Out-Null
+}
+catch {
+  Write-Host 'pnpm not found or not enabled. Enabling via corepack...'
+  corepack use pnpm@latest
+  if ($LASTEXITCODE -ne 0) {
+    throw 'Failed to enable pnpm.'
+  }
+}
+
+if (-not (Test-Path $PackagesFile)) {
+  throw "Package list not found: $PackagesFile"
+}
+Get-Content $PackagesFile | ForEach-Object {
+  $package = $_.Trim()
+  if ([string]::IsNullOrWhiteSpace($package) -or $package.StartsWith('#')) {
+    return
+  }
+  pnpm add -g $package
+  if ($LASTEXITCODE -ne 0) {
+    Write-Warning "Failed to install package: $package"
+  }
 }
