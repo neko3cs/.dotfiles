@@ -16,11 +16,17 @@ curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_ub
 
 ### Windows
 
+WindowsにはGitが標準インストールされていないため、かつ、ついでにPowerShell Coreをインストールする。
+
 ```pwsh
 winget install --silent --exact --id Git.Git && winget install --silent --exact --id Microsoft.PowerShell
-# ここでGitのパスを通すためにターミナルを再起動
-# 以降はPowerShell Core 7.0以上を使うこと
-# ※管理者権限で起動しておくとwinget向けUACダイアログが1回で済む
+```
+
+ここでGitのパスを通すためにターミナルを再起動する。
+以降はPowerShell Core 7.0以上を使う。
+ここで管理者権限で起動しておくとwinget向けUACダイアログが1回で済む。
+
+```pwsh
 irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.ps1' | iex
 ```
 
