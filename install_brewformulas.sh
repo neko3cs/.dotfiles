@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 type brew >/dev/null 2>&1 || {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >/dev/null
+  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh >/dev/null
 }
 
 echo "🍺 update..."

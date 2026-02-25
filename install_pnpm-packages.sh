@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/usr/bin/env bash
 
 PACKAGES_FILE="$(dirname "$0")/npm-packages.txt"
 
