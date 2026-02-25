@@ -16,3 +16,4 @@ softwareupdate --install
 ./set_dotfiles.sh
 ./set_macOS_defaults.sh
 ./set_completions.sh
+pwsh -File ./Set-Completions.ps1

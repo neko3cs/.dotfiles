@@ -93,6 +93,7 @@ install_lazygit
 ./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_completions.sh
+pwsh -File ./Set-Completions.ps1
 
 sudo apt autoremove
 sudo apt autoclean
