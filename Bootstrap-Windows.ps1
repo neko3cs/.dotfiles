@@ -29,7 +29,5 @@ Set-Location -Path .dotfiles
 Set-Wsl2Ubuntu
 & .\Install-WingetPackage.ps1
 & .\Install-PnpmPackage.ps1
-pwsh -Command {
-  Set-ExecutionPolicy RemoteSigned
-  & .\Set-DotFiles.ps1
-}
+& .\Set-DotFiles.ps1
+. $PROFILE
