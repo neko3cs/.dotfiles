@@ -19,6 +19,7 @@ postgresql
 procps
 rbenv
 redis
+tree
 vim
 watchman
 xmake
