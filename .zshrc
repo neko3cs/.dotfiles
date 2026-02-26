@@ -95,7 +95,8 @@ alias cls='clear'
 alias lg='lazygit'
 alias chrome='open -a "Google Chrome"'
 
-if [[ "$(uname -s)" == "Linux" ]]; then
+# WSL2 SETTINGS
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
   alias pbcopy='clip.exe'
 fi
 
