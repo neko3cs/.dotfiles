@@ -76,6 +76,10 @@ sudo apt upgrade
 
 activate_ubuntu
 
+./install_apt-packages.sh
+./install_pnpm-packages.sh
+./install_vimplug.sh
+./set_dotfiles.sh
 install_aws_cli
 install_azure_cli
 install_docker
@@ -84,10 +88,6 @@ install_pwsh
 install_pyenv
 install_yq
 install_zsh_completions
-./install_apt-packages.sh
-./install_pnpm-packages.sh
-./install_vimplug.sh
-./set_dotfiles.sh
 ./set_completions.sh
 pwsh -File ./Set-Completions.ps1
 
