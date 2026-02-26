@@ -1,6 +1,4 @@
-# cask args
 cask_args appdir: "/Applications"
-# brew
 brew "awscli"
 brew "azure-cli"
 brew "azure/functions/azure-functions-core-tools"
@@ -47,8 +45,7 @@ brew "yq"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-completions"
-# brew --cask
-cask "android-studio" # for Flutter and React Native
+cask "android-studio" 
 cask "appcleaner"
 cask "copilot-cli"
 cask "discord"
@@ -62,7 +59,7 @@ cask "notion"
 cask "maccy"
 cask "pgadmin4"
 cask "powershell"
-cask "temurin@17" # JDK for Android SDK
+cask "temurin@17" 
 cask "unity-hub"
 cask "visual-studio-code"
 cask "vlc"
