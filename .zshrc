@@ -80,10 +80,18 @@ if [[ -n "$HOMEBREW_PREFIX" && -f "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]
 fi
 
 # ZSH OPTIONS
-setopt correct
-setopt list_packed
-setopt nonomatch
+HISTSIZE=10000
+SAVEHIST=10000
 setopt auto_param_slash
+setopt correct
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
+setopt inc_append_history
+setopt interactive_comments
+setopt list_packed
+setopt nomatch
+setopt share_history
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # ALIASES
 alias la='ls -ah'
