@@ -56,13 +56,13 @@ install_yq() {
 install_pyenv() {
   curl https://pyenv.run | bash
 }
+install_aws_cli() {
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip
+  sudo ./aws/install
+}
 install_azure_cli() {
   curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
-}
-install_aws_sam_cli() {
-  curl -fsSL https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -o ~/aws-sam-cli-linux-x86_64.zip
-  unzip ~/aws-sam-cli-linux-x86_64.zip -d ~/sam-installer
-  sudo ~/sam-installer/install && rm -rf ~/sam-installer/
 }
 
 cd $HOME
@@ -83,8 +83,8 @@ install_pwsh
 install_starship
 install_docker
 install_yq
+install_aws_cli
 install_azure_cli
-install_aws_sam_cli
 ./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_completions.sh
