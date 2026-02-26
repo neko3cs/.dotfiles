@@ -3,11 +3,20 @@
 set -e
 
 activate_fedora() {
-  # 日本語ロケールのインストールと設定
+  # 日本語ロケールのインストール
   sudo dnf install -y langpacks-ja glibc-langpack-ja
-  sudo localectl set-locale LANG=ja_JP.UTF-8
+  # ロケールの設定
+  if command -v localectl > /dev/null; then
+    sudo localectl set-locale LANG=ja_JP.UTF-8
+  else
+    export LANG=ja_JP.UTF-8
+  fi
   # タイムゾーンの設定
-  sudo timedatectl set-timezone Asia/Tokyo
+  if command -v timedatectl > /dev/null; then
+    sudo timedatectl set-timezone Asia/Tokyo
+  else
+    sudo ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+  fi
   # 日本語マニュアル
   sudo dnf install -y man-pages-ja
 }
