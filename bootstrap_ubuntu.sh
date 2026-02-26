@@ -14,31 +14,13 @@ activate_ubuntu() {
   # japanese man
   sudo apt install -y manpages-ja manpages-ja-dev
 }
-install_zsh_completions() {
-  git clone git@github.com:zsh-users/zsh-completions.git ~/.zsh/zsh-completions
-  fpath=(~/.zsh/zsh-completions/src $fpath)
-  rm -f ~/.zcompdump && compinit
+install_aws_cli() {
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip
+  sudo ./aws/install
 }
-install_pwsh() {
-# Update the list of packages
-sudo apt-get update
-# Install pre-requisite packages.
-sudo apt-get install -y wget apt-transport-https software-properties-common
-# Get the version of Ubuntu
-source /etc/os-release
-# Download the Microsoft repository keys
-wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-# Register the Microsoft repository keys
-sudo dpkg -i packages-microsoft-prod.deb
-# Delete the Microsoft repository keys file
-rm packages-microsoft-prod.deb
-# Update the list of packages after we added packages.microsoft.com
-sudo apt-get update
-# Install PowerShell
-sudo apt-get install -y powershell
-}
-install_starship() {
-  curl -sS https://starship.rs/install.sh | sh
+install_azure_cli() {
+  curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
 }
 install_docker() {
   sudo apt update && sudo apt upgrade -y
@@ -49,20 +31,38 @@ install_docker() {
   sudo gpasswd -a $USER docker
   sudo service docker start
 }
-install_yq() {
-  sudo curl -fsSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/bin/yq
-  sudo chmod +x /usr/bin/yq
+install_pwsh() {
+  # Update the list of packages
+  sudo apt-get update
+  # Install pre-requisite packages.
+  sudo apt-get install -y wget apt-transport-https software-properties-common
+  # Get the version of Ubuntu
+  source /etc/os-release
+  # Download the Microsoft repository keys
+  wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+  # Register the Microsoft repository keys
+  sudo dpkg -i packages-microsoft-prod.deb
+  # Delete the Microsoft repository keys file
+  rm packages-microsoft-prod.deb
+  # Update the list of packages after we added packages.microsoft.com
+  sudo apt-get update
+  # Install PowerShell
+  sudo apt-get install -y powershell
 }
 install_pyenv() {
   curl https://pyenv.run | bash
 }
-install_aws_cli() {
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  unzip awscliv2.zip
-  sudo ./aws/install
+install_starship() {
+  curl -sS https://starship.rs/install.sh | sh
 }
-install_azure_cli() {
-  curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
+install_yq() {
+  sudo curl -fsSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/bin/yq
+  sudo chmod +x /usr/bin/yq
+}
+install_zsh_completions() {
+  git clone git@github.com:zsh-users/zsh-completions.git ~/.zsh/zsh-completions
+  fpath=(~/.zsh/zsh-completions/src $fpath)
+  rm -f ~/.zcompdump && compinit
 }
 
 cd $HOME
@@ -76,15 +76,16 @@ sudo apt upgrade
 
 activate_ubuntu
 
-./install_apt-packages.sh
-./install_pnpm-packages.sh
-install_zsh_completions
-install_pwsh
-install_starship
-install_docker
-install_yq
 install_aws_cli
 install_azure_cli
+install_docker
+install_starship
+install_pwsh
+install_pyenv
+install_yq
+install_zsh_completions
+./install_apt-packages.sh
+./install_pnpm-packages.sh
 ./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_completions.sh
