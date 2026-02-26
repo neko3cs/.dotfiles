@@ -39,5 +39,6 @@ oderwat.indent-rainbow
 pkief.material-icon-theme
 richie5um2.vscode-sort-json
 rust-lang.rust-analyzer
+sumneko.lua
 tboox.xmake-vscode
 visualstudiotoolsforunity.vstuc
