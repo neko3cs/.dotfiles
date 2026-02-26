@@ -1,5 +1,7 @@
+@development-tools
+azure-cli
 bat
-build-essential
+boost-devel
 cmake
 curl
 dos2unix
@@ -7,15 +9,15 @@ file
 fzf
 gh
 git
-golang-go
+golang
+java-21-openjdk-devel
 jq
 lazygit
-libboost--dev
 neofetch
 nkf
 nodejs
-openjdk-21-jdk
-postgresql
+postgresql-server
+powershell
 procps
 rbenv
 redis
@@ -23,4 +25,6 @@ tree
 vim
 watchman
 xmake
+yq
 zsh
+zsh-completions
