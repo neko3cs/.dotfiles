@@ -71,6 +71,11 @@ fi
 autoload -Uz compinit && compinit -i
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz zmv
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 if (( $+commands[aws] )); then
   local aws_comp_path=$(command -v aws_completer)
   [[ -n "$aws_comp_path" ]] && complete -C "$aws_comp_path" aws
@@ -91,7 +96,6 @@ setopt interactive_comments
 setopt list_packed
 setopt nomatch
 setopt share_history
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # ALIASES
 alias la='ls -ah'
