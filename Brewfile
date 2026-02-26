@@ -1,4 +1,3 @@
-cask_args appdir: "/Applications"
 brew "awscli"
 brew "azure-cli"
 brew "azure/functions/azure-functions-core-tools"
