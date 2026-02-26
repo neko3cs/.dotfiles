@@ -1,6 +1,4 @@
-automake
 build-essential
-clisp
 cmake
 curl
 dos2unix
@@ -12,16 +10,15 @@ golang-go
 jq
 lazygit
 libboost--dev
-mysql-server
 neofetch
 nkf
 nodejs
 openjdk-21-jdk
+postgresql
 procps
 rbenv
 redis
 vim
 watchman
-wireshark
 xmake
 zsh
