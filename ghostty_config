@@ -1,7 +1,3 @@
-#
-# neko3cs ghostty config
-#
-
 # カーソルの点滅設定
 cursor-style-blink = false
 
