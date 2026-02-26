@@ -8,10 +8,10 @@
 curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_macOS.sh | zsh
 ```
 
-### Ubuntu
+### Fedora
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_ubuntu.sh | bash
+curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_fedora.sh | bash
 ```
 
 ### Windows
