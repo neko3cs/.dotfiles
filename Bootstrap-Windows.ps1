@@ -3,9 +3,9 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-function Set-Wsl2Ubuntu {
-  wsl --install --no-launch --distribution Ubuntu
-  wsl --set-default Ubuntu
+function Set-Wsl2Fedora {
+  wsl --install --no-launch --distribution FedoraLinux-43
+  wsl --set-default FedoraLinux-43
   wsl --set-default-version 2
 }
 
@@ -35,7 +35,7 @@ Set-Location -Path $dotfilesPath
 & (Join-Path $PSScriptRoot 'Install-PnpmPackage.ps1')
 & (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
 & (Join-Path $PSScriptRoot 'Set-Completions.ps1')
-Set-Wsl2Ubuntu
+Set-Wsl2Fedora
 
 if (Test-Path $PROFILE) {
   . $PROFILE
