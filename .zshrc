@@ -83,27 +83,6 @@ if [[ -n "$HOMEBREW_PREFIX" && -f "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]
   source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
 fi
 
-## DOTNET_CLI
-if (( $+commands[dotnet] )); then
-  _dotnet_zsh_complete() {
-    local completions=("$(dotnet complete "$words")")
-    if [ -z "$completions" ]; then
-      _arguments '*::arguments: _normal'
-      return
-    fi
-    _values = "${(ps:\n:)completions}"
-  }
-  compdef _dotnet_zsh_complete dotnet
-fi
-
-## PIP
-__pip() {
-  compadd $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$((CURRENT-1)) \
-             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null )
-}
-compdef __pip -P 'pip[0-9.]#'
-
 ## STARSHIP INIT
 if (( $+commands[starship] )); then
   eval "$(starship init zsh)"
