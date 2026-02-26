@@ -4,6 +4,7 @@ boost-devel
 cmake
 curl
 dos2unix
+fastfetch
 file
 fzf
 gh
@@ -12,7 +13,6 @@ golang
 java-21-openjdk-devel
 jq
 lazygit
-neofetch
 nkf
 nodejs
 postgresql-server
@@ -24,7 +24,6 @@ tar
 tree
 unzip
 vim
-watchman
 which
 xmake
 yq
