@@ -38,9 +38,6 @@ path=(
   $path
 )
 
-# CPPFLAGS
-export CPPFLAGS="-I$JAVA_HOME/include"
-
 # TOOL INITIALIZATION
 # Ruby (rbenv)
 if (( $+commands[rbenv] )); then
