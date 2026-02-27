@@ -56,7 +56,8 @@ activate_fedora
 
 ./install_dnf-packages.sh
 ./set_dotfiles.sh
-zsh -l ./install_pnpm-packages.sh
+# HACK: 苦肉の策(本当はこんなところにパス書きたくない)
+PNPM_HOME="/usr/local/share/pnpm" PATH="/usr/local/share/pnpm:$PATH" ./install_pnpm-packages.sh
 ./install_vimplug.sh
 install_aws_cli
 install_docker
