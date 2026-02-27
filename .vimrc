@@ -25,6 +25,9 @@ set shiftwidth=2    " Number of spaces for autoindent
 set autoindent
 set smartindent
 
+" Set indentation for C# files
+autocmd FileType cs setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
 " UI Colors
 if has("win32") || has("win64")
   set t_Co=256
@@ -168,8 +171,6 @@ if executable('csharp-ls')
       \ })
   augroup END
 endif
-" Set indentation for C# files
-autocmd FileType cs setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " --- fzf.vim ---
 nnoremap <silent> <C-p> :Files<CR>
