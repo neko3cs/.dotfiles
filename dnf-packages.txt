@@ -1,3 +1,4 @@
+@development-tools
 azure-cli
 bat
 boost-devel
