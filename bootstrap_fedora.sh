@@ -56,9 +56,9 @@ activate_fedora
 
 ./install_dnf-packages.sh
 ./set_dotfiles.sh
-# HACK: bootstrap時はbashを使うので、.zshrcが読み込まれないため、pnpmのインストール先環境変数をここで指定するしかない...
-export PNPM_HOME="/usr/local"
-export PATH="$PNPM_HOME/bin:$PATH"
+# HACK: 苦肉の策(本当はここにexport書きたくない)
+export PNPM_HOME="/usr/local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 ./install_pnpm-packages.sh
 ./install_vimplug.sh
 install_aws_cli

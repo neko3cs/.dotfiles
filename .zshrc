@@ -25,7 +25,7 @@ export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
 if $IS_MACOS; then
   export PNPM_HOME="$HOME/Library/pnpm"
 else
-  export PNPM_HOME="/usr/local"
+  export PNPM_HOME="/usr/local/share/pnpm"
 fi
 export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
