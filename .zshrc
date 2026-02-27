@@ -22,7 +22,11 @@ export GOPATH="$HOME/gopath"
 $IS_MACOS && export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
-$IS_MACOS && export PNPM_HOME="$HOME/Library/pnpm"
+if $IS_MACOS; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="/usr/local"
+fi
 export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
