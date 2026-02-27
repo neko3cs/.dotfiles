@@ -15,6 +15,9 @@ ln -sf $(pwd)/ghostty_config $HOME/.config/ghostty/config
 # bat
 mkdir -p $HOME/.config/bat
 ln -sf $(pwd)/bat_config $HOME/.config/bat/config
+# neovim init.lua
+mkdir -p $HOME/.config/nvim
+ln -sf $(pwd)/init.lua $HOME/.config/nvim/init.lua
 # .vimrc
 ln -sf $(pwd)/.vimrc $HOME/.vimrc
 # .gitconfig
