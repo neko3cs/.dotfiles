@@ -34,170 +34,50 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- === 2. PLUGIN MANAGEMENT (vim-plug) ===
-local plug_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
-if vim.fn.filereadable(plug_path) == 0 then
+-- === 2. PLUGIN MANAGEMENT (lazy.nvim) ===
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    'curl', '-fLo', plug_path, '--create-dirs',
-    'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  })
-  vim.cmd('autocmd VimEnter * PlugInstall --sync | source $MYVIMRC')
-end
-
-vim.fn['plug#begin'](vim.fn.stdpath('data') .. '/plugged')
--- Appearance
-vim.fn['plug#']('tomasiser/vim-code-dark')
-vim.fn['plug#']('vim-airline/vim-airline')
-vim.fn['plug#']('vim-airline/vim-airline-themes')
-
--- File Explorer
-vim.fn['plug#']('lambdalisue/fern.vim')
-vim.fn['plug#']('lambdalisue/fern-git-status.vim')
-vim.fn['plug#']('lambdalisue/nerdfont.vim')
-vim.fn['plug#']('lambdalisue/fern-renderer-nerdfont.vim')
-vim.fn['plug#']('lambdalisue/glyph-palette.vim')
-
--- Git integration
-vim.fn['plug#']('airblade/vim-gitgutter')
-
--- Completion & LSP
-vim.fn['plug#']('prabirshrestha/asyncomplete.vim')
-vim.fn['plug#']('prabirshrestha/asyncomplete-lsp.vim')
-vim.fn['plug#']('prabirshrestha/vim-lsp')
-vim.fn['plug#']('mattn/vim-lsp-settings')
-
--- Search
-vim.fn['plug#']('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install']() end })
-vim.fn['plug#']('junegunn/fzf.vim')
-
--- Utilities
-vim.fn['plug#']('tpope/vim-commentary')
-vim.fn['plug#']('jiangmiao/auto-pairs')
-
--- Language specific
-vim.fn['plug#']('carlsmedstad/vim-bicep')
-
-vim.fn['plug#end']()
-
--- Colorscheme Settings
-if vim.fn.has("termguicolors") == 1 then
-  vim.opt.termguicolors = true
-end
-local ok, _ = pcall(vim.cmd, "colorscheme codedark")
-if not ok then
-  print("Colorscheme 'codedark' not found. Please run :PlugInstall")
-end
-vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 236, bg = "#2a2a2a" })
-
--- === 3. PLUGIN SPECIFIC SETTINGS ===
-
--- --- vim-airline ---
-vim.g.airline_theme = 'codedark'
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tabline#fnamemod'] = ':t'
-vim.g['airline#extensions#tabline#show_buffers = 1'] = 1
-vim.g['airline#extensions#tabline#show_splits'] = 0
-vim.g['airline#extensions#tabline#show_tabs'] = 1
-vim.g['airline#extensions#tabline#show_tab_nr'] = 0
-vim.g['airline#extensions#tabline#show_tab_type'] = 1
-vim.g['airline#extensions#tabline#show_close_button'] = 0
-vim.g['airline#extensions#hunks#non_zero_only'] = 1
-
-vim.g['airline#extensions#default#layout'] = {
-  { 'a', 'b', 'c' },
-  { 'z' }
-}
-vim.g.airline_section_c = '%t %M'
-local prefix = vim.g.airline_linecolumn_prefix or ''
-vim.g.airline_section_z = prefix .. '%3l:%-2v'
-
--- --- fern.vim ---
-vim.keymap.set('n', '<C-n>', ':Fern . -reveal=% -drawer -toggle -width=40<CR>', { silent = true })
-vim.g['fern#default_hidden'] = 1
-vim.g['fern#renderer'] = 'nerdfont'
-
--- --- glyph-palette.vim ---
-local glyph_palette_group = vim.api.nvim_create_augroup("my-glyph-palette", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  group = glyph_palette_group,
-  pattern = { "fern", "nerdtree", "startify" },
-  callback = function()
-    vim.fn['glyph_palette#apply']()
-  end,
-})
-
--- --- vim-gitgutter ---
-vim.keymap.set('n', 'g[', ':GitGutterPrevHunk<CR>', { silent = true })
-vim.keymap.set('n', 'g]', ':GitGutterNextHunk<CR>', { silent = true })
-vim.keymap.set('n', 'gh', ':GitGutterLineHighlightsToggle<CR>', { silent = true })
-vim.keymap.set('n', 'gp', ':GitGutterPreviewHunk<CR>', { silent = true })
-
-vim.cmd([[
-  highlight GitGutterAdd    ctermfg=green
-  highlight GitGutterChange ctermfg=blue
-  highlight GitGutterDelete ctermfg=red
-]])
-
--- --- asyncomplete.vim ---
-vim.keymap.set('i', '<Tab>', function()
-  return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
-end, { expr = true })
-vim.keymap.set('i', '<S-Tab>', function()
-  return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
-end, { expr = true })
-vim.cmd([[
-  inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-]])
-
--- --- vim-lsp ---
-local function on_lsp_buffer_enabled()
-  vim.opt_local.omnifunc = "lsp#complete"
-  vim.opt_local.signcolumn = "yes"
-  if vim.fn.exists('+tagfunc') == 1 then
-    vim.opt_local.tagfunc = "lsp#tagfunc"
-  end
-
-  local opts = { buffer = true, silent = true }
-  vim.keymap.set('n', 'gd', '<plug>(lsp-definition)', opts)
-  vim.keymap.set('n', 'gr', '<plug>(lsp-references)', opts)
-  vim.keymap.set('n', 'gi', '<plug>(lsp-implementation)', opts)
-  vim.keymap.set('n', 'gt', '<plug>(lsp-type-definition)', opts)
-  vim.keymap.set('n', '<leader>ca', '<plug>(lsp-code-action)', opts)
-  vim.keymap.set('n', '<leader>rn', '<plug>(lsp-rename)', opts)
-  vim.keymap.set('n', '[g', '<plug>(lsp-previous-diagnostic)', opts)
-  vim.keymap.set('n', ']g', '<plug>(lsp-next-diagnostic)', opts)
-  vim.keymap.set('n', 'K', '<plug>(lsp-hover)', opts)
-
-  vim.keymap.set('n', '<c-f>', 'lsp#scroll(+4)', { buffer = true, expr = true })
-  vim.keymap.set('n', '<c-b>', 'lsp#scroll(-4)', { buffer = true, expr = true })
-end
-
-vim.api.nvim_create_autocmd("User", {
-  pattern = "lsp_buffer_enabled",
-  callback = on_lsp_buffer_enabled,
-})
-
--- --- csharp-ls ---
-if vim.fn.executable('csharp-ls') == 1 then
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "lsp_setup",
-    callback = function()
-      vim.fn['lsp#register_server']({
-        name = 'csharp-ls',
-        cmd = { 'csharp-ls' },
-        allowlist = { 'cs' },
-        initialization_options = {
-          solutionPath = vim.fn['lsp#utils#find_nearest_parent_file_directory'](
-            vim.fn['lsp#utils#get_buffer_path'](),
-            { '*.slnx', '*.sln', '.git' }
-          ),
-        },
-      })
-    end,
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath,
   })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- --- fzf.vim ---
-vim.keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
-vim.keymap.set('n', '<leader>f', ':Rg<CR>', { silent = true })
-vim.keymap.set('n', '<leader>b', ':Buffers<CR>', { silent = true })
+require("lazy").setup({
+  {
+    "tomasiser/vim-code-dark",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd([[colorscheme codedark]]) end
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = { options = { theme = 'codedark' } }
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function() require("nvim-tree").setup() end
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  { "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end },
+  -- LSP / 補完
+  "prabirshrestha/vim-lsp",
+  "mattn/vim-lsp-settings",
+  "prabirshrestha/asyncomplete.vim",
+  "prabirshrestha/asyncomplete-lsp.vim",
+  -- その他
+  "tpope/vim-commentary",
+  "jiangmiao/auto-pairs",
+  "carlsmedstad/vim-bicep",
+})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>f', builtin.live_grep, {})
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
