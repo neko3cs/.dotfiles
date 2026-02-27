@@ -64,14 +64,18 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" }
   },
   { "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end },
-  -- LSP / 補完
   "prabirshrestha/vim-lsp",
   "mattn/vim-lsp-settings",
   "prabirshrestha/asyncomplete.vim",
   "prabirshrestha/asyncomplete-lsp.vim",
-  -- その他
-  "tpope/vim-commentary",
-  "jiangmiao/auto-pairs",
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = true,
+      })
+    end
+  },
   "carlsmedstad/vim-bicep",
 })
 -- Apply colorscheme after plugin definition
