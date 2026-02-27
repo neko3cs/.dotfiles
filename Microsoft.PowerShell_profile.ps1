@@ -10,6 +10,8 @@ $PowerShellModules = @(
   "ImportExcel"
 )
 function Register-PowerShellModule {
+  Register-PSRepository -Default -ErrorAction SilentlyContinue
+  Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
   foreach ($module in $PowerShellModules) {
     if (-not (Get-Module -ListAvailable -Name $module)) {
       Install-Module -Name $module
