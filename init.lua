@@ -63,7 +63,35 @@ require("lazy").setup({
     tag = "0.1.5",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  { "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup({
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+          map('n', 'g]',
+            function()
+              if vim.wo.diff then return 'g]' end
+              vim.schedule(function() gs.next_hunk() end)
+              return '<Ignore>'
+            end, { expr = true })
+          map('n', 'g[',
+            function()
+              if vim.wo.diff then return 'g[' end
+              vim.schedule(function() gs.prev_hunk() end)
+              return '<Ignore>'
+            end, { expr = true })
+          map('n', 'gp', gs.preview_hunk)
+          map('n', 'gh', gs.toggle_linehl)
+        end
+      })
+    end
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -176,3 +204,25 @@ vim.keymap.set('n', '<leader>f', builtin.live_grep, {})
 
 -- nvim-tree
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
+
+-- LSP
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
+  end,
+})
+
+-- GitSigns
+vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "green" })
+vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "blue" })
+vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "red" })
