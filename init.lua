@@ -88,3 +88,116 @@ if not ok then
   print("Colorscheme 'codedark' not found. Please run :PlugInstall")
 end
 vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 236, bg = "#2a2a2a" })
+
+-- === 3. PLUGIN SPECIFIC SETTINGS ===
+
+-- --- vim-airline ---
+vim.g.airline_theme = 'codedark'
+vim.g['airline#extensions#tabline#enabled'] = 1
+vim.g['airline#extensions#tabline#fnamemod'] = ':t'
+vim.g['airline#extensions#tabline#show_buffers = 1'] = 1
+vim.g['airline#extensions#tabline#show_splits'] = 0
+vim.g['airline#extensions#tabline#show_tabs'] = 1
+vim.g['airline#extensions#tabline#show_tab_nr'] = 0
+vim.g['airline#extensions#tabline#show_tab_type'] = 1
+vim.g['airline#extensions#tabline#show_close_button'] = 0
+vim.g['airline#extensions#hunks#non_zero_only'] = 1
+
+vim.g['airline#extensions#default#layout'] = {
+  { 'a', 'b', 'c' },
+  { 'z' }
+}
+vim.g.airline_section_c = '%t %M'
+local prefix = vim.g.airline_linecolumn_prefix or ''
+vim.g.airline_section_z = prefix .. '%3l:%-2v'
+
+-- --- fern.vim ---
+vim.keymap.set('n', '<C-n>', ':Fern . -reveal=% -drawer -toggle -width=40<CR>', { silent = true })
+vim.g['fern#default_hidden'] = 1
+vim.g['fern#renderer'] = 'nerdfont'
+
+-- --- glyph-palette.vim ---
+local glyph_palette_group = vim.api.nvim_create_augroup("my-glyph-palette", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = glyph_palette_group,
+  pattern = { "fern", "nerdtree", "startify" },
+  callback = function()
+    vim.fn['glyph_palette#apply']()
+  end,
+})
+
+-- --- vim-gitgutter ---
+vim.keymap.set('n', 'g[', ':GitGutterPrevHunk<CR>', { silent = true })
+vim.keymap.set('n', 'g]', ':GitGutterNextHunk<CR>', { silent = true })
+vim.keymap.set('n', 'gh', ':GitGutterLineHighlightsToggle<CR>', { silent = true })
+vim.keymap.set('n', 'gp', ':GitGutterPreviewHunk<CR>', { silent = true })
+
+vim.cmd([[
+  highlight GitGutterAdd    ctermfg=green
+  highlight GitGutterChange ctermfg=blue
+  highlight GitGutterDelete ctermfg=red
+]])
+
+-- --- asyncomplete.vim ---
+vim.keymap.set('i', '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+end, { expr = true })
+vim.keymap.set('i', '<S-Tab>', function()
+  return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
+end, { expr = true })
+vim.cmd([[
+  inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+]])
+
+-- --- vim-lsp ---
+local function on_lsp_buffer_enabled()
+  vim.opt_local.omnifunc = "lsp#complete"
+  vim.opt_local.signcolumn = "yes"
+  if vim.fn.exists('+tagfunc') == 1 then
+    vim.opt_local.tagfunc = "lsp#tagfunc"
+  end
+
+  local opts = { buffer = true, silent = true }
+  vim.keymap.set('n', 'gd', '<plug>(lsp-definition)', opts)
+  vim.keymap.set('n', 'gr', '<plug>(lsp-references)', opts)
+  vim.keymap.set('n', 'gi', '<plug>(lsp-implementation)', opts)
+  vim.keymap.set('n', 'gt', '<plug>(lsp-type-definition)', opts)
+  vim.keymap.set('n', '<leader>ca', '<plug>(lsp-code-action)', opts)
+  vim.keymap.set('n', '<leader>rn', '<plug>(lsp-rename)', opts)
+  vim.keymap.set('n', '[g', '<plug>(lsp-previous-diagnostic)', opts)
+  vim.keymap.set('n', ']g', '<plug>(lsp-next-diagnostic)', opts)
+  vim.keymap.set('n', 'K', '<plug>(lsp-hover)', opts)
+
+  vim.keymap.set('n', '<c-f>', 'lsp#scroll(+4)', { buffer = true, expr = true })
+  vim.keymap.set('n', '<c-b>', 'lsp#scroll(-4)', { buffer = true, expr = true })
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "lsp_buffer_enabled",
+  callback = on_lsp_buffer_enabled,
+})
+
+-- --- csharp-ls ---
+if vim.fn.executable('csharp-ls') == 1 then
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "lsp_setup",
+    callback = function()
+      vim.fn['lsp#register_server']({
+        name = 'csharp-ls',
+        cmd = { 'csharp-ls' },
+        allowlist = { 'cs' },
+        initialization_options = {
+          solutionPath = vim.fn['lsp#utils#find_nearest_parent_file_directory'](
+            vim.fn['lsp#utils#get_buffer_path'](),
+            { '*.slnx', '*.sln', '.git' }
+          ),
+        },
+      })
+    end,
+  })
+end
+
+-- --- fzf.vim ---
+vim.keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
+vim.keymap.set('n', '<leader>f', ':Rg<CR>', { silent = true })
+vim.keymap.set('n', '<leader>b', ':Buffers<CR>', { silent = true })
