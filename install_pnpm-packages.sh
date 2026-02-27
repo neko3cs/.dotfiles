@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 PACKAGES_FILE="$(dirname "$0")/npm-packages.txt"
 
