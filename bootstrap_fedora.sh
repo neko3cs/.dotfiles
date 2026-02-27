@@ -39,7 +39,7 @@ install_pyenv() {
   curl https://pyenv.run | bash
 }
 install_starship() {
-  curl -sS https://starship.rs/install.sh | sh
+  sudo curl -sS https://starship.rs/install.sh | sh
 }
 
 cd $HOME
