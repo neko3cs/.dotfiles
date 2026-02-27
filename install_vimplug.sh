@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

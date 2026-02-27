@@ -55,13 +55,13 @@ sudo dnf update -y
 activate_fedora
 
 ./install_dnf-packages.sh
+./set_dotfiles.sh
 ./install_pnpm-packages.sh
 ./install_vimplug.sh
 install_aws_cli
 install_docker
 install_pyenv
 install_starship
-./set_dotfiles.sh
 ./set_completions.sh
 /usr/bin/pwsh -File ./Set-Completions.ps1
 
