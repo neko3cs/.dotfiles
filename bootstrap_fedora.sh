@@ -56,10 +56,7 @@ activate_fedora
 
 ./install_dnf-packages.sh
 ./set_dotfiles.sh
-# HACK: 苦肉の策(本当はここにexport書きたくない)
-export PNPM_HOME="/usr/local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-./install_pnpm-packages.sh
+zsh -l ./install_pnpm-packages.sh
 ./install_vimplug.sh
 install_aws_cli
 install_docker
