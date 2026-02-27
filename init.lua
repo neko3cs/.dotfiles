@@ -64,10 +64,64 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" }
   },
   { "lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end },
-  "prabirshrestha/vim-lsp",
-  "mattn/vim-lsp-settings",
-  "prabirshrestha/asyncomplete.vim",
-  "prabirshrestha/asyncomplete-lsp.vim",
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "csharp_ls" }
+      })
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'path' },
+        })
+      })
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      if vim.lsp.config then
+        vim.lsp.config('csharp_ls', {
+          cmd = { 'csharp-ls' },
+          filetypes = { 'cs' },
+          capabilities = capabilities,
+          root_markers = { '*.slnx', '*.sln', '.git' },
+          options = {
+            initialization_options = {
+              solutionPath = function(client, root_dir)
+                return root_dir
+              end,
+            },
+          },
+        })
+        vim.lsp.enable('csharp_ls')
+      else
+        require('lspconfig').csharp_ls.setup({
+          capabilities = capabilities,
+          root_dir = require('lspconfig.util').root_pattern('*.slnx', '*.sln', '.git'),
+          init_options = {
+            solutionPath = vim.fn.getcwd(),
+          }
+        })
+      end
+    end
+  },
   {
     "windwp/nvim-autopairs",
     config = function()
