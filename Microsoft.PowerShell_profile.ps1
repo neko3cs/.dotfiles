@@ -128,6 +128,16 @@ if ($IsWindows) {
       wsl vim $WslPath
     }
   }
+  function nvim {
+    param ([string]$Path)
+    if ([string]::IsNullOrEmpty($Path)) { 
+      wsl nvim
+    }
+    else {
+      $WslPath = ConvertTo-WslPath -Path $Path
+      wsl nvim $WslPath
+    }
+  }
   function less {
     param ([Parameter(Mandatory = $true, ValueFromPipeline = $true)][string]$Path)
     $WslPath = ConvertTo-WslPath -Path $Path
