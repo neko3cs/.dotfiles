@@ -19,6 +19,8 @@ activate_fedora() {
   fi
   # 日本語マニュアル
   sudo dnf install -y man-pages-ja
+  # /usr/localの所有者を現在のユーザーに変更
+  sudo chown -R $(whoami) /usr/local
 }
 install_aws_cli() {
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
