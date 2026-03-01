@@ -9,11 +9,8 @@ window-width = 140
 window-height = 45
 
 # テーマ
-theme = TokyoNight
+theme = "GitHub Dark High Contrast"
 
 # フォント設定
 font-family = "CaskaydiaCove Nerd Font"
 font-size = 14
-
-# 背景の透明度
-background-opacity = 0.9
