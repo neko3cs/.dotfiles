@@ -12,7 +12,6 @@ softwareupdate --install
 
 ./install_brewformulas.sh
 ./install_pnpm-packages.sh
-./install_vimplug.sh
 ./set_dotfiles.sh
 ./set_macOS_defaults.sh
 ./set_completions.sh

@@ -25,7 +25,6 @@ redis
 tar
 tree
 unzip
-vim
 which
 xmake
 yq
