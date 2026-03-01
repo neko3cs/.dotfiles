@@ -22,3 +22,5 @@ ln -sf $(pwd)/init.lua $HOME/.config/nvim/init.lua
 ln -sf $(pwd)/.gitconfig $HOME/.gitconfig
 # Homebrew
 ln -sf $(pwd)/Brewfile $HOME/Brewfile
+# .textlintrc.json
+ln -sf $(pwd)/.textlintrc.json $HOME/.textlintrc.json
