@@ -18,8 +18,6 @@ ln -sf $(pwd)/bat_config $HOME/.config/bat/config
 # neovim init.lua
 mkdir -p $HOME/.config/nvim
 ln -sf $(pwd)/init.lua $HOME/.config/nvim/init.lua
-# .vimrc
-ln -sf $(pwd)/.vimrc $HOME/.vimrc
 # .gitconfig
 ln -sf $(pwd)/.gitconfig $HOME/.gitconfig
 # Homebrew

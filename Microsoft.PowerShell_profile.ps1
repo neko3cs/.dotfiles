@@ -118,16 +118,6 @@ if ($IsWindows) {
       wsl --exec nano $WslPath
     }
   }
-  function vim {
-    param ([string]$Path)
-    if ([string]::IsNullOrEmpty($Path)) { 
-      wsl vim
-    }
-    else {
-      $WslPath = ConvertTo-WslPath -Path $Path
-      wsl vim $WslPath
-    }
-  }
   function nvim {
     param ([string]$Path)
     if ([string]::IsNullOrEmpty($Path)) { 
