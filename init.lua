@@ -56,7 +56,13 @@ require("lazy").setup({
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function() require("nvim-tree").setup() end
+    config = function()
+      require("nvim-tree").setup({
+        view = {
+          width = 40,
+        },
+      })
+    end
   },
   {
     "nvim-telescope/telescope.nvim",
