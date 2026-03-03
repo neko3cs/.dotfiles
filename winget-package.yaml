@@ -6,8 +6,8 @@
 - Id: Fastfetch-cli.Fastfetch
 - Id: gerardog.gsudo
 - Id: Git.Git
-- Id: GitHub.Copilot
 - Id: GitHub.cli
+- Id: GitHub.Copilot
 - Id: GoLang.Go
 - Id: Google.Chrome
 - Id: Google.CloudSDK
