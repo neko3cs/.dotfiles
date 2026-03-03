@@ -12,6 +12,7 @@
 - Id: Google.Chrome
 - Id: Google.CloudSDK
 - Id: Google.Protobuf
+- Id: Hashicorp.Terraform
 - Id: JesseDuffield.lazygit
 - Id: Microsoft.Azure.FunctionsCoreTools
 - Id: Microsoft.AzureCLI
