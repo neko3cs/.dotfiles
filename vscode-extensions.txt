@@ -10,6 +10,7 @@ esbenp.prettier-vscode
 github.copilot-chat
 golang.go
 gruntfuggly.todo-tree
+hashicorp.terraform
 ics.japanese-proofreading
 mechatroner.rainbow-csv
 ms-azuretools.vscode-bicep
