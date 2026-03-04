@@ -1,6 +1,6 @@
 brew "awscli"
 brew "azure-cli"
-brew "azure/functions/azure-functions-core-tools"
+brew "azure/functions/azure-functions-core-tools@4"
 brew "bat"
 brew "cmake"
 brew "cocoapods"
