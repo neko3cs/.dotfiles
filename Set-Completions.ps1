@@ -10,6 +10,9 @@ if (-not (Test-Path -Path $completionDir)) {
 if (Get-Command -Name deno -ErrorAction SilentlyContinue) {
   deno completions powershell | Out-File -FilePath (Join-Path $completionDir "_deno.ps1") -Encoding UTF8
 }
+if (Get-Command -Name docker -ErrorAction SilentlyContinue) {
+  docker completion powershell | Out-File -FilePath (Join-Path $completionDir "_docker.ps1") -Encoding UTF8
+}
 if (Get-Command -Name dotnet -ErrorAction SilentlyContinue) {
   dotnet completions script pwsh  | Out-File -FilePath (Join-Path $completionDir "_dotnet.ps1") -Encoding UTF8
 }
