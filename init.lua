@@ -1,3 +1,21 @@
+-- === CONFIG CONSTANTS ===
+local CONFIG = {
+  colorscheme = "codedark",
+  indentation = {
+    default = 2,
+    csharp = 4,
+  },
+  colors = {
+    cursorline_bg = "#2a2a2a",
+    cursorline_ctermbg = 236,
+  },
+  gitsigns = {
+    add = "green",
+    change = "blue",
+    delete = "red",
+  },
+}
+
 -- === 1. GENERAL SETTINGS ===
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
@@ -19,8 +37,8 @@ vim.opt.smartcase = true
 
 -- Indentation
 vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = CONFIG.indentation.default
+vim.opt.shiftwidth = CONFIG.indentation.default
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
@@ -28,9 +46,9 @@ vim.opt.smartindent = true
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cs",
   callback = function()
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.tabstop = 4
-    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = CONFIG.indentation.csharp
+    vim.opt_local.tabstop = CONFIG.indentation.csharp
+    vim.opt_local.softtabstop = CONFIG.indentation.csharp
   end,
 })
 
@@ -57,11 +75,7 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-tree").setup({
-        view = {
-          width = 40,
-        },
-      })
+      require("nvim-tree").setup({ view = { width = 40 } })
     end
   },
   {
@@ -72,29 +86,28 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup({
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-          map('n', 'g]',
-            function()
-              if vim.wo.diff then return 'g]' end
-              vim.schedule(function() gs.next_hunk() end)
-              return '<Ignore>'
-            end, { expr = true })
-          map('n', 'g[',
-            function()
-              if vim.wo.diff then return 'g[' end
-              vim.schedule(function() gs.prev_hunk() end)
-              return '<Ignore>'
-            end, { expr = true })
-          map('n', 'gp', gs.preview_hunk)
-          map('n', 'gh', gs.toggle_linehl)
+      local function setup_gitsigns_keymaps(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
         end
+        map('n', 'g]', function()
+          if vim.wo.diff then return 'g]' end
+          vim.schedule(function() gs.next_hunk() end)
+          return '<Ignore>'
+        end, { expr = true })
+        map('n', 'g[', function()
+          if vim.wo.diff then return 'g[' end
+          vim.schedule(function() gs.prev_hunk() end)
+          return '<Ignore>'
+        end, { expr = true })
+        map('n', 'gp', gs.preview_hunk)
+        map('n', 'gh', gs.toggle_linehl)
+      end
+      require("gitsigns").setup({
+        on_attach = setup_gitsigns_keymaps
       })
     end
   },
@@ -110,9 +123,8 @@ require("lazy").setup({
     },
     config = function()
       require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "csharp_ls" }
-      })
+      require("mason-lspconfig").setup({ ensure_installed = { "csharp_ls" } })
+
       local cmp = require("cmp")
       cmp.setup({
         mapping = cmp.mapping.preset.insert({
@@ -129,31 +141,16 @@ require("lazy").setup({
           { name = 'path' },
         })
       })
+
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      if vim.lsp.config then
-        vim.lsp.config('csharp_ls', {
-          cmd = { 'csharp-ls' },
-          filetypes = { 'cs' },
-          capabilities = capabilities,
-          root_markers = { '*.slnx', '*.sln', '.git' },
-          options = {
-            initialization_options = {
-              solutionPath = function(client, root_dir)
-                return root_dir
-              end,
-            },
-          },
-        })
-        vim.lsp.enable('csharp_ls')
-      else
-        require('lspconfig').csharp_ls.setup({
-          capabilities = capabilities,
-          root_dir = require('lspconfig.util').root_pattern('*.slnx', '*.sln', '.git'),
-          init_options = {
-            solutionPath = vim.fn.getcwd(),
-          }
-        })
-      end
+      vim.lsp.config('csharp_ls', {
+        cmd = { 'csharp-ls' },
+        filetypes = { 'cs' },
+        capabilities = capabilities,
+        root_markers = { '*.slnx', '*.sln', '.git' },
+        init_options = { solutionPath = vim.fn.getcwd() }
+      })
+      vim.lsp.enable('csharp_ls')
     end
   },
   {
@@ -170,13 +167,13 @@ require("lazy").setup({
 if vim.fn.has("termguicolors") == 1 then
   vim.opt.termguicolors = true
 end
-local ok, _ = pcall(vim.cmd, "colorscheme codedark")
+local ok, _ = pcall(vim.cmd, "colorscheme " .. CONFIG.colorscheme)
 if not ok then
-  print("Colorscheme 'codedark' not found. Please run :Lazy")
+  print("Colorscheme '" .. CONFIG.colorscheme .. "' not found. Please run :Lazy")
 end
 vim.api.nvim_set_hl(0, "CursorLine", {
-  ctermbg = 236,
-  bg = "#2a2a2a",
+  ctermbg = CONFIG.colors.cursorline_ctermbg,
+  bg = CONFIG.colors.cursorline_bg,
   bold = false,
   italic = false,
   underline = false
@@ -228,7 +225,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- GitSigns
-vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "green" })
-vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "blue" })
-vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "red" })
+-- GitSigns highlight colors
+vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = CONFIG.gitsigns.add })
+vim.api.nvim_set_hl(0, "GitSignsChange", { fg = CONFIG.gitsigns.change })
+vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = CONFIG.gitsigns.delete })
