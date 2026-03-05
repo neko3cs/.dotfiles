@@ -13,9 +13,12 @@ if (Get-Command -Name deno -ErrorAction SilentlyContinue) {
 if (Get-Command -Name dotnet -ErrorAction SilentlyContinue) {
   dotnet completions script pwsh  | Out-File -FilePath (Join-Path $completionDir "_dotnet.ps1") -Encoding UTF8
 }
-if (Get-Command -Name starship -ErrorAction SilentlyContinue) {
-  starship completions powershell | Out-File -FilePath (Join-Path $completionDir "_starship.ps1") -Encoding UTF8
+if (Get-Command -Name gh -ErrorAction SilentlyContinue) {
+  gh completion -s powershell | Out-File -FilePath (Join-Path $completionDir "_gh.ps1") -Encoding UTF8
 }
 if (Get-Command -Name pip -ErrorAction SilentlyContinue) {
   pip completion --powershell | Out-File -FilePath (Join-Path $completionDir "_pip.ps1") -Encoding UTF8
+}
+if (Get-Command -Name starship -ErrorAction SilentlyContinue) {
+  starship completions powershell | Out-File -FilePath (Join-Path $completionDir "_starship.ps1") -Encoding UTF8
 }

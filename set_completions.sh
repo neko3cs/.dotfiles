@@ -14,6 +14,9 @@ fi
 if command -v dotnet >/dev/null 2>&1; then
   dotnet completions script zsh > "$completion_dir/_dotnet"
 fi
+if command -v gh >/dev/null 2>&1; then
+  gh completion -s zsh > "$completion_dir/_gh"
+fi
 if command -v minikube >/dev/null 2>&1; then
   minikube completion zsh > "$completion_dir/_minikube"
 fi
