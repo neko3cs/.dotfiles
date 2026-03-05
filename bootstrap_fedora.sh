@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-
 set -e
+
+SCRIPT_ROOT="$(dirname "$0")"
 
 activate_fedora() {
   # 日本語ロケールのインストール
@@ -23,9 +24,10 @@ activate_fedora() {
   sudo chown -R $(whoami) /usr/local
 }
 install_aws_cli() {
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  unzip awscliv2.zip
-  sudo ./aws/install
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$SCRIPT_ROOT/awscliv2.zip"
+  unzip $SCRIPT_ROOT/awscliv2.zip
+  sudo $SCRIPT_ROOT/aws/install
+  sudo rm -rf $SCRIPT_ROOT/awscliv2.zip $SCRIPT_ROOT/aws
 }
 install_docker() {
   sudo dnf remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate \
@@ -45,7 +47,7 @@ install_starship() {
 }
 
 cd $HOME
-if  [ ! -d ./.dotfiles ]; then
+if  [ ! -d $HOME/.dotfiles ]; then
   git clone https://github.com/neko3cs/.dotfiles.git
 fi
 cd .dotfiles
@@ -53,17 +55,16 @@ cd .dotfiles
 sudo dnf update -y
 
 activate_fedora
-
-./install_dnf-packages.sh
-./set_dotfiles.sh
+. $SCRIPT_ROOT/install_dnf-packages.sh
+. $SCRIPT_ROOT/set_dotfiles.sh
 # HACK: 苦肉の策(本当はこんなところにパス書きたくない)
-PNPM_HOME="/usr/local/share/pnpm" PATH="/usr/local/share/pnpm:$PATH" ./install_pnpm-packages.sh
+PNPM_HOME="/usr/local/share/pnpm" PATH="/usr/local/share/pnpm:$PATH" . $SCRIPT_ROOT/install_pnpm-packages.sh
 install_aws_cli
 install_docker
 install_pyenv
 install_starship
-./set_completions.sh
-/usr/bin/pwsh -File ./Set-Completions.ps1
+. $SCRIPT_ROOT/set_completions.sh
+/usr/bin/pwsh -File $SCRIPT_ROOT/Set-Completions.ps1
 
 sudo dnf autoremove -y
 sudo dnf clean all
