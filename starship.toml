@@ -11,7 +11,6 @@ $git_status\
 $git_state\
 [](fg:#394260 bg:#1d2230)\
 $cmd_duration\
-$memory_usage\
 $time\
 [ ](fg:#1d2230)\
 \n$character"""
@@ -59,12 +58,6 @@ format = '[[($state($progress_current/$progress_total) )](fg:#769ff0 bg:#394260)
 min_time = 2000
 style = "fg:#a0a9cb bg:#1d2230"
 format = "[ 󱎫 $duration ]($style)"
-disabled = false
-
-[memory_usage]
-threshold = -1
-style = "fg:#a0a9cb bg:#1d2230"
-format = "[ 󰍛 $percentage ]($style)"
 disabled = false
 
 [time]
