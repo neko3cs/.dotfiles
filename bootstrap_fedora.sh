@@ -57,8 +57,6 @@ sudo dnf update -y
 activate_fedora
 . $SCRIPT_ROOT/install_dnf-packages.sh
 . $SCRIPT_ROOT/set_dotfiles.sh
-# HACK: 苦肉の策(本当はこんなところにパス書きたくない)
-PNPM_HOME="/usr/local/share/pnpm" PATH="/usr/local/share/pnpm:$PATH" . $SCRIPT_ROOT/install_pnpm-packages.sh
 install_aws_cli
 install_docker
 install_pyenv
