@@ -29,6 +29,7 @@ vim.opt.swapfile = false
 vim.opt.updatetime = 250
 vim.opt.mouse = "a"
 vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.wrap = false
 
 -- Search settings
 vim.opt.hlsearch = true
