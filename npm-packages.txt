@@ -2,6 +2,7 @@
 @mermaid-js/mermaid-cli
 firebase-tools
 jslint
+prettier
 takt
 textlint
 textlint-rule-preset-ja-spacing
