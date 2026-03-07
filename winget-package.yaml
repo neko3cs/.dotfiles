@@ -27,6 +27,7 @@
 - Id: Microsoft.VisualStudio.2022.Professional
 - Id: Microsoft.VisualStudioCode
   Options: "/VERYSILENT /NORESTART /MERGETASKS=!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"
+- Id: 9N1F85V9T8BN # Microsoft.WindowsApp
 - Id: Microsoft.WindowsTerminal
 - Id: MikeFarah.yq
 - Id: Ollama.Ollama
