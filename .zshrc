@@ -69,6 +69,7 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
 fi
 
 # COMPLETIONS
+fpath=($HOME/.zsh/completion $fpath)
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
   fpath=($HOMEBREW_PREFIX/share/zsh-completions $fpath)
 fi
