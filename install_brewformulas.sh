@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-SCRIPT_ROOT="$(dirname "$0")"
+SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+BREWFILE="$SCRIPT_ROOT/Brewfile"
 
 type brew >/dev/null 2>&1 || {
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh >/dev/null
@@ -13,7 +14,7 @@ echo "🍺 upgrade..."
 brew upgrade >/dev/null
 
 echo "🍺 bundle..."
-brew bundle --file=$SCRIPT_ROOT/Brewfile
+brew bundle --file=$BREWFILE
 
 echo "🍺 autoremove..."
 brew autoremove >/dev/null

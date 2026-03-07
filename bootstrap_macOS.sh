@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -e
 
-SCRIPT_ROOT="$(dirname "$0")"
+SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 function set_macOS_defaults() {
   # General: 外観モードを「自動」に設定
