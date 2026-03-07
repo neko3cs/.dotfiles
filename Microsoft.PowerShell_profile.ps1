@@ -118,11 +118,6 @@ if ($IsWindows) {
       wsl nvim $WslPath
     }
   }
-  function less {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline = $true)][string]$Path)
-    $WslPath = ConvertTo-WslPath -Path $Path
-    wsl less $WslPath
-  }
   function refreshenv {
     try {
       $systemEnv = Get-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -ErrorAction Stop
