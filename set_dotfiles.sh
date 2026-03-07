@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-SCRIPT_ROOT="$(dirname "$0")"
+SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 # .zshrc
 ln -sf $SCRIPT_ROOT/.zshrc $HOME/.zshrc
