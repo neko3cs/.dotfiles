@@ -39,14 +39,7 @@ irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.
 | [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)                                | homebrewにもあるけど、旧バージョンも入れたいなら個別に入れたほうがいい                           |
 | [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)                   | [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip) |
 | [Happy Hacking Keyboard - ダウンロード - PFU](https://happyhackingkb.com/jp/download/) | キーボードのドライバー更新など                                                                   |
-| [iMovie](https://apps.apple.com/jp/app/imovie/id408981434?mt=12)                       | App Storeから                                                                                    |
-| [Kindle](https://apps.apple.com/jp/app/kindle/id302584613)                             | App Storeから                                                                                    |
-| [LINE](https://apps.apple.com/jp/app/line/id539883307?mt=12)                           | App Storeから                                                                                    |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)  | -                                                                                                |
-| [RunCat](https://kyome.io/runcat/)                                                     | App Storeから                                                                                    |
-| [Swift Playground](https://apps.apple.com/jp/app/swift-playgrounds/id1496833156?mt=12) | App Storeから                                                                                    |
-| [Windows App](https://apps.apple.com/jp/app/windows-app/id1295203466?mt=12)            | App Storeから                                                                                    |
-| [Xcode](https://apps.apple.com/jp/app/xcode/id497799835?mt=12)                         | App Storeから                                                                                    |
 
 ### Windows
 

@@ -17,6 +17,7 @@ brew "hashicorp/tap/terraform"
 brew "htop"
 brew "jq"
 brew "lazygit"
+brew "mas"
 brew "minikube"
 brew "mono-libgdiplus"
 brew "neovim"
@@ -62,3 +63,10 @@ cask "unity-hub"
 cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
+mas "iMovie", id: 408981434
+mas "Kindle", id: 302584613
+mas "LINE", id: 539883307
+mas "RunCat", id: 1429033973
+mas "Swift Playground", id: 1496833156
+mas "Windows App", id: 1295203466
+mas "Xcode", id: 497799835
