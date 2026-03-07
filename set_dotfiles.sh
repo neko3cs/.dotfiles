@@ -4,7 +4,7 @@ SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 # .zshrc
 ln -sf $SCRIPT_ROOT/.zshrc $HOME/.zshrc
-source ~/.zshrc
+source $HOME/.zshrc
 # pwsh
 mkdir -p $HOME/.config/powershell
 cp -f $SCRIPT_ROOT/Microsoft.PowerShell_profile.ps1 $HOME/.config/powershell/Microsoft.PowerShell_profile.ps1
