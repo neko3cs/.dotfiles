@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-PACKAGES_FILE="$(dirname "$0")/dnf-packages.txt"
+SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+PACKAGES_FILE="$SCRIPT_ROOT/dnf-packages.txt"
 
 # Microsoft Repository
 curl -sSL -O https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm

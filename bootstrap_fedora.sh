@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-SCRIPT_ROOT="$(dirname "$0")"
+SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 activate_fedora() {
   # 日本語ロケールのインストール
