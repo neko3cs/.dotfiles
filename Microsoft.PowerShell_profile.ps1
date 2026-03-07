@@ -108,16 +108,6 @@ if ($IsWindows) {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$Path)
     return wsl --exec wslpath $Path
   }
-  function nano {
-    param([string]$Path)
-    if ([string]::IsNullOrEmpty($Path)) { 
-      wsl --exec nano
-    }
-    else {
-      $WslPath = ConvertTo-WslPath -Path $Path
-      wsl --exec nano $WslPath
-    }
-  }
   function nvim {
     param ([string]$Path)
     if ([string]::IsNullOrEmpty($Path)) { 
