@@ -23,6 +23,16 @@ activate_fedora() {
   # /usr/localの所有者を現在のユーザーに変更
   sudo chown -R $(whoami) /usr/local
 }
+add_dnf_repositories() {
+  # Microsoft Repository
+  curl -sSL -O https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm
+  sudo rpm -i packages-microsoft-prod.rpm
+  rm packages-microsoft-prod.rpm
+  # zsh-completions Repository
+  sudo dnf copr enable -y clarlok/zsh-users
+  # lazygit Repository
+  sudo dnf copr enable -y dejan/lazygit
+}
 install_aws_cli() {
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$SCRIPT_ROOT/awscliv2.zip"
   unzip $SCRIPT_ROOT/awscliv2.zip
@@ -55,7 +65,11 @@ cd .dotfiles
 sudo dnf update -y
 
 activate_fedora
-. $SCRIPT_ROOT/install_dnf-packages.sh
+add_dnf_repositories
+sudo dnf clean all
+sudo dnf makecache -y
+sudo dnf upgrade -y
+sudo dnf install -y $(cat dnf-packages.txt)
 . $SCRIPT_ROOT/set_dotfiles.sh
 install_aws_cli
 install_docker
