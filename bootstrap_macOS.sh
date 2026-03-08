@@ -61,6 +61,12 @@ function set_macOS_defaults() {
 
   echo "Done. Please restart."
 }
+function install_homebrew() {
+  if ! command -v brew >/dev/null 2>&1; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+}
 
 cd $HOME
 if  [ ! -d $HOME/.dotfiles ]; then
@@ -71,7 +77,13 @@ cd $HOME/.dotfiles
 softwareupdate --install
 
 set_macOS_defaults
-. $SCRIPT_ROOT/install_brewformulas.sh
+install_homebrew
+brew update
+brew upgrade
+brew bundle --file=$SCRIPT_ROOT/Brewfile
+brew autoremove
+brew cleanup
+brew doctor
 . $SCRIPT_ROOT/set_dotfiles.sh
 . $SCRIPT_ROOT/set_completions.sh
 pwsh -File $SCRIPT_ROOT/Set-Completions.ps1
