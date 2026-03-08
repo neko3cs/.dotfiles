@@ -22,7 +22,7 @@ if (-not (Test-Path $packageFilePath)) {
 
 $packages = Get-Content -Path $packageFilePath -Raw | ConvertFrom-Yaml
 foreach ($package in $packages) {
-  if ($null -ne $package.Options) {
+  if ($package.PSObject.Properties.Name -contains 'Options') {
     winget install `
       --id $package.Id `
       --override $package.Options `
