@@ -80,6 +80,7 @@ zinit light zsh-users/zsh-completions
 zinit ice wait'0' lucid atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
+zinit light momo-lab/zsh-abbrev-alias
 
 # COMPLETIONS
 fpath=($HOME/.zsh/completion $fpath)
@@ -114,11 +115,13 @@ setopt nomatch
 setopt share_history
 
 # ALIASES
-alias la='ls -ah'
-alias ll='ls -lh'
-alias lla='ls -lah'
-alias cls='clear'
-alias lg='lazygit'
-$IS_MACOS && alias chrome='open -a "Google Chrome"'
-$IS_WSL && alias pbcopy='clip.exe'
-alias gemini-add-conductor='gemini extensions install https://github.com/gemini-cli-extensions/conductor --consent'
+if (( $+functions[abbrev-alias] )); then
+  abbrev-alias la='ls -ah'
+  abbrev-alias ll='ls -lh'
+  abbrev-alias lla='ls -lah'
+  abbrev-alias cls='clear'
+  abbrev-alias lg='lazygit'
+  $IS_MACOS && abbrev-alias chrome='open -a "Google Chrome"'
+  $IS_WSL && abbrev-alias pbcopy='clip.exe'
+  abbrev-alias gemini-add-conductor='gemini extensions install https://github.com/gemini-cli-extensions/conductor --consent'
+fi
