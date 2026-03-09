@@ -28,4 +28,3 @@ which
 xmake
 yq
 zsh
-zsh-completions
