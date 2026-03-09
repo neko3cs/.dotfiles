@@ -202,3 +202,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     k('n', ']g', vim.diagnostic.goto_next, { desc = "Next Diagnostic", buffer = ev.buf })
   end,
 })
+
+-- === 4. ウィンドウ移動のショートカット (Space + hjkl) ===
+local k = vim.keymap.set
+k('n', '<leader>h', '<C-w>h', { desc = "Focus Left" })
+k('n', '<leader>j', '<C-w>j', { desc = "Focus Down" })
+k('n', '<leader>k', '<C-w>k', { desc = "Focus Up" })
+k('n', '<leader>l', '<C-w>l', { desc = "Focus Right" })
