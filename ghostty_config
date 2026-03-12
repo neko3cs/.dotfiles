@@ -5,11 +5,11 @@ cursor-style-blink = false
 confirm-close-surface = false
 
 # ウィンドウサイズ
-window-width = 140
+window-width = 150
 window-height = 45
 
 # テーマ
-theme = "GitHub Dark High Contrast"
+theme = "GitHub Light High Contrast"
 
 # フォント設定
 font-family = "CaskaydiaCove Nerd Font"
