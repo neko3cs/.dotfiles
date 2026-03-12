@@ -109,41 +109,6 @@ require("lazy").setup({
       })
     end
   },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    event = "BufReadPost",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("bufferline").setup({
-        options = {
-          numbers = "none",
-          close_command = "bdelete! %d",
-          right_mouse_command = "bdelete! %d",
-          indicator = { icon = "▎", style = "icon" },
-          buffer_close_icon = "",
-          modified_icon = "●",
-          close_icon = "",
-          show_buffer_icons = true,
-          show_close_icon = false,
-          show_tab_indicators = true,
-          separator_style = "thin",
-          enforce_regular_tabs = false,
-          always_show_bufferline = true,
-          diagnostics = "nvim_lsp",
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = "Explorer",
-              highlight = "Directory",
-              text_align = "left",
-            },
-          },
-        },
-      })
-    end
-  },
-
   -- ファイルツリー
   {
     "nvim-tree/nvim-tree.lua",
