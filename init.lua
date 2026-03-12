@@ -6,6 +6,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.vscode_style = "light"
+vim.g.vscode_italic_comment = false
+vim.g.vscode_transparent = false
+
 -- === 1. オプション設定 (vim.opt) ===
 local opt = vim.opt
 
@@ -58,28 +62,85 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- カラースキーム
   {
-    "tomasiser/vim-code-dark",
+    "Mofiqul/vscode.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme codedark]])
-      -- カーソル行の背景色調整
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2a2a2a", ctermbg = 236 })
+      vim.cmd([[colorscheme vscode]])
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#f0f0f0", ctermbg = 252 })
     end
   },
 
   -- ステータスライン
   {
-    "vim-airline/vim-airline",
-    dependencies = { "vim-airline/vim-airline-themes" },
-    init = function()
-      vim.g.airline_theme = 'codedark'
-      vim.g['airline#extensions#tabline#enabled'] = 1
-      vim.g['airline#extensions#tabline#fnamemod'] = ':t'
-      vim.g['airline#extensions#hunks#non_zero_only'] = 1
-      vim.g.airline_section_c = '%t %M'
-      -- セクションZ (行:列) の表示
-      vim.g.airline_section_z = '%3l:%-2v'
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "vscode",
+          section_separators = "",
+          component_separators = "",
+          disabled_filetypes = {},
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch" },
+          lualine_c = {
+            {
+              "filename",
+              path = 1,
+              symbols = { modified = " ●", readonly = " " },
+            },
+          },
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        extensions = { "nvim-tree" },
+      })
+    end
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    event = "BufReadPost",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("bufferline").setup({
+        options = {
+          numbers = "none",
+          close_command = "bdelete! %d",
+          right_mouse_command = "bdelete! %d",
+          indicator = { icon = "▎", style = "icon" },
+          buffer_close_icon = "",
+          modified_icon = "●",
+          close_icon = "",
+          show_buffer_icons = true,
+          show_close_icon = false,
+          show_tab_indicators = true,
+          separator_style = "thin",
+          enforce_regular_tabs = false,
+          always_show_bufferline = true,
+          diagnostics = "nvim_lsp",
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "Explorer",
+              highlight = "Directory",
+              text_align = "left",
+            },
+          },
+        },
+      })
     end
   },
 
@@ -90,9 +151,13 @@ require("lazy").setup({
     keys = {
       { "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
     },
-    opts = {
-      view = { width = 40 },
-    }
+    config = function()
+      require("nvim-tree").setup({
+        view = { width = 40 },
+      })
+      vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "NONE" })
+    end
   },
 
   -- ファジーファインダー (ファイル検索・文字列検索)
