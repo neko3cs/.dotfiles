@@ -35,6 +35,9 @@ if command -v tesseract >/dev/null 2>&1; then
   export TESSDATA_PREFIX="$(brew --prefix tesseract 2>/dev/null)/share/tessdata"
 fi
 export UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
+export ZSH_CACHE_DIR="$HOME/.zsh/cache"
+export ZSH_COMPDUMP="$HOME/.zsh/.zcompdump"
+[[ -d "$ZSH_CACHE_DIR" ]] || mkdir -p "$ZSH_CACHE_DIR"
 
 # PATH CONFIGURATION
 typeset -U path cdpath fpath manpath
@@ -67,9 +70,9 @@ if [[ -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
   autoload -Uz _zinit
   (( ${+_comps} )) && _comps[zinit]=_zinit
 fi
-if [[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]]; then
+if [[ -r "${HOMEBREW_PREFIX:-}/opt/nvm/nvm.sh" ]]; then
   source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
-  [[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ]] && source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+  [[ -r "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ]] && source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 fi
 if (( $+commands[rbenv] )); then
   eval "$(rbenv init -)"
@@ -82,16 +85,19 @@ if (( $+commands[starship] )); then
 fi
 
 # PLUGIN
-zinit ice lucid as"completion"
+zinit ice wait'0' lucid as"completion"
 zinit light zsh-users/zsh-completions
 zinit ice wait'0' lucid atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
+zinit ice wait'0' lucid
 zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait'0' lucid
 zinit light momo-lab/zsh-abbrev-alias
 
 # COMPLETIONS
 fpath=($HOME/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+autoload -Uz compinit
+compinit -C -d "$ZSH_COMPDUMP" -i
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz zmv
 zinit cdreplay -q
@@ -99,12 +105,14 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR"
+
 if (( $+commands[aws] )); then
-  local aws_comp_path=$(command -v aws_completer)
+  aws_comp_path=$(command -v aws_completer)
   [[ -n "$aws_comp_path" ]] && complete -C "$aws_comp_path" aws
 fi
-if [[ -n "$HOMEBREW_PREFIX" && -f "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]; then
+
+if [[ -n "$HOMEBREW_PREFIX" && -r "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]; then
   source "$HOMEBREW_PREFIX/etc/bash_completion.d/az"
 fi
 
