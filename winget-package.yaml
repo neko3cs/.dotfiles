@@ -1,6 +1,7 @@
 - Id: 7zip.7zip
 - Id: AgileBits.1Password
 - Id: Amazon.AWSCLI
+- Id: astral-sh.uv
 - Id: CubeSoft.CubePDF
 - Id: DenoLand.Deno
 - Id: Fastfetch-cli.Fastfetch
@@ -33,7 +34,6 @@
 - Id: Ollama.Ollama
 - Id: OpenJS.NodeJS.LTS
 - Id: Oven-sh.Bun
-- Id: Python.Python.3.12
 - Id: 9NW5LPNVWFWJ # RunCat365
 - Id: Rustlang.Rustup
 - Id: sharkdp.bat

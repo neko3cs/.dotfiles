@@ -28,7 +28,6 @@ if $IS_MACOS; then
 else
   export PNPM_HOME="/usr/local/share/pnpm"
 fi
-export PYENV_ROOT="$HOME/.pyenv"
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
 if command -v tesseract >/dev/null 2>&1; then
@@ -49,13 +48,13 @@ $IS_MACOS && add_to_path $ANDROID_HOME/platform-tools
 $IS_MACOS && add_to_path $ANDROID_HOME/cmdline-tools/latest/bin
 $IS_MACOS && add_to_path $ANDROID_HOME/tools
 $IS_MACOS && add_to_path $ANDROID_HOME/tools/bin
+add_to_path $HOME/.local/bin
 add_to_path $CARGO_HOME/bin
 add_to_path $DOTNET_ROOT
 add_to_path $GOPATH/bin
 add_to_path $HOME/.dotnet/tools
 add_to_path $JAVA_HOME/bin
 add_to_path $PNPM_HOME
-add_to_path $PYENV_ROOT/bin
 
 # INITIALIZATION
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -76,9 +75,6 @@ if [[ -r "${HOMEBREW_PREFIX:-}/opt/nvm/nvm.sh" ]]; then
 fi
 if (( $+commands[rbenv] )); then
   eval "$(rbenv init -)"
-fi
-if (( $+commands[pyenv] )); then
-  eval "$(pyenv init -)"
 fi
 if (( $+commands[starship] )); then
   eval "$(starship init zsh)"
