@@ -31,6 +31,8 @@ function set_macOS_defaults() {
   defaults write com.apple.finder FXRemoveOldTrashItems -bool true
   # Finder: ファイルの拡張子変更時の警告を無効化
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+  # Finder: 隠しファイルを常に表示する
+  defaults write com.apple.finder AppleShowAllFiles -bool true
 
   # Dock: 自動的に隠す
   defaults write com.apple.dock autohide -bool true
