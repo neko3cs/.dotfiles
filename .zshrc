@@ -134,5 +134,4 @@ if (( $+functions[abbrev-alias] )); then
   abbrev-alias lg='lazygit'
   $IS_MACOS && abbrev-alias chrome='open -a "Google Chrome"'
   $IS_WSL && abbrev-alias pbcopy='clip.exe'
-  abbrev-alias gemini-add-conductor='gemini extensions install https://github.com/gemini-cli-extensions/conductor --consent'
 fi
