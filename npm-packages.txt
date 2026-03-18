@@ -1,4 +1,3 @@
-@angular/cli
 @mermaid-js/mermaid-cli
 firebase-tools
 jslint
