@@ -13,30 +13,30 @@ vim.g.vscode_transparent = false
 -- === 1. オプション設定 (vim.opt) ===
 local opt = vim.opt
 
-opt.number = true         -- 行番号を表示
-opt.cursorline = true     -- カーソル行をハイライト
-opt.mouse = "a"           -- マウス操作を有効化
-opt.termguicolors = true  -- TrueColor対応
+opt.number = true        -- 行番号を表示
+opt.cursorline = true    -- カーソル行をハイライト
+opt.mouse = "a"          -- マウス操作を有効化
+opt.termguicolors = true -- TrueColor対応
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
 -- インデント設定
-opt.expandtab = true      -- タブをスペースに変換
-opt.tabstop = 2           -- タブ幅を2に設定
-opt.shiftwidth = 2        -- 自動インデント幅を2に設定
-opt.autoindent = true     -- 改行時に前の行のインデントを継続
-opt.smartindent = true    -- 言語に合わせて賢くインデント
+opt.expandtab = true   -- タブをスペースに変換
+opt.tabstop = 2        -- タブ幅を2に設定
+opt.shiftwidth = 2     -- 自動インデント幅を2に設定
+opt.autoindent = true  -- 改行時に前の行のインデントを継続
+opt.smartindent = true -- 言語に合わせて賢くインデント
 
 -- 検索設定
-opt.hlsearch = true       -- 検索結果をハイライト
-opt.ignorecase = true     -- 検索時に大文字小文字を区別しない
-opt.smartcase = true      -- 大文字が含まれる場合は区別する
+opt.hlsearch = true   -- 検索結果をハイライト
+opt.ignorecase = true -- 検索時に大文字小文字を区別しない
+opt.smartcase = true  -- 大文字が含まれる場合は区別する
 
 -- その他
-opt.laststatus = 2        -- ステータスラインを常に表示
-opt.swapfile = false      -- スワップファイルを作成しない
-opt.updatetime = 250      -- 反応速度（ms）
-opt.wrap = false          -- 長い行を折り返さない
+opt.laststatus = 2                           -- ステータスラインを常に表示
+opt.swapfile = false                         -- スワップファイルを作成しない
+opt.updatetime = 250                         -- 反応速度（ms）
+opt.wrap = false                             -- 長い行を折り返さない
 opt.backspace = { "indent", "eol", "start" } -- バックスペースの挙動
 
 -- C# ファイル用の個別設定 (FileTypeごとに設定を切り替える)
@@ -109,6 +109,7 @@ require("lazy").setup({
       })
     end
   },
+
   -- ファイルツリー
   {
     "nvim-tree/nvim-tree.lua",
@@ -131,8 +132,8 @@ require("lazy").setup({
     tag = "0.1.5",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<C-p>", function() require('telescope.builtin').find_files() end, desc = "Find Files" },
-      { "<leader>f", function() require('telescope.builtin').live_grep() end, desc = "Live Grep" },
+      { "<C-p>",     function() require('telescope.builtin').find_files() end, desc = "Find Files" },
+      { "<leader>f", function() require('telescope.builtin').live_grep() end,  desc = "Live Grep" },
     }
   },
 
@@ -225,7 +226,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local k = vim.keymap.set
     k('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition", buffer = ev.buf })
     k('n', 'gr', vim.lsp.buf.references, { desc = "Show References", buffer = ev.buf })
-    k('n', 'K',  vim.lsp.buf.hover, { desc = "Hover Documentation", buffer = ev.buf })
+    k('n', 'K', vim.lsp.buf.hover, { desc = "Hover Documentation", buffer = ev.buf })
     k('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename Symbol", buffer = ev.buf })
     k('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action", buffer = ev.buf })
     k('n', '[g', vim.diagnostic.goto_prev, { desc = "Previous Diagnostic", buffer = ev.buf })
