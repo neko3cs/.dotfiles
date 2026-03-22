@@ -180,12 +180,49 @@ require("lazy").setup({
     end
   },
 
+  -- フォーマッタ（Prettier）
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          html            = { "prettierd", "prettier", stop_after_first = true },
+          css             = { "prettierd", "prettier", stop_after_first = true },
+          scss            = { "prettierd", "prettier", stop_after_first = true },
+          less            = { "prettierd", "prettier", stop_after_first = true },
+          javascript      = { "prettierd", "prettier", stop_after_first = true },
+          typescript      = { "prettierd", "prettier", stop_after_first = true },
+          javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+          typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+          htmlangular     = { "prettierd", "prettier", stop_after_first = true },
+          json            = { "prettierd", "prettier", stop_after_first = true },
+          jsonc           = { "prettierd", "prettier", stop_after_first = true },
+          yaml            = { "prettierd", "prettier", stop_after_first = true },
+          markdown        = { "prettierd", "prettier", stop_after_first = true },
+          graphql         = { "prettierd", "prettier", stop_after_first = true },
+          vue             = { "prettierd", "prettier", stop_after_first = true },
+          svelte          = { "prettierd", "prettier", stop_after_first = true },
+          cs              = { "csharpier" },
+          java            = { "google-java-format" },
+          go              = { "gofmt" },
+          rust            = { "rustfmt" },
+        },
+      })
+      -- 手動フォーマット: <leader>mp
+      vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+        require("conform").format({ async = true, lsp_format = "fallback" })
+      end, { desc = "Format file (Prettier)" })
+    end
+  },
+
   -- LSP / 補完設定
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -193,6 +230,9 @@ require("lazy").setup({
     },
     config = function()
       require("mason").setup()
+      require("mason-tool-installer").setup({
+        ensure_installed = { "prettier", "prettierd" },
+      })
       require("mason-lspconfig").setup({
         ensure_installed = { "csharp_ls" }
       })
