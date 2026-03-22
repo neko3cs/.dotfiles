@@ -203,6 +203,8 @@ require("lazy").setup({
           graphql         = { "prettierd", "prettier", stop_after_first = true },
           vue             = { "prettierd", "prettier", stop_after_first = true },
           svelte          = { "prettierd", "prettier", stop_after_first = true },
+          cpp             = { "clang-format" },
+          c               = { "clang-format" },
           cs              = { "csharpier" },
           java            = { "google-java-format" },
           go              = { "gofmt" },
@@ -231,7 +233,7 @@ require("lazy").setup({
     config = function()
       require("mason").setup()
       require("mason-tool-installer").setup({
-        ensure_installed = { "prettier", "prettierd" },
+        ensure_installed = { "prettier", "prettierd", "clang-format" },
       })
       require("mason-lspconfig").setup({
         ensure_installed = { "csharp_ls" }
