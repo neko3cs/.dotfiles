@@ -5,7 +5,7 @@
 ### macOS
 
 ```sh
-cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && bash bootstrap_macOS.sh
+cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && zsh bootstrap_macOS.sh
 ```
 
 ### Fedora
