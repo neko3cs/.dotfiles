@@ -56,12 +56,6 @@ install_starship() {
   sudo curl -sS https://starship.rs/install.sh | sh -s -- --yes
 }
 
-cd $HOME
-if  [ ! -d $HOME/.dotfiles ]; then
-  git clone https://github.com/neko3cs/.dotfiles.git
-fi
-cd .dotfiles
-
 sudo dnf update -y
 
 activate_fedora
