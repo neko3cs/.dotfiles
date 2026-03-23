@@ -25,6 +25,7 @@ tar
 tree
 unzip
 which
+wl-clipboard
 xmake
 yq
 zsh

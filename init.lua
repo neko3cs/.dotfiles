@@ -19,6 +19,7 @@ opt.mouse = "a"          -- マウス操作を有効化
 opt.termguicolors = true -- TrueColor対応
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
+opt.clipboard = "unnamedplus"
 
 -- インデント設定
 opt.expandtab = true   -- タブをスペースに変換
