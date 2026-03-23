@@ -16,7 +16,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 
 ### Windows
 
-WindowsにはGitが標準インストールされていないため、かつ、ついでにPowerShell Coreをインストールする。
+Windowsには標準インストールされていないGitとPowerShell Coreをインストールする。
 
 ```pwsh
 winget install --silent --exact --id Git.Git; winget install --silent --exact --id Microsoft.PowerShell
