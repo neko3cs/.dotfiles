@@ -40,6 +40,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 | [Caskaydia Cove Nerd Font](https://www.nerdfonts.com/font-downloads)                   | [Direct Link](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip) |
 | [Happy Hacking Keyboard - ダウンロード - PFU](https://happyhackingkb.com/jp/download/) | キーボードのドライバー更新など                                                                   |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)  | -                                                                                                |
+| [VMWare Fusion](https://support.broadcom.com/group/ecx/downloads)                      | Broadcom Support Portalからダウンロード                                                          |
 
 ### Windows
 
