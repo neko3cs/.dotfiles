@@ -35,6 +35,7 @@
 - Id: OpenJS.NodeJS.LTS
 - Id: Oven-sh.Bun
 - Id: 9NW5LPNVWFWJ # RunCat365
+- Id: RedHat.Podman-Desktop
 - Id: Rustlang.Rustup
 - Id: sharkdp.bat
 - Id: SST.opencode
