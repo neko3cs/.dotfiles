@@ -78,6 +78,6 @@ brew bundle --file=$SCRIPT_ROOT/Brewfile
 brew autoremove
 brew cleanup
 brew doctor
-. $SCRIPT_ROOT/set_dotfiles.sh
-. $SCRIPT_ROOT/set_completions.sh
+zsh $SCRIPT_ROOT/set_dotfiles.sh
+zsh $SCRIPT_ROOT/set_completions.sh
 pwsh -File $SCRIPT_ROOT/Set-Completions.ps1

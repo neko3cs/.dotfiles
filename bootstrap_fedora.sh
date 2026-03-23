@@ -64,12 +64,12 @@ sudo dnf clean all
 sudo dnf makecache -y
 sudo dnf upgrade -y
 sudo dnf install -y $(cat dnf-packages.txt)
-. $SCRIPT_ROOT/set_dotfiles.sh
+zsh $SCRIPT_ROOT/set_dotfiles.sh
 install_aws_cli
 install_docker
 install_pyenv
 install_starship
-. $SCRIPT_ROOT/set_completions.sh
+zsh $SCRIPT_ROOT/set_completions.sh
 /usr/bin/pwsh -File $SCRIPT_ROOT/Set-Completions.ps1
 
 sudo dnf autoremove -y
