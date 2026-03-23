@@ -56,13 +56,6 @@ catch {
   Write-Error "git is not installed. Install it with:`nwinget install --silent --exact --id Git.Git"
 }
 
-Set-Location -Path $HOME
-$dotfilesPath = Join-Path $HOME '.dotfiles'
-if (-not (Test-Path $dotfilesPath)) {
-  git clone https://github.com/neko3cs/.dotfiles.git $dotfilesPath
-}
-Set-Location -Path $dotfilesPath
-
 . (Join-Path $PSScriptRoot 'Install-WingetPackage.ps1')
 . (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
 . (Join-Path $PSScriptRoot 'Set-Completions.ps1')

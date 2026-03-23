@@ -70,12 +70,6 @@ function install_homebrew() {
   fi
 }
 
-cd $HOME
-if  [ ! -d $HOME/.dotfiles ]; then
-  git clone https://github.com/neko3cs/.dotfiles.git
-fi
-cd $HOME/.dotfiles
-
 softwareupdate --install
 
 set_macOS_defaults

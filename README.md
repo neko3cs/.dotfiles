@@ -5,13 +5,13 @@
 ### macOS
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_macOS.sh | zsh
+cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && bash bootstrap_macOS.sh
 ```
 
 ### Fedora
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/neko3cs/.dotfiles/main/bootstrap_fedora.sh | bash
+cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && bash bootstrap_fedora.sh
 ```
 
 ### Windows
@@ -25,7 +25,7 @@ winget install --silent --exact --id Git.Git; winget install --silent --exact --
 ここでGitのパスを通すためにターミナルを再起動する。以降はPowerShell Core 7.0以上を使う。ここで管理者権限で起動しておくとwinget向けUACダイアログが1回で済む。
 
 ```pwsh
-irm 'https://raw.githubusercontent.com/neko3cs/.dotfiles/main/Bootstrap-Windows.ps1' | iex
+cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && pwsh -f Bootstrap-Windows.ps1
 ```
 
 ## インストーラーリンク集
