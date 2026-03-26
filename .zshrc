@@ -31,7 +31,7 @@ fi
 export STARSHIP_CONFIG=$HOME/.starship/starship.toml
 export STARSHIP_CACHE=$HOME/.starship/cache
 if command -v tesseract >/dev/null 2>&1; then
-  export TESSDATA_PREFIX="$(brew --prefix tesseract 2>/dev/null)/share/tessdata"
+  export TESSDATA_PREFIX="$HOMEBREW_PREFIX/opt/tesseract/share/tessdata"
 fi
 export UUID_PATTERN='[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
 export ZSH_CACHE_DIR="$HOME/.zsh/cache"
