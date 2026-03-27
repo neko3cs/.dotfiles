@@ -1,0 +1,5 @@
+cryptstr
+csharp-ls
+dnzip
+dotnet-reportgenerator-globaltool
+dotnet-stryker
