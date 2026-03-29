@@ -21,6 +21,7 @@ powershell
 procps
 rbenv
 redis
+rustup
 tar
 tree
 unzip
