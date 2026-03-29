@@ -14,3 +14,6 @@ theme = "GitHub Light High Contrast"
 # フォント設定
 font-family = "CaskaydiaCove Nerd Font"
 font-size = 14
+
+# macOSで左OptionをAltキー扱いする
+macos-option-as-alt = left
