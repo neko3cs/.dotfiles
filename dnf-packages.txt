@@ -23,6 +23,7 @@ rbenv
 redis
 rustup
 tar
+terraform
 tree
 unzip
 which
