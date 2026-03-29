@@ -32,6 +32,9 @@ add_dnf_repositories() {
   sudo dnf copr enable -y clarlok/zsh-users
   # lazygit Repository
   sudo dnf copr enable -y dejan/lazygit
+  # HashiCorp Repository
+  sudo dnf install -y dnf-plugins-core
+  sudo dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 }
 install_aws_cli() {
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$SCRIPT_ROOT/awscliv2.zip"
