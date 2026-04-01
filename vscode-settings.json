@@ -1,0 +1,151 @@
+{
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "[dockercompose]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.wordWrap": "off",
+        "prettier.printWidth": 1000
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "application.shellEnvironmentResolutionTimeout": 20,
+    "black-formatter.args": [
+        "--line-length=80"
+    ],
+    "chat.viewSessions.orientation": "stacked",
+    "cmake.configureOnOpen": true,
+    "dart.openDevTools": "flutter",
+    "debug.openDebug": "neverOpen",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.accessibilitySupport": "off",
+    "editor.minimap.autohide": "mouseover",
+    "editor.minimap.enabled": false,
+    "editor.snippetSuggestions": "top",
+    "editor.suggest.preview": true,
+    "editor.suggest.showMethods": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 2,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "editor.wrappingIndent": "none",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        "*.mpp": "cpp"
+    },
+    "files.autoGuessEncoding": true,
+    "files.defaultLanguage": "plaintext",
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.openRepositoryInParentFolders": "always",
+    "go.toolsManagement.autoUpdate": true,
+    "json.schemaDownload.trustedDomains": {},
+    "json.schemas": [],
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.recipe.default": "lualatex",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "lualatex",
+            "tools": [
+                "lualatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "command": "lualatex",
+            "name": "lualatex"
+        }
+    ],
+    "maui.configuration.androidSdkPreferredPath": "/Users/neko3cs/Library/Android/sdk",
+    "mssql.autoDisableNonTSqlLanguageService": true,
+    "mssql.connectionGroups": [
+        {
+            "id": "ROOT",
+            "name": "ROOT"
+        }
+    ],
+    "mssql.connections": [],
+    "mssql.enableRichExperiences": true,
+    "mssql.openQueryResultsInTabByDefault": true,
+    "mssql.openQueryResultsInTabByDefaultDoNotShowPrompt": true,
+    "powershell.buttons.showPanelMovementButtons": true,
+    "powershell.codeFolding.showLastLine": false,
+    "powershell.integratedConsole.focusConsoleOnExecute": false,
+    "powershell.integratedConsole.startInBackground": true,
+    "powershell.pester.codeLens": false,
+    "powershell.promptToUpdatePowerShell": false,
+    "powershell.sideBar.CommandExplorerVisibility": true,
+    "prettier.proseWrap": "never",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.enableMultiLinePasteWarning": "auto",
+    "terminal.integrated.fontFamily": "CaskaydiaCove nerd Font",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "update.showReleaseNotes": false,
+    "workbench.colorTheme": "VS Code Light",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.editorAssociations": {
+        "*.sql": "default",
+        "{git,gitlens,conflictResolution,vscode-local-history}:/**/*.tc.json": "default"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none"
+}
