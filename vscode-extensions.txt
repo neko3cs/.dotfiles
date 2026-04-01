@@ -12,6 +12,7 @@ golang.go
 gruntfuggly.todo-tree
 hashicorp.terraform
 ics.japanese-proofreading
+james-yu.latex-workshop
 mechatroner.rainbow-csv
 ms-azuretools.vscode-bicep
 ms-ceintl.vscode-language-pack-ja
