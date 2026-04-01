@@ -80,6 +80,9 @@ fi
 if (( $+commands[starship] )); then
   eval "$(starship init zsh)"
 fi
+if [ -d "/Library/TeX/texbin" ]; then
+    eval "$(/usr/libexec/path_helper)"
+fi
 
 # PLUGIN
 zinit ice wait'0' lucid as"completion"
