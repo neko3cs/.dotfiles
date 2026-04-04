@@ -12,7 +12,7 @@ window-height = 45
 theme = "GitHub Light High Contrast"
 
 # フォント設定
-font-family = "CaskaydiaCove Nerd Font"
+font-family = "HackGen Console NF"
 font-size = 14
 
 # macOSで左OptionをAltキー扱いする
