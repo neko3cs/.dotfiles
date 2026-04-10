@@ -75,6 +75,7 @@ require("lazy").setup({
   -- ステータスライン
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
@@ -114,7 +115,7 @@ require("lazy").setup({
   -- ファイルツリー
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
     keys = {
       { "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
     },
@@ -141,6 +142,7 @@ require("lazy").setup({
   -- Git 操作の補助
   {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("gitsigns").setup({
         on_attach = function(bufnr)
@@ -168,6 +170,7 @@ require("lazy").setup({
   {
     'akinsho/toggleterm.nvim',
     version = "*",
+    keys = { { [[<c-\>]], desc = "Toggle Terminal" } },
     config = function()
       require("toggleterm").setup({
         open_mapping = [[<c-\>]],
@@ -222,6 +225,7 @@ require("lazy").setup({
   -- LSP / 補完設定
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
@@ -276,7 +280,20 @@ require("lazy").setup({
   },
 
   -- Bicepファイルの構文強調
-  { "carlsmedstad/vim-bicep" },
+  {
+    "carlsmedstad/vim-bicep",
+    ft = "bicep",
+  },
+}, {
+  performance = {
+    rtp = {
+      -- 起動高速化のため無効化するプラグイン
+      disabled_plugins = {
+        "gzip", "matchit", "matchparen", "netrwPlugin",
+        "tarPlugin", "tohtml", "tutor", "zipPlugin",
+      },
+    },
+  },
 })
 
 -- === 3. LSP 共通キーマップ (LspAttach時に有効化) ===
