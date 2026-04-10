@@ -48,7 +48,6 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 | [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)                                                                                 | VS Installerからインストールできるが、最新版がほしいなどの場合は個別に入れる |
 | [Ctrl2cap - Windows Sysinternals - Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)                    | -                                                                            |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)                                                   | -                                                                            |
-| [pdf_as - ファイルの部屋-Dream Space-](http://uchijyu.s601.xrea.com/wordpress/pdf_as/)                                                  | -                                                                            |
 | [TeXLive](https://www.tug.org/texlive/acquire-netinstall.html)                                                                          | -                                                                            |
 | [ULE4JIS/publish at master · dezz/ULE4JIS](https://github.com/dezz/ULE4JIS/tree/master/publish)                                         | -                                                                            |
 | [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)                                                                                | -                                                                            |
