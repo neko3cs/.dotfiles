@@ -29,10 +29,5 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
-	required = true
-	smudge = git-lfs smudge -- %f
 [include]
 	path = .gitconfig.local
