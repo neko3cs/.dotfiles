@@ -56,7 +56,10 @@ catch {
   Write-Error "git is not installed. Install it with:`nwinget install --silent --exact --id Git.Git"
 }
 
-. (Join-Path $PSScriptRoot 'Install-WingetPackage.ps1')
+winget import `
+  --import-file (Join-Path $PSScriptRoot 'winget-package.json') `
+  --accept-package-agreements `
+  --accept-source-agreements
 . (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
 . (Join-Path $PSScriptRoot 'Set-Completions.ps1')
 Set-Wsl2Fedora
