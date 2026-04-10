@@ -6,24 +6,33 @@
 	ignorecase = false
 	quotepath = false
 [color]
-	ui = auto
+  ui = auto
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
 [fetch]
 	prune = true
 [pull]
 	ff = only
 	default = current
 [push]
-	default = current
+  default = current
+  autoSetupRemote = true
+[rebase]
+  autostash = true
+  autosquash = true
+[merge]
+  conflictstyle = zdiff3
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
 	required = true
 	smudge = git-lfs smudge -- %f
-[alias]
-	ci = commit
-	st = status
-	br = branch
-	sw = switch
-	co = checkout
 [include]
 	path = .gitconfig.local
