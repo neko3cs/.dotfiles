@@ -31,15 +31,6 @@
           "PackageIdentifier": "CubeSoft.CubePDF"
         },
         {
-          "PackageIdentifier": "DBeaver.DBeaver.Community"
-        },
-        {
-          "PackageIdentifier": "DenoLand.Deno"
-        },
-        {
-          "PackageIdentifier": "Fastfetch-cli.Fastfetch"
-        },
-        {
           "PackageIdentifier": "gerardog.gsudo"
         },
         {
@@ -52,16 +43,7 @@
           "PackageIdentifier": "GitHub.Copilot"
         },
         {
-          "PackageIdentifier": "GoLang.Go"
-        },
-        {
           "PackageIdentifier": "Google.Chrome"
-        },
-        {
-          "PackageIdentifier": "Google.CloudSDK"
-        },
-        {
-          "PackageIdentifier": "Google.Protobuf"
         },
         {
           "PackageIdentifier": "Hashicorp.Terraform"
@@ -74,9 +56,6 @@
         },
         {
           "PackageIdentifier": "Microsoft.AzureCLI"
-        },
-        {
-          "PackageIdentifier": "Microsoft.OpenJDK.17"
         },
         {
           "PackageIdentifier": "Microsoft.PowerAutomateDesktop"
@@ -112,13 +91,7 @@
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
-          "PackageIdentifier": "Oven-sh.Bun"
-        },
-        {
           "PackageIdentifier": "RedHat.Podman-Desktop"
-        },
-        {
-          "PackageIdentifier": "Rustlang.Rustup"
         },
         {
           "PackageIdentifier": "sharkdp.bat"
@@ -130,16 +103,10 @@
           "PackageIdentifier": "stedolan.jq"
         },
         {
-          "PackageIdentifier": "svenstaro.genact"
-        },
-        {
           "PackageIdentifier": "waterlan.dos2unix"
         },
         {
           "PackageIdentifier": "WinMerge.WinMerge"
-        },
-        {
-          "PackageIdentifier": "Xmake-io.Xmake"
         },
         {
           "PackageIdentifier": "Zoom.Zoom"
