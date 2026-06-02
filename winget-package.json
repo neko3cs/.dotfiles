@@ -61,7 +61,7 @@
           "PackageIdentifier": "Microsoft.SQLServerManagementStudio"
         },
         {
-          "PackageIdentifier": "Microsoft.VisualStudio.2022.Professional"
+          "PackageIdentifier": "Microsoft.VisualStudio.Professional"
         },
         {
           "PackageIdentifier": "Microsoft.VisualStudioCode"
