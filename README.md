@@ -11,7 +11,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 ### Fedora
 
 ```sh
-cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && bash bootstrap_fedora.sh
+sudo dnf install git && cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotfiles && bash bootstrap_fedora.sh
 ```
 
 ### Windows
