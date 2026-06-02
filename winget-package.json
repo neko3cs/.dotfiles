@@ -100,7 +100,7 @@
           "PackageIdentifier": "Starship.Starship"
         },
         {
-          "PackageIdentifier": "stedolan.jq"
+          "PackageIdentifier": "jqlang.jq"
         },
         {
           "PackageIdentifier": "waterlan.dos2unix"
