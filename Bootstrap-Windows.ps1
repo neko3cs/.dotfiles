@@ -58,6 +58,7 @@ catch {
 
 winget import `
   --import-file (Join-Path $PSScriptRoot 'winget-package.json') `
+  --ignore-unavailable `
   --accept-package-agreements `
   --accept-source-agreements
 . (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
