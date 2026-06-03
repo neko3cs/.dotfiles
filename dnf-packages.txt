@@ -30,6 +30,7 @@ rustup
 sqlite
 tar
 terraform
+texlive-scheme-full
 tree
 unzip
 which
