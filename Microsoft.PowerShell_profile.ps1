@@ -145,6 +145,7 @@ Set-PSReadLineOption `
   -HistoryNoDuplicates `
   -BellStyle Visual
 [Console]::OutputEncoding = [Text.Encoding]::UTF8
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue + $PSStyle.Bold
 # Alias
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name ll -Value Get-ChildItem
