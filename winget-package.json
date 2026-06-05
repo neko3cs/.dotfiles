@@ -58,10 +58,7 @@
           "PackageIdentifier": "Microsoft.PowerToys"
         },
         {
-          "PackageIdentifier": "Microsoft.RemoteDesktopClient"
-        },
-        {
-          "PackageIdentifier": "Microsoft.SQLServerManagementStudio"
+          "PackageIdentifier": "Microsoft.SQLServerManagementStudio.22"
         },
         {
           "PackageIdentifier": "Microsoft.VisualStudio.Professional"
