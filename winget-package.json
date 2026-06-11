@@ -79,9 +79,6 @@
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
-          "PackageIdentifier": "RedHat.Podman-Desktop"
-        },
-        {
           "PackageIdentifier": "sharkdp.bat"
         },
         {
