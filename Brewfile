@@ -24,6 +24,7 @@ brew "lazygit"
 brew "llvm"
 brew "mas"
 brew "mono-libgdiplus"
+brew "muter-mutation-testing/formulae/muter"
 brew "neovim"
 brew "nkf"
 brew "nvm"
@@ -39,6 +40,8 @@ brew "rustup"
 brew "sqlcmd"
 brew "sqlite"
 brew "starship"
+brew "swiftformat"
+brew "swiftlint"
 brew "tesseract"
 brew "tree"
 brew "uv"
@@ -81,3 +84,4 @@ mas "RunCat", id: 1429033973
 mas "Swift Playground", id: 1496833156
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
+tap "muter-mutation-testing/formulae"
