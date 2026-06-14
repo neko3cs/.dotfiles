@@ -1,6 +1,6 @@
 brew "awscli"
 brew "azure-cli"
-brew "azure/functions/azure-functions-core-tools@4"
+brew "azure/functions/azure-functions-core-tools@4", trusted: true
 brew "bat"
 brew "boost"
 brew "cmake"
@@ -16,7 +16,7 @@ brew "gh"
 brew "git"
 brew "go"
 brew "gradle"
-brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform", trusted: true
 brew "htop"
 brew "imagemagick"
 brew "jq"
@@ -24,13 +24,13 @@ brew "lazygit"
 brew "llvm"
 brew "mas"
 brew "mono-libgdiplus"
-brew "muter-mutation-testing/formulae/muter"
+brew "muter-mutation-testing/formulae/muter", trusted: true
 brew "neovim"
 brew "nkf"
 brew "nvm"
 brew "ollama"
 brew "opencode"
-brew "oven-sh/bun/bun"
+brew "oven-sh/bun/bun", trusted: true
 brew "postgresql@17"
 brew "protobuf"
 brew "rbenv"
@@ -84,4 +84,7 @@ mas "RunCat", id: 1429033973
 mas "Swift Playground", id: 1496833156
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
+tap "azure/functions"
+tap "hashicorp/tap"
 tap "muter-mutation-testing/formulae"
+tap "oven-sh/bun"
