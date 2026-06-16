@@ -78,6 +78,7 @@ Zsh plugins are managed by [zinit](https://github.com/zdharma-continuum/zinit) (
 | `Microsoft.PowerShell_profile.ps1` | `~/.config/powershell/Microsoft.PowerShell_profile.ps1` |
 | `.textlintrc.json` | `~/.textlintrc.json` |
 | `Brewfile` | `~/Brewfile` |
+| `claude-settings.json` | `~/.claude/settings.json` |
 
 ### Git Config
 `.gitconfig` includes `.gitconfig.local` via `[include]` — machine-specific settings (e.g., user name/email) go there and are not tracked in this repo.
