@@ -32,6 +32,12 @@
   },
   "language": "Japanese",
   "permissions": {
+    "allow": [
+      "Bash(xcodebuild test *)",
+      "Bash(swiftlint --quiet *)",
+      "Bash(xcrun xccov *)",
+      "Bash(xcrun simctl list *)"
+    ],
     "ask": [
       "Bash(curl* -X DELETE*)",
       "Bash(git commit*)",
