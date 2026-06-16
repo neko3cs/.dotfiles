@@ -30,7 +30,6 @@ brew "neovim"
 brew "nkf"
 brew "nvm"
 brew "ollama"
-brew "opencode"
 brew "oven-sh/bun/bun", trusted: true
 brew "postgresql@17"
 brew "protobuf"
