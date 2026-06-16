@@ -7,6 +7,23 @@
     "swift-lsp@claude-plugins-official": true
   },
   "language": "Japanese",
+  "permissions": {
+    "ask": [
+      "Bash(curl* -X DELETE*)",
+      "Bash(gcloud* delete*)",
+      "Bash(gcloud* destroy*)",
+      "Bash(aws* delete*)",
+      "Bash(aws* terminate*)",
+      "Bash(az* delete*)",
+      "Bash(terraform* destroy*)",
+      "Bash(npm publish*)"
+    ],
+    "deny": [
+      "Bash(gws*)",
+      "Bash(mail*)",
+      "Bash(sendmail*)"
+    ]
+  },
   "skipDangerousModePermissionPrompt": true,
   "theme": "light"
 }
