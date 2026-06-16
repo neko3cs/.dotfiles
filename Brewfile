@@ -15,6 +15,7 @@ brew "genact"
 brew "gh"
 brew "git"
 brew "go"
+brew "googleworkspace-cli"
 brew "gradle"
 brew "hashicorp/tap/terraform", trusted: true
 brew "htop"
