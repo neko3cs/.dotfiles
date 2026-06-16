@@ -20,6 +20,9 @@ ln -sf $SCRIPT_ROOT/bat_config $HOME/.config/bat/config
 # neovim init.lua
 mkdir -p $HOME/.config/nvim
 ln -sf $SCRIPT_ROOT/init.lua $HOME/.config/nvim/init.lua
+# claude code
+mkdir -p $HOME/.claude
+ln -sf $SCRIPT_ROOT/claude-settings.json $HOME/.claude/settings.json
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew
