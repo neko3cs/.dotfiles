@@ -23,6 +23,9 @@ ln -sf $SCRIPT_ROOT/init.lua $HOME/.config/nvim/init.lua
 # claude code
 mkdir -p $HOME/.claude
 ln -sf $SCRIPT_ROOT/claude-settings.json $HOME/.claude/settings.json
+# GitHub Copilot
+mkdir -p $HOME/.copilot
+ln -sf $SCRIPT_ROOT/copilot-settings.json $HOME/.copilot/settings.json
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew
