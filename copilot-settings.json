@@ -1,0 +1,12 @@
+{
+  "autoUpdate": true,
+  "banner": "once",
+  "effortLevel": "high",
+  "includeCoAuthoredBy": true,
+  "model": "gpt-5.5",
+  "renderMarkdown": true,
+  "respectGitignore": true,
+  "screenReader": false,
+  "stream": true,
+  "theme": "light"
+}
