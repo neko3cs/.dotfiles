@@ -6,9 +6,6 @@ mkdir -p "$COMPLETIONS_DIR"
 if command -v deno >/dev/null 2>&1; then
   deno completions zsh > "$COMPLETIONS_DIR/_deno"
 fi
-if command -v docker >/dev/null 2>&1; then
-  docker completion zsh > "$COMPLETIONS_DIR/_docker"
-fi
 if command -v dotnet >/dev/null 2>&1; then
   dotnet completions script zsh > "$COMPLETIONS_DIR/_dotnet"
 fi
