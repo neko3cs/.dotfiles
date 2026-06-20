@@ -34,6 +34,9 @@
           "PackageIdentifier": "GitHub.Copilot"
         },
         {
+          "PackageIdentifier": "Google.AntigravityCLI"
+        },
+        {
           "PackageIdentifier": "Google.Chrome"
         },
         {
