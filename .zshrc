@@ -95,7 +95,7 @@ zinit ice lucid
 zinit light momo-lab/zsh-abbrev-alias
 
 # COMPLETIONS
-fpath=($HOME/.zsh/completion $fpath)
+fpath=($HOME/.zsh/completion $HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit -C -d "$ZSH_COMPDUMP" -i
 autoload -Uz bashcompinit && bashcompinit
