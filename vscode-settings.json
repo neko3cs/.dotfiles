@@ -127,6 +127,9 @@
     "powershell.sideBar.CommandExplorerVisibility": true,
     "prettier.proseWrap": "never",
     "security.workspace.trust.untrustedFiles": "open",
+    "settingsSync.ignoredSettings": [
+        "todo-tree.ripgrep.ripgrep"
+    ],
     "terminal.integrated.enableMultiLinePasteWarning": "auto",
     "terminal.integrated.fontFamily": "CaskaydiaCove nerd Font",
     "todo-tree.general.tags": [
@@ -139,8 +142,9 @@
         "[x]"
     ],
     "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "todo-tree.ripgrep.ripgrep": "/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules/@vscode/ripgrep-universal/bin/darwin-x64/rg",
     "update.showReleaseNotes": false,
-    "workbench.colorTheme": "VS Code Light",
+    "workbench.colorTheme": "Light 2026",
     "workbench.editor.empty.hint": "hidden",
     "workbench.editorAssociations": {
         "*.sql": "default",
