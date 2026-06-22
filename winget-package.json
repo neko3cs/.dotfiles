@@ -16,6 +16,9 @@
           "PackageIdentifier": "Amazon.AWSCLI"
         },
         {
+          "PackageIdentifier": "Anthropic.Claude"
+        },
+        {
           "PackageIdentifier": "astral-sh.uv"
         },
         {
@@ -32,6 +35,9 @@
         },
         {
           "PackageIdentifier": "GitHub.Copilot"
+        },
+        {
+          "PackageIdentifier": "Google.AntigravityCLI"
         },
         {
           "PackageIdentifier": "Google.Chrome"
@@ -74,6 +80,9 @@
         },
         {
           "PackageIdentifier": "Ollama.Ollama"
+        },
+        {
+          "PackageIdentifier": "OpenAI.Codex"
         },
         {
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
