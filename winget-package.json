@@ -82,6 +82,9 @@
           "PackageIdentifier": "Ollama.Ollama"
         },
         {
+          "PackageIdentifier": "OpenAI.Codex"
+        },
+        {
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
