@@ -16,6 +16,9 @@
           "PackageIdentifier": "Amazon.AWSCLI"
         },
         {
+          "PackageIdentifier": "Anthropic.Claude"
+        },
+        {
           "PackageIdentifier": "astral-sh.uv"
         },
         {
