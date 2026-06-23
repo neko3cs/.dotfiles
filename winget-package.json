@@ -55,6 +55,9 @@
           "PackageIdentifier": "Microsoft.AzureCLI"
         },
         {
+          "PackageIdentifier": "Microsoft.Azure.AZCopy"
+        },
+        {
           "PackageIdentifier": "Microsoft.PowerAutomateDesktop"
         },
         {
