@@ -1,5 +1,6 @@
 #Requires -Version 7.0
 Set-StrictMode -Version Latest
+$PSModuleAutoLoadingPreference = 'All'
 
 $PowerShellModules = @(
   "PowerShellGet"
@@ -11,15 +12,20 @@ $PowerShellModules = @(
   "powershell-yaml"
   "SqlServer"
 )
-function Register-PowerShellModule {
+function Install-PowerShellModules {
   Register-PSRepository -Default -ErrorAction SilentlyContinue
   Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
   foreach ($module in $PowerShellModules) {
     if (-not (Get-Module -ListAvailable -Name $module)) {
-      Install-Module -Name $module
+      Install-Module -Name $module -Scope CurrentUser -Force -AllowClobber -ErrorAction SilentlyContinue
     }
-    if (-not (Get-Module -Name $module)) {
-      Import-Module -Name $module
+  }
+}
+# $PSModuleAutoLoadingPreferenceをAllにしているので、基本は使わなくていい
+function Import-PowerShellModules {
+  foreach ($module in $PowerShellModules) {
+    if (Get-Module -ListAvailable -Name $module) {
+      Import-Module -Name $module -Scope Global -ErrorAction SilentlyContinue
     }
   }
 }
@@ -75,8 +81,6 @@ elseif ($IsMacOS) {
   Set-Alias -Name lg -Value 'lazygit'
 }
 
-# Import Module
-Register-PowerShellModule
 # Completion
 $completionDir = Join-Path $HOME '.config/powershell/completions'
 if (Test-Path $completionDir) {
