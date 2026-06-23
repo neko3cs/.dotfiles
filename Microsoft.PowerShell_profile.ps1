@@ -58,12 +58,11 @@ if ($IsWindows) {
   }
   function nvim {
     param ([string]$Path)
-    if ([string]::IsNullOrEmpty($Path)) { 
+    if ([string]::IsNullOrEmpty($Path)) {
       wsl nvim
     }
     else {
-      $WslPath = ConvertTo-WslPath -Path $Path
-      wsl nvim $WslPath
+      wsl nvim $($Path | ConvertTo-WslPath)
     }
   }
 }
