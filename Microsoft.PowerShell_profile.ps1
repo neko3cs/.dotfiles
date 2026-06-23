@@ -2,12 +2,14 @@
 Set-StrictMode -Version Latest
 
 $PowerShellModules = @(
-  "posh-git"
-  "Pester"
-  "powershell-yaml"
-  "SqlServer"
+  "PowerShellGet"
+  "Az"
   "ClassExplorer"
   "ImportExcel"
+  "Pester"
+  "posh-git"
+  "powershell-yaml"
+  "SqlServer"
 )
 function Register-PowerShellModule {
   Register-PSRepository -Default -ErrorAction SilentlyContinue
