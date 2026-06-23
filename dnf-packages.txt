@@ -5,6 +5,7 @@ boost-devel
 cmake
 curl
 dos2unix
+dotnet-sdk-10.0
 fastfetch
 file
 fzf
