@@ -126,6 +126,7 @@
     "powershell.promptToUpdatePowerShell": false,
     "powershell.sideBar.CommandExplorerVisibility": true,
     "prettier.proseWrap": "never",
+    "python.analysis.typeCheckingMode": "strict",
     "security.workspace.trust.untrustedFiles": "open",
     "settingsSync.ignoredSettings": [
         "todo-tree.ripgrep.ripgrep"
