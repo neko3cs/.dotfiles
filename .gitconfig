@@ -29,5 +29,5 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
-[include]
-	path = .gitconfig.local
+[credential]
+	helper = manager
