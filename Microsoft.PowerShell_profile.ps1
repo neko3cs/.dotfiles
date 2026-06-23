@@ -99,10 +99,6 @@ if ($IsWindows) {
   Set-Alias -Name lg -Value 'lazygit.exe'
   Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
   function zsh { wsl /usr/bin/zsh }
-  function which {
-    param([Parameter(Mandatory, ValueFromPipeline)][string]$command)
-    return (Get-Command -Name $command -ShowCommandInfo).Definition
-  }
   function ConvertTo-WslPath {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$Path)
     return wsl --exec wslpath $Path
