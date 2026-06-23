@@ -98,6 +98,13 @@ if ($IsWindows) {
   Set-Alias -Name open -Value 'explorer.exe'
   Set-Alias -Name lg -Value 'lazygit.exe'
   Set-Alias -Name winmerge -Value "$HOME\AppData\Local\Programs\WinMerge\WinMergeU.exe"
+  function Update-EnvironmentVariables {
+    foreach ($scope in 'Machine', 'User') {
+      [System.Environment]::GetEnvironmentVariables($scope).GetEnumerator() | ForEach-Object {
+        [System.Environment]::SetEnvironmentVariable($_.Key, $_.Value, 'Process')
+      }
+    }
+  }
   function zsh { wsl /usr/bin/zsh }
   function ConvertTo-WslPath {
     param([Parameter(Mandatory, ValueFromPipeline)][string]$Path)
