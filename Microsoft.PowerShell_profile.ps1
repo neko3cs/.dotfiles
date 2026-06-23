@@ -81,6 +81,10 @@ elseif ($IsMacOS) {
   Set-Alias -Name lg -Value 'lazygit'
 }
 
+# プロンプト表示のため、posh-gitは明示的にインポートする
+if (-not (Get-Module posh-git)) {
+  Import-Module posh-git -ErrorAction SilentlyContinue
+}
 # Completion
 $completionDir = Join-Path $HOME '.config/powershell/completions'
 if (Test-Path $completionDir) {
