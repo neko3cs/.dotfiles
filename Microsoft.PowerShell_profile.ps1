@@ -1,9 +1,7 @@
 #Requires -Version 7.0
-Set-StrictMode -Version Latest
 $PSModuleAutoLoadingPreference = 'All'
 
 $PowerShellModules = @(
-  "PowerShellGet"
   "Az"
   "ClassExplorer"
   "ImportExcel"
@@ -14,10 +12,10 @@ $PowerShellModules = @(
 )
 function Install-PowerShellModules {
   Register-PSRepository -Default -ErrorAction SilentlyContinue
-  Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+  Set-PSRepository -Name 'PSGallery' -Trusted -ErrorAction SilentlyContinue
   foreach ($module in $PowerShellModules) {
     if (-not (Get-Module -ListAvailable -Name $module)) {
-      Install-Module -Name $module -Scope CurrentUser -Force -AllowClobber -ErrorAction SilentlyContinue
+      Install-PSResource -Name $module -Repository PSGallery -Scope CurrentUser -TrustRepository -ErrorAction SilentlyContinue
     }
   }
 }
