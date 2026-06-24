@@ -30,12 +30,14 @@ function Import-PowerShellModules {
 
 if ($IsWindows) {
   # Prompt Design
-  (& starship init powershell) | Out-String | Invoke-Expression
+  if (Get-Command starship -ErrorAction SilentlyContinue) {
+    Invoke-Expression (&starship init powershell)
+    $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
+    $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
+  }
   # Env
   $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
   $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
-  $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
-  $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
   $paths = @(
     "$($Env:LOCALAPPDATA)\DotNetVersions"
     "$($Env:LOCALAPPDATA)\ProcessExplorer"
