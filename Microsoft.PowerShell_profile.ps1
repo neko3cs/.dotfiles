@@ -36,8 +36,6 @@ if ($IsWindows) {
     $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
   }
   # Env
-  $Env:JAVA_HOME = "$HOME\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
-  $Env:ANDROID_HOME = "$HOME\AppData\Local\Android\Sdk"
   $paths = @(
     "$($Env:LOCALAPPDATA)\DotNetVersions"
     "$($Env:LOCALAPPDATA)\ProcessExplorer"
