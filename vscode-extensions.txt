@@ -1,4 +1,5 @@
 angular.ng-template
+anthropic.claude-code
 bierner.markdown-mermaid
 bradlc.vscode-tailwindcss
 dart-code.dart-code
@@ -7,7 +8,6 @@ dbaeumer.vscode-eslint
 denoland.vscode-deno
 docker.docker
 esbenp.prettier-vscode
-github.copilot-chat
 golang.go
 gruntfuggly.todo-tree
 hashicorp.terraform
@@ -38,6 +38,7 @@ ms-vscode.cpptools-themes
 ms-vscode.powershell
 ms-vsliveshare.vsliveshare
 oderwat.indent-rainbow
+openai.chatgpt
 pkief.material-icon-theme
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
