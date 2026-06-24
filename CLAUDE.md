@@ -12,19 +12,19 @@ This is a cross-platform dotfiles repository managing configuration files and to
 ```sh
 zsh bootstrap_macOS.sh
 ```
-Runs `softwareupdate`, applies macOS system defaults, installs Homebrew, runs `brew bundle`, then calls `set_dotfiles.sh` and `set_completions.sh`.
+Runs `softwareupdate`, applies macOS system defaults, installs Homebrew, runs `brew bundle`, then calls `set_dotfiles.sh`, `set_completions.sh`, and `Set-Completions.ps1`.
 
 ### Fedora (initial setup)
 ```sh
 bash bootstrap_fedora.sh
 ```
-Configures locale/timezone, adds third-party DNF repos (Microsoft, HashiCorp, lazygit, zsh-completions), installs packages from `dnf-packages.txt`, then calls `set_dotfiles.sh` and `set_completions.sh`.
+Configures locale/timezone, adds third-party DNF repos (Microsoft, HashiCorp, lazygit, zsh-completions), installs packages from `dnf-packages.txt`, calls `set_dotfiles.sh`, then installs AWS CLI, Docker CE, pyenv, and starship via curl/installer scripts, and finally calls `set_completions.sh` and `Set-Completions.ps1`.
 
 ### Windows (initial setup, run as Administrator in PowerShell 7+)
 ```pwsh
 pwsh -f Bootstrap-Windows.ps1
 ```
-Imports packages from `winget-package.json`, calls `Set-DotFiles.ps1` and `Set-Completions.ps1`, installs WSL2 with FedoraLinux-43.
+Requires `winget` and `git` to be pre-installed. Imports packages from `winget-package.json`, calls `Set-DotFiles.ps1` and `Set-Completions.ps1`, installs WSL2 with FedoraLinux-43, and enables Windows Optional Features (Hyper-V, WSL, VirtualMachinePlatform).
 
 ## Dotfiles Deployment (without full bootstrap)
 
@@ -55,6 +55,8 @@ brew bundle dump --force
 
 For `dnf-packages.txt`, `npm-packages.txt`, `dotnet-tools.txt`, and `vscode-extensions.txt`, update manually by editing the files directly.
 
+`vscode-settings.json` is a reference file for VS Code settings kept in the repo but **not symlinked** — apply it manually via VS Code's settings sync or copy it to the appropriate location.
+
 ## Architecture
 
 ### Symlink Strategy
@@ -79,6 +81,7 @@ Zsh plugins are managed by [zinit](https://github.com/zdharma-continuum/zinit) (
 | `.textlintrc.json` | `~/.textlintrc.json` |
 | `Brewfile` | `~/Brewfile` |
 | `claude-settings.json` | `~/.claude/settings.json` |
+| `copilot-settings.json` | `~/.copilot/settings.json` |
 
 ### Git Config
 `.gitconfig` includes `.gitconfig.local` via `[include]` — machine-specific settings (e.g., user name/email) go there and are not tracked in this repo.
