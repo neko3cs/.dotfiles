@@ -13,6 +13,7 @@ gruntfuggly.todo-tree
 hashicorp.terraform
 ics.japanese-proofreading
 james-yu.latex-workshop
+llvm-vs-code-extensions.lldb-dap
 mechatroner.rainbow-csv
 ms-azuretools.vscode-bicep
 ms-ceintl.vscode-language-pack-ja
@@ -38,11 +39,11 @@ ms-vscode.cpptools-themes
 ms-vscode.powershell
 ms-vsliveshare.vsliveshare
 oderwat.indent-rainbow
-openai.chatgpt
 pkief.material-icon-theme
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
 rust-lang.rust-analyzer
 sumneko.lua
+swiftlang.swift-vscode
 tboox.xmake-vscode
 visualstudiotoolsforunity.vstuc
