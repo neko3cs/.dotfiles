@@ -31,3 +31,5 @@
   renames = true
 [credential]
 	helper = manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
