@@ -7,9 +7,6 @@
           "PackageIdentifier": "7zip.7zip"
         },
         {
-          "PackageIdentifier": "Anthropic.ClaudeCode"
-        },
-        {
           "PackageIdentifier": "AgileBits.1Password"
         },
         {
@@ -19,22 +16,22 @@
           "PackageIdentifier": "Anthropic.Claude"
         },
         {
-          "PackageIdentifier": "astral-sh.uv"
+          "PackageIdentifier": "Anthropic.ClaudeCode"
         },
         {
           "PackageIdentifier": "CubeSoft.CubePDF"
         },
         {
-          "PackageIdentifier": "gerardog.gsudo"
+          "PackageIdentifier": "Git.Git"
         },
         {
-          "PackageIdentifier": "Git.Git"
+          "PackageIdentifier": "GitHub.Copilot"
         },
         {
           "PackageIdentifier": "GitHub.cli"
         },
         {
-          "PackageIdentifier": "GitHub.Copilot"
+          "PackageIdentifier": "GoLang.Go"
         },
         {
           "PackageIdentifier": "Google.AntigravityCLI"
@@ -49,13 +46,13 @@
           "PackageIdentifier": "JesseDuffield.lazygit"
         },
         {
+          "PackageIdentifier": "Microsoft.Azure.AZCopy"
+        },
+        {
           "PackageIdentifier": "Microsoft.Azure.FunctionsCoreTools"
         },
         {
           "PackageIdentifier": "Microsoft.AzureCLI"
-        },
-        {
-          "PackageIdentifier": "Microsoft.Azure.AZCopy"
         },
         {
           "PackageIdentifier": "Microsoft.PowerAutomateDesktop"
@@ -91,22 +88,34 @@
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
-          "PackageIdentifier": "sharkdp.bat"
+          "PackageIdentifier": "Rustlang.Rustup"
         },
         {
           "PackageIdentifier": "Starship.Starship"
         },
         {
-          "PackageIdentifier": "jqlang.jq"
-        },
-        {
-          "PackageIdentifier": "waterlan.dos2unix"
+          "PackageIdentifier": "Swift.Toolchain"
         },
         {
           "PackageIdentifier": "WinMerge.WinMerge"
         },
         {
           "PackageIdentifier": "Zoom.Zoom"
+        },
+        {
+          "PackageIdentifier": "astral-sh.uv"
+        },
+        {
+          "PackageIdentifier": "gerardog.gsudo"
+        },
+        {
+          "PackageIdentifier": "jqlang.jq"
+        },
+        {
+          "PackageIdentifier": "sharkdp.bat"
+        },
+        {
+          "PackageIdentifier": "waterlan.dos2unix"
         }
       ],
       "SourceDetails": {
