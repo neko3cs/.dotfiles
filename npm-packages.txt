@@ -2,7 +2,6 @@
 firebase-tools
 jslint
 prettier
-takt
 textlint
 textlint-rule-preset-ja-spacing
 textlint-rule-preset-japanese
