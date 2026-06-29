@@ -46,7 +46,7 @@
           "PackageIdentifier": "JesseDuffield.lazygit"
         },
         {
-          "PackageIdentifier": "Microsoft.Azure.AZCopy"
+          "PackageIdentifier": "Microsoft.Azure.AZCopy.10"
         },
         {
           "PackageIdentifier": "Microsoft.Azure.FunctionsCoreTools"
