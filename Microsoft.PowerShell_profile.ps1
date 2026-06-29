@@ -98,6 +98,9 @@ Set-PSReadLineOption `
   -HistorySearchCursorMovesToEnd `
   -HistoryNoDuplicates `
   -BellStyle Visual
+Set-PSReadLineKeyHandler `
+  -Key Tab `
+  -Function MenuComplete
 [Console]::OutputEncoding = [Text.Encoding]::UTF8
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Blue + $PSStyle.Bold
 # Alias
