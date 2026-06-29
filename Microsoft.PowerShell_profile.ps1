@@ -93,7 +93,7 @@ if (Test-Path $completionDir) {
 Set-PSReadLineOption `
   -PredictionSource History `
   -PredictionViewStyle InlineView `
-  -MaximumHistoryCount 200 `
+  -MaximumHistoryCount 10000 `
   -HistorySearchCaseSensitive `
   -HistorySearchCursorMovesToEnd `
   -HistoryNoDuplicates `
