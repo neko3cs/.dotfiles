@@ -23,9 +23,17 @@ ln -sf $SCRIPT_ROOT/init.lua $HOME/.config/nvim/init.lua
 # claude code
 mkdir -p $HOME/.claude
 ln -sf $SCRIPT_ROOT/claude-settings.json $HOME/.claude/settings.json
+ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.claude/CLAUDE.md
+# codex
+mkdir -p $HOME/.codex
+ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.codex/AGENTS.md
 # GitHub Copilot
 mkdir -p $HOME/.copilot
 ln -sf $SCRIPT_ROOT/copilot-settings.json $HOME/.copilot/settings.json
+ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.copilot/copilot-instructions.md
+# gemini (antigravity-cli)
+mkdir -p $HOME/.gemini
+ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.gemini/GEMINI.md
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew
