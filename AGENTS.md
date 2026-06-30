@@ -102,27 +102,29 @@ For `dnf-packages.txt`, `npm-packages.txt`, `dotnet-tools.txt`, and `vscode-exte
 - **Platform guards are mandatory.** Any macOS-only or WSL-only config in `.zshrc` must be wrapped in `if $IS_MACOS` or `if $IS_WSL`.
 - **Completions are generated per-machine.** The generated files under `~/.zsh/completion/` and `~/.config/powershell/completions/` are not tracked in git. Re-run `set_completions.sh` / `Set-Completions.ps1` after installing new tools.
 
-## Why Certain Decisions Were Made
+## Tacit Knowledge
 
-- **`Microsoft.PowerShell_profile.ps1` is copied, not symlinked**: The `$PROFILE` path differs between macOS and Windows, so a single symlink target cannot satisfy both. Copying on each `set_dotfiles.sh` run keeps the file up to date without requiring per-OS symlink paths.
-- **`.gitconfig.local` is not tracked**: User name and email are machine-specific and must not leak into a public repo. The `[include]` mechanism in `.gitconfig` loads it transparently when present.
-- **zinit is chosen for zsh plugins**: It auto-installs on first shell start with no separate setup step, making bootstrapping simpler. Plugins are loaded lazily (`wait'0'`).
-- **`vscode-settings.json` is not symlinked**: VS Code's settings path differs by OS and can also be managed by VS Code Settings Sync, so symlinking would conflict. The file is kept in the repo as a reference snapshot.
-
-## Implicit Constraints
-
-- `IS_WSL` detection relies on `$WSL_DISTRO_NAME` being set by the WSL distro. Native Linux (non-WSL) will have both `IS_MACOS=false` and `IS_WSL=false`.
-- The Fedora bootstrap assumes the user runs it as a regular user with `sudo` access, not as root.
-- The Windows bootstrap requires `winget` and `git` to already be installed before running — it does not install them.
-- PowerShell modules (`Az`, `Pester`, etc.) are installed via `Install-PowerShellModules` which is defined in the profile but not called automatically — run it manually when setting up a new machine.
+- **PowerShell profile is copied, not symlinked**: `$PROFILE` path differs per OS; a single symlink target can't satisfy both macOS and Windows.
+- **`.gitconfig.local` is not tracked**: Stores machine-specific user.name/email that must not appear in a public repo. Loaded transparently via `[include]` in `.gitconfig`.
+- **zinit for zsh plugins**: Auto-installs on first shell start with no separate step. Plugins load lazily (`wait'0'`), so bootstrapping needs no manual plugin setup.
+- **`vscode-settings.json` is not symlinked**: VS Code settings path differs by OS and can conflict with Settings Sync. Kept as a reference snapshot only.
+- **`IS_WSL` relies on `$WSL_DISTRO_NAME`**: Native Linux (non-WSL) will have both `IS_MACOS=false` and `IS_WSL=false`. Do not assume Linux == WSL.
+- **Fedora bootstrap must run as non-root with sudo**: The script uses `sudo` internally; running as root breaks ownership assumptions.
+- **Windows bootstrap requires `winget` and `git` pre-installed**: The script does not install them; it will fail early if they are missing.
+- **PowerShell modules need manual install**: `Install-PowerShellModules` is defined in the profile but not called automatically — run it once when setting up a new machine.
 
 ## Open Issues
 
 None currently known.
 
-## Current State (2026-06-24)
+## Handoff Snapshot (2026-06-30)
 
-- **Recently added**: `copilot-settings.json` symlink for GitHub Copilot settings (`~/.copilot/settings.json`)
-- **AGENTS.md**: Created for the first time today; CLAUDE.md now delegates to this file via `@AGENTS.md`
-- **All bootstrap scripts**: Verified against actual script content; descriptions in docs were updated to match
-- **No in-progress tasks**
+- Tests: N/A (dotfiles repo — no automated tests)
+- In progress: nothing
+- Decided: AGENTS.md created as single source of truth; CLAUDE.md simplified to `@AGENTS.md` only. Bootstrap script descriptions updated to match actual script behavior. `copilot-settings.json` symlink added.
+
+## Incidents
+
+| Date | What went wrong | Prevention |
+| :--- | :--- | :--- |
+| — | — | — |
