@@ -13,6 +13,9 @@
       "Bash(sendmail*)",
       "Bash(git reset*)",
       "Bash(git rebase*)",
+      "Bash(git push --force *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git push -f *)",
       "Read(**/.env*)",
       "Edit(**/.env*)",
       "Read(**/secrets/**)",
@@ -30,7 +33,18 @@
       "Bash(aws* terminate*)",
       "Bash(az* delete*)",
       "Bash(terraform* destroy*)",
-      "Bash(npm publish*)"
+      "Bash(npm publish*)",
+      "Bash(pnpm add *)",
+      "Bash(uv add *)",
+      "Bash(uv pip install *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(brew install *)",
+      "Bash(npm install -g *)",
+      "Bash(npm install --global *)",
+      "Bash(winget install *)",
+      "Bash(dotnet tool install *)",
+      "Bash(cargo install *)"
     ]
   },
   "hooks": {
