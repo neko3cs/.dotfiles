@@ -19,7 +19,7 @@ def _platform_key():
     return sys.platform  # darwin / win32
 
 
-def play(event="notification"):
+def play(event: str = "notification") -> None:
     key = _platform_key()
     try:
         if key == "darwin":
