@@ -54,7 +54,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const{pathToFileURL}=require('url'),os=require('os');import(pathToFileURL(os.homedir()+'/.dotfiles/play-sound.mjs').href).then(m=>m.default('notification'))\""
+            "command": "python -c \"import os,sys;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('notification')\""
           }
         ]
       }
@@ -65,7 +65,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const{pathToFileURL}=require('url'),os=require('os');import(pathToFileURL(os.homedir()+'/.dotfiles/play-sound.mjs').href).then(m=>m.default('stop'))\""
+            "command": "python -c \"import os,sys;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\""
           }
         ]
       }
