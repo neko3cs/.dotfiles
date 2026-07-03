@@ -1,0 +1,62 @@
+{
+  "agent": {
+    "favorite_models": [],
+    "model_parameters": [],
+    "sidebar_side": "right"
+  },
+  "auto_install_extensions": {
+    "angular": true,
+    "bicep": true,
+    "csharp": true,
+    "csv": true,
+    "dart": true,
+    "dockerfile": true,
+    "html": true,
+    "java": true,
+    "kotlin": true,
+    "latex": true,
+    "lua": true,
+    "macos-classic": true,
+    "material-icon-theme": true,
+    "mermaid": true,
+    "powershell": true,
+    "ruby": true,
+    "sql": true,
+    "swift": true,
+    "terraform": true,
+    "toml": true,
+    "xmake": true,
+    "xml": true
+  },
+  "buffer_font_size": 12,
+  "cli_default_open_behavior": "existing_window",
+  "diff_view_style": "unified",
+  "icon_theme": {
+    "dark": "Material Icon Theme",
+    "light": "Material Icon Theme",
+    "mode": "light"
+  },
+  "languages": {
+    "JSON": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-S",
+            "."
+          ],
+          "command": "jq"
+        }
+      }
+    }
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "tab_size": 2,
+  "theme": {
+    "dark": "macOS Classic Dark",
+    "light": "macOS Classic Light",
+    "mode": "light"
+  },
+  "ui_font_size": 14
+}
