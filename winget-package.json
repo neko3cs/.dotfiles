@@ -122,6 +122,9 @@
         },
         {
           "PackageIdentifier": "waterlan.dos2unix"
+        },
+        {
+          "PackageIdentifier": "ZedIndustries.Zed"
         }
       ],
       "SourceDetails": {
