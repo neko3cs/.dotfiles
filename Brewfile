@@ -82,6 +82,7 @@ cask "unity-hub"
 cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
+cask "zed"
 mas "iMovie", id: 408981434
 mas "Kindle", id: 302584613
 mas "LINE", id: 539883307
