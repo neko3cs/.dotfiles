@@ -49,6 +49,9 @@
           "PackageIdentifier": "Hashicorp.Terraform"
         },
         {
+          "PackageIdentifier": "JGraph.Draw"
+        },
+        {
           "PackageIdentifier": "JesseDuffield.lazygit"
         },
         {
