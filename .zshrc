@@ -5,12 +5,8 @@ IS_WSL=false
 [[ -n "$WSL_DISTRO_NAME" ]] && IS_WSL=true
 
 # HOMEBREW SETUP
-if $IS_MACOS; then
-  if [[ -x /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -x /usr/local/bin/brew ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
+if $IS_MACOS && [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # ENVIRONMENT VALUES
