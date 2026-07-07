@@ -31,23 +31,11 @@
   "buffer_font_size": 12,
   "cli_default_open_behavior": "existing_window",
   "diff_view_style": "unified",
+  "format_on_save": "off",
   "icon_theme": {
     "dark": "Material Icon Theme",
     "light": "Material Icon Theme",
     "mode": "light"
-  },
-  "languages": {
-    "JSON": {
-      "formatter": {
-        "external": {
-          "arguments": [
-            "-S",
-            "."
-          ],
-          "command": "jq"
-        }
-      }
-    }
   },
   "project_panel": {
     "dock": "left"
