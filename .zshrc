@@ -51,7 +51,7 @@ add_to_path $HOME/.dotnet/tools
 add_to_path $HOME/.local/bin
 add_to_path $HOMEBREW_PREFIX/opt/llvm/bin
 add_to_path $JAVA_HOME/bin
-add_to_path $PNPM_HOME
+add_to_path $PNPM_HOME/bin
 
 # INITIALIZATION
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
