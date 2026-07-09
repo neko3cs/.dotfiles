@@ -2,7 +2,7 @@
   "agent": {
     "favorite_models": [],
     "model_parameters": [],
-    "sidebar_side": "right"
+    "sidebar_side": "right",
   },
   "auto_install_extensions": {
     "angular": true,
@@ -26,7 +26,7 @@
     "terraform": true,
     "toml": true,
     "xmake": true,
-    "xml": true
+    "xml": true,
   },
   "buffer_font_size": 12,
   "cli_default_open_behavior": "existing_window",
@@ -35,7 +35,7 @@
   "icon_theme": {
     "dark": "Material Icon Theme",
     "light": "Material Icon Theme",
-    "mode": "light"
+    "mode": "light",
   },
   "lsp": {
     "powershell-es": {
@@ -44,20 +44,20 @@
           "codeFormatting": {
             "newLineAfterOpenBrace": true,
             "openBraceOnSameLine": true,
-            "whitespaceAroundOperator": true
-          }
-        }
-      }
-    }
+            "whitespaceAroundOperator": true,
+          },
+        },
+      },
+    },
   },
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "tab_size": 2,
   "theme": {
     "dark": "macOS Classic Dark",
     "light": "macOS Classic Light",
-    "mode": "light"
+    "mode": "light",
   },
-  "ui_font_size": 14
+  "ui_font_size": 14,
 }
