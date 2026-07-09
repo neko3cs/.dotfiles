@@ -28,6 +28,7 @@ brew "mono-libgdiplus"
 brew "muter-mutation-testing/formulae/muter", trusted: true
 brew "neovim"
 brew "nkf"
+brew "node"
 brew "nvm"
 brew "ollama"
 brew "oven-sh/bun/bun", trusted: true
