@@ -37,6 +37,19 @@
     "light": "Material Icon Theme",
     "mode": "light"
   },
+  "lsp": {
+    "powershell-es": {
+      "settings": {
+        "powershell": {
+          "codeFormatting": {
+            "newLineAfterOpenBrace": true,
+            "openBraceOnSameLine": true,
+            "whitespaceAroundOperator": true
+          }
+        }
+      }
+    }
+  },
   "project_panel": {
     "dock": "left"
   },
