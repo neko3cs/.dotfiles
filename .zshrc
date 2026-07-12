@@ -17,7 +17,7 @@ export DOTNET_ROOT="/usr/local/share/dotnet"
 export GOPATH="$HOME/gopath"
 $IS_MACOS && export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true
-export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
+$IS_WSL && export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/cacert.pem"
 export NVM_DIR="$HOME/.nvm"
 if $IS_MACOS; then
   export PNPM_HOME="$HOME/Library/pnpm"
