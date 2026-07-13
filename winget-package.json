@@ -34,6 +34,9 @@
           "PackageIdentifier": "GitHub.cli"
         },
         {
+          "PackageIdentifier": "GitHub.GitHubDesktop"
+        },
+        {
           "PackageIdentifier": "GoLang.Go"
         },
         {
