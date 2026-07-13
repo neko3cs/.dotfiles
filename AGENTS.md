@@ -117,14 +117,15 @@ For `dnf-packages.txt`, `npm-packages.txt`, `dotnet-tools.txt`, and `vscode-exte
 
 None currently known.
 
-## Handoff Snapshot (2026-06-30)
+## Handoff Snapshot (2026-07-13)
 
 - Tests: N/A (dotfiles repo — no automated tests)
 - In progress: nothing
-- Decided: AGENTS.md created as single source of truth; CLAUDE.md simplified to `@AGENTS.md` only. Bootstrap script descriptions updated to match actual script behavior. `copilot-settings.json` symlink added.
+- Decided: Fixed `.gitconfig` missing its `[include]` directive for `.gitconfig.local` (design was documented but never wired up). Restricted `NODE_EXTRA_CA_CERTS` to `$IS_WSL` since the referenced cert path doesn't exist on macOS. Renamed `codex-app` → `chatgpt` cask in Brewfile (app was discontinued/rebranded). Fixed `PNPM_HOME` PATH entry to include `/bin`. Added `node` brew formula.
 
 ## Incidents
 
 | Date | What went wrong | Prevention |
 | :--- | :--- | :--- |
-| — | — | — |
+| 2026-07-12 | `.gitconfig` had no `[include]` section for `.gitconfig.local`, so `user.name`/`user.email` were never actually loaded despite AGENTS.md documenting that design | When splitting config into an included file, verify the `[include]` directive itself was added, not just the included file's existence |
+| 2026-07-12 | `NODE_EXTRA_CA_CERTS` was set unconditionally in `.zshrc` pointing to a Linux-only cert path, breaking pnpm and other Node tools on macOS | New env vars/PATH entries in `.zshrc` must be checked against the "platform guards are mandatory" rule before merging, not just tested on one OS |
