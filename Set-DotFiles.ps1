@@ -10,6 +10,7 @@ if ($IsWindows)
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.claude/CLAUDE.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType Directory -Force -Path $HOME/.codex | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.codex/AGENTS.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
+    Copy-Item -Force -Path $PSScriptRoot\codex-config.toml -Destination $HOME/.codex/config.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/settings.json -Value $PSScriptRoot\copilot-settings.json | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/copilot-instructions.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType Directory -Force -Path $HOME/.gemini | Out-Null

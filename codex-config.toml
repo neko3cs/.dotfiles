@@ -1,0 +1,33 @@
+model = "gpt-5.3-codex"
+model_provider = "azure-east-us2"
+model_reasoning_effort = "high"
+
+approval_policy = "never"
+network_access = true
+sandbox_mode = "read-only"
+
+[model_providers.azure-east-us2]
+name = "Azure"
+# cp配置後、実際のAzure Foundryエンドポイントに手動で書き換える(env_keyと違い変数展開されない)
+base_url = "{AZURE_FOUNDRY_BASE_URL}"
+env_key = "MICROSOFT_FOUNDRY_API_KEY"
+
+[windows]
+sandbox = "elevated"
+
+[features]
+js_repl = false
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
