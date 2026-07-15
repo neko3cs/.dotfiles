@@ -27,6 +27,7 @@ ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.claude/CLAUDE.md
 # codex
 mkdir -p $HOME/.codex
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.codex/AGENTS.md
+cp -f $SCRIPT_ROOT/codex-config.toml $HOME/.codex/config.toml
 # GitHub Copilot
 mkdir -p $HOME/.copilot
 ln -sf $SCRIPT_ROOT/copilot-settings.json $HOME/.copilot/settings.json

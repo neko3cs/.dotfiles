@@ -39,8 +39,11 @@ Zsh plugins are managed by [zinit](https://github.com/zdharma-continuum/zinit), 
 | `Brewfile` | `~/Brewfile` |
 | `claude-settings.json` | `~/.claude/settings.json` |
 | `copilot-settings.json` | `~/.copilot/settings.json` |
+| `codex-config.toml` | `~/.codex/config.toml` (copied, not symlinked) |
 
 `vscode-settings.json` is a reference file kept in the repo but **not symlinked** — apply it manually via VS Code Settings Sync or copy it manually.
+
+`codex-config.toml`'s `base_url` is a `{AZURE_FOUNDRY_BASE_URL}` placeholder — fill in the real Azure Foundry endpoint by hand in `~/.codex/config.toml` after deployment. It's copied rather than symlinked because the Codex desktop app rewrites this file at runtime (auto-generated fields like `[projects.*]`, `[mcp_servers.*]`); symlinking would let that churn dirty the tracked source.
 
 ## Commands
 
