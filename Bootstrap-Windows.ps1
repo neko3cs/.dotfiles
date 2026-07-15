@@ -14,6 +14,9 @@ function Enable-WindowsOptionalFeature {
     "Microsoft-Hyper-V-All"
     "Microsoft-Windows-Subsystem-Linux"
     "VirtualMachinePlatform"
+    "IIS-WebServerRole"
+    "IIS-WebServer"
+    "IIS-ManagementConsole"
   )
   $RebootRequired = $false
   foreach ($Feature in $OptionalFeatures) {
