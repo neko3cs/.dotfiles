@@ -4,7 +4,12 @@ model_reasoning_effort = "high"
 
 approval_policy = "never"
 network_access = true
-sandbox_mode = "read-only"
+sandbox_mode = "workspace-write"
+mcp_oauth_credentials_store = "keyring"
+
+[shell_environment_policy]
+# 全自動実行(approval_policy=never)なので、生成コマンドの環境変数からAPIキー類を隠す
+exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 
 [model_providers.azure-east-us2]
 name = "Azure"
