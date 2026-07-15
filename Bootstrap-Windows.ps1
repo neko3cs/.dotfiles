@@ -9,7 +9,7 @@ function Set-Wsl2Fedora {
   wsl --set-default FedoraLinux-43
   wsl --set-default-version 2
 }
-function Enable-WindowsOptionalFeature {
+function Invoke-EnableWindowsOptionalFeature {
   $OptionalFeatures = @(
     "Microsoft-Hyper-V-All"
     "Microsoft-Windows-Subsystem-Linux"
@@ -67,7 +67,7 @@ winget import `
 . (Join-Path $PSScriptRoot 'Set-DotFiles.ps1')
 . (Join-Path $PSScriptRoot 'Set-Completions.ps1')
 Set-Wsl2Fedora
-Enable-WindowsOptionalFeature
+Invoke-EnableWindowsOptionalFeature
 
 if (Test-Path $PROFILE) {
   . $PROFILE
