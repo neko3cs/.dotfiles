@@ -1,5 +1,9 @@
-model = "gpt-5.3-codex"
-model_provider = "azure-east-us2"
+model = "gpt-5.4"
+# ChatGPTアプリはGUI切り替え不可のため公式(openai)をデフォルトに固定
+# 切り替え時は使う行だけ残す(CLIなら`-c model_provider=xxx`でも可)
+model_provider = "openai"
+# model_provider = "ollama"
+# model_provider = "azure-east-us2"
 model_reasoning_effort = "high"
 
 approval_policy = "never"
@@ -8,12 +12,12 @@ sandbox_mode = "workspace-write"
 mcp_oauth_credentials_store = "keyring"
 
 [shell_environment_policy]
-# 全自動実行(approval_policy=never)なので、生成コマンドの環境変数からAPIキー類を隠す
+# 全自動実行時、生成コマンドへのAPIキー漏出を防ぐ
 exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 
 [model_providers.azure-east-us2]
 name = "Azure"
-# cp配置後、実際のAzure Foundryエンドポイントに手動で書き換える(env_keyと違い変数展開されない)
+# cp配置後に実URLへ手動置換(変数展開はされない)
 base_url = "{AZURE_FOUNDRY_BASE_URL}"
 env_key = "MICROSOFT_FOUNDRY_API_KEY"
 
