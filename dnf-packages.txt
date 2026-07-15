@@ -13,6 +13,7 @@ gh
 git
 golang
 htop
+httpd
 ImageMagick
 jq
 lazygit
