@@ -46,6 +46,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 | パッケージ名                                                                                                                            | 補足                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)                                                                                 | VS Installerからインストールできるが、最新版がほしいなどの場合は個別に入れる |
+| [Amazon Kindle](https://apps.microsoft.com/detail/9P8JQ0JJSTLL?hl=ja&gl=JP&ocid=pdpshare)                                               | Microsoft Store                                                              |
 | [Ctrl2cap - Windows Sysinternals - Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)                    | -                                                                            |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)                                                   | -                                                                            |
 | [Microsoft 365 Copilot](https://apps.microsoft.com/detail/9wzdncrd29v9?hl=ja-JP&gl=JP)                                                  | Microsoft Store                                                              |
