@@ -7,34 +7,39 @@
 	editor = vi
 	ignorecase = false
 	quotepath = false
+
 [color]
-  ui = auto
+	ui = auto
 [column]
-  ui = auto
+	ui = auto
+
 [branch]
-  sort = -committerdate
+	sort = -committerdate
 [fetch]
 	prune = true
 [pull]
 	ff = only
 	default = current
 [push]
-  default = current
-  autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 [rebase]
-  autostash = true
-  autosquash = true
+	autostash = true
+	autosquash = true
+
 [merge]
-  conflictstyle = zdiff3
+	conflictstyle = zdiff3
 [diff]
-  algorithm = histogram
-  colorMoved = plain
-  mnemonicPrefix = true
-  renames = true
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+
 [credential]
 	helper = manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
