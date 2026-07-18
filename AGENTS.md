@@ -59,7 +59,7 @@ zsh bootstrap_macOS.sh
 bash bootstrap_fedora.sh
 # Configures locale/timezone, adds DNF repos (Microsoft, HashiCorp, lazygit, zsh-completions),
 # installs packages from dnf-packages.txt, calls set_dotfiles.sh,
-# installs AWS CLI / Docker CE / pyenv / starship via curl/installer,
+# installs AWS CLI / Docker CE / pyenv / starship / Git Credential Manager via curl/installer,
 # then calls set_completions.sh and Set-Completions.ps1
 
 # Windows (run as Administrator in PowerShell 7+)
@@ -115,6 +115,7 @@ For `dnf-packages.txt`, `npm-packages.txt`, `dotnet-tools.txt`, and `vscode-exte
 - **Fedora bootstrap must run as non-root with sudo**: The script uses `sudo` internally; running as root breaks ownership assumptions.
 - **Windows bootstrap requires `winget` and `git` pre-installed**: The script does not install them; it will fail early if they are missing.
 - **PowerShell modules need manual install**: `Install-PowerShellModules` is defined in the profile but not called automatically — run it once when setting up a new machine.
+- **Git Credential Manager has no official Fedora RPM**: `bootstrap_fedora.sh`'s `install_gcm` branches on `$WSL_DISTRO_NAME`. Native Fedora installs via `dotnet tool install --global git-credential-manager` (relies on `dotnet-sdk-10.0` from `dnf-packages.txt`) plus `libsecret`, and writes `credential.credentialStore = secretservice` to `~/.gitconfig.local` (Linux-only, not the tracked `.gitconfig`) since Linux needs an explicit store. WSL has no dbus/keyring for secretservice, so instead it drops a `~/.local/bin/git-credential-manager` wrapper that `exec`s the Windows-side GCM (`/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe`, bundled with the `Git.Git` winget package) via interop — this reuses Windows Credential Manager and needs no local config. In all cases `.gitconfig`'s `credential.helper = manager` resolves to whichever `git-credential-manager` is first on PATH, matching the macOS Homebrew cask and Windows' bundled Git.
 
 ## Open Issues
 

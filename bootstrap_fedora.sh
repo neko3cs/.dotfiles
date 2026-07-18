@@ -58,6 +58,26 @@ install_pyenv() {
 install_starship() {
   sudo curl -sS https://starship.rs/install.sh | sh -s -- --yes
 }
+install_gcm() {
+  if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    # WSL には dbus/keyring が無く secretservice が使えないため、
+    # Windows 側の Git (Git.Git winget パッケージ) に同梱された GCM に interop 経由で委譲する。
+    # .gitconfig の `helper = manager` が PATH 上のこのラッパーを `git-credential-manager` として解決する。
+    mkdir -p "$HOME/.local/bin"
+    cat > "$HOME/.local/bin/git-credential-manager" <<'EOF'
+#!/usr/bin/env bash
+exec "/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe" "$@"
+EOF
+    chmod +x "$HOME/.local/bin/git-credential-manager"
+  else
+    # ネイティブ Fedora: 公式 RPM が無いため .NET tool として導入する
+    sudo dnf install -y libsecret
+    dotnet tool install --global git-credential-manager
+    git-credential-manager configure
+    # Linux は認証情報の保存先を明示指定する必要がある(macOS/Windows は既定のストアを使う)
+    git config --file "$HOME/.gitconfig.local" credential.credentialStore secretservice
+  fi
+}
 
 sudo dnf update -y
 
@@ -72,6 +92,7 @@ install_aws_cli
 install_docker
 install_pyenv
 install_starship
+install_gcm
 zsh $SCRIPT_ROOT/set_completions.sh
 /usr/bin/pwsh -File $SCRIPT_ROOT/Set-Completions.ps1
 
