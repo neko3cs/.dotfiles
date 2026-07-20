@@ -48,17 +48,16 @@ function Invoke-EnableWindowsOptionalFeature {
 
 try {
   Get-Command winget -ErrorAction Stop | Out-Null
-}
-catch {
+} catch {
   Write-Error 'winget is not installed. Please install it from Microsoft Store.'
 }
 try {
   Get-Command git -ErrorAction Stop | Out-Null
-}
-catch {
+} catch {
   Write-Error "git is not installed. Install it with:`nwinget install --silent --exact --id Git.Git"
 }
 
+(Get-Content msstore-apps.json | ConvertFrom-Json).Apps.Id | ForEach-Object { store install $_ }
 winget import `
   --import-file (Join-Path $PSScriptRoot 'winget-package.json') `
   --ignore-unavailable `
