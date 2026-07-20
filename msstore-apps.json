@@ -1,0 +1,13 @@
+{
+  "Apps": [
+    { "Name": "Amazon Kindle", "Id": "9P8JQ0JJSTLL" },
+    { "Name": "Microsoft 365 Copilot", "Id": "9WZDNCRD29V9" },
+    {
+      "Name": "Microsoft To Do: Lists, Tasks & Reminders",
+      "Id": "9NBLGGH5R558"
+    },
+    { "Name": "ChatGPT", "Id": "9PLM9XGG6VKS" },
+    { "Name": "RunCat 365", "Id": "9NW5LPNVWFWJ" },
+    { "Name": "Windows App", "Id": "9N1F85V9T8BN" }
+  ]
+}
