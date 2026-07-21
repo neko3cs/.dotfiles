@@ -113,6 +113,7 @@ if [[ -n "$HOMEBREW_PREFIX" && -r "$HOMEBREW_PREFIX/etc/bash_completion.d/az" ]]
 fi
 
 # ZSH OPTIONS
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt auto_param_slash
