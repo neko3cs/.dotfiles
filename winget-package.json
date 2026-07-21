@@ -100,6 +100,9 @@
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
+          "PackageIdentifier": "Postman.Postman"
+        },
+        {
           "PackageIdentifier": "Rustlang.Rustup"
         },
         {
