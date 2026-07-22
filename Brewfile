@@ -96,7 +96,7 @@ mas "Kindle", id: 302584613
 mas "LINE", id: 539883307
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
-mas "RunCat", id: 1429033973
+mas "RunCatNeo", id: 6757801838
 mas "Swift Playground", id: 1496833156
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
