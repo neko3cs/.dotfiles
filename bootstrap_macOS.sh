@@ -21,6 +21,8 @@ function set_macOS_defaults() {
   # General: スペルの自動修正を無効化
   defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+  # Finder: デフォルトの表示方式をアイコン表示にする
+  defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
   # Finder: フォルダを常に先頭に表示
   defaults write com.apple.finder _FXSortFoldersFirst -bool true
   # Finder: デスクトップでもフォルダを常に先頭に表示
