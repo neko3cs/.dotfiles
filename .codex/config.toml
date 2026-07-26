@@ -38,5 +38,8 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
 enabled = true

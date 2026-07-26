@@ -37,10 +37,11 @@ add_dnf_repositories() {
   sudo dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 }
 install_aws_cli() {
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$SCRIPT_ROOT/awscliv2.zip"
-  unzip $SCRIPT_ROOT/awscliv2.zip
-  sudo $SCRIPT_ROOT/aws/install
-  sudo rm -rf $SCRIPT_ROOT/awscliv2.zip $SCRIPT_ROOT/aws
+  local work_dir="$(mktemp -d)"
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$work_dir/awscliv2.zip"
+  unzip -q -d "$work_dir" "$work_dir/awscliv2.zip"
+  sudo "$work_dir/aws/install"
+  sudo rm -rf "$work_dir"
 }
 install_docker() {
   sudo dnf remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate \
@@ -86,7 +87,7 @@ add_dnf_repositories
 sudo dnf clean all
 sudo dnf makecache -y
 sudo dnf upgrade -y
-sudo dnf install -y $(cat dnf-packages.txt)
+sudo dnf install -y $(cat $SCRIPT_ROOT/dnf-packages.txt)
 zsh $SCRIPT_ROOT/set_dotfiles.sh
 install_aws_cli
 install_docker

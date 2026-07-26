@@ -102,5 +102,7 @@
   "skipDangerousModePermissionPrompt": false,
   "theme": "light",
   "editorMode": "normal",
-  "autoCompactEnabled": true
+  "autoCompactEnabled": true,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
