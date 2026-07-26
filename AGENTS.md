@@ -3,8 +3,16 @@
 Cross-platform dotfiles for macOS, Fedora Linux, and Windows. Shell scripts, config files, and
 package lists only — there are no application features, APIs, or user-facing products here.
 
+## Key References
+
+- `PLAN.md` — in-flight work baton. Read it before starting.
+
 ## Development Rules
 
+- **No branches, no PRs.** Commit directly to `main`. Because there is no PR to hold the
+  discussion, the commit message body must carry the intent — why the change was made, which
+  alternatives were rejected and why. A subject-line-only commit is not acceptable here, even for
+  a one-line change.
 - **No automated tests.** Verify by running `set_dotfiles.sh` and sourcing `.zshrc` manually.
 - **Config files mirror their deploy path.** `.claude/settings.json` → `~/.claude/settings.json`,
   `.config/ghostty/config` → `~/.config/ghostty/config`. Follow this when adding a new config file.
@@ -88,29 +96,19 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   project-local layers until the project is trusted. Side effect of the mirror layout.
 - **Never symlink a file the agent writes back to.** `.codex/config.toml` is copied because the
   Codex desktop app rewrites `[projects.*]` / `[mcp_servers.*]` / `[marketplaces.*]` / `notify` at
-  runtime. Same reason the execpolicy file is `custom.rules`, not `default.rules`: choosing "always
-  allow this prefix" appends `prefix_rule(..., decision="allow")` to `~/.codex/rules/default.rules`.
-  Every `*.rules` under `rules/` is loaded, so a separate name keeps the tracked file clean.
-  (`config.toml`'s `base_url` is a `{AZURE_FOUNDRY_BASE_URL}` placeholder — substitute by hand
-  after deployment.)
-- **Codex permissions live in execpolicy; hooks only patch its gaps**: commands →
-  `.codex/rules/custom.rules` (Starlark `prefix_rule`, decision precedence
-  forbidden > prompt > allow, with `match` / `not_match` validated at parse time as self-tests).
-  Path conditions → `.codex/hooks.json` + `codex-path-guard.py`. `permission_profiles` is
-  enterprise-only (`requirements.toml`) — do not use it.
-- **execpolicy cannot express path rules**: the builtins are `prefix_rule` / `network_rule` /
-  `host_executable` only (`path_rule` does not exist; `paths` is a `host_executable` parameter for
-  absolute-path resolution). `prefix_rule` matches command prefixes, so "any command touching
-  `.env`" would need cat/less/head/rg… × every path spelling, and `apply_patch` writes are not
-  shell commands at all. That is the entire reason the hook still exists.
+  runtime. Same cause for `custom.rules` vs `default.rules` (see that file's header) — every
+  `*.rules` under `rules/` is loaded, so a separate name keeps the tracked file clean.
+- **Codex permission routing is documented in the files themselves** — `custom.rules`'s header and
+  `codex-path-guard.py`'s docstring. Two things that are not written there: decision precedence is
+  forbidden > prompt > allow, and `permission_profiles` is enterprise-only (`requirements.toml`) —
+  do not use it, and do not re-investigate it.
 - **execpolicy misses shell-wrapped commands (known hole)**: Codex splits `bash -lc "..."` only when
   it is plain words joined by `&&` `||` `;` `|`. Redirection, variable expansion, command
   substitution, globs, or control flow → no split, the whole invocation counts as one command, and
   `prefix_rule` will not match (`bash -lc "git push > /dev/null"` slips past `forbidden`).
-- **`decision = "prompt"` requires `approval_policy.granular.rules = true`**: under `never` it fails
-  with `approval required by policy, but AskForApproval is set to Never`. `granular` is a newtype
-  variant, so `[approval_policy.granular]` must list **all five fields** (omitting any is a parse
-  error). Only `rules` is true, so anything outside an explicit rule still runs unattended.
+- **If a `prompt` rule silently does nothing**, the error is `approval required by policy, but
+  AskForApproval is set to Never`. `granular` is a newtype variant; `config.toml`'s comment covers
+  the all-five-fields requirement.
 - **`.codex/hooks.json` event names are PascalCase** (`PreToolUse` / `Stop` — Claude Code
   compatible). **An unknown event name is silently ignored, not an error**, so after adding one
   confirm it loaded via `codex app-server`'s `hooks/list`.
@@ -128,8 +126,7 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **Windows deploys a deliberate subset**: `Set-DotFiles.ps1` skips `.zshrc` / ghostty / `init.lua` /
   `Brewfile`, and on macOS pwsh only gets the profile. zsh is the main shell — this is design, not
   an omission.
-- **`IS_WSL` depends on `$WSL_DISTRO_NAME`**: native Linux leaves both `IS_MACOS` and `IS_WSL`
-  false. Do not assume Linux == WSL.
+- **Native Linux leaves both `IS_MACOS` and `IS_WSL` false.** Do not assume Linux == WSL.
 - **Windows bootstrap assumes `winget` and `git` are already installed**; the script does not
   install them.
 - **Git Credential Manager installs differently per OS**: `bootstrap_fedora.sh`'s `install_gcm`
@@ -149,16 +146,6 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   `prefix_rule(pattern=["bash","-lc"], decision="prompt")` would close it, but then everyday
   commands containing globs such as `ls *.ts` all prompt.
 
-## Handoff Snapshot (2026-07-26)
-
-- Tests: N/A (dotfiles repo — no automated tests)
-- In progress: nothing
-- Decided: Reorganised config files to mirror their `$HOME` deploy paths, keeping scripts and
-  package lists flat at the root. Ported `.claude/settings.json`'s `permissions` to Codex —
-  commands to `.codex/rules/custom.rules` (execpolicy), and only the path conditions execpolicy
-  cannot express to `.codex/hooks.json` + `codex-path-guard.py`. Changed `approval_policy` from
-  `never` to `granular` (only `rules` true). Switched every hook to `uv run --no-project`.
-
 ## Incidents
 
 | Date | What went wrong | Prevention |
@@ -171,3 +158,4 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 | 2026-07-26 | Looked for subcommands only under `codex debug` and missed the top-level hidden `codex execpolicy check` | A CLI-looking struct name in the binary's strings (here `ExecPolicyCheckCommand`) may be a top-level subcommand absent from `--help` |
 | 2026-07-26 | The notification hook called `python -c`, but macOS has only `python3`, so it had failed silently (exit 127) all along — and the same shape got copied into the Codex hooks | Run hooks through a real shell and check the exit code; "the JSON is valid" proves nothing |
 | 2026-07-26 | Switching hooks to `uv run` added `uv` to `Brewfile` and `winget-package.json` but missed `dnf-packages.txt`, where both hooks would have died with `uv: command not found` | When a hook gains a dependency, check the package list of **every OS the config deploys to** |
+| 2026-07-26 | Created a feature branch for a one-file doc change, then had to fast-forward `main` onto it and delete the branch | This repo does not use branches; commit to `main` and put the reasoning in the commit message body |
