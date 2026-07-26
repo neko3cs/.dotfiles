@@ -12,32 +12,36 @@ Technical terms, code identifiers, and file paths remain in their original form.
 
 When writing documentation files:
 - `README.md` → **Japanese**
-- `AGENTS.md` → **English**
+- `AGENTS.md` / `PLAN.md` → **English**
 
 Internal reasoning may be in English.
 
 ---
 
-## AGENTS.md / CLAUDE.md Doctrine
+## Documentation Doctrine
 
-When creating or maintaining project `AGENTS.md` / `CLAUDE.md`, apply the lightweight doctrine:
+Applies whenever you create or maintain `AGENTS.md` / `CLAUDE.md` / `PLAN.md`.
+
+**Never overwrite these files without user confirmation.** Show a classification table
+(keep / remove / move-to-skill) with reasons, then a diff, and wait.
+
+**Route the information first**:
+
+| Information | Goes to |
+| :--- | :--- |
+| Deterministic and permanent — commands, layout, conventions, hard constraints, non-obvious why, gotchas, incidents | `AGENTS.md` |
+| Spec changes, unresolved questions, anything another person needs | GitHub Issue |
+| Work in progress worth remembering across sessions | `PLAN.md` |
+| Session-local task list | no file |
+
+Nothing that expires belongs in `AGENTS.md` — no TODOs, no open questions, no in-progress state.
 
 **Pruning rule**: For every line, ask "Would removing this cause the agent to make a mistake?" If no, remove it.
 Target: ~100 lines / ~2,500 tokens — these files are loaded on every turn.
 
-**Keep only**:
-- Build / test commands
-- Directory layout
-- Code conventions
-- Hard constraints (red lines)
-- Incident log
-
 **Move to skills**: multi-step "how-to" procedures. Do not write them inline.
 
 **Important rules are placed first.**
-
-**Before any update**: show a classification table (keep / remove / move-to-skill) with reasons, then a diff.
-Never overwrite without user confirmation.
 
 **Incident log** — add a `## Incidents` section to the project AGENTS.md:
 `YYYY-MM-DD | what went wrong | one-sentence prevention`
