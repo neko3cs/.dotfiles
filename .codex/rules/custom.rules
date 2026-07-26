@@ -1,0 +1,119 @@
+# Codex execpolicy ルール (Starlark)。既知の穴と未移植分は AGENTS.md 参照。
+# 検証: codex execpolicy check --rules .codex/rules/custom.rules -- <command>
+# prompt には config.toml の approval_policy.granular.rules = true が必要。
+# default.rules は Codex が自動追記するファイルなので別名にしている。
+
+# --- forbidden ---
+
+prefix_rule(
+    pattern = ["gws"],
+    decision = "forbidden",
+    justification = "gws の実行は禁止されている",
+    match = ["gws status"],
+)
+
+prefix_rule(
+    pattern = [["mail", "sendmail"]],
+    decision = "forbidden",
+    justification = "メール送信コマンドの実行は禁止されている",
+    match = ["mail -s subject to@example.com", "sendmail to@example.com"],
+)
+
+prefix_rule(
+    pattern = ["git", ["reset", "rebase", "push"]],
+    decision = "forbidden",
+    justification = "履歴とリモートを壊す git 操作は手動でのみ行う",
+    match = ["git push origin main", "git reset --hard", "git rebase -i HEAD~3"],
+    not_match = ["git log --grep=push", "git status --short"],
+)
+
+# --- prompt ---
+
+prefix_rule(
+    pattern = ["terraform", "destroy"],
+    decision = "prompt",
+    justification = "インフラを破棄するため確認する",
+    match = ["terraform destroy -auto-approve"],
+)
+
+prefix_rule(
+    pattern = ["curl", "-X", "DELETE"],
+    decision = "prompt",
+    justification = "リソースを削除するリクエストのため確認する",
+    match = ["curl -X DELETE https://example.com/v1/items/1"],
+    not_match = ["curl https://example.com/v1/items"],
+)
+
+prefix_rule(
+    pattern = ["npm", "publish"],
+    decision = "prompt",
+    justification = "パッケージを公開するため確認する",
+    match = ["npm publish --access public"],
+)
+
+prefix_rule(
+    pattern = ["npm", "install", ["-g", "--global"]],
+    decision = "prompt",
+    justification = "グローバルインストールは環境を汚すため確認する",
+    match = ["npm install -g typescript", "npm install --global typescript"],
+    not_match = ["npm install", "npm install --save-dev vitest"],
+)
+
+prefix_rule(
+    pattern = ["brew", "install"],
+    decision = "prompt",
+    justification = "グローバルインストールは環境を汚すため確認する",
+    match = ["brew install ripgrep"],
+    not_match = ["brew list"],
+)
+
+prefix_rule(
+    pattern = ["winget", "install"],
+    decision = "prompt",
+    justification = "グローバルインストールは環境を汚すため確認する",
+    match = ["winget install --id Git.Git"],
+)
+
+prefix_rule(
+    pattern = ["cargo", "install"],
+    decision = "prompt",
+    justification = "グローバルインストールは環境を汚すため確認する",
+    match = ["cargo install cargo-nextest"],
+    not_match = ["cargo build --release"],
+)
+
+prefix_rule(
+    pattern = ["dotnet", "tool", "install"],
+    decision = "prompt",
+    justification = "グローバルインストールは環境を汚すため確認する",
+    match = ["dotnet tool install --global git-credential-manager"],
+)
+
+prefix_rule(
+    pattern = ["pnpm", "add"],
+    decision = "prompt",
+    justification = "依存の追加はロックファイルを変えるため確認する",
+    match = ["pnpm add zod"],
+)
+
+prefix_rule(
+    pattern = ["uv", "add"],
+    decision = "prompt",
+    justification = "依存の追加はロックファイルを変えるため確認する",
+    match = ["uv add httpx"],
+)
+
+prefix_rule(
+    pattern = ["uv", "pip", "install"],
+    decision = "prompt",
+    justification = "依存の追加は環境を変えるため確認する",
+    match = ["uv pip install httpx"],
+)
+
+prefix_rule(
+    pattern = [["pip", "pip3"], "install"],
+    decision = "prompt",
+    justification = "依存の追加は環境を変えるため確認する",
+    match = ["pip install httpx", "pip3 install httpx"],
+    not_match = ["pip list"],
+)
