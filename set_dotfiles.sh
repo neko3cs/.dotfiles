@@ -28,9 +28,10 @@ mkdir -p $HOME/.claude
 ln -sf $SCRIPT_ROOT/.claude/settings.json $HOME/.claude/settings.json
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.claude/CLAUDE.md
 # codex
-mkdir -p $HOME/.codex
+mkdir -p $HOME/.codex/rules
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.codex/AGENTS.md
 ln -sf $SCRIPT_ROOT/.codex/hooks.json $HOME/.codex/hooks.json
+ln -sf $SCRIPT_ROOT/.codex/rules/custom.rules $HOME/.codex/rules/custom.rules
 cp -f $SCRIPT_ROOT/.codex/config.toml $HOME/.codex/config.toml
 # GitHub Copilot
 mkdir -p $HOME/.copilot

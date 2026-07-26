@@ -6,10 +6,19 @@ model_provider = "openai"
 # model_provider = "azure-east-us2"
 model_reasoning_effort = "high"
 
-approval_policy = "never"
 network_access = true
 sandbox_mode = "workspace-write"
 mcp_oauth_credentials_store = "keyring"
+
+# rules = true だけ有効にして .codex/rules/custom.rules の prompt ルールを機能させる。
+# 他は false のままなので、明示したルール以外は従来の "never" と同じく全自動で走る。
+# 5フィールドすべて必須(省略するとパースエラー)。
+[approval_policy.granular]
+sandbox_approval = false
+rules = true
+skill_approval = false
+request_permissions = false
+mcp_elicitations = false
 
 [shell_environment_policy]
 # 全自動実行時、生成コマンドへのAPIキー漏出を防ぐ
