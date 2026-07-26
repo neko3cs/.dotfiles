@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "shell|exec_command|unified_exec|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/codex-deny-guard.py'),run_name='__main__')\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
