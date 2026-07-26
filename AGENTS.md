@@ -6,23 +6,23 @@ package lists only — there are no application features, APIs, or user-facing p
 ## Development Rules
 
 - **No automated tests.** Verify by running `set_dotfiles.sh` and sourcing `.zshrc` manually.
-- **設定ファイルは配置先と同じフォルダ構成でリポジトリに置く。** `.claude/settings.json` は
-  `~/.claude/settings.json` へ、`.config/ghostty/config` は `~/.config/ghostty/config` へ。
-  新しい設定ファイルを足すときはこの規則に従う。例外は下表の「配置先が複数のもの」だけ。
+- **Config files mirror their deploy path.** `.claude/settings.json` → `~/.claude/settings.json`,
+  `.config/ghostty/config` → `~/.config/ghostty/config`. Follow this when adding a new config file.
+  The only exceptions are the "multiple destinations" table below.
 - **Platform guards are mandatory.** Any macOS-only or WSL-only config in `.zshrc` must be wrapped
   in `if $IS_MACOS` / `if $IS_WSL`. `.zshrc` sets both booleans at startup
   (`$OSTYPE == darwin*` / `$WSL_DISTRO_NAME` is set).
 - **Machine-specific settings** (`user.name`, `user.email`, Linux credential store) go in
   `~/.gitconfig.local`, included via `[include]` from `.gitconfig`. Never committed.
-- **スクリプトからリポジトリ内のファイルを参照するときは `$SCRIPT_ROOT` / `$PSScriptRoot` を前置する。**
-  裸の相対パスは cwd がリポジトリルートのときしか動かない。
-- **Completions are generated per-machine** and not tracked. Re-run `set_completions.sh` /
+- **Prefix repo-internal paths with `$SCRIPT_ROOT` / `$PSScriptRoot`.** A bare relative path only
+  works when cwd happens to be the repo root.
+- **Completions are generated per-machine** and untracked. Re-run `set_completions.sh` /
   `Set-Completions.ps1` after installing new tools.
 
 ## Layout
 
-配置対象の設定ファイルだけが配置先ミラー。スクリプト・パッケージリスト・ドキュメントは
-リポジトリ直下に平置きで、ディレクトリは作らない。
+Only deployable config files mirror their destination. Scripts, package lists, and docs sit flat at
+the repo root — do not create directories for them.
 
 ```
 .claude/settings.json   .copilot/settings.json
@@ -37,145 +37,137 @@ dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
 dotnet-tools.txt  vscode-extensions.txt
 ```
 
-**配置先が複数のもの**（ミラー構成に置けない例外）:
+**Multiple destinations** (cannot live at a single mirror path):
 
 | File | Deployed to |
 |---|---|
 | `AGENTS.global.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.copilot/copilot-instructions.md`, `~/.gemini/GEMINI.md` |
 | `.config/zed/settings.json` | `~/.config/zed/settings.json` (Win: `%APPDATA%\Zed\settings.json`) |
 
-**cp されるもの**（他は全て `ln -sf`）: `.codex/config.toml`,
+**Copied instead of symlinked** (everything else is `ln -sf`): `.codex/config.toml`,
 `.config/powershell/Microsoft.PowerShell_profile.ps1`
 
-**配置されないもの**: `vscode-settings.json` と `.vssettings` は手動インポート用の参照スナップ
-ショット。Settings Sync と競合するため symlink しない。
+**Not deployed**: `vscode-settings.json` and `.vssettings` are reference snapshots for manual
+import. They are not symlinked because they conflict with Settings Sync.
 
 ## Commands
 
 ```sh
-# 初回セットアップ
+# First-time setup
 zsh bootstrap_macOS.sh          # macOS
-bash bootstrap_fedora.sh        # Fedora / WSL (root ではなく sudo を使える一般ユーザーで)
-pwsh -f Bootstrap-Windows.ps1   # Windows (管理者権限の PowerShell 7+)
+bash bootstrap_fedora.sh        # Fedora / WSL (as a sudo-capable user, not root)
+pwsh -f Bootstrap-Windows.ps1   # Windows (elevated PowerShell 7+)
 
-# dotfiles の再配置のみ
+# Re-deploy dotfiles only
 zsh set_dotfiles.sh
-pwsh -File Set-DotFiles.ps1     # Windows は管理者権限
+pwsh -File Set-DotFiles.ps1     # Windows needs elevation
 
-# 補完の再生成のみ
+# Regenerate completions only
 zsh set_completions.sh
 pwsh -File Set-Completions.ps1
 
-# Brewfile を現在の環境と同期
+# Sync Brewfile with the current environment
 brew bundle dump --force
+
+# Check an execpolicy decision (hidden subcommand — absent from `codex --help`)
+codex execpolicy check --rules .codex/rules/custom.rules -- git push origin main
 ```
 
-その他のパッケージリストは直接編集する。
+Edit the other package lists directly.
+
+`execpolicy check` returns a JSON `decision` for **raw argv only** — it skips the runtime's shell
+splitting, so `bash -lc "git push"` will not match. To validate syntax and `match` / `not_match`
+instead, send `initialize` then `thread/start` to `codex app-server` and watch for
+`failed to parse rules file ...`. `codex doctor` and `codex debug models` never read rules.
 
 ## Tacit Knowledge
 
-- **リポジトリの `.claude/` と `.codex/` はプロジェクト設定としても読まれる**: この dotfiles
-  リポジトリ自体でエージェントを動かすと、ユーザー設定と二重に適用される。Claude Code は
-  `.claude/settings.json` を即座に読むので通知音のフックが2回鳴る。Codex は project-local を
-  trusted になるまで無効化するので、このリポジトリを信頼させると hooks と execpolicy が
-  二重ロードされる。配置先ミラー構成の副作用。
-- **PowerShell profile is copied, not symlinked**: `$PROFILE` のパスが OS ごとに違い、単一の
-  symlink 先で両立できない。
-- **Windows は意図的に一部しか配置しない**: `Set-DotFiles.ps1` は `.zshrc` / `ghostty` /
-  `init.lua` / `Brewfile` を配置しない。macOS でも pwsh は補助用途でプロファイルのみ配置する。
-  メインシェルは zsh であり、これは欠落ではなく設計。
-- **zinit for zsh plugins**: 初回シェル起動時に自動インストールされ、`wait'0'` で遅延ロードする。
-  bootstrap 側でのプラグイン導入手順は不要。
-- **`IS_WSL` は `$WSL_DISTRO_NAME` 依存**: ネイティブ Linux は `IS_MACOS` も `IS_WSL` も false に
-  なる。Linux == WSL と仮定しないこと。
-- **Windows bootstrap は `winget` と `git` が導入済み前提**: スクリプトは入れない。
-- **PowerShell モジュールは手動導入**: プロファイル内の `Install-PowerShellModules` は自動実行
-  されない。新しいマシンで一度だけ実行する。
-- **`.codex/config.toml` は cp**: Codex デスクトップアプリが `[projects.*]` / `[mcp_servers.*]` /
-  `[marketplaces.*]` / `notify` を実行時に書き戻すため、symlink すると追跡ファイルが汚れる。
-  `base_url` は `{AZURE_FOUNDRY_BASE_URL}` プレースホルダで、配置後に手で実 URL に置換する。
-- **Codex の権限制御は execpolicy が本筋。フックは穴埋め**: `.claude/settings.json` の
-  `permissions` は2箇所に分けて移植してある。`permission_profiles` は企業向け
-  `requirements.toml` 専用なので使わない。
-  - **コマンド単位** → `.codex/rules/custom.rules` (Starlark)。`prefix_rule(pattern=[...],
-    decision="forbidden"|"prompt"|"allow", justification=..., match=[...], not_match=[...])`。
-    `pattern` の要素は文字列または選択肢のリスト。decision の優先順位は
-    forbidden > prompt > allow。`match` / `not_match` はパース時に検証される自己テスト。
-  - **パス単位のみ** → `.codex/hooks.json` の `PreToolUse` + `codex-path-guard.py`。理由は下項。
-- **ファイル名が `custom.rules` なのは `default.rules` を Codex 自身が書き換えるから**:
-  「このプレフィックスを常に許可」を選ぶと `~/.codex/rules/default.rules` に
-  `prefix_rule(..., decision="allow")` が追記される。`rules/` 配下の `*.rules` は全て読まれる
-  ので、追記対象と追跡ファイルを分ける。`config.toml` を cp にしているのと同じ理由。
-- **パス単位の deny だけフックに残っている理由**: execpolicy の builtin は `prefix_rule` /
-  `network_rule` / `host_executable` の3つだけで、**ファイルパスを条件にしたルールが書けない**
-  (`path_rule` は存在しない。`paths` は `host_executable` のパラメータで、絶対パス解決用)。
-  `prefix_rule` は前置一致しか書けないので「どのコマンドであれ `.env` に触る」を表現するには
-  cat/less/head/rg… × `.env`/`.env.local`/`path/to/.env` の総当たりが必要になる。加えて
-  `apply_patch` の書き込みはシェルコマンドではないので execpolicy の管轄外。
-- **execpolicy はシェルでラップされると届かないことがある (既知の穴)**: Codex は `bash -lc "..."`
-  を「プレーンな語が `&&` `||` `;` `|` でつながっているだけ」のときだけ分割してポリシーに渡す。
-  リダイレクト・変数展開・コマンド置換・ワイルドカード・制御構文が入ると分割せず invocation
-  全体を1コマンドとして扱うため、`prefix_rule` がマッチしない
-  (`bash -lc "git push > /dev/null"` は forbidden をすり抜ける)。
-  `prefix_rule(pattern=["bash","-lc"], decision="prompt")` で塞げるが、`ls *.ts` のような
-  グロブを含む日常的なコマンドまで全部確認が入るため採用していない。
-- **`decision = "prompt"` は `approval_policy.granular.rules = true` が必須**: `never` のままだと
-  `approval required by policy, but AskForApproval is set to Never` で機能しない。`granular` は
-  newtype variant なので `[approval_policy.granular]` に**5フィールドすべて**書く必要がある
-  (省略するとパースエラー)。`rules` 以外を false にしてあるので、明示ルール以外は従来どおり全自動。
-- **execpolicy に移植できなかった ask**: `aws * delete` のように**途中にワイルドカードが入る
-  パターンは `prefix_rule` で書けない**。`gcloud`/`aws`/`az` の delete・terminate・destroy 系の
-  5件は未移植 (`curl -X DELETE` は `-X DELETE` が先頭に来る形だけ移植済み)。
-  `pattern = ["aws"]` のように CLI 全体を prompt にすれば拾えるが騒がしくなるため見送った。
-- **`.rules` の検証は `codex execpolicy check`**: `codex --help` に出てこない隠しサブコマンド。
+- **This repo's `.claude/` and `.codex/` are also read as *project* config**: running an agent
+  inside this repo applies them on top of the user-level copies. Claude Code reads
+  `.claude/settings.json` immediately, so the notification hook fires twice. Codex disables
+  project-local layers until the project is trusted. Side effect of the mirror layout.
+- **Never symlink a file the agent writes back to.** `.codex/config.toml` is copied because the
+  Codex desktop app rewrites `[projects.*]` / `[mcp_servers.*]` / `[marketplaces.*]` / `notify` at
+  runtime. Same reason the execpolicy file is `custom.rules`, not `default.rules`: choosing "always
+  allow this prefix" appends `prefix_rule(..., decision="allow")` to `~/.codex/rules/default.rules`.
+  Every `*.rules` under `rules/` is loaded, so a separate name keeps the tracked file clean.
+  (`config.toml`'s `base_url` is a `{AZURE_FOUNDRY_BASE_URL}` placeholder — substitute by hand
+  after deployment.)
+- **Codex permissions live in execpolicy; hooks only patch its gaps**: commands →
+  `.codex/rules/custom.rules` (Starlark `prefix_rule`, decision precedence
+  forbidden > prompt > allow, with `match` / `not_match` validated at parse time as self-tests).
+  Path conditions → `.codex/hooks.json` + `codex-path-guard.py`. `permission_profiles` is
+  enterprise-only (`requirements.toml`) — do not use it.
+- **execpolicy cannot express path rules**: the builtins are `prefix_rule` / `network_rule` /
+  `host_executable` only (`path_rule` does not exist; `paths` is a `host_executable` parameter for
+  absolute-path resolution). `prefix_rule` matches command prefixes, so "any command touching
+  `.env`" would need cat/less/head/rg… × every path spelling, and `apply_patch` writes are not
+  shell commands at all. That is the entire reason the hook still exists.
+- **execpolicy misses shell-wrapped commands (known hole)**: Codex splits `bash -lc "..."` only when
+  it is plain words joined by `&&` `||` `;` `|`. Redirection, variable expansion, command
+  substitution, globs, or control flow → no split, the whole invocation counts as one command, and
+  `prefix_rule` will not match (`bash -lc "git push > /dev/null"` slips past `forbidden`).
+- **`decision = "prompt"` requires `approval_policy.granular.rules = true`**: under `never` it fails
+  with `approval required by policy, but AskForApproval is set to Never`. `granular` is a newtype
+  variant, so `[approval_policy.granular]` must list **all five fields** (omitting any is a parse
+  error). Only `rules` is true, so anything outside an explicit rule still runs unattended.
+- **`.codex/hooks.json` event names are PascalCase** (`PreToolUse` / `Stop` — Claude Code
+  compatible). **An unknown event name is silently ignored, not an error**, so after adding one
+  confirm it loaded via `codex app-server`'s `hooks/list`.
+- **Codex hooks start untrusted**: Codex re-asks for trust whenever the content hash changes. One
+  approval per machine.
+- **Call Python from hooks via `uv run --no-project python -c`**: this machine has no `python`, only
+  `python3`; Windows is the reverse, and `uv` absorbs the difference. **Every OS that receives the
+  hooks needs a `uv` source** — `Brewfile` / `winget-package.json` / `dnf-packages.txt` (Fedora 43
+  ships `uv` in-repo; no curl installer needed). `--no-project` is mandatory: without it `uv` starts
+  resolving the dependencies of whatever Python project the agent is working in and the hook breaks.
+  Resolve paths with `os.path.expanduser`, not shell `~` expansion (cmd does not expand `~`). Exit
+  codes propagate through `uv run`, so a PreToolUse deny (exit 2) still takes effect.
+- **PowerShell profile is copied, not symlinked**: `$PROFILE` differs per OS, so one symlink target
+  cannot satisfy both.
+- **Windows deploys a deliberate subset**: `Set-DotFiles.ps1` skips `.zshrc` / ghostty / `init.lua` /
+  `Brewfile`, and on macOS pwsh only gets the profile. zsh is the main shell — this is design, not
+  an omission.
+- **`IS_WSL` depends on `$WSL_DISTRO_NAME`**: native Linux leaves both `IS_MACOS` and `IS_WSL`
+  false. Do not assume Linux == WSL.
+- **Windows bootstrap assumes `winget` and `git` are already installed**; the script does not
+  install them.
+- **Git Credential Manager installs differently per OS**: `bootstrap_fedora.sh`'s `install_gcm`
+  branches between native Fedora (.NET tool + `secretservice`) and WSL (an interop wrapper around
+  the Windows-side GCM). The reasoning is in the script's own comments.
 
-  ```sh
-  codex execpolicy check --rules .codex/rules/custom.rules -- git push origin main
-  ```
+## Open Issues
 
-  JSON で `decision` が返る。**引数は生の argv で、ランタイム側のシェル分割は通らない**ので、
-  `bash -lc "git push"` を渡してもマッチしない (上の「シェルでラップされると届かない」を参照)。
-  構文と `match`/`not_match` の検証だけなら `codex app-server` に `initialize` → `thread/start`
-  を投げると `failed to parse rules file ...` が出る。`codex doctor` と `codex debug models` は
-  ルールを読まないので使えない。
-- **`.codex/hooks.json` のイベント名は PascalCase**: `PreToolUse` / `Stop` など Claude Code 互換。
-  **未知のイベント名はエラーにならず黙って無視される**ので、追加時は `codex app-server` の
-  `hooks/list` で読み込まれたか確認すること。
-- **Codex のフックは初回 untrusted**: 内容のハッシュが変わるたびに Codex が信頼を確認してくる。
-  マシンごとに一度承認が必要。
-- **フックから Python を呼ぶときは `uv run --no-project python -c`**: このマシンに `python` は
-  無く `python3` だけ、Windows は逆という差を `uv` が吸収する。**フックを配置する全 OS に `uv`
-  の導入元が要る**: Brewfile / `winget-package.json` / `dnf-packages.txt` (対象の Fedora 43 は
-  リポジトリに `uv` がある。curl インストーラは不要)。`--no-project` は必須で、これが無いと
-  **エージェントの作業先が Python プロジェクトだったときに `uv` がそのプロジェクトの依存解決を
-  始めてフックが壊れる**。
-  パスは shell の `~` 展開に頼らず `os.path.expanduser` で解決する (cmd では `~` が展開されない)。
-  exit code は `uv run` を通しても伝播するので、PreToolUse の deny (exit 2) はそのまま効く。
-- **Git Credential Manager は OS ごとに導入方法が違う**: `bootstrap_fedora.sh` の `install_gcm` が
-  native Fedora（.NET tool + `secretservice`）と WSL（Windows 側 GCM への interop ラッパー）で
-  分岐する。理由はスクリプト内のコメントに書いてある。
+- [ ] `prompt` rules have never been observed raising an actual approval dialog — only the static
+  decision via `codex execpolicy check` is verified. Needs an authenticated Codex session.
+- [ ] `bootstrap_fedora.sh` and `Bootstrap-Windows.ps1` have never been executed (no Fedora or
+  Windows machine at hand). Syntax-checked only; `dnf install -y uv` is unverified.
+- [ ] Five `ask` entries are not ported to execpolicy: `gcloud` / `aws` / `az`
+  delete·terminate·destroy need a mid-pattern wildcard, which `prefix_rule` cannot express.
+  Workaround would be prompting on the whole CLI (`pattern = ["aws"]`) — rejected as too noisy.
+- [ ] Shell-wrapped commands bypass `forbidden` (see Tacit Knowledge).
+  `prefix_rule(pattern=["bash","-lc"], decision="prompt")` would close it, but then everyday
+  commands containing globs such as `ls *.ts` all prompt.
 
 ## Handoff Snapshot (2026-07-26)
 
 - Tests: N/A (dotfiles repo — no automated tests)
 - In progress: nothing
-- Decided: 設定ファイルを「$HOME の配置先と同じフォルダ構成」へ再編。スクリプトとパッケージ
-  リストは平置きのまま。`.claude/settings.json` の `permissions` を Codex へ移植し、コマンド系は
-  `.codex/rules/custom.rules` (execpolicy)、execpolicy で表現できないパス条件だけを
-  `.codex/hooks.json` + `codex-path-guard.py` に残した。`approval_policy` を `never` から
-  `granular` (rules のみ true) へ変更。
-- 未検証: `bootstrap_fedora.sh` と `Bootstrap-Windows.ps1` は当該 OS が手元に無く未実行。
-  `prompt` ルールが実際に承認ダイアログを出すところまでは、認証付きセッションが必要なため未確認。
+- Decided: Reorganised config files to mirror their `$HOME` deploy paths, keeping scripts and
+  package lists flat at the root. Ported `.claude/settings.json`'s `permissions` to Codex —
+  commands to `.codex/rules/custom.rules` (execpolicy), and only the path conditions execpolicy
+  cannot express to `.codex/hooks.json` + `codex-path-guard.py`. Changed `approval_policy` from
+  `never` to `granular` (only `rules` true). Switched every hook to `uv run --no-project`.
 
 ## Incidents
 
 | Date | What went wrong | Prevention |
 | :--- | :--- | :--- |
-| 2026-07-12 | `.gitconfig` に `.gitconfig.local` の `[include]` が無く、`user.name`/`user.email` が読み込まれていなかった | 設定を分割したら、分割先の存在だけでなく `[include]` 側が書かれたかを確認する |
-| 2026-07-12 | `NODE_EXTRA_CA_CERTS` を無条件で Linux 専用パスに設定し、macOS の pnpm 等が壊れた | `.zshrc` の env/PATH 追加は「platform guards are mandatory」に照らしてから入れる。1 OS のテストで済ませない |
-| 2026-07-26 | `bootstrap_fedora.sh` の `dnf-packages.txt` と `Bootstrap-Windows.ps1` の `msstore-apps.json` が裸の相対パス参照で、cwd がリポジトリルートのときしか動かなかった | スクリプトからリポジトリ内ファイルを参照するときは必ず `$SCRIPT_ROOT` / `$PSScriptRoot` を前置する |
-| 2026-07-26 | Codex の権限機構の調査で `permission_profiles` が managed config 専用と分かった時点で「ユーザー設定は無い」と結論し、同じ調査結果に出ていた execpolicy (`.rules`) を追わなかった。結果 `ask` を「再現不可」と誤報告し、宣言的に書けるものを Python フックで実装した | 機構の有無を判定するときは、1つの否定的な結果で打ち切らない。`--help` の全オプション (今回は `--ignore-rules`) と公式ドキュメントを当たってから結論を出す |
-| 2026-07-26 | execpolicy のルールを `default.rules` に置いた。Codex が「常に許可」の追記先として同名ファイルを書き換えるため、追跡ファイルが汚れるところだった | エージェントが実行時に書き戻すファイルは symlink しない。書き戻し先と追跡ファイルを別名にする (`config.toml` を cp にしているのと同じ判断) |
-| 2026-07-26 | サブコマンドを `codex debug` の下だけ探し、トップレベルの隠しコマンド `codex execpolicy check` を見つけられなかった。検証手段が無いと判断して app-server のパースエラーで代用していた | `--help` に出ないサブコマンドがある。バイナリの文字列 (今回は `ExecPolicyCheckCommand`) に CLI らしき構造体名が見えたら、トップレベルでも試す |
-| 2026-07-26 | `.claude/settings.json` の通知音フックが `python -c` を呼んでいたが、macOS には `python` が無く `python3` だけのため、ずっと無言で失敗していた (exit 127)。Codex のフックにも同じ形をコピーしていた | フックは「JSON として妥当」で満足せず、シェル経由で実際に走らせて exit code まで確認する。インタプリタ名は `uv run` で吸収する |
-| 2026-07-26 | フックの `python -c` を `uv run` に置き換えたとき、`uv` の導入元を Brewfile と `winget-package.json` にしか足さず、`dnf-packages.txt` が漏れた。`set_dotfiles.sh` は Fedora/WSL にもフックを配置するので、そこでは両フックが `uv: command not found` で死ぬところだった | フックが依存するコマンドを増やしたら、その設定を**配置している全 OS** のパッケージリストに入っているか確認する。macOS だけで動作確認して終わらせない |
+| 2026-07-12 | `.gitconfig` had no `[include]` for `.gitconfig.local`, so `user.name` / `user.email` were never loaded | After splitting config out, verify the `[include]` side was written too — not just that the included file exists |
+| 2026-07-12 | `NODE_EXTRA_CA_CERTS` was set unconditionally to a Linux-only path, breaking pnpm and friends on macOS | Check every new env/PATH entry in `.zshrc` against "platform guards are mandatory". Do not stop at testing one OS |
+| 2026-07-26 | `dnf-packages.txt` in `bootstrap_fedora.sh` and `msstore-apps.json` in `Bootstrap-Windows.ps1` were bare relative paths, working only when cwd was the repo root | Always prefix repo-internal references with `$SCRIPT_ROOT` / `$PSScriptRoot` |
+| 2026-07-26 | Concluded "Codex has no user-level permission setting" once `permission_profiles` proved managed-config-only, ignoring execpolicy (`.rules`) from the same search output — then reported `ask` as impossible and hand-rolled a Python hook | One negative result does not settle whether a mechanism exists; read every `--help` option and the official docs first |
+| 2026-07-26 | Put the execpolicy rules in `default.rules` — the file Codex itself rewrites on "always allow" | Never symlink a file the agent writes back to; give the write target and the tracked file different names |
+| 2026-07-26 | Looked for subcommands only under `codex debug` and missed the top-level hidden `codex execpolicy check` | A CLI-looking struct name in the binary's strings (here `ExecPolicyCheckCommand`) may be a top-level subcommand absent from `--help` |
+| 2026-07-26 | The notification hook called `python -c`, but macOS has only `python3`, so it had failed silently (exit 127) all along — and the same shape got copied into the Codex hooks | Run hooks through a real shell and check the exit code; "the JSON is valid" proves nothing |
+| 2026-07-26 | Switching hooks to `uv run` added `uv` to `Brewfile` and `winget-package.json` but missed `dnf-packages.txt`, where both hooks would have died with `uv: command not found` | When a hook gains a dependency, check the package list of **every OS the config deploys to** |
