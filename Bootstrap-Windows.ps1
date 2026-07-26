@@ -57,7 +57,7 @@ try {
   Write-Error "git is not installed. Install it with:`nwinget install --silent --exact --id Git.Git"
 }
 
-(Get-Content msstore-apps.json | ConvertFrom-Json).Apps.Id | ForEach-Object { store install $_ }
+(Get-Content (Join-Path $PSScriptRoot 'msstore-apps.json') | ConvertFrom-Json).Apps.Id | ForEach-Object { store install $_ }
 winget import `
   --import-file (Join-Path $PSScriptRoot 'winget-package.json') `
   --ignore-unavailable `
