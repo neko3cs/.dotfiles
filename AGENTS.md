@@ -134,6 +134,10 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **Git Credential Manager installs differently per OS**: `bootstrap_fedora.sh`'s `install_gcm`
   branches between native Fedora (.NET tool + `secretservice`) and WSL (an interop wrapper around
   the Windows-side GCM). The reasoning is in the script's own comments.
+- **Configs that host a shell must name the Nerd Font explicitly.** starship draws its separators
+  and icons from the Nerd Font private-use area, which macOS font fallback does not cover (emoji it
+  does) — an unset `font_family` renders tofu, never an error. Use `HackGen Console NF`, not the
+  `HackGen35 Console NF` that `font-hackgen-nerd` installs alongside it.
 
 ## Incidents
 
