@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/codex-deny-guard.py'),run_name='__main__')\"",
+            "command": "uv run --no-project python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/codex-path-guard.py'),run_name='__main__')\"",
             "timeout": 10
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python -c \"import os;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\"",
+            "command": "uv run --no-project python -c \"import os;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\"",
             "timeout": 10
           }
         ]

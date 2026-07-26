@@ -36,6 +36,7 @@ terraform
 texlive-scheme-full
 tree
 unzip
+uv
 which
 wl-clipboard
 xmake

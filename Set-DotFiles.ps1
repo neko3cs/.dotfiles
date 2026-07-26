@@ -4,7 +4,16 @@ Set-StrictMode -Version Latest
 if ($IsWindows)
 {
     # symlink の親ディレクトリが無いと New-Item が失敗するため先に作る
-    foreach ($Dir in @("$HOME/.claude", "$HOME/.codex", "$HOME/.copilot", "$HOME/.gemini", "$HOME/.starship", "$HOME/.config/bat", "$env:APPDATA\Zed"))
+    $Dirs = @(
+      "$HOME/.claude",
+      "$HOME/.codex/rules",
+      "$HOME/.copilot",
+      "$HOME/.gemini",
+      "$HOME/.starship",
+      "$HOME/.config/bat",
+      "$env:APPDATA\Zed"
+    )
+    foreach ($Dir in $Dirs)
     {
         New-Item -ItemType Directory -Force -Path $Dir | Out-Null
     }
@@ -16,6 +25,7 @@ if ($IsWindows)
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.claude/CLAUDE.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.codex/AGENTS.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.codex/hooks.json -Value $PSScriptRoot\.codex\hooks.json | Out-Null
+    New-Item -ItemType SymbolicLink -Force -Path $HOME/.codex/rules/custom.rules -Value $PSScriptRoot\.codex\rules\custom.rules | Out-Null
     Copy-Item -Force -Path $PSScriptRoot\.codex\config.toml -Destination $HOME/.codex/config.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/settings.json -Value $PSScriptRoot\.copilot\settings.json | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/copilot-instructions.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
