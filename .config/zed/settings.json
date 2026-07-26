@@ -54,6 +54,10 @@
     "dock": "left",
   },
   "tab_size": 2,
+  "terminal": {
+    "font_family": "HackGen Console NF",
+    "font_size": 12,
+  },
   "theme": {
     "dark": "macOS Classic Dark",
     "light": "macOS Classic Light",
