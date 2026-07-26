@@ -40,7 +40,7 @@ the repo root — do not create directories for them.
 .starship/starship.toml   .zshrc   .gitconfig   .textlintrc.json   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
-play-sound.py  codex-path-guard.py
+play-sound.py  codex-guard.py
 dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
 dotnet-tools.txt  vscode-extensions.txt
 ```
@@ -99,13 +99,15 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   runtime. Same cause for `custom.rules` vs `default.rules` (see that file's header) — every
   `*.rules` under `rules/` is loaded, so a separate name keeps the tracked file clean.
 - **Codex permission routing is documented in the files themselves** — `custom.rules`'s header and
-  `codex-path-guard.py`'s docstring. Two things that are not written there: decision precedence is
+  `codex-guard.py`'s docstring. Two things that are not written there: decision precedence is
   forbidden > prompt > allow, and `permission_profiles` is enterprise-only (`requirements.toml`) —
   do not use it, and do not re-investigate it.
-- **execpolicy misses shell-wrapped commands (known hole)**: Codex splits `bash -lc "..."` only when
-  it is plain words joined by `&&` `||` `;` `|`. Redirection, variable expansion, command
-  substitution, globs, or control flow → no split, the whole invocation counts as one command, and
-  `prefix_rule` will not match (`bash -lc "git push > /dev/null"` slips past `forbidden`).
+- **Codex splits `bash -lc "..."` only when it is plain words joined by `&&` `||` `;` `|`.**
+  Redirection, variable expansion, command substitution, globs, or control flow → no split, the
+  whole invocation counts as one command and `prefix_rule` never matches. `codex-guard.py` closes
+  this: `forbidden` commands are denied outright, `prompt` commands only when wrapped — so a bare
+  `brew install` still reaches the approval flow. The split condition there is inferred, not
+  documented upstream.
 - **If a `prompt` rule silently does nothing**, the error is `approval required by policy, but
   AskForApproval is set to Never`. `granular` is a newtype variant; `config.toml`'s comment covers
   the all-five-fields requirement.
@@ -132,19 +134,6 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **Git Credential Manager installs differently per OS**: `bootstrap_fedora.sh`'s `install_gcm`
   branches between native Fedora (.NET tool + `secretservice`) and WSL (an interop wrapper around
   the Windows-side GCM). The reasoning is in the script's own comments.
-
-## Open Issues
-
-- [ ] `prompt` rules have never been observed raising an actual approval dialog — only the static
-  decision via `codex execpolicy check` is verified. Needs an authenticated Codex session.
-- [ ] `bootstrap_fedora.sh` and `Bootstrap-Windows.ps1` have never been executed (no Fedora or
-  Windows machine at hand). Syntax-checked only; `dnf install -y uv` is unverified.
-- [ ] Five `ask` entries are not ported to execpolicy: `gcloud` / `aws` / `az`
-  delete·terminate·destroy need a mid-pattern wildcard, which `prefix_rule` cannot express.
-  Workaround would be prompting on the whole CLI (`pattern = ["aws"]`) — rejected as too noisy.
-- [ ] Shell-wrapped commands bypass `forbidden` (see Tacit Knowledge).
-  `prefix_rule(pattern=["bash","-lc"], decision="prompt")` would close it, but then everyday
-  commands containing globs such as `ls *.ts` all prompt.
 
 ## Incidents
 
