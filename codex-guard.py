@@ -24,9 +24,24 @@ COMMAND_DENY (custom.rules の forbidden が届かない範囲):
 WRAPPED_ONLY_DENY (custom.rules の prompt が届かない範囲):
 - 同じ分解漏れは prompt ルールも素通りさせる。ただしフックは ask を返せないため
   (未検証)、素のコマンドまで deny すると「確認」が「拒否」に化けてしまう。
-  そこで **シェルに包まれていて、かつ分解を妨げる文字を含む** ときだけ拒否する。
-  素で叩く分には従来どおり execpolicy の承認フローに乗る。
+  そこで POSIX では **シェルに包まれていて、かつ分解を妨げる文字を含む** ときだけ
+  拒否する。素で叩く分には従来どおり execpolicy の承認フローに乗る。
 - && || ; | は Codex が分解できるので、分解を妨げる文字には数えない。
+
+Windows だけ扱いが違う理由:
+- Codex は Windows では素の argv を使わず、常に
+  `"C:\\Program Files\\PowerShell\\7\\pwsh.exe" -Command '<コマンド>'` で実行する。
+  この形だと execpolicy の prefix_rule は一切マッチしない (実測: raw argv の
+  `gws status` は forbidden、`pwsh.exe -Command "gws status"` はマッチ0件)。
+  approval_policy を untrusted にしても承認要求は出ず、forbidden も prompt も
+  Windows では機能しない。つまり **このフックが唯一の防壁**。
+- 実行が常に包まれる以上「包まれた時だけ拒否」に分岐の意味がないので、Windows では
+  WRAPPED_ONLY_DENY を無条件に適用する。承認フローが無い以上「確認できないなら止める」
+  に倒す、という判断。
+- 判定に使うのは OS であってラッパー検出ではない。フックに届く tool_input.command は
+  pwsh に包まれる**前**の生コマンド (実測: `{"command": "git push origin main"}`) なので、
+  ペイロードからは Windows かどうかを見分けられない。フックは Codex と同じマシンで動く
+  ので sys.platform で足りる。
 
 拒否は「exit 2 + stderr に理由」、それ以外は exit 0 で素通しする。
 """
@@ -41,9 +56,14 @@ PATH_DENY = [
 ]
 
 # コマンドの先頭とみなす位置。_as_text で平坦化された文字列に対し、
-# 文頭 / シェルの区切り / bash -lc・sh -c の直後だけを起点に見る。
+# 文頭 / シェルの区切り / bash -lc・sh -c・pwsh -Command・cmd /c の直後だけを起点に見る。
 # これを付けないと `grep mail file` や `echo git push` が誤って引っかかる。
-_CMD_START = r"(?:^|(?:&&|\|\||[;|])\s*|-lc\s+|-c\s+)"
+# -Command / /c を入れているのは、モデルが明示的にシェルを入れ子にした
+# (`pwsh -Command "git push"`) ときも起点として拾うため。フックに届く
+# tool_input.command 自体は包まれていない (docstring 参照)。
+# `-c\s+` は空白必須なので `-Command` には別途マッチさせる必要がある。
+# 入れ子の中身はクォートで囲まれることがあるので1文字だけ食わせる。
+_CMD_START = r"(?:^|(?:&&|\|\||[;|])\s*|-lc\s+|-c\s+|-[Cc]ommand\s+[\"']?|/[Cc]\s+[\"']?)"
 
 COMMAND_DENY = [
     (re.compile(_CMD_START + r"gws\b"), "gws の実行は禁止されています"),
@@ -71,10 +91,16 @@ WRAPPED_ONLY_DENY = re.compile(
 )
 
 # シェルラッパー経由か。
-_WRAPPER = re.compile(r"\b(?:bash|sh|zsh)\s+-(?:lc|c)\b")
+_WRAPPER_POSIX = re.compile(r"\b(?:bash|sh|zsh)\s+-(?:lc|c)\b")
 # Codex が bash -lc "..." を分解しなくなる条件 (リダイレクト・変数展開・コマンド置換・
 # グロブ・制御構文)。&& || ; | は分解できるので含めない。
 _UNSPLITTABLE = re.compile(r"[<>$`*?]|\b(?:for|while|until|if|case)\b")
+
+# Windows かどうかはペイロードからは判定できない。tool_input.command は
+# pwsh でラップされる**前**の生コマンドなので (実測: `git push origin main` がそのまま届く)、
+# ラッパー検出では Windows を見分けられない。フックは Codex と同じマシンで動くので
+# 実行中の OS がそのまま Codex の OS になる。
+_IS_WINDOWS = sys.platform.startswith("win")
 
 
 def _as_text(value) -> str:
@@ -102,7 +128,13 @@ def main() -> int:
     # `git push` までコマンドとして誤検知するため、パス条件だけを適用する。
     if payload.get("tool_name") != "apply_patch":
         rules += COMMAND_DENY
-        if _WRAPPER.search(haystack) and _UNSPLITTABLE.search(haystack):
+        if _IS_WINDOWS:
+            # Windows には承認フローが無いので、包まれているかで分岐する意味がない。
+            rules.append((
+                WRAPPED_ONLY_DENY,
+                "Windows では Codex の承認フローが機能しないため、手動で実行してください",
+            ))
+        elif _WRAPPER_POSIX.search(haystack) and _UNSPLITTABLE.search(haystack):
             rules.append((
                 WRAPPED_ONLY_DENY,
                 "シェルに包むと承認フローを迂回するため実行できません。包まずに実行してください",
