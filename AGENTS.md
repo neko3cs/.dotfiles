@@ -102,12 +102,28 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   `codex-guard.py`'s docstring. Two things that are not written there: decision precedence is
   forbidden > prompt > allow, and `permission_profiles` is enterprise-only (`requirements.toml`) —
   do not use it, and do not re-investigate it.
-- **Codex splits `bash -lc "..."` only when it is plain words joined by `&&` `||` `;` `|`.**
-  Redirection, variable expansion, command substitution, globs, or control flow → no split, the
-  whole invocation counts as one command and `prefix_rule` never matches. `codex-guard.py` closes
-  this: `forbidden` commands are denied outright, `prompt` commands only when wrapped — so a bare
-  `brew install` still reaches the approval flow. The split condition there is inferred, not
-  documented upstream.
+- **(POSIX only) Codex splits `bash -lc "..."` only when it is plain words joined by
+  `&&` `||` `;` `|`.** Redirection, variable expansion, command substitution, globs, or control
+  flow → no split, the whole invocation counts as one command and `prefix_rule` never matches.
+  `codex-guard.py` closes this: `forbidden` commands are denied outright, `prompt` commands only
+  when wrapped — so a bare `brew install` still reaches the approval flow. The split condition
+  there is inferred, not documented upstream.
+- **Hook payloads do not use Codex's internal tool names.** PreToolUse receives
+  `tool_name: "Bash"` for shell (the rollout log's `function_call` name is `shell_command` — do
+  not copy it into `matcher`), and `apply_patch` unchanged. `matcher` is a regex over that name.
+  `tool_input.command` is the **raw** command, before the pwsh wrapper — so the guard decides
+  Windows by `sys.platform`, not by detecting a wrapper.
+- **`codex exec` runs as `permission_mode: bypassPermissions`: hooks fire but their deny is
+  discarded** (measured — the command still ran on exit 2). Only an interactive `codex` session
+  enforces a deny. Do not treat the hook as a barrier in automation.
+- **On Windows neither execpolicy nor the approval flow works — `codex-guard.py` is the only
+  barrier.** Codex always executes as
+  `"C:\Program Files\PowerShell\7\pwsh.exe" -Command '<cmd>'`, which no `prefix_rule` can match
+  (raw argv `gws status` → `forbidden`; `pwsh.exe -Command "gws status"` → zero matches).
+  `approval_policy = "untrusted"` raises no prompt either. No setting changes the shell in
+  0.145.0 — `ConfigToml`'s 96 fields, `WindowsToml`, and all 97 `codex features list` entries
+  were checked. Do not re-investigate. Because Windows has no approval flow, the guard applies
+  `WRAPPED_ONLY_DENY` unconditionally there: "if it cannot be confirmed, stop it".
 - **If a `prompt` rule silently does nothing**, the error is `approval required by policy, but
   AskForApproval is set to Never`. `granular` is a newtype variant; `config.toml`'s comment covers
   the all-five-fields requirement.
@@ -152,3 +168,5 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 | 2026-07-26 | The notification hook called `python -c`, but macOS has only `python3`, so it had failed silently (exit 127) all along — and the same shape got copied into the Codex hooks | Run hooks through a real shell and check the exit code; "the JSON is valid" proves nothing |
 | 2026-07-26 | Switching hooks to `uv run` added `uv` to `Brewfile` and `winget-package.json` but missed `dnf-packages.txt`, where both hooks would have died with `uv: command not found` | When a hook gains a dependency, check the package list of **every OS the config deploys to** |
 | 2026-07-26 | Created a feature branch for a one-file doc change, then had to fast-forward `main` onto it and delete the branch | This repo does not use branches; commit to `main` and put the reasoning in the commit message body |
+| 2026-07-28 | `.codex/hooks.json`'s matcher was `shell`, so PreToolUse never fired on any OS and the guard was inert | After adding a hook, confirm it actually fires with a real payload — passing unit tests is not proof of firing |
+| 2026-07-28 | execpolicy and `codex-guard.py` were deployed to Windows too, but the pwsh wrapper meant execpolicy had never once taken effect there | Before shipping permission control to another OS, confirm with `codex exec --json` what the runtime actually sends |
