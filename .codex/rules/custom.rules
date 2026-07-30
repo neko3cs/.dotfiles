@@ -20,11 +20,11 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = ["git", ["reset", "rebase", "push"]],
+    pattern = ["git", ["reset", "rebase"]],
     decision = "forbidden",
-    justification = "履歴とリモートを壊す git 操作は手動でのみ行う",
-    match = ["git push origin main", "git reset --hard", "git rebase -i HEAD~3"],
-    not_match = ["git log --grep=push", "git status --short"],
+    justification = "履歴を壊す git 操作は手動でのみ行う",
+    match = ["git reset --hard", "git rebase -i HEAD~3"],
+    not_match = ["git log --grep=push", "git status --short", "git push origin feature-x"],
 )
 
 # --- prompt ---

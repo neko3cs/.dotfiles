@@ -32,12 +32,17 @@
   command, before any wrapper, so there is nothing to detect. Uses `sys.platform` instead.
 
 ## Next
-Windows is set up and the guard is verified (`git push` and `winget install` both denied,
+Windows is set up and the guard is verified (`git reset --hard` and `winget install` both denied,
 `git status` passes, in an interactive session). Remaining:
 1. Run `Bootstrap-Windows.ps1` on a machine you can afford to re-provision — it has never been
    executed.
 2. `bootstrap_fedora.sh` stays unverified until a Fedora machine exists; `dnf install -y uv` is
    the unproven line.
+3. 2026-07-30: switched the AI git workflow to branch + PR (worktree-based), so `git push` is now
+   allowed on both Claude (`.claude/settings.json`) and Codex (`custom.rules` forbidden pattern +
+   `codex-guard.py` COMMAND_DENY, both narrowed to `reset`/`rebase` only). Not yet re-verified in
+   an interactive Windows session — confirm `git push` now passes through and `git reset --hard`
+   is still denied.
 
 ## Undecided
 - Running Codex inside this repo fires each hook twice (user layer + project layer — see the

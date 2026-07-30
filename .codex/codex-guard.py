@@ -16,7 +16,7 @@ PATH_DENY (ファイルパス条件):
 COMMAND_DENY (custom.rules の forbidden が届かない範囲):
 - Codex は bash -lc "..." の中身にリダイレクト・グロブ・変数展開・制御構文が混ざると
   分解しないため、全体が1コマンド扱いになり forbidden な prefix_rule が素通りする
-  (bash -lc "git push > /dev/null")。文字列としては見えるのでここで捕まえる
+  (bash -lc "git reset --hard > /dev/null")。文字列としては見えるのでここで捕まえる
 - gcloud / az は動詞が末尾に来る上に深さが可変で (gcloud compute instances delete /
   az storage account delete)、aws は動詞名が可変 (delete-bucket / terminate-instances)。
   いずれも prefix_rule では届かない
@@ -39,7 +39,7 @@ Windows だけ扱いが違う理由:
   WRAPPED_ONLY_DENY を無条件に適用する。承認フローが無い以上「確認できないなら止める」
   に倒す、という判断。
 - 判定に使うのは OS であってラッパー検出ではない。フックに届く tool_input.command は
-  pwsh に包まれる**前**の生コマンド (実測: `{"command": "git push origin main"}`) なので、
+  pwsh に包まれる**前**の生コマンド (実測: `{"command": "git reset --hard"}`) なので、
   ペイロードからは Windows かどうかを見分けられない。フックは Codex と同じマシンで動く
   ので sys.platform で足りる。
 
@@ -57,9 +57,9 @@ PATH_DENY = [
 
 # コマンドの先頭とみなす位置。_as_text で平坦化された文字列に対し、
 # 文頭 / シェルの区切り / bash -lc・sh -c・pwsh -Command・cmd /c の直後だけを起点に見る。
-# これを付けないと `grep mail file` や `echo git push` が誤って引っかかる。
+# これを付けないと `grep mail file` や `echo git reset` が誤って引っかかる。
 # -Command / /c を入れているのは、モデルが明示的にシェルを入れ子にした
-# (`pwsh -Command "git push"`) ときも起点として拾うため。フックに届く
+# (`pwsh -Command "git reset --hard"`) ときも起点として拾うため。フックに届く
 # tool_input.command 自体は包まれていない (docstring 参照)。
 # `-c\s+` は空白必須なので `-Command` には別途マッチさせる必要がある。
 # 入れ子の中身はクォートで囲まれることがあるので1文字だけ食わせる。
@@ -68,7 +68,7 @@ _CMD_START = r"(?:^|(?:&&|\|\||[;|])\s*|-lc\s+|-c\s+|-[Cc]ommand\s+[\"']?|/[Cc]\
 COMMAND_DENY = [
     (re.compile(_CMD_START + r"gws\b"), "gws の実行は禁止されています"),
     (re.compile(_CMD_START + r"(?:sendmail|mail)\s"), "メール送信コマンドの実行は禁止されています"),
-    (re.compile(_CMD_START + r"git\s+(?:push|reset|rebase)\b"), "履歴とリモートを壊す git 操作は手動でのみ行う"),
+    (re.compile(_CMD_START + r"git\s+(?:reset|rebase)\b"), "履歴を壊す git 操作は手動でのみ行う"),
     # aws/gcloud/az は動詞の位置が揃わないため、次の区切りまでの範囲に破壊系の語を探す。
     (re.compile(_CMD_START + r"(?:aws|gcloud|az)\b[^;&|]*\b(?:delete|destroy|terminate)"),
      "クラウドリソースの削除・破棄コマンドは手動でのみ行う"),
@@ -97,7 +97,7 @@ _WRAPPER_POSIX = re.compile(r"\b(?:bash|sh|zsh)\s+-(?:lc|c)\b")
 _UNSPLITTABLE = re.compile(r"[<>$`*?]|\b(?:for|while|until|if|case)\b")
 
 # Windows かどうかはペイロードからは判定できない。tool_input.command は
-# pwsh でラップされる**前**の生コマンドなので (実測: `git push origin main` がそのまま届く)、
+# pwsh でラップされる**前**の生コマンドなので (実測: `git reset --hard` がそのまま届く)、
 # ラッパー検出では Windows を見分けられない。フックは Codex と同じマシンで動くので
 # 実行中の OS がそのまま Codex の OS になる。
 _IS_WINDOWS = sys.platform.startswith("win")
@@ -125,7 +125,7 @@ def main() -> int:
 
     rules = list(PATH_DENY)
     # apply_patch の tool_input はファイルの中身そのもの。ドキュメントに例示された
-    # `git push` までコマンドとして誤検知するため、パス条件だけを適用する。
+    # `git reset` までコマンドとして誤検知するため、パス条件だけを適用する。
     if payload.get("tool_name") != "apply_patch":
         rules += COMMAND_DENY
         if _IS_WINDOWS:

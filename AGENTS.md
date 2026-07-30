@@ -34,13 +34,13 @@ the repo root — do not create directories for them.
 
 ```
 .claude/settings.json   .copilot/settings.json
-.codex/{config.toml, hooks.json, rules/custom.rules}
+.codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
 .config/{ghostty/config, bat/config, nvim/init.lua, zed/settings.json,
          powershell/Microsoft.PowerShell_profile.ps1}
 .starship/starship.toml   .zshrc   .gitconfig   .textlintrc.json   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
-play-sound.py  codex-guard.py
+play-sound.py
 dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
 dotnet-tools.txt  vscode-extensions.txt
 ```
@@ -78,13 +78,13 @@ pwsh -File Set-Completions.ps1
 brew bundle dump --force
 
 # Check an execpolicy decision (hidden subcommand — absent from `codex --help`)
-codex execpolicy check --rules .codex/rules/custom.rules -- git push origin main
+codex execpolicy check --rules .codex/rules/custom.rules -- git reset --hard
 ```
 
 Edit the other package lists directly.
 
 `execpolicy check` returns a JSON `decision` for **raw argv only** — it skips the runtime's shell
-splitting, so `bash -lc "git push"` will not match. To validate syntax and `match` / `not_match`
+splitting, so `bash -lc "git reset --hard"` will not match. To validate syntax and `match` / `not_match`
 instead, send `initialize` then `thread/start` to `codex app-server` and watch for
 `failed to parse rules file ...`. `codex doctor` and `codex debug models` never read rules.
 
