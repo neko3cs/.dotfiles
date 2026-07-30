@@ -18,6 +18,17 @@ Internal reasoning may be in English.
 
 ---
 
+## Git Workflow
+
+Default for every repository: **work in a worktree on a branch, then open a PR** — never commit
+or push straight to `main`/`master`. Create the worktree + branch before touching code; once the
+change is ready, open a PR and stop there — merging is the user's call, not the agent's.
+
+A project's own `AGENTS.md` can override this default (e.g. a solo repo with no PR-based review
+may choose direct-to-`main` commits) — the project rule wins over this one.
+
+---
+
 ## Documentation Doctrine
 
 Applies whenever you create or maintain `AGENTS.md` / `CLAUDE.md` / `PLAN.md`.
