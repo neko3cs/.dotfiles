@@ -4,6 +4,7 @@
     "allow": [
       "WebSearch",
       "Bash(git commit *)",
+      "Bash(git push*)",
       "Bash(gh pr create *)",
       "Bash(gh pr edit *)",
       "Bash(gh pr view *)",
@@ -25,7 +26,6 @@
       "Bash(sendmail*)",
       "Bash(git reset*)",
       "Bash(git rebase*)",
-      "Bash(git push*)",
       "Read(**/.env*)",
       "Edit(**/.env*)",
       "Read(**/secrets/**)",
@@ -103,6 +103,6 @@
   "theme": "light",
   "editorMode": "normal",
   "autoCompactEnabled": true,
-  "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }
