@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "uv run --no-project python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/codex-guard.py'),run_name='__main__')\"",
+            "command": "uv run --no-project python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/.codex/codex-guard.py'),run_name='__main__')\"",
             "timeout": 10
           }
         ]
