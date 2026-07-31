@@ -1,4 +1,5 @@
 brew "awscli"
+brew "azcopy"
 brew "azure-cli"
 brew "azure/functions/azure-functions-core-tools@4", trusted: true
 brew "bat"
