@@ -80,8 +80,6 @@
     ]
   },
   "enabledPlugins": {
-    "azure@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "codex@openai-codex": true,
     "commit-commands@claude-plugins-official": true,
@@ -90,14 +88,12 @@
     "gopls-lsp@claude-plugins-official": true,
     "microsoft-docs@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
-    "postman@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "terraform@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
