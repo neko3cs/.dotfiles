@@ -87,6 +87,7 @@ add_dnf_repositories
 sudo dnf clean all
 sudo dnf makecache -y
 sudo dnf upgrade -y
+sudo dnf group install development-tools
 sudo dnf install -y $(cat $SCRIPT_ROOT/dnf-packages.txt)
 zsh $SCRIPT_ROOT/set_dotfiles.sh
 install_aws_cli
