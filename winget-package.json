@@ -134,9 +134,6 @@
         },
         {
           "PackageIdentifier": "ZedIndustries.Zed"
-        },
-        {
-          "PackageIdentifier": "ProjectLibre.ProjectLibre"
         }
       ],
       "SourceDetails": {
