@@ -38,11 +38,17 @@ Windows is set up and the guard is verified (`git reset --hard` and `winget inst
    executed.
 2. `bootstrap_fedora.sh` stays unverified until a Fedora machine exists; `dnf install -y uv` is
    the unproven line.
-3. 2026-07-30: switched the AI git workflow to branch + PR (worktree-based), so `git push` is now
-   allowed on both Claude (`.claude/settings.json`) and Codex (`custom.rules` forbidden pattern +
-   `codex-guard.py` COMMAND_DENY, both narrowed to `reset`/`rebase` only). Not yet re-verified in
-   an interactive Windows session — confirm `git push` now passes through and `git reset --hard`
-   is still denied.
+
+2026-08-06: re-verified the `git push` allow after the 2026-07-30 branch+PR switch.
+- Claude: live in an interactive Windows session — `git push --dry-run` ran with no prompt,
+  `git reset --hard` came back "Permission ... has been denied."
+- Codex: `codex execpolicy check` confirms the rules file (`git push origin feature-x` → no
+  match / implicit allow, `git reset --hard` → `forbidden`), but that layer never fires on
+  Windows (pwsh wrapping — see Tacit Knowledge). The actual barrier, `codex-guard.py`, was fed
+  the measured unwrapped payload shape directly: `git push origin feature-x` → exit 0,
+  `git reset --hard` → exit 2 with the expected justification. Not a literal interactive Codex
+  TUI session (`codex exec` can't be used here — it bypasses hook denials, see Undecided/
+  Incidents), but it exercises the exact mechanism that gates on Windows.
 
 ## Undecided
 - Running Codex inside this repo fires each hook twice (user layer + project layer — see the
