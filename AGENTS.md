@@ -24,6 +24,11 @@ package lists only — there are no application features, APIs, or user-facing p
   `~/.gitconfig.local`, included via `[include]` from `.gitconfig`. Never committed.
 - **Prefix repo-internal paths with `$SCRIPT_ROOT` / `$PSScriptRoot`.** A bare relative path only
   works when cwd happens to be the repo root.
+- **Bootstrap `install_*` / `Set-*` steps must check target state before acting.** One-shot
+  installers (`rpm -i`, `dnf config-manager addrepo`, `wsl --install`, vendor curl-installers) are
+  not idempotent — they error when the target already exists, and the failure often goes uncaught
+  because it's a native command, not a cmdlet/builtin. See the 2026-08-06 Incidents for the
+  concrete list this bit both scripts with.
 - **Completions are generated per-machine** and untracked. Re-run `set_completions.sh` /
   `Set-Completions.ps1` after installing new tools.
 
@@ -155,10 +160,10 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   and icons from the Nerd Font private-use area, which macOS font fallback does not cover (emoji it
   does) — an unset `font_family` renders tofu, never an error. Use `HackGen Console NF`, not the
   `HackGen35 Console NF` that `font-hackgen-nerd` installs alongside it.
-- **Running Codex inside this repo fires each `PreToolUse` hook twice** (user layer + project
-  layer — see the entry above on `.claude`/`.codex` also being read as project config). During one
-  verification, one of the two duplicate invocations exited 1 instead of 0/2; the deny from the
-  other still took effect. Accepted as-is — the cause of the exit-1 duplicate was not found.
+- **During Codex's double-fire (see the entry above on `.claude`/`.codex` also being read as
+  project config), one of the two duplicate invocations exited 1 instead of 0/2** during one
+  verification; the deny from the other still took effect. Accepted as-is — the cause of the
+  exit-1 duplicate was not found.
 - **`custom.rules`'s header points at this file, and this file points back at the config files.**
   Whichever side gets edited, the other can go stale. No mechanism enforces the cross-reference;
   treat it as a manual-sync risk when editing either.
