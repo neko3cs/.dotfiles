@@ -155,6 +155,16 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   and icons from the Nerd Font private-use area, which macOS font fallback does not cover (emoji it
   does) — an unset `font_family` renders tofu, never an error. Use `HackGen Console NF`, not the
   `HackGen35 Console NF` that `font-hackgen-nerd` installs alongside it.
+- **Running Codex inside this repo fires each `PreToolUse` hook twice** (user layer + project
+  layer — see the entry above on `.claude`/`.codex` also being read as project config). During one
+  verification, one of the two duplicate invocations exited 1 instead of 0/2; the deny from the
+  other still took effect. Accepted as-is — the cause of the exit-1 duplicate was not found.
+- **`custom.rules`'s header points at this file, and this file points back at the config files.**
+  Whichever side gets edited, the other can go stale. No mechanism enforces the cross-reference;
+  treat it as a manual-sync risk when editing either.
+- **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
+  Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
+  `WRAPPED_ONLY_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
 
 ## Incidents
 
