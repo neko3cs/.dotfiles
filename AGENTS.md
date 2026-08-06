@@ -120,7 +120,8 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   barrier.** Codex always executes as
   `"C:\Program Files\PowerShell\7\pwsh.exe" -Command '<cmd>'`, which no `prefix_rule` can match
   (raw argv `gws status` → `forbidden`; `pwsh.exe -Command "gws status"` → zero matches).
-  `approval_policy = "untrusted"` raises no prompt either. No setting changes the shell in
+  `approval_policy = "untrusted"` raises no prompt either, nor does `unified_exec` — both measured,
+  both still execute a `forbidden` command without asking. No setting changes the shell in
   0.145.0 — `ConfigToml`'s 96 fields, `WindowsToml`, and all 97 `codex features list` entries
   were checked. Do not re-investigate. Because Windows has no approval flow, the guard applies
   `WRAPPED_ONLY_DENY` unconditionally there: "if it cannot be confirmed, stop it".
