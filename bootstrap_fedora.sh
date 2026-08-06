@@ -25,18 +25,23 @@ activate_fedora() {
 }
 add_dnf_repositories() {
   # Microsoft Repository
-  curl -sSL -O https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm
-  sudo rpm -i packages-microsoft-prod.rpm
-  rm packages-microsoft-prod.rpm
+  if ! rpm -q packages-microsoft-prod > /dev/null 2>&1; then
+    curl -sSL -O https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm
+    sudo rpm -i packages-microsoft-prod.rpm
+    rm packages-microsoft-prod.rpm
+  fi
   # zsh-completions Repository
   sudo dnf copr enable -y clarlok/zsh-users
   # lazygit Repository
   sudo dnf copr enable -y dejan/lazygit
   # HashiCorp Repository
   sudo dnf install -y dnf-plugins-core
-  sudo dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+  sudo dnf config-manager addrepo --overwrite --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 }
 install_aws_cli() {
+  if command -v aws > /dev/null 2>&1; then
+    return
+  fi
   local work_dir="$(mktemp -d)"
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$work_dir/awscliv2.zip"
   unzip -q -d "$work_dir" "$work_dir/awscliv2.zip"
@@ -46,7 +51,7 @@ install_aws_cli() {
 install_docker() {
   sudo dnf remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate \
                     docker-logrotate docker-selinux docker-engine-selinux docker-engine
-  sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+  sudo dnf config-manager addrepo --overwrite --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
   sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   sudo usermod -aG docker $USER
   sudo systemctl enable --now docker
@@ -54,6 +59,9 @@ install_docker() {
 install_pyenv() {
   sudo dnf install -y make gcc patch zlib-devel bzip2-devel readline-devel sqlite-devel \
                       openssl-devel tk-devel libffi-devel xz-devel libnsl2-devel
+  if [[ -d "$HOME/.pyenv" ]]; then
+    return
+  fi
   curl https://pyenv.run | bash
 }
 install_starship() {
@@ -87,7 +95,7 @@ add_dnf_repositories
 sudo dnf clean all
 sudo dnf makecache -y
 sudo dnf upgrade -y
-sudo dnf group install development-tools
+sudo dnf group install -y development-tools
 sudo dnf install -y $(cat $SCRIPT_ROOT/dnf-packages.txt)
 zsh $SCRIPT_ROOT/set_dotfiles.sh
 install_aws_cli
