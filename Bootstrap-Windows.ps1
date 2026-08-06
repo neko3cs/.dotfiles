@@ -5,8 +5,15 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function Set-Wsl2Fedora {
-  wsl --install --no-launch --distribution FedoraLinux-43
-  wsl --set-default FedoraLinux-43
+  $env:WSL_UTF8 = "1"
+  $Distro = "FedoraLinux-43"
+  $Installed = (wsl --list --quiet) | ForEach-Object { $_.Trim() }
+  if ($Installed -notcontains $Distro) {
+    wsl --install --no-launch --distribution $Distro
+  } else {
+    Write-Host "'$Distro' is already installed."
+  }
+  wsl --set-default $Distro
   wsl --set-default-version 2
 }
 function Invoke-EnableWindowsOptionalFeature {
