@@ -34,10 +34,21 @@
 ## Next
 Windows is set up and the guard is verified (`git reset --hard` and `winget install` both denied,
 `git status` passes, in an interactive session). Remaining:
-1. Run `Bootstrap-Windows.ps1` on a machine you can afford to re-provision — it has never been
-   executed.
-2. `bootstrap_fedora.sh` stays unverified until a Fedora machine exists; `dnf install -y uv` is
+1. `bootstrap_fedora.sh` stays unverified until a Fedora machine exists; `dnf install -y uv` is
    the unproven line.
+
+2026-08-06: ran `gsudo pwsh -f Bootstrap-Windows.ps1` end-to-end on this machine (2nd run, so
+this exercised idempotency, not first-time setup). Found and fixed two bugs — see AGENTS.md
+Incidents for the "why":
+- `Set-Wsl2Fedora`'s `wsl --install` errored `ERROR_ALREADY_EXISTS` on the already-installed
+  distro; its `$LASTEXITCODE` went uncaught and became the whole script's exit code (1). Fixed
+  by checking `wsl --list --quiet` first.
+- `msstore-apps.json`'s Amazon Kindle entry can't install non-interactively (age-gate prompt,
+  no skip flag). Removed.
+Everything else in the script — winget import, Windows optional features, `Set-DotFiles.ps1`
+symlinks, final WSL state — was already idempotent and needed no changes. The fix was verified
+in isolation (fixed `Set-Wsl2Fedora` logic run standalone, `$LASTEXITCODE` 0 for both `wsl`
+calls); a full re-run of the whole script was not repeated since the rest was already proven.
 
 2026-08-06: re-verified the `git push` allow after the 2026-07-30 branch+PR switch.
 - Claude: live in an interactive Windows session — `git push --dry-run` ran with no prompt,
