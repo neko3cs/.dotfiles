@@ -2,7 +2,9 @@
 
 ## Goal
 - Codex permission control on Windows. Done: matcher fixed (`Bash`), guard extended, deny
-  verified end-to-end in an interactive session. Remaining: the never-run bootstrap scripts.
+  verified end-to-end in an interactive session. Both bootstrap scripts (`Bootstrap-Windows.ps1`,
+  `bootstrap_fedora.sh`) have now been run end-to-end and their idempotency bugs fixed — see
+  the 2026-08-06 entries below and AGENTS.md Incidents.
 
 ## Approach
 - The doctrine owns the routing table. `AGENTS.md` and the skills defer to it instead of
@@ -33,9 +35,29 @@
 
 ## Next
 Windows is set up and the guard is verified (`git reset --hard` and `winget install` both denied,
-`git status` passes, in an interactive session). Remaining:
-1. `bootstrap_fedora.sh` stays unverified until a Fedora machine exists; `dnf install -y uv` is
-   the unproven line.
+`git status` passes, in an interactive session). No open items remain in this goal; the log below
+records how each part was verified.
+
+2026-08-06: ran `bootstrap_fedora.sh` end-to-end on the WSL FedoraLinux-43 instance set up by
+`Bootstrap-Windows.ps1`'s `Set-Wsl2Fedora`. This instance already had a partial prior run on it
+(docker, aws-cli, starship, dotfiles symlinks dated 2026-07-30 all present), so this exercised
+idempotency, same as the Windows run. `set -e` meant only one bug surfaced per run; fixed and
+re-ran 6 times until a clean `exit 0`. Found and fixed 6 bugs — see AGENTS.md Incidents for the
+"why" on each:
+- `rpm -i packages-microsoft-prod.rpm` (fails if already installed) → check `rpm -q` first.
+- `dnf config-manager addrepo` for HashiCorp and, separately, Docker CE (both fail once the repo
+  file exists) → added `--overwrite` to both.
+- `sudo dnf group install development-tools` was missing `-y` — the 2026-08-04 commit that
+  extracted this line never actually fixed the underlying problem, it just moved it. A no-op
+  transaction still prompts without `-y`.
+- `install_aws_cli`'s installer refuses to run over an existing install → skip if `command -v aws`.
+- `install_pyenv`'s installer refuses to run over an existing `~/.pyenv` (leftover from an earlier
+  interrupted run) → skip if the directory exists.
+Everything else (locale/timezone, copr repos, `dnf install` from `dnf-packages.txt`,
+`set_dotfiles.sh`, `install_gcm`'s WSL wrapper, `install_starship`, completions) was already
+idempotent. Verified via full runs (not isolated units, since `set -e` makes each run itself the
+verification) plus a final spot-check of `~/.pyenv`, the GCM wrapper, `starship`, `docker`
+(active), and both repo files.
 
 2026-08-06: ran `gsudo pwsh -f Bootstrap-Windows.ps1` end-to-end on this machine (2nd run, so
 this exercised idempotency, not first-time setup). Found and fixed two bugs — see AGENTS.md
