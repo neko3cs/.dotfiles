@@ -91,6 +91,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "zed"
 cask "zoom"
+mas "1Password for Safari", id: 1569813296
 mas "iMovie", id: 408981434
 mas "Keynote", id: 361285480
 mas "Kindle", id: 302584613
