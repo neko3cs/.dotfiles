@@ -27,6 +27,7 @@ brew "llvm"
 brew "mas"
 brew "mono-libgdiplus"
 brew "muter-mutation-testing/formulae/muter", trusted: true
+brew "mysql"
 brew "neovim"
 brew "nkf"
 brew "node"
