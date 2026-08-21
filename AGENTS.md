@@ -170,6 +170,12 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
   `WRAPPED_ONLY_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
+- **Claude Code's `enabledPlugins` only takes effect at the user scope
+  (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
+  `.claude/settings.json` in some other repo cannot override it per-project — the key is silently
+  ignored there, not merged. Confirmed via upstream GitHub issue
+  anthropics/claude-code#62174 ("Support per-project enabledPlugins"), closed as not planned. Do
+  not try to toggle LSP plugins per-repo again; toggle them here instead, globally.
 
 ## Incidents
 
@@ -190,3 +196,4 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 | 2026-08-06 | `msstore-apps.json`'s age-gated app (Amazon Kindle) failed under non-interactive `store install`, which prompts for age confirmation with no flag to skip it (checked `store install --help`) | Do not add age-restricted MS Store apps to `msstore-apps.json` |
 | 2026-08-06 | First real run of `bootstrap_fedora.sh` (`set -e`) died on the first re-run of any "one-shot install" command: `rpm -i` (Microsoft repo), `dnf config-manager addrepo` (HashiCorp, Docker CE — both need `--overwrite` once the repo file exists), the AWS CLI installer, and the pyenv installer (refuses to run over an existing `~/.pyenv`) all error on an already-satisfied state | Every `install_*` function must check the target state before acting, not just call the vendor's one-shot installer |
 | 2026-08-06 | The 2026-08-04 commit meant to fix `dnf group install development-tools` erroring, but never added `-y` — so on a no-op transaction (already installed) it still prompted `Is this ok [y/N]:`, and with no TTY that reads EOF → "Operation aborted by the user" | A "no changes needed" transaction still asks for confirmation in dnf; `-y` is required even when you expect zero work |
+| 2026-08-21 | Bash tool went silently inert mid-session (no error, no output) after ~2 hours of heavy use; `~/.claude/shell-snapshots/` showed the generated `export PATH=...` line growing every call because Claude Code re-appends each enabled plugin's `bin/` dir without dedup (`claude-plugins-official` LSP paths seen duplicated 25→32 times within 3.6 minutes) — suspected but unconfirmed root cause, likely hitting a Windows command-line/env-block length limit | Keep unused per-language LSP plugins (`csharp-lsp` / `gopls-lsp` / `pyright-lsp` / `rust-analyzer-lsp` / `swift-lsp` / `typescript-lsp`) disabled in `enabledPlugins` here unless actively used, to slow PATH growth; if Bash starts silently no-op'ing or throwing quote errors mid-session, suspect this and start a fresh session |
