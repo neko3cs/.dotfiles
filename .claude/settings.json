@@ -55,30 +55,7 @@
       "Bash(cargo install *)"
     ]
   },
-  "hooks": {
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run --no-project python -c \"import os,sys;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('notification')\""
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run --no-project python -c \"import os,sys;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\""
-          }
-        ]
-      }
-    ]
-  },
+  "hooks": {},
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "codex@openai-codex": true,
