@@ -40,6 +40,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 | [Happy Hacking Keyboard - ダウンロード - PFU](https://happyhackingkb.com/jp/download/) | キーボードのドライバー更新など                                         |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)  | -                                                                      |
 | [VMWare Fusion](https://support.broadcom.com/group/ecx/downloads)                      | Broadcom Support Portalからダウンロード                                |
+| [VOICEBOX](https://voicevox.hiroshiba.jp/)                                             |                                                                        |
 
 ### Windows
 
@@ -49,6 +50,7 @@ cd $HOME && git clone https://github.com/neko3cs/.dotfiles.git && cd $HOME/.dotf
 | [Ctrl2cap - Windows Sysinternals - Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap)                    | -                                                                            |
 | [Logi Options+Plus](https://www.logicool.co.jp/ja-jp/software/logi-options-plus.html)                                                   | -                                                                            |
 | [ULE4JIS/publish at master · dezz/ULE4JIS](https://github.com/dezz/ULE4JIS/tree/master/publish)                                         | -                                                                            |
+| [VOICEBOX](https://voicevox.hiroshiba.jp/)                                                                                              |                                                                              |
 | [カスタマイズ – かえうち](https://kaeuchi.jp/customize/)                                                                                | -                                                                            |
 | [プログラミングフォント 白源 (はくげん／HackGen)](https://github.com/yuru7/HackGen)                                                     | -                                                                            |
 | [プロセス エクスプローラー - Sysinternals - Microsoft Learn](https://learn.microsoft.com/ja-jp/sysinternals/downloads/process-explorer) | -                                                                            |
