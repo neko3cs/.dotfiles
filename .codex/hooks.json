@@ -11,17 +11,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run --no-project python -c \"import os;exec(open(os.path.expanduser('~/.dotfiles/play-sound.py'),encoding='utf-8').read());play('stop')\"",
-            "timeout": 10
-          }
-        ]
-      }
     ]
   }
 }
