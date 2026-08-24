@@ -43,6 +43,10 @@ if ($IsWindows)
     $Env:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
     $Env:STARSHIP_CACHE = "$HOME\.starship\cache"
   }
+  if (Get-Command claude -ErrorAction SilentlyContinue)
+  {
+    $Env:CLAUDE_CODE_PLUGIN_PREFER_HTTPS = 1
+  }
   # Env
   $paths = @(
     "$($Env:LOCALAPPDATA)\DotNetVersions"

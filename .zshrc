@@ -13,6 +13,7 @@ fi
 $IS_MACOS && export ANDROID_HOME=$HOME/Library/Android/sdk
 $IS_MACOS && export ANDROID_SDK_ROOT=$ANDROID_HOME
 export CARGO_HOME="$HOME/.cargo"
+export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1
 export DOTNET_ROOT="/usr/local/share/dotnet"
 export GOPATH="$HOME/gopath"
 $IS_MACOS && export JAVA_HOME=$(/usr/libexec/java_home -v 17)

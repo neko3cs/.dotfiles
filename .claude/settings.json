@@ -76,13 +76,20 @@
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": false,
-    "typescript-lsp@claude-plugins-official": false
+    "typescript-lsp@claude-plugins-official": false,
+    "remotion@remotion": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "remotion": {
+      "source": {
+        "source": "github",
+        "repo": "remotion-dev/claude-code-plugin"
       }
     }
   },
