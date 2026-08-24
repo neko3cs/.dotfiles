@@ -45,7 +45,6 @@ the repo root — do not create directories for them.
 .starship/starship.toml   .zshrc   .gitconfig   .textlintrc.json   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
-play-sound.py
 dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
 dotnet-tools.txt  vscode-extensions.txt
 ```
