@@ -10,7 +10,7 @@ mcp_oauth_credentials_store = "keyring"
 
 [approval_policy.granular]
 sandbox_approval = false
-rules = true
+rules = true # custom.rulesを有効にする
 skill_approval = false
 request_permissions = false
 mcp_elicitations = false
