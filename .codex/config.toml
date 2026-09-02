@@ -1,6 +1,4 @@
 model = "gpt-5.6-terra"
-# ChatGPTアプリはGUI切り替え不可のため公式(openai)をデフォルトに固定
-# 切り替え時は使う行だけ残す(CLIなら`-c model_provider=xxx`でも可)
 model_provider = "openai"
 # model_provider = "ollama"
 # model_provider = "azure-east-us2"
@@ -10,9 +8,6 @@ network_access = true
 sandbox_mode = "workspace-write"
 mcp_oauth_credentials_store = "keyring"
 
-# rules = true だけ有効にして .codex/rules/custom.rules の prompt ルールを機能させる。
-# 他は false のままなので、明示したルール以外は従来の "never" と同じく全自動で走る。
-# 5フィールドすべて必須(省略するとパースエラー)。
 [approval_policy.granular]
 sandbox_approval = false
 rules = true
@@ -21,12 +16,10 @@ request_permissions = false
 mcp_elicitations = false
 
 [shell_environment_policy]
-# 全自動実行時、生成コマンドへのAPIキー漏出を防ぐ
 exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 
 [model_providers.azure-east-us2]
 name = "Azure"
-# cp配置後に実URLへ手動置換(変数展開はされない)
 base_url = "{AZURE_FOUNDRY_BASE_URL}"
 env_key = "MICROSOFT_FOUNDRY_API_KEY"
 
