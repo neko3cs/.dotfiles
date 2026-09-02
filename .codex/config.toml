@@ -1,6 +1,6 @@
 model_provider = "openai"
 # model_provider = "ollama"
-# model_provider = "azure-east-us2"
+# model_provider = "azure"
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 model_context_window = 1000000
@@ -19,7 +19,7 @@ mcp_elicitations = false
 [shell_environment_policy]
 exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 
-[model_providers.azure-east-us2]
+[model_providers.azure]
 name = "Azure"
 base_url = "{AZURE_FOUNDRY_BASE_URL}"
 env_key = "MICROSOFT_FOUNDRY_API_KEY"
