@@ -1,8 +1,9 @@
-model = "gpt-5.6-terra"
 model_provider = "openai"
 # model_provider = "ollama"
 # model_provider = "azure-east-us2"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
+model_context_window = 1000000
 
 network_access = true
 sandbox_mode = "workspace-write"
@@ -33,6 +34,10 @@ memories = true
 [memories]
 generate_memories = true
 use_memories = true
+
+[tools]
+web_search = true
+view_images = true
 
 [plugins."chrome@openai-bundled"]
 enabled = true
