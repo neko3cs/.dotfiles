@@ -1,4 +1,4 @@
-model = "gpt-5.4"
+model = "gpt-5.6-terra"
 # ChatGPTアプリはGUI切り替え不可のため公式(openai)をデフォルトに固定
 # 切り替え時は使う行だけ残す(CLIなら`-c model_provider=xxx`でも可)
 model_provider = "openai"
