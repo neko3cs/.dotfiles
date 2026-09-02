@@ -1,8 +1,3 @@
-# Codex execpolicy ルール (Starlark)。既知の穴と未移植分は AGENTS.md 参照。
-# 検証: codex execpolicy check --rules .codex/rules/custom.rules -- <command>
-# prompt には config.toml の approval_policy.granular.rules = true が必要。
-# default.rules は Codex が自動追記するファイルなので別名にしている。
-
 # --- forbidden ---
 
 prefix_rule(
