@@ -11,7 +11,7 @@ mcp_oauth_credentials_store = "keyring"
 
 [approval_policy.granular]
 sandbox_approval = false
-rules = true # custom.rulesを有効にする
+rules = true # native execpolicy を利用する。Windows の強制は PreToolUse guard が担う。
 skill_approval = false
 request_permissions = false
 mcp_elicitations = false

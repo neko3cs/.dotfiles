@@ -49,10 +49,22 @@ import json
 import re
 import sys
 
+_PATH_START = r"(?:^|[\s\"'=/\\])"
+_PATH_END = r"(?=$|[\s\"'/\\;|&()])"
+
 PATH_DENY = [
-    (re.compile(r"(?:^|[\s\"'=/])\.env(?:\.[\w.-]+)?(?:$|[\s\"'/])"), ".env ファイルへのアクセスは禁止されています"),
-    (re.compile(r"(?:^|[\s\"'/])secrets/"), "secrets/ 配下へのアクセスは禁止されています"),
-    (re.compile(r"\bcredentials\.json\b"), "credentials.json へのアクセスは禁止されています"),
+    (
+        re.compile(_PATH_START + r"\.env(?:\.[\w.-]+)?" + _PATH_END),
+        ".env ファイルへのアクセスは禁止されています",
+    ),
+    (
+        re.compile(_PATH_START + r"secrets[\\/]"),
+        "secrets/ 配下へのアクセスは禁止されています",
+    ),
+    (
+        re.compile(r"\bcredentials\.json\b"),
+        "credentials.json へのアクセスは禁止されています",
+    ),
 ]
 
 # コマンドの先頭とみなす位置。_as_text で平坦化された文字列に対し、
