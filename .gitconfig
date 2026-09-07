@@ -1,7 +1,8 @@
-[include]
-	path = ~/.gitconfig.local
 [init]
 	defaultBranch = main
+[user]
+	name = neko3cs
+	email = minaton.0722.net@gmail.com
 [core]
 	autocrlf = false
 	editor = vi
