@@ -56,6 +56,9 @@
     ]
   },
   "hooks": {},
+  "env": {
+    "CLAUDE_CODE_THRIFTY_SONIC": "0"
+  },
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "codex@openai-codex": true,
