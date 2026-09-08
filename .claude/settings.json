@@ -57,6 +57,7 @@
   },
   "hooks": {},
   "env": {
+    "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",
     "CLAUDE_CODE_THRIFTY_SONIC": "0"
   },
   "enabledPlugins": {
