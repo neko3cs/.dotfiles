@@ -21,11 +21,10 @@ COMMAND_DENY (custom.rules の forbidden が届かない範囲):
   az storage account delete)、aws は動詞名が可変 (delete-bucket / terminate-instances)。
   いずれも prefix_rule では届かない
 
-WRAPPED_ONLY_DENY (custom.rules の prompt が届かない範囲):
-- 同じ分解漏れは prompt ルールも素通りさせる。ただしフックは ask を返せないため
-  (未検証)、素のコマンドまで deny すると「確認」が「拒否」に化けてしまう。
-  そこで POSIX では **シェルに包まれていて、かつ分解を妨げる文字を含む** ときだけ
-  拒否する。素で叩く分には従来どおり execpolicy の承認フローに乗る。
+UNSPLITTABLE_DENY (custom.rules の forbidden が届かない範囲):
+- 同じ分解漏れでは forbidden ルールも素通りする。フックで同じコマンドを拒否して
+  迂回を防ぐ。POSIX では **シェルに包まれていて、かつ分解を妨げる文字を含む** ときだけ
+  この補完ルールを適用する。素のコマンドは execpolicy が拒否する。
 - && || ; | は Codex が分解できるので、分解を妨げる文字には数えない。
 
 Windows だけ扱いが違う理由:
@@ -36,7 +35,7 @@ Windows だけ扱いが違う理由:
   approval_policy を untrusted にしても承認要求は出ず、forbidden も prompt も
   Windows では機能しない。つまり **このフックが唯一の防壁**。
 - 実行が常に包まれる以上「包まれた時だけ拒否」に分岐の意味がないので、Windows では
-  WRAPPED_ONLY_DENY を無条件に適用する。承認フローが無い以上「確認できないなら止める」
+  UNSPLITTABLE_DENY を無条件に適用する。承認フローが無い以上「確認できないなら止める」
   に倒す、という判断。
 - 判定に使うのは OS であってラッパー検出ではない。フックに届く tool_input.command は
   pwsh に包まれる**前**の生コマンド (実測: `{"command": "git reset --hard"}`) なので、
@@ -73,32 +72,35 @@ PATH_DENY = [
 # -Command / /c を入れているのは、モデルが明示的にシェルを入れ子にした
 # (`pwsh -Command "git reset --hard"`) ときも起点として拾うため。フックに届く
 # tool_input.command 自体は包まれていない (docstring 参照)。
-# `-c\s+` は空白必須なので `-Command` には別途マッチさせる必要がある。
-# 入れ子の中身はクォートで囲まれることがあるので1文字だけ食わせる。
-_CMD_START = r"(?:^|(?:&&|\|\||[;|])\s*|-lc\s+|-c\s+|-[Cc]ommand\s+[\"']?|/[Cc]\s+[\"']?)"
+# `-c` / `-lc` は空白必須なので `-Command` には別途マッチさせる必要がある。
+# 入れ子の中身はクォートで囲まれることがあるので、いずれの起点でも1文字だけ食わせる。
+_CMD_START = r"(?:^|(?:&&|\|\||[;|])\s*|-(?:lc|c)\s+[\"']?|-[Cc]ommand\s+[\"']?|/[Cc]\s+[\"']?)"
 
 COMMAND_DENY = [
     (re.compile(_CMD_START + r"gws\b"), "gws の実行は禁止されています"),
     (re.compile(_CMD_START + r"(?:sendmail|mail)\s"), "メール送信コマンドの実行は禁止されています"),
-    (re.compile(_CMD_START + r"git\s+(?:reset|rebase)\b"), "履歴を壊す git 操作は手動でのみ行う"),
+    (re.compile(_CMD_START + r"git\s+(?:reset|rebase|clean)\b"), "履歴や未追跡ファイルを壊す git 操作は手動でのみ行う"),
+    (re.compile(_CMD_START + r"dotnet\s+tool\s+(?:install|uninstall|update)\b[^;&|]*(?:--global|\s-g\b)"),
+     "グローバルな .NET ツール変更は手動でのみ行う"),
+    (re.compile(_CMD_START + r"(?:uv\s+pip|pip3?)\s+(?:install|uninstall)\b[^;&|]*(?:--user|--system|--break-system-packages)\b"),
+     "グローバルな Python 環境への変更は手動でのみ行う"),
     # aws/gcloud/az は動詞の位置が揃わないため、次の区切りまでの範囲に破壊系の語を探す。
     (re.compile(_CMD_START + r"(?:aws|gcloud|az)\b[^;&|]*\b(?:delete|destroy|terminate)"),
      "クラウドリソースの削除・破棄コマンドは手動でのみ行う"),
 ]
 
-# custom.rules の prompt ルールに対応するコマンド。素で叩く分には承認フローに乗るので
-# 触らず、包まれた時だけ拒否する。
-WRAPPED_ONLY_DENY = re.compile(
+# custom.rules の forbidden ルールに対応するコマンド。Codex が分解できないシェル
+# ラッパー内では execpolicy が届かないため、フックでも同じ操作を拒否する。
+UNSPLITTABLE_DENY = re.compile(
     _CMD_START + r"(?:"
     r"terraform\s+destroy"
     r"|curl\s+(?:-\S+\s+)*-X\s+DELETE"
     r"|npm\s+publish"
     r"|npm\s+install\s+(?:-g|--global)\b"
-    r"|(?:brew|winget|cargo)\s+install\b"
-    r"|dotnet\s+tool\s+install\b"
-    r"|(?:pnpm|uv)\s+add\b"
-    r"|uv\s+pip\s+install\b"
-    r"|pip3?\s+install\b"
+    r"|brew\s+(?:install|uninstall|upgrade)\b"
+    r"|winget\s+(?:install|uninstall|upgrade)\b"
+    r"|cargo\s+(?:install|uninstall)\b"
+    r"|docker\s+system\s+prune\b"
     r")"
 )
 
@@ -142,14 +144,11 @@ def main() -> int:
         rules += COMMAND_DENY
         if _IS_WINDOWS:
             # Windows には承認フローが無いので、包まれているかで分岐する意味がない。
-            rules.append((
-                WRAPPED_ONLY_DENY,
-                "Windows では Codex の承認フローが機能しないため、手動で実行してください",
-            ))
+            rules.append((UNSPLITTABLE_DENY, "環境や外部状態を破壊し得るため、手動で実行してください"))
         elif _WRAPPER_POSIX.search(haystack) and _UNSPLITTABLE.search(haystack):
             rules.append((
-                WRAPPED_ONLY_DENY,
-                "シェルに包むと承認フローを迂回するため実行できません。包まずに実行してください",
+                UNSPLITTABLE_DENY,
+                "シェルに包むと禁止ルールを迂回するため実行できません",
             ))
 
     for pattern, reason in rules:

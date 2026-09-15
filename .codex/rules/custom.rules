@@ -15,25 +15,74 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = ["git", ["reset", "rebase"]],
+    pattern = ["git", ["reset", "rebase", "clean"]],
     decision = "forbidden",
-    justification = "履歴を壊す git 操作は手動でのみ行う",
-    match = ["git reset --hard", "git rebase -i HEAD~3"],
+    justification = "履歴や未追跡ファイルを壊す git 操作は手動でのみ行う",
+    match = ["git reset --hard", "git rebase -i HEAD~3", "git clean -fd"],
     not_match = ["git log --grep=push", "git status --short", "git push origin feature-x"],
 )
 
-# --- prompt ---
-
 prefix_rule(
     pattern = ["terraform", "destroy"],
-    decision = "prompt",
-    justification = "インフラを破棄するため確認する",
+    decision = "forbidden",
+    justification = "インフラを破棄するコマンドは手動でのみ行う",
     match = ["terraform destroy -auto-approve"],
 )
 
 prefix_rule(
+    pattern = ["curl", "-X", "DELETE"],
+    decision = "forbidden",
+    justification = "削除 API の呼び出しは手動でのみ行う",
+    match = ["curl -X DELETE https://example.com/v1/items/1"],
+    not_match = ["curl https://example.com/v1/items"],
+)
+
+prefix_rule(
     pattern = ["npm", "publish"],
-    decision = "prompt",
-    justification = "パッケージを公開するため確認する",
+    decision = "forbidden",
+    justification = "パッケージの公開は手動でのみ行う",
     match = ["npm publish --access public"],
+)
+
+prefix_rule(
+    pattern = ["npm", "install", ["-g", "--global"]],
+    decision = "forbidden",
+    justification = "グローバルな npm パッケージ追加は手動でのみ行う",
+    match = ["npm install -g typescript", "npm install --global typescript"],
+    not_match = ["npm install", "npm install --save-dev vitest"],
+)
+
+prefix_rule(
+    pattern = ["brew", ["install", "uninstall", "upgrade"]],
+    decision = "forbidden",
+    justification = "Homebrew のグローバル変更は手動でのみ行う",
+    match = ["brew install ripgrep", "brew uninstall ripgrep", "brew upgrade ripgrep"],
+)
+
+prefix_rule(
+    pattern = ["winget", ["install", "uninstall", "upgrade"]],
+    decision = "forbidden",
+    justification = "winget による環境変更は手動でのみ行う",
+    match = ["winget install --id Git.Git", "winget uninstall --id Git.Git", "winget upgrade --id Git.Git"],
+)
+
+prefix_rule(
+    pattern = ["cargo", ["install", "uninstall"]],
+    decision = "forbidden",
+    justification = "グローバルな Cargo パッケージ変更は手動でのみ行う",
+    match = ["cargo install cargo-nextest", "cargo uninstall cargo-nextest"],
+)
+
+prefix_rule(
+    pattern = ["dotnet", "tool", ["install", "uninstall", "update"], ["-g", "--global"]],
+    decision = "forbidden",
+    justification = "グローバルな .NET ツール変更は手動でのみ行う",
+    match = ["dotnet tool install --global git-credential-manager"],
+)
+
+prefix_rule(
+    pattern = ["docker", "system", "prune"],
+    decision = "forbidden",
+    justification = "Docker 環境を破棄するコマンドは手動でのみ行う",
+    match = ["docker system prune --all --volumes"],
 )
