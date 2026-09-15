@@ -10,7 +10,7 @@ sandbox_mode = "workspace-write"
 mcp_oauth_credentials_store = "keyring"
 
 [approval_policy.granular]
-sandbox_approval = false
+sandbox_approval = true
 rules = true # native execpolicy を利用する。Windows の強制は PreToolUse guard が担う。
 skill_approval = false
 request_permissions = false
