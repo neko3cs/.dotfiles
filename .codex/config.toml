@@ -2,8 +2,7 @@ model_provider = "openai"
 # model_provider = "ollama"
 # model_provider = "azure"
 model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
-model_context_window = 1000000
+model_reasoning_effort = "medium"
 
 network_access = true
 sandbox_mode = "workspace-write"
@@ -23,9 +22,6 @@ exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 name = "Azure"
 base_url = "{AZURE_FOUNDRY_BASE_URL}"
 env_key = "MICROSOFT_FOUNDRY_API_KEY"
-
-[windows]
-sandbox = "elevated"
 
 [features]
 js_repl = false

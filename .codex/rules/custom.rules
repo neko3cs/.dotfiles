@@ -32,83 +32,8 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = ["curl", "-X", "DELETE"],
-    decision = "prompt",
-    justification = "リソースを削除するリクエストのため確認する",
-    match = ["curl -X DELETE https://example.com/v1/items/1"],
-    not_match = ["curl https://example.com/v1/items"],
-)
-
-prefix_rule(
     pattern = ["npm", "publish"],
     decision = "prompt",
     justification = "パッケージを公開するため確認する",
     match = ["npm publish --access public"],
-)
-
-prefix_rule(
-    pattern = ["npm", "install", ["-g", "--global"]],
-    decision = "prompt",
-    justification = "グローバルインストールは環境を汚すため確認する",
-    match = ["npm install -g typescript", "npm install --global typescript"],
-    not_match = ["npm install", "npm install --save-dev vitest"],
-)
-
-prefix_rule(
-    pattern = ["brew", "install"],
-    decision = "prompt",
-    justification = "グローバルインストールは環境を汚すため確認する",
-    match = ["brew install ripgrep"],
-    not_match = ["brew list"],
-)
-
-prefix_rule(
-    pattern = ["winget", "install"],
-    decision = "prompt",
-    justification = "グローバルインストールは環境を汚すため確認する",
-    match = ["winget install --id Git.Git"],
-)
-
-prefix_rule(
-    pattern = ["cargo", "install"],
-    decision = "prompt",
-    justification = "グローバルインストールは環境を汚すため確認する",
-    match = ["cargo install cargo-nextest"],
-    not_match = ["cargo build --release"],
-)
-
-prefix_rule(
-    pattern = ["dotnet", "tool", "install"],
-    decision = "prompt",
-    justification = "グローバルインストールは環境を汚すため確認する",
-    match = ["dotnet tool install --global git-credential-manager"],
-)
-
-prefix_rule(
-    pattern = ["pnpm", "add"],
-    decision = "prompt",
-    justification = "依存の追加はロックファイルを変えるため確認する",
-    match = ["pnpm add zod"],
-)
-
-prefix_rule(
-    pattern = ["uv", "add"],
-    decision = "prompt",
-    justification = "依存の追加はロックファイルを変えるため確認する",
-    match = ["uv add httpx"],
-)
-
-prefix_rule(
-    pattern = ["uv", "pip", "install"],
-    decision = "prompt",
-    justification = "依存の追加は環境を変えるため確認する",
-    match = ["uv pip install httpx"],
-)
-
-prefix_rule(
-    pattern = [["pip", "pip3"], "install"],
-    decision = "prompt",
-    justification = "依存の追加は環境を変えるため確認する",
-    match = ["pip install httpx", "pip3 install httpx"],
-    not_match = ["pip list"],
 )
