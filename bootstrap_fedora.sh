@@ -87,6 +87,20 @@ EOF
     git config --file "$HOME/.gitconfig.local" credential.credentialStore secretservice
   fi
 }
+install_claudecode() {
+  sudo tee /etc/yum.repos.d/claude-code.repo <<'EOF'
+[claude-code]
+name=Claude Code
+baseurl=https://downloads.claude.ai/claude-code/rpm/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://downloads.claude.ai/keys/claude-code.asc
+EOF
+  sudo dnf install claude-code
+}
+install_codex() {
+  curl -fsSL https://chatgpt.com/codex/install.sh | sh
+}
 
 sudo dnf update -y
 
@@ -103,6 +117,8 @@ install_docker
 install_pyenv
 install_starship
 install_gcm
+install_claudecode
+install_codex
 zsh $SCRIPT_ROOT/set_completions.sh
 /usr/bin/pwsh -File $SCRIPT_ROOT/Set-Completions.ps1
 
