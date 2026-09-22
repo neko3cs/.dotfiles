@@ -97,6 +97,13 @@
       }
     }
   },
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-or-agents-md"
+      }
+    }
+  },
   "language": "Japanese",
   "effortLevel": "high",
   "tui": "fullscreen",
