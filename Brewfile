@@ -14,6 +14,7 @@ brew "ffmpeg"
 brew "fzf"
 brew "genact"
 brew "gh"
+brew "ghcup"
 brew "git"
 brew "go"
 brew "googleworkspace-cli"
@@ -60,7 +61,7 @@ cask "appcleaner"
 cask "balenaetcher"
 cask "canva"
 cask "chatgpt"
-cask "claude-code"
+cask "claude-code@latest"
 cask "claude"
 cask "codex"
 cask "copilot-cli"
@@ -101,7 +102,7 @@ mas "RunCatNeo", id: 6757801838
 mas "Swift Playground", id: 1496833156
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
-tap "azure/functions"
+tap "azure/functions", trusted: { formulae: ["azure-functions-core-tools"] }
 tap "hashicorp/tap"
 tap "muter-mutation-testing/formulae"
 tap "oven-sh/bun"
