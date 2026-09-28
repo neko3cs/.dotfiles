@@ -40,14 +40,14 @@ use_memories = true
 web_search = true
 view_images = true
 
-[plugins."chrome@openai-bundled"]
-enabled = true
-
-[plugins."visualize@openai-bundled"]
-enabled = true
-
 [plugins."computer-use@openai-bundled"]
-enabled = true
+enabled = false
+
+[plugins."chrome@openai-bundled"]
+enabled = false
 
 [plugins."browser@openai-bundled"]
+enabled = false
+
+[plugins."visualize@openai-bundled"]
 enabled = true
