@@ -10,6 +10,9 @@ mcp_oauth_credentials_store = "keyring"
 [sandbox_workspace_write]
 network_access = true
 
+# サンドボックス境界を越える必要がある操作は reviewer に委ね、通常の作業を止めない。
+approvals_reviewer = "auto_review"
+
 [approval_policy.granular]
 sandbox_approval = true
 rules = true # native execpolicy を利用する。Windows の強制は PreToolUse guard が担う。
