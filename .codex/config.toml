@@ -1,7 +1,7 @@
 model_provider = "openai"
 # model_provider = "ollama"
 # model_provider = "azure"
-model = "gpt-5.6-terra"
+model = "gpt-6.1-sol"
 model_reasoning_effort = "medium"
 
 sandbox_mode = "workspace-write"
@@ -25,8 +25,8 @@ exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
 
 [model_providers.azure]
 name = "Azure"
-base_url = "{AZURE_FOUNDRY_BASE_URL}"
-env_key = "MICROSOFT_FOUNDRY_API_KEY"
+base_url = ""
+env_key = "AZURE_OPENAI_API_KEY"
 
 [features]
 js_repl = false
