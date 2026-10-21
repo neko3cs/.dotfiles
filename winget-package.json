@@ -52,9 +52,6 @@
           "PackageIdentifier": "JesseDuffield.lazygit"
         },
         {
-          "PackageIdentifier": "Notion.Notion"
-        },
-        {
           "PackageIdentifier": "Microsoft.Azure.AZCopy.10"
         },
         {
@@ -97,16 +94,10 @@
           "PackageIdentifier": "OpenJS.NodeJS.LTS"
         },
         {
-          "PackageIdentifier": "Postman.Postman"
-        },
-        {
           "PackageIdentifier": "Rustlang.Rustup"
         },
         {
           "PackageIdentifier": "Starship.Starship"
-        },
-        {
-          "PackageIdentifier": "Swift.Toolchain"
         },
         {
           "PackageIdentifier": "WinMerge.WinMerge"
@@ -128,9 +119,6 @@
         },
         {
           "PackageIdentifier": "waterlan.dos2unix"
-        },
-        {
-          "PackageIdentifier": "ZedIndustries.Zed"
         }
       ],
       "SourceDetails": {
