@@ -84,12 +84,10 @@ cask "mactex-no-gui"
 cask "microsoft-teams"
 cask "notion"
 cask "playcover-community"
-cask "postman"
 cask "temurin@17"
 cask "unity-hub"
 cask "visual-studio-code"
 cask "vlc"
-cask "zed"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "iMovie", id: 408981434
