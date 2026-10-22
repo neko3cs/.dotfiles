@@ -46,6 +46,3 @@ ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 ln -sf $SCRIPT_ROOT/Brewfile $HOME/Brewfile
 # .textlintrc.json
 ln -sf $SCRIPT_ROOT/.textlintrc.json $HOME/.textlintrc.json
-# Zed
-mkdir -p $HOME/.config/zed
-ln -sf $SCRIPT_ROOT/.config/zed/settings.json $HOME/.config/zed/settings.json

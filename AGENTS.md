@@ -40,7 +40,7 @@ the repo root — do not create directories for them.
 ```
 .claude/settings.json   .copilot/settings.json
 .codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
-.config/{ghostty/config, bat/config, nvim/init.lua, zed/settings.json,
+.config/{ghostty/config, bat/config, nvim/init.lua,
          powershell/Microsoft.PowerShell_profile.ps1}
 .starship/starship.toml   .zshrc   .gitconfig   .textlintrc.json   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
@@ -54,7 +54,6 @@ dotnet-tools.txt  vscode-extensions.txt
 | File | Deployed to |
 |---|---|
 | `AGENTS.global.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.copilot/copilot-instructions.md`, `~/.gemini/GEMINI.md` |
-| `.config/zed/settings.json` | `~/.config/zed/settings.json` (Win: `%APPDATA%\Zed\settings.json`) |
 
 **Copied instead of symlinked** (everything else is `ln -sf`): `.codex/config.toml`,
 `.config/powershell/Microsoft.PowerShell_profile.ps1`
