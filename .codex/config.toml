@@ -5,20 +5,14 @@ model = "gpt-6.1-sol"
 model_reasoning_effort = "medium"
 
 sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+# 「代わりに承認」: 承認が必要な操作は自動レビューへ回す。
+# トップレベルの設定なので、テーブル定義より前に置く。
+approvals_reviewer = "auto_review"
 mcp_oauth_credentials_store = "keyring"
 
 [sandbox_workspace_write]
 network_access = true
-
-# サンドボックス境界を越える必要がある操作は reviewer に委ね、通常の作業を止めない。
-approvals_reviewer = "auto_review"
-
-[approval_policy.granular]
-sandbox_approval = true
-rules = true # native execpolicy を利用する。Windows の強制は PreToolUse guard が担う。
-skill_approval = false
-request_permissions = false
-mcp_elicitations = false
 
 [shell_environment_policy]
 exclude = ["*_API_KEY", "*_TOKEN", "*_SECRET"]
