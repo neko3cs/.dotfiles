@@ -50,7 +50,10 @@
     "black-formatter.args": [
         "--line-length=80"
     ],
+    "chat.mcp.gallery.enabled": true,
+    "chat.titleBar.openInAgentsWindow.enabled": false,
     "chat.viewSessions.orientation": "stacked",
+    "claudeCode.preferredLocation": "panel",
     "cmake.configureOnOpen": true,
     "dart.openDevTools": "flutter",
     "debug.openDebug": "neverOpen",
@@ -72,6 +75,7 @@
     "editor.wrappingIndent": "none",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "explorer.confirmPasteNative": false,
     "extensions.ignoreRecommendations": true,
     "files.associations": {
         "*.mpp": "cpp"
@@ -81,6 +85,12 @@
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "git.openRepositoryInParentFolders": "always",
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": true,
+        "plaintext": false,
+        "scminput": false
+    },
     "go.toolsManagement.autoUpdate": true,
     "json.schemaDownload.trustedDomains": {},
     "json.schemas": [],
@@ -127,6 +137,8 @@
     "powershell.sideBar.CommandExplorerVisibility": true,
     "prettier.proseWrap": "never",
     "python.analysis.typeCheckingMode": "strict",
+    "redhat.telemetry.enabled": true,
+    "security.promptForLocalFileProtocolHandling": false,
     "security.workspace.trust.untrustedFiles": "open",
     "settingsSync.ignoredSettings": [
         "todo-tree.ripgrep.ripgrep"
@@ -143,7 +155,6 @@
         "[x]"
     ],
     "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-    "todo-tree.ripgrep.ripgrep": "/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules/@vscode/ripgrep-universal/bin/darwin-x64/rg",
     "update.showReleaseNotes": false,
     "workbench.colorTheme": "Light 2026",
     "workbench.editor.empty.hint": "hidden",
