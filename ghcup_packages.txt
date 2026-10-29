@@ -1,3 +1,0 @@
-ghc
-cabal
-hls

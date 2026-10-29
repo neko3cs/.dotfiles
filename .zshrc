@@ -48,7 +48,6 @@ add_to_path $DOTNET_ROOT
 add_to_path $GOPATH/bin
 add_to_path $HOME/.cabal/bin
 add_to_path $HOME/.dotnet/tools
-add_to_path $HOME/.ghcup/bin
 add_to_path $HOME/.local/bin
 add_to_path $HOMEBREW_PREFIX/opt/llvm/bin
 add_to_path $JAVA_HOME/bin
