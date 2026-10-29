@@ -31,7 +31,6 @@ if ($IsWindows)
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.gemini/GEMINI.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.starship/starship.toml -Value $PSScriptRoot\.starship\starship.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.config/bat/config -Value $PSScriptRoot\.config\bat\config | Out-Null
-    New-Item -ItemType SymbolicLink -Force -Path $HOME/.textlintrc.json -Value $PSScriptRoot\.textlintrc.json | Out-Null
 } elseif ($IsMacOS)
 {
     # macOS のメインシェルは zsh。pwsh は補助用途なのでプロファイルのみ配置する

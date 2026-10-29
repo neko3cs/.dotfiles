@@ -1,9 +1,0 @@
-@mermaid-js/mermaid-cli
-firebase-tools
-jslint
-prettier
-textlint
-textlint-rule-preset-ja-spacing
-textlint-rule-preset-japanese
-typescript
-typescript-language-server
