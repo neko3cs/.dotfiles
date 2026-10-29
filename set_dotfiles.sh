@@ -44,5 +44,3 @@ ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.gemini/GEMINI.md
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew
 ln -sf $SCRIPT_ROOT/Brewfile $HOME/Brewfile
-# .textlintrc.json
-ln -sf $SCRIPT_ROOT/.textlintrc.json $HOME/.textlintrc.json

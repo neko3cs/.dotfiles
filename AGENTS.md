@@ -42,7 +42,7 @@ the repo root — do not create directories for them.
 .codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
 .config/{ghostty/config, bat/config, nvim/init.lua,
          powershell/Microsoft.PowerShell_profile.ps1}
-.starship/starship.toml   .zshrc   .gitconfig   .textlintrc.json   Brewfile
+.starship/starship.toml   .zshrc   .gitconfig   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
 dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
