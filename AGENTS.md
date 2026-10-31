@@ -45,7 +45,7 @@ the repo root — do not create directories for them.
 .starship/starship.toml   .zshrc   .gitconfig   Brewfile
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
-dnf-packages.txt  winget-package.json  msstore-apps.json  npm-packages.txt
+dnf-packages.txt  winget-package.json  msstore-apps.json  go-tools.txt
 dotnet-tools.txt  vscode-extensions.txt
 ```
 
@@ -94,23 +94,22 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 ## Tacit Knowledge
 
 - **This repo's `.claude/` and `.codex/` are also read as *project* config**: running an agent
-  inside this repo applies them on top of the user-level copies. Claude Code reads
-  `.claude/settings.json` immediately, so the notification hook fires twice. Codex disables
-  project-local layers until the project is trusted. Side effect of the mirror layout.
+  inside this repo applies them on top of the user-level copies, so a hook defined there fires
+  twice. Codex disables project-local layers until the project is trusted. Side effect of the
+  mirror layout.
 - **Never symlink a file the agent writes back to.** `.codex/config.toml` is copied because the
   Codex desktop app rewrites `[projects.*]` / `[mcp_servers.*]` / `[marketplaces.*]` / `notify` at
-  runtime. Same cause for `custom.rules` vs `default.rules` (see that file's header) — every
-  `*.rules` under `rules/` is loaded, so a separate name keeps the tracked file clean.
-- **Codex permission routing is documented in the files themselves** — `custom.rules`'s header and
-  `codex-guard.py`'s docstring. Two things that are not written there: decision precedence is
-  forbidden > prompt > allow, and `permission_profiles` is enterprise-only (`requirements.toml`) —
-  do not use it, and do not re-investigate it.
+  runtime. Same cause for `custom.rules` vs `default.rules`: Codex appends "always allow"
+  decisions to `default.rules`, and every `*.rules` under `rules/` is loaded, so a separate name
+  keeps the tracked file clean.
+- **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
+  not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
+  is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.
 - **(POSIX only) Codex splits `bash -lc "..."` only when it is plain words joined by
   `&&` `||` `;` `|`.** Redirection, variable expansion, command substitution, globs, or control
   flow → no split, the whole invocation counts as one command and `prefix_rule` never matches.
-  `codex-guard.py` closes this: `forbidden` commands are denied outright, `prompt` commands only
-  when wrapped — so a bare `brew install` still reaches the approval flow. The split condition
-  there is inferred, not documented upstream.
+  `codex-guard.py` closes this by denying the wrapped form of the `forbidden` commands too
+  (`UNSPLITTABLE_DENY`). The split condition there is inferred, not documented upstream.
 - **Hook payloads do not use Codex's internal tool names.** PreToolUse receives
   `tool_name: "Bash"` for shell (the rollout log's `function_call` name is `shell_command` — do
   not copy it into `matcher`), and `apply_patch` unchanged. `matcher` is a regex over that name.
@@ -126,11 +125,9 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   `approval_policy = "untrusted"` raises no prompt either, nor does `unified_exec` — both measured,
   both still execute a `forbidden` command without asking. No setting changes the shell in
   0.145.0 — `ConfigToml`'s 96 fields, `WindowsToml`, and all 97 `codex features list` entries
-  were checked. Do not re-investigate. Because Windows has no approval flow, the guard applies
-  `WRAPPED_ONLY_DENY` unconditionally there: "if it cannot be confirmed, stop it".
-- **If a `prompt` rule silently does nothing**, the error is `approval required by policy, but
-  AskForApproval is set to Never`. `granular` is a newtype variant; `config.toml`'s comment covers
-  the all-five-fields requirement.
+  were checked. Re-investigate only when a Codex release note mentions the Windows shell; the
+  measurement is otherwise taken as still valid. Because Windows has no approval flow, the guard
+  applies `UNSPLITTABLE_DENY` unconditionally there: "if it cannot be confirmed, stop it".
 - **`.codex/hooks.json` event names are PascalCase** (`PreToolUse` / `Stop` — Claude Code
   compatible). **An unknown event name is silently ignored, not an error**, so after adding one
   confirm it loaded via `codex app-server`'s `hooks/list`.
@@ -162,12 +159,11 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   project config), one of the two duplicate invocations exited 1 instead of 0/2** during one
   verification; the deny from the other still took effect. Accepted as-is — the cause of the
   exit-1 duplicate was not found.
-- **`custom.rules`'s header points at this file, and this file points back at the config files.**
-  Whichever side gets edited, the other can go stale. No mechanism enforces the cross-reference;
-  treat it as a manual-sync risk when editing either.
+- **This file restates facts from `.codex/` and `.claude/settings.json`, and nothing keeps them in
+  sync.** After editing those files, re-check every entry here that names them.
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
-  `WRAPPED_ONLY_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
+  `UNSPLITTABLE_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
 - **Claude Code's `enabledPlugins` only takes effect at the user scope
   (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
   `.claude/settings.json` in some other repo cannot override it per-project — the key is silently
@@ -195,3 +191,4 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 | 2026-08-06 | First real run of `bootstrap_fedora.sh` (`set -e`) died on the first re-run of any "one-shot install" command: `rpm -i` (Microsoft repo), `dnf config-manager addrepo` (HashiCorp, Docker CE — both need `--overwrite` once the repo file exists), the AWS CLI installer, and the pyenv installer (refuses to run over an existing `~/.pyenv`) all error on an already-satisfied state | Every `install_*` function must check the target state before acting, not just call the vendor's one-shot installer |
 | 2026-08-06 | The 2026-08-04 commit meant to fix `dnf group install development-tools` erroring, but never added `-y` — so on a no-op transaction (already installed) it still prompted `Is this ok [y/N]:`, and with no TTY that reads EOF → "Operation aborted by the user" | A "no changes needed" transaction still asks for confirmation in dnf; `-y` is required even when you expect zero work |
 | 2026-08-21 | Bash tool went silently inert mid-session (no error, no output) after ~2 hours of heavy use; `~/.claude/shell-snapshots/` showed the generated `export PATH=...` line growing every call because Claude Code re-appends each enabled plugin's `bin/` dir without dedup (`claude-plugins-official` LSP paths seen duplicated 25→32 times within 3.6 minutes) — suspected but unconfirmed root cause (correlation only, not reproduced under a controlled test), likely hitting a Windows command-line/env-block length limit | Disabled all 6 LSP plugins (`csharp-lsp` / `gopls-lsp` / `pyright-lsp` / `rust-analyzer-lsp` / `swift-lsp` / `typescript-lsp`) in `enabledPlugins` here, even the actively-used swift-lsp/typescript-lsp, trading away their features to slow PATH growth as far as possible — a mitigation, not a confirmed fix. If Bash starts silently no-op'ing or throwing quote errors mid-session, suspect this and start a fresh session |
+| 2026-10-31 | Tacit Knowledge still described a `custom.rules` header, `prompt` rules, a `granular` approval comment in `config.toml`, a Claude notification hook, and a `WRAPPED_ONLY_DENY` constant — all gone after the config changes, so the file sent agents looking for things that no longer exist | When a config change removes something, grep this file for its name in the same commit |
