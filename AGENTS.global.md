@@ -12,7 +12,7 @@ Technical terms, code identifiers, and file paths remain in their original form.
 
 When writing documentation files:
 - `README.md` → **Japanese**
-- `AGENTS.md` / `PLAN.md` → **English**
+- `AGENTS.md` → **English**
 
 Internal reasoning may be in English.
 
@@ -27,6 +27,7 @@ pushing to `main`/`master` or merging a PR — both are visible to others and ha
 
 ## Agent Docs
 
-**Never overwrite `AGENTS.md` / `CLAUDE.md` / `PLAN.md` without user confirmation.**
-Nothing that expires belongs in `AGENTS.md`: work in progress goes to `PLAN.md`, open questions
-and spec changes to a GitHub Issue. Use the `update-agentsmd` / `update-planmd` skills for the rest.
+**Never overwrite `AGENTS.md` / `CLAUDE.md` without user confirmation.**
+Nothing that expires belongs in `AGENTS.md`: work in progress, open questions and spec changes go
+to a GitHub Issue. Where no Issue can be filed, keep it in the conversation and tell the user — do
+not park it in a file. Use the `update-agentsmd` skill for the rest.
