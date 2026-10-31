@@ -1,6 +1,7 @@
 azure-cli
 bat
 boost-devel
+bubblewrap
 cmake
 curl
 curl-devel
@@ -38,6 +39,7 @@ ruby
 ruby-build
 ruby-devel
 rustup
+socat
 sqlite
 sqlite-devel
 tar
