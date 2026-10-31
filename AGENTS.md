@@ -3,10 +3,6 @@
 Cross-platform dotfiles for macOS, Fedora Linux, and Windows. Shell scripts, config files, and
 package lists only — there are no application features, APIs, or user-facing products here.
 
-## Key References
-
-- `PLAN.md` — in-flight work baton. Read it before starting.
-
 ## Development Rules
 
 - **No branches, no PRs.** Commit directly to `main`. Because there is no PR to hold the
