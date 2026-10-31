@@ -55,7 +55,20 @@
       "Bash(cargo install *)"
     ]
   },
-  "hooks": {},
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Edit|Write|NotebookEdit)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --no-project python -c \"import os,runpy;runpy.run_path(os.path.expanduser('~/.dotfiles/.claude/write-guard.py'),run_name='__main__')\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": false
