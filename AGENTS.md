@@ -41,7 +41,7 @@ Only deployable config files mirror their destination. Scripts, package lists, a
 the repo root — do not create directories for them.
 
 ```
-.claude/settings.json   .copilot/settings.json
+.claude/{settings.json, write-guard.py}   .copilot/settings.json
 .codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
 .config/{ghostty/config, bat/config, nvim/init.lua,
          powershell/Microsoft.PowerShell_profile.ps1}
@@ -176,6 +176,12 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
   `UNSPLITTABLE_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
+- **Claude Code's sandbox covers Bash only; `.claude/write-guard.py` is what keeps Edit / Write /
+  NotebookEdit inside the session's working folders.** Like `codex-guard.py`, it runs from the repo
+  path and is not deployed. Hook input has no list of added folders, and `DirectoryAdded` did not
+  fire when a folder was added from the desktop app, so the guard reads the last `environment`
+  snapshot (`additionalWorkingDirectories`) from the transcript — an undocumented format. If writes
+  to an added folder start getting denied, check that snapshot first.
 - **Claude Code's `enabledPlugins` only takes effect at the user scope
   (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
   `.claude/settings.json` in some other repo cannot override it per-project — the key is silently
