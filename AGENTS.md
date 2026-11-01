@@ -21,10 +21,17 @@ package lists only — there are no application features, APIs, or user-facing p
 - **Prefix repo-internal paths with `$SCRIPT_ROOT` / `$PSScriptRoot`.** A bare relative path only
   works when cwd happens to be the repo root.
 - **Bootstrap `install_*` / `Set-*` steps must check target state before acting.** One-shot
-  installers (`rpm -i`, `dnf config-manager addrepo`, `wsl --install`, vendor curl-installers) are
-  not idempotent — they error when the target already exists, and the failure often goes uncaught
-  because it's a native command, not a cmdlet/builtin. See the 2026-08-06 Incidents for the
-  concrete list this bit both scripts with.
+  installers are not idempotent — they error when the target already exists, and the failure often
+  goes uncaught because it's a native command, not a cmdlet/builtin. Known cases: `rpm -i`,
+  `dnf config-manager addrepo` (needs `--overwrite`), the AWS CLI and pyenv installers, and
+  `wsl --install` (check `wsl --list --quiet` first, with `WSL_UTF8=1` — the raw output is UTF-16
+  with embedded NULs).
+- **Pass `-y` to every `dnf` command.** dnf asks for confirmation even on a no-op transaction, and
+  with no TTY that reads EOF and aborts.
+- **A config that gains a dependency needs it in the package list of every OS it deploys to** —
+  `Brewfile` / `winget-package.json` / `dnf-packages.txt`.
+- **Do not add age-restricted apps to `msstore-apps.json`.** Non-interactive `store install`
+  prompts for age confirmation and has no flag to skip it.
 - **Completions are generated per-machine** and untracked. Re-run `set_completions.sh` /
   `Set-Completions.ps1` after installing new tools.
 
@@ -101,6 +108,10 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
   not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
   is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.
+- **Before concluding Codex lacks a mechanism, read every `--help` option and the official docs,
+  and look for hidden top-level subcommands.** One negative result settles nothing:
+  `codex execpolicy check` is absent from `--help`, and a CLI-looking struct name in the binary's
+  strings (`ExecPolicyCheckCommand`) was the only hint.
 - **(POSIX only) Codex splits `bash -lc "..."` only when it is plain words joined by
   `&&` `||` `;` `|`.** Redirection, variable expansion, command substitution, globs, or control
   flow → no split, the whole invocation counts as one command and `prefix_rule` never matches.
@@ -124,15 +135,19 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   were checked. Re-investigate only when a Codex release note mentions the Windows shell; the
   measurement is otherwise taken as still valid. Because Windows has no approval flow, the guard
   applies `UNSPLITTABLE_DENY` unconditionally there: "if it cannot be confirmed, stop it".
+  Before relying on permission control on any other OS, confirm with `codex exec --json` what the
+  runtime actually sends.
 - **`.codex/hooks.json` event names are PascalCase** (`PreToolUse` / `Stop` — Claude Code
   compatible). **An unknown event name is silently ignored, not an error**, so after adding one
   confirm it loaded via `codex app-server`'s `hooks/list`.
 - **Codex hooks start untrusted**: Codex re-asks for trust whenever the content hash changes. One
   approval per machine.
+- **Verify a new or changed hook by firing it with a real payload and checking the exit code.**
+  Valid JSON and passing unit tests prove nothing: a hook calling `python -c` failed with exit 127
+  unnoticed, and a `matcher` of `shell` never fired at all.
 - **Call Python from hooks via `uv run --no-project python -c`**: this machine has no `python`, only
-  `python3`; Windows is the reverse, and `uv` absorbs the difference. **Every OS that receives the
-  hooks needs a `uv` source** — `Brewfile` / `winget-package.json` / `dnf-packages.txt` (Fedora 43
-  ships `uv` in-repo; no curl installer needed). `--no-project` is mandatory: without it `uv` starts
+  `python3`; Windows is the reverse, and `uv` absorbs the difference (Fedora 43 ships `uv` in-repo;
+  no curl installer needed). `--no-project` is mandatory: without it `uv` starts
   resolving the dependencies of whatever Python project the agent is working in and the hook breaks.
   Resolve paths with `os.path.expanduser`, not shell `~` expansion (cmd does not expand `~`). Exit
   codes propagate through `uv run`, so a PreToolUse deny (exit 2) still takes effect.
@@ -156,7 +171,8 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   verification; the deny from the other still took effect. Accepted as-is — the cause of the
   exit-1 duplicate was not found.
 - **This file restates facts from `.codex/` and `.claude/settings.json`, and nothing keeps them in
-  sync.** After editing those files, re-check every entry here that names them.
+  sync.** After editing those files, re-check every entry here that names them; when a change
+  removes something, grep this file for its name in the same commit.
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
   `UNSPLITTABLE_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
@@ -166,25 +182,8 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   ignored there, not merged. Confirmed via upstream GitHub issue
   anthropics/claude-code#62174 ("Support per-project enabledPlugins"), closed as not planned. Do
   not try to toggle LSP plugins per-repo again; toggle them here instead, globally.
-
-## Incidents
-
-| Date | What went wrong | Prevention |
-| :--- | :--- | :--- |
-| 2026-07-12 | `.gitconfig` had no `[include]` for `.gitconfig.local`, so `user.name` / `user.email` were never loaded | After splitting config out, verify the `[include]` side was written too — not just that the included file exists |
-| 2026-07-12 | `NODE_EXTRA_CA_CERTS` was set unconditionally to a Linux-only path, breaking pnpm and friends on macOS | Check every new env/PATH entry in `.zshrc` against "platform guards are mandatory". Do not stop at testing one OS |
-| 2026-07-26 | `dnf-packages.txt` in `bootstrap_fedora.sh` and `msstore-apps.json` in `Bootstrap-Windows.ps1` were bare relative paths, working only when cwd was the repo root | Always prefix repo-internal references with `$SCRIPT_ROOT` / `$PSScriptRoot` |
-| 2026-07-26 | Concluded "Codex has no user-level permission setting" once `permission_profiles` proved managed-config-only, ignoring execpolicy (`.rules`) from the same search output — then reported `ask` as impossible and hand-rolled a Python hook | One negative result does not settle whether a mechanism exists; read every `--help` option and the official docs first |
-| 2026-07-26 | Put the execpolicy rules in `default.rules` — the file Codex itself rewrites on "always allow" | Never symlink a file the agent writes back to; give the write target and the tracked file different names |
-| 2026-07-26 | Looked for subcommands only under `codex debug` and missed the top-level hidden `codex execpolicy check` | A CLI-looking struct name in the binary's strings (here `ExecPolicyCheckCommand`) may be a top-level subcommand absent from `--help` |
-| 2026-07-26 | The notification hook called `python -c`, but macOS has only `python3`, so it had failed silently (exit 127) all along — and the same shape got copied into the Codex hooks | Run hooks through a real shell and check the exit code; "the JSON is valid" proves nothing |
-| 2026-07-26 | Switching hooks to `uv run` added `uv` to `Brewfile` and `winget-package.json` but missed `dnf-packages.txt`, where both hooks would have died with `uv: command not found` | When a hook gains a dependency, check the package list of **every OS the config deploys to** |
-| 2026-07-26 | Created a feature branch for a one-file doc change, then had to fast-forward `main` onto it and delete the branch | This repo does not use branches; commit to `main` and put the reasoning in the commit message body |
-| 2026-07-28 | `.codex/hooks.json`'s matcher was `shell`, so PreToolUse never fired on any OS and the guard was inert | After adding a hook, confirm it actually fires with a real payload — passing unit tests is not proof of firing |
-| 2026-07-28 | execpolicy and `codex-guard.py` were deployed to Windows too, but the pwsh wrapper meant execpolicy had never once taken effect there | Before shipping permission control to another OS, confirm with `codex exec --json` what the runtime actually sends |
-| 2026-08-06 | `Set-Wsl2Fedora`'s `wsl --install` failed with `ERROR_ALREADY_EXISTS` on a distro that already existed; the non-zero `$LASTEXITCODE` went uncaught until it surfaced as `pwsh -f`'s own exit code | Check for the existing distro via `wsl --list --quiet` (needs `WSL_UTF8=1` — raw output is UTF-16 with embedded NULs) before calling `wsl --install` |
-| 2026-08-06 | `msstore-apps.json`'s age-gated app (Amazon Kindle) failed under non-interactive `store install`, which prompts for age confirmation with no flag to skip it (checked `store install --help`) | Do not add age-restricted MS Store apps to `msstore-apps.json` |
-| 2026-08-06 | First real run of `bootstrap_fedora.sh` (`set -e`) died on the first re-run of any "one-shot install" command: `rpm -i` (Microsoft repo), `dnf config-manager addrepo` (HashiCorp, Docker CE — both need `--overwrite` once the repo file exists), the AWS CLI installer, and the pyenv installer (refuses to run over an existing `~/.pyenv`) all error on an already-satisfied state | Every `install_*` function must check the target state before acting, not just call the vendor's one-shot installer |
-| 2026-08-06 | The 2026-08-04 commit meant to fix `dnf group install development-tools` erroring, but never added `-y` — so on a no-op transaction (already installed) it still prompted `Is this ok [y/N]:`, and with no TTY that reads EOF → "Operation aborted by the user" | A "no changes needed" transaction still asks for confirmation in dnf; `-y` is required even when you expect zero work |
-| 2026-08-21 | Bash tool went silently inert mid-session (no error, no output) after ~2 hours of heavy use; `~/.claude/shell-snapshots/` showed the generated `export PATH=...` line growing every call because Claude Code re-appends each enabled plugin's `bin/` dir without dedup (`claude-plugins-official` LSP paths seen duplicated 25→32 times within 3.6 minutes) — suspected but unconfirmed root cause (correlation only, not reproduced under a controlled test), likely hitting a Windows command-line/env-block length limit | Disabled all 6 LSP plugins (`csharp-lsp` / `gopls-lsp` / `pyright-lsp` / `rust-analyzer-lsp` / `swift-lsp` / `typescript-lsp`) in `enabledPlugins` here, even the actively-used swift-lsp/typescript-lsp, trading away their features to slow PATH growth as far as possible — a mitigation, not a confirmed fix. If Bash starts silently no-op'ing or throwing quote errors mid-session, suspect this and start a fresh session |
-| 2026-10-31 | Tacit Knowledge still described a `custom.rules` header, `prompt` rules, a `granular` approval comment in `config.toml`, a Claude notification hook, and a `WRAPPED_ONLY_DENY` constant — all gone after the config changes, so the file sent agents looking for things that no longer exist | When a config change removes something, grep this file for its name in the same commit |
+- **All six LSP plugins are disabled in `enabledPlugins` on purpose**, even the ones in use.
+  Claude Code re-appends each enabled plugin's `bin/` to `PATH` on every Bash call without dedup;
+  that is the suspected (correlated, never reproduced) cause of Bash going silently inert after
+  ~2 hours of use. Re-enabling one trades that risk for its features. If Bash starts silently
+  no-op'ing or throwing quote errors mid-session, start a fresh session.
