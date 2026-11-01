@@ -96,7 +96,7 @@ enabled=1
 gpgcheck=1
 gpgkey=https://downloads.claude.ai/keys/claude-code.asc
 EOF
-  sudo dnf install claude-code
+  sudo dnf install -y claude-code
 }
 install_codex() {
   curl -fsSL https://chatgpt.com/codex/install.sh | sh
