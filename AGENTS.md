@@ -5,10 +5,15 @@ package lists only — there are no application features, APIs, or user-facing p
 
 ## Development Rules
 
-- **No branches, no PRs.** Commit directly to `main`. Because there is no PR to hold the
-  discussion, the commit message body must carry the intent — why the change was made, which
-  alternatives were rejected and why. A subject-line-only commit is not acceptable here, even for
-  a one-line change.
+- **Never commit or push to `main` directly — it is protected.** Create a branch, commit there,
+  and open a PR (`create-github-pullrequest` skill). Merging is the user's call. The commit
+  message body must still carry the intent — why the change was made, which alternatives were
+  rejected and why — because `git log` is where this repo's history lives. A subject-line-only
+  commit is not acceptable, even for a one-line change.
+- **Inside Claude Code, a checkout that would rewrite `.claude/settings.json` fails halfway.**
+  The sandbox write-protects that file, so `git switch` between commits where it differs leaves
+  the working tree half-switched. Branch from a commit with the same `settings.json`, or work in a
+  separate worktree.
 - **No automated tests.** Verify by running `set_dotfiles.sh` and sourcing `.zshrc` manually.
 - **Config files mirror their deploy path.** `.claude/settings.json` → `~/.claude/settings.json`,
   `.config/ghostty/config` → `~/.config/ghostty/config`. Follow this when adding a new config file.
