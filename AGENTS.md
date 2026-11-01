@@ -176,6 +176,13 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
   `UNSPLITTABLE_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
+- **Claude Code's sandbox covers Bash only; Edit / Write are bounded by
+  `defaultMode: "acceptEdits"`**, which auto-accepts edits inside the working folders and prompts
+  for anything outside. No hook backs this up on purpose — the prompt already keeps the user aware
+  of outside writes. **In the desktop app, answering that prompt with Allow adds the whole folder
+  as a working directory**, and it stays for the session and for sessions started from it; no way
+  to remove it was found. Deny instead, and add a second repo deliberately when it is needed. A
+  folder added mid-session is not sandbox-writable for Bash until the session restarts.
 - **Claude Code's `enabledPlugins` only takes effect at the user scope
   (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
   `.claude/settings.json` in some other repo cannot override it per-project — the key is silently

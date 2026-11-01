@@ -53,12 +53,13 @@
       "Bash(winget install *)",
       "Bash(dotnet tool install *)",
       "Bash(cargo install *)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
   "hooks": {},
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": false
+    "autoAllowBashIfSandboxed": true
   },
   "env": {
     "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",
