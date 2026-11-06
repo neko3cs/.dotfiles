@@ -188,6 +188,13 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   as a working directory**, and it stays for the session and for sessions started from it; no way
   to remove it was found. Deny instead, and add a second repo deliberately when it is needed. A
   folder added mid-session is not sandbox-writable for Bash until the session restarts.
+- **`gh` runs inside the sandbox; its dangerous subcommands are listed in `permissions.ask`,
+  not its safe ones in `allow`.** Under macOS Seatbelt, Go-built CLIs like `gh` fail TLS
+  verification (`x509: OSStatus -26276`) even after the proxy allows the host;
+  `sandbox.enableWeakerNetworkIsolation: true` fixes it (measured on Claude Code 2.1.318). Do
+  not move `gh` to `sandbox.excludedCommands`: excluded commands lose sandbox auto-allow, so
+  every subcommand would need its own allow rule. Content-scoped ask rules still prompt for
+  sandboxed commands — that is what keeps `gh repo delete` and the like behind a confirmation.
 - **Claude Code's `enabledPlugins` only takes effect at the user scope
   (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
   `.claude/settings.json` in some other repo cannot override it per-project — the key is silently

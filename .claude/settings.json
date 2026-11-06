@@ -5,16 +5,6 @@
       "WebSearch",
       "Bash(git commit *)",
       "Bash(git push*)",
-      "Bash(gh pr create *)",
-      "Bash(gh pr edit *)",
-      "Bash(gh pr view *)",
-      "Bash(gh pr list *)",
-      "Bash(gh pr checks *)",
-      "Bash(gh pr diff *)",
-      "Bash(gh issue create *)",
-      "Bash(gh issue edit *)",
-      "Bash(gh issue view *)",
-      "Bash(gh issue list *)",
       "Bash(xcodebuild test *)",
       "Bash(swiftlint --quiet *)",
       "Bash(xcrun xccov *)",
@@ -35,6 +25,14 @@
     ],
     "ask": [
       "Bash(curl* -X DELETE*)",
+      "Bash(gh * delete*)",
+      "Bash(gh api *-X DELETE*)",
+      "Bash(gh api *--method DELETE*)",
+      "Bash(gh pr merge*)",
+      "Bash(gh repo archive*)",
+      "Bash(gh repo edit*)",
+      "Bash(gh secret *)",
+      "Bash(gh auth *)",
       "Bash(gcloud* delete*)",
       "Bash(gcloud* destroy*)",
       "Bash(aws* delete*)",
@@ -59,7 +57,15 @@
   "hooks": {},
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "autoAllowBashIfSandboxed": true,
+    "enableWeakerNetworkIsolation": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
+      ]
+    }
   },
   "env": {
     "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",
