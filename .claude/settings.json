@@ -26,6 +26,14 @@
       "Bash(sendmail*)",
       "Bash(git reset*)",
       "Bash(git rebase*)",
+      "Bash(gh auth *)",
+      "Bash(gh secret *)",
+      "Bash(gh repo delete*)",
+      "Bash(gh api *-X DELETE*)",
+      "Bash(gh api *-XDELETE*)",
+      "Bash(gh api *--method DELETE*)",
+      "Bash(gh api *--method=DELETE*)",
+      "Bash(gh api graphql*delete*)",
       "Read(**/.env*)",
       "Edit(**/.env*)",
       "Read(**/secrets/**)",
@@ -59,7 +67,15 @@
   "hooks": {},
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "autoAllowBashIfSandboxed": true,
+    "enableWeakerNetworkIsolation": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
+      ]
+    }
   },
   "env": {
     "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",

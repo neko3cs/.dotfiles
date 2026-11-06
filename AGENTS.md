@@ -188,6 +188,20 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   as a working directory**, and it stays for the session and for sessions started from it; no way
   to remove it was found. Deny instead, and add a second repo deliberately when it is needed. A
   folder added mid-session is not sandbox-writable for Bash until the session restarts.
+- **`gh` runs inside the sandbox; `deny` blocks `gh auth` / `gh secret` / deletions
+  (`gh repo delete`, `gh api` with DELETE or a graphql `delete*` mutation), and no `ask` rule
+  is set for it.** The user's intent for Claude Code: never touch
+  anything outside the working folders, and run everything else unattended. Do not add `ask`
+  rules for `gh` — losing confirmation for destructive subcommands is an accepted trade-off;
+  `deny` is the tool for operations that are never needed and costly if run, since it blocks
+  without prompting. Deny rules match strings, so keep every spelling of the `gh api` DELETE
+  rule (`-X DELETE`, `-XDELETE`, `--method DELETE`, `--method=DELETE`) — one missing form
+  bypasses the rest. The `gh pr` / `gh issue` entries in `allow` only matter when a sandboxed
+  run fails and is retried outside it. Do not put `gh` in `sandbox.excludedCommands`: outside
+  the sandbox it can write anywhere (`gh repo clone <dir>`). Under macOS Seatbelt,
+  Go-built CLIs like `gh` fail TLS verification (`x509: OSStatus -26276`) even after the proxy
+  allows the host; `sandbox.enableWeakerNetworkIsolation: true` fixes it (measured on Claude
+  Code 2.1.318).
 - **Claude Code's `enabledPlugins` only takes effect at the user scope
   (`~/.claude/settings.json`, i.e. this repo's `.claude/settings.json`).** A project-level
   `.claude/settings.json` in some other repo cannot override it per-project — the key is silently
