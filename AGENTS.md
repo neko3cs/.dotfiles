@@ -181,12 +181,19 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
 - **`_UNSPLITTABLE` in `codex-guard.py` is a guess, not a guarantee**, at which command bodies
   Codex refuses to split (see the file's own docstring). Windows sidesteps this by applying
   `UNSPLITTABLE_DENY` unconditionally, but macOS/Linux still depend on the guess being right.
-- **Claude Code's sandbox covers Bash only; Edit / Write are bounded by
-  `defaultMode: "acceptEdits"`**, which auto-accepts edits inside the working folders and prompts
-  for anything outside. No hook backs this up on purpose — the prompt already keeps the user aware
-  of outside writes. **In the desktop app, answering that prompt with Allow adds the whole folder
-  as a working directory**, and it stays for the session and for sessions started from it; no way
-  to remove it was found. Deny instead, and add a second repo deliberately when it is needed. A
+- **Claude Code's sandbox covers Bash only; Edit / Write / NotebookEdit are bounded by
+  `permissions.blockWritesOutsideWorkingDirectories: true`** (v2.1.314+), which refuses writes
+  outside the working folders in every mode, so `defaultMode` can be `auto` and run unattended.
+  History, so it is not re-tried: plain `auto` let its classifier approve an Edit into
+  `~/.claude/skills` (another repo); a PreToolUse hook (`write-guard.py`, PR #5) was dropped
+  because it had to read the added folders from the undocumented transcript format; `acceptEdits`
+  (prompt on outside writes, 2026-11-01 to 11-08) stopped work too often. Costs of the block,
+  accepted: Claude cannot Edit **any** Claude Code settings file, including this repo's
+  `.claude/settings.json` inside the working folder — the user edits it by hand — and
+  `EnterWorktree` / `ExitWorktree` disappear. `defaultMode: "auto"` is ignored from project
+  settings; it works only because this file deploys to `~/.claude/settings.json`. To write to a
+  second repo, add it as a working directory deliberately: in the desktop app an added folder
+  stays for the session and for sessions started from it, and no way to remove it was found. A
   folder added mid-session is not sandbox-writable for Bash until the session restarts.
 - **`gh` runs inside the sandbox; `deny` blocks `gh auth` / `gh secret` / deletions
   (`gh repo delete`, `gh api` with DELETE or a graphql `delete*` mutation), and no `ask` rule

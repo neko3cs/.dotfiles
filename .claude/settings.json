@@ -62,7 +62,8 @@
       "Bash(dotnet tool install *)",
       "Bash(cargo install *)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto",
+    "blockWritesOutsideWorkingDirectories": true
   },
   "hooks": {},
   "sandbox": {
