@@ -43,6 +43,7 @@ $IS_MACOS && add_to_path $ANDROID_HOME/platform-tools
 $IS_MACOS && add_to_path $ANDROID_HOME/cmdline-tools/latest/bin
 $IS_MACOS && add_to_path $ANDROID_HOME/tools
 $IS_MACOS && add_to_path $ANDROID_HOME/tools/bin
+$IS_MACOS && add_to_path $HOME/.unity/bin
 add_to_path $CARGO_HOME/bin
 add_to_path $DOTNET_ROOT
 add_to_path $GOPATH/bin
