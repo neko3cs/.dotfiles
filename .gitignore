@@ -385,3 +385,7 @@ zsdoc/data
 !/tests/_output/.gitkeep
 
 # End of https://www.toptal.com/developers/gitignore/api/zsh,node,python,powershell,macos
+
+### GitHub Copilot CLI ###
+# Lock file Copilot CLI creates next to the symlinked settings.json while writing it
+.copilot/settings.json.lock
