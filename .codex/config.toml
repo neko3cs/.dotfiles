@@ -43,3 +43,12 @@ enabled = false
 
 [plugins."visualize@openai-bundled"]
 enabled = true
+
+[plugins."dev-process-kit@dev-process-kit"]
+enabled = true
+
+# Git の marketplace だけを置く。ローカルパスの marketplace
+# (openai-bundled など) はマシンごとに Codex が書き込むので含めない。
+[marketplaces.dev-process-kit]
+source_type = "git"
+source = "https://github.com/neko3cs/dev-process-kit.git"
