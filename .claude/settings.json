@@ -1,5 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",
+    "CLAUDE_CODE_THRIFTY_SONIC": "0"
+  },
   "permissions": {
     "allow": [
       "WebSearch",
@@ -66,22 +70,6 @@
     "blockWritesOutsideWorkingDirectories": true
   },
   "hooks": {},
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "enableWeakerNetworkIsolation": true,
-    "network": {
-      "allowedDomains": [
-        "github.com",
-        "*.github.com",
-        "*.githubusercontent.com"
-      ]
-    }
-  },
-  "env": {
-    "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1",
-    "CLAUDE_CODE_THRIFTY_SONIC": "0"
-  },
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "codex@openai-codex": true,
@@ -103,7 +91,8 @@
     "skill-creator@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
-    "remotion@remotion": true
+    "remotion@remotion": true,
+    "dev-process-kit@dev-process-kit": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -117,8 +106,28 @@
         "source": "github",
         "repo": "remotion-dev/claude-code-plugin"
       }
+    },
+    "dev-process-kit": {
+      "source": {
+        "source": "github",
+        "repo": "neko3cs/dev-process-kit"
+      }
     }
   },
+  "language": "Japanese",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
+      ]
+    },
+    "enableWeakerNetworkIsolation": true
+  },
+  "effortLevel": "high",
   "pluginConfigs": {
     "agents-md@builtin": {
       "options": {
@@ -126,8 +135,6 @@
       }
     }
   },
-  "language": "Japanese",
-  "effortLevel": "high",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": false,
   "theme": "light",
