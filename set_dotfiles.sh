@@ -3,7 +3,7 @@
 SCRIPT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 # 設定ファイルは配置先と同じフォルダ構成でリポジトリに置いてある。
-# 例外は AGENTS.global.md (配置先が4箇所あるため単一のミラーパスに置けない)。
+# 例外は AGENTS.global.md (配置先が3箇所あるため単一のミラーパスに置けない)。
 
 # .zshrc
 ln -sf $SCRIPT_ROOT/.zshrc $HOME/.zshrc
@@ -37,9 +37,6 @@ cp -f $SCRIPT_ROOT/.codex/config.toml $HOME/.codex/config.toml
 mkdir -p $HOME/.copilot
 ln -sf $SCRIPT_ROOT/.copilot/settings.json $HOME/.copilot/settings.json
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.copilot/copilot-instructions.md
-# gemini (antigravity-cli)
-mkdir -p $HOME/.gemini
-ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.gemini/GEMINI.md
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew
