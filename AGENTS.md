@@ -6,7 +6,7 @@ package lists only — there are no application features, APIs, or user-facing p
 ## Development Rules
 
 - **Never commit or push to `main` directly — it is protected.** Create a branch, commit there,
-  and open a PR (`create-github-pullrequest` skill). Merging is the user's call. The commit
+  and open a PR (`create-pullrequest` skill). Merging is the user's call. The commit
   message body must still carry the intent — why the change was made, which alternatives were
   rejected and why — because `git log` is where this repo's history lives. A subject-line-only
   commit is not acceptable, even for a one-line change.
@@ -107,7 +107,12 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   mirror layout.
 - **Never symlink a file the agent writes back to.** `.codex/config.toml` is copied because the
   Codex desktop app rewrites `[projects.*]` / `[mcp_servers.*]` / `[marketplaces.*]` / `notify` at
-  runtime. Same cause for `custom.rules` vs `default.rules`: Codex appends "always allow"
+  runtime. Re-deploying therefore wipes the app-written parts: local-path marketplaces
+  (`openai-bundled`, `openai-primary-runtime`) and their `[plugins.*]` vanish from
+  `codex plugin marketplace list` until the desktop app is fully quit and relaunched, which writes
+  them back — do not re-add them by hand (checked with Codex CLI 0.168.0). The tracked copy holds
+  only Git-sourced `[marketplaces.*]`; local ones point at per-machine paths.
+  Same cause for `custom.rules` vs `default.rules`: Codex appends "always allow"
   decisions to `default.rules`, and every `*.rules` under `rules/` is loaded, so a separate name
   keeps the tracked file clean.
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
