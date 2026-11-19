@@ -8,5 +8,18 @@
   "respectGitignore": true,
   "screenReader": false,
   "stream": true,
-  "theme": "light"
+  "theme": "light",
+  "footer": {
+    "showQuota": true,
+    "showCiStatus": true,
+    "showYolo": true,
+    "showUsername": true,
+    "showCodeChanges": true,
+    "showContextWindow": true,
+    "showModelEffort": true
+  },
+  "enabledPlugins": {
+    "computer-use": true,
+    "browser-use": true
+  }
 }
