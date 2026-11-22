@@ -61,7 +61,7 @@ dotnet-tools.txt  vscode-extensions.txt
 
 | File | Deployed to |
 |---|---|
-| `AGENTS.global.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.copilot/copilot-instructions.md` |
+| `AGENTS.global.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.copilot/copilot-instructions.md`, `~/.gemini/GEMINI.md` |
 
 **Copied instead of symlinked** (everything else is `ln -sf`): `.codex/config.toml`,
 `.config/powershell/Microsoft.PowerShell_profile.ps1`

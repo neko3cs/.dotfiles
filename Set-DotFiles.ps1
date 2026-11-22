@@ -8,6 +8,7 @@ if ($IsWindows)
       "$HOME/.claude",
       "$HOME/.codex/rules",
       "$HOME/.copilot",
+      "$HOME/.gemini",
       "$HOME/.starship",
       "$HOME/.config/bat"
     )
@@ -27,6 +28,7 @@ if ($IsWindows)
     Copy-Item -Force -Path $PSScriptRoot\.codex\config.toml -Destination $HOME/.codex/config.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/settings.json -Value $PSScriptRoot\.copilot\settings.json | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/copilot-instructions.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
+    New-Item -ItemType SymbolicLink -Force -Path $HOME/.gemini/GEMINI.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.starship/starship.toml -Value $PSScriptRoot\.starship\starship.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.config/bat/config -Value $PSScriptRoot\.config\bat\config | Out-Null
 } elseif ($IsMacOS)
