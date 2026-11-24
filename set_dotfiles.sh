@@ -37,9 +37,11 @@ cp -f $SCRIPT_ROOT/.codex/config.toml $HOME/.codex/config.toml
 mkdir -p $HOME/.copilot
 ln -sf $SCRIPT_ROOT/.copilot/settings.json $HOME/.copilot/settings.json
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.copilot/copilot-instructions.md
-# gemini (antigravity-cli)
-mkdir -p $HOME/.gemini
+# gemini (Antigravity)
+mkdir -p $HOME/.gemini/config $HOME/.gemini/antigravity-cli
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.gemini/GEMINI.md
+cp -f $SCRIPT_ROOT/.gemini/config/config.json $HOME/.gemini/config/config.json
+cp -f $SCRIPT_ROOT/.gemini/antigravity-cli/settings.json $HOME/.gemini/antigravity-cli/settings.json
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
 # Homebrew

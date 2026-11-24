@@ -48,6 +48,7 @@ the repo root — do not create directories for them.
 ```
 .claude/settings.json   .copilot/settings.json
 .codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
+.gemini/{config/config.json, antigravity-cli/settings.json}
 .config/{ghostty/config, bat/config, nvim/init.lua,
          powershell/Microsoft.PowerShell_profile.ps1}
 .starship/starship.toml   .zshrc   .gitconfig   Brewfile
@@ -64,6 +65,7 @@ dotnet-tools.txt  vscode-extensions.txt
 | `AGENTS.global.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.copilot/copilot-instructions.md`, `~/.gemini/GEMINI.md` |
 
 **Copied instead of symlinked** (everything else is `ln -sf`): `.codex/config.toml`,
+`.gemini/config/config.json`, `.gemini/antigravity-cli/settings.json`,
 `.config/powershell/Microsoft.PowerShell_profile.ps1`
 
 **Not deployed**: `vscode-settings.json` and `.vssettings` are reference snapshots for manual
@@ -115,6 +117,13 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   Same cause for `custom.rules` vs `default.rules`: Codex appends "always allow"
   decisions to `default.rules`, and every `*.rules` under `rules/` is loaded, so a separate name
   keeps the tracked file clean.
+  The same applies to `.gemini/config/config.json` and `.gemini/antigravity-cli/settings.json`:
+  Antigravity writes machine-specific state (`sidecars.swarm/swarm_board.projectId`,
+  `remoteControlHostname`, model selections) and runtime "Always Allow" grants back into
+  `config.json`, and the CLI writes back into `antigravity-cli/settings.json`. Both are therefore
+  copied rather than symlinked, and machine-specific fields are omitted from the tracked template.
+  `userSettings.globalPermissionGrants` in `config.json` is shared with the CLI as its Shared
+  Scope, so permission rules are maintained in `config.json` only.
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
   not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
   is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.
