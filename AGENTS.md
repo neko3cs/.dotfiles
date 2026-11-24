@@ -124,11 +124,23 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   copied rather than symlinked, and machine-specific fields are omitted from the tracked template.
   `userSettings.globalPermissionGrants` in `config.json` is shared with the CLI as its Shared
   Scope, so permission rules are maintained in `config.json` only.
-- **Antigravity's `read_file(...)` / `write_file(...)` rules do not support globs**: putting
-  glob patterns (such as `**/.env*` or `**/secrets/**`) in `globalPermissionGrants.deny` breaks
-  the Terminal Sandbox on every command (`sandbox configuration error: deny ...: globs not
-  supported`). Use concrete file or directory paths instead (`read_file(.env)`,
-  `read_file(secrets/)`); denying `read_file` implicitly denies `write_file` on the same path.
+- **Antigravity's `read_file(...)` / `write_file(...)` rules in global `config.json` reject both
+  globs and relative paths**: putting globs (`**/.env*`, `**/secrets/**`) or relative paths
+  (`.env`, `secrets/`) in `globalPermissionGrants.deny` breaks the Terminal Sandbox on every
+  command (`sandbox configuration error: deny ...: globs not supported` / `non-absolute file
+  path`). Keep global `config.json` to `command(...)` / `unsandboxed(...)` rules (or
+  machine-independent absolute paths only); denying `read_file` implicitly denies `write_file` on
+  the same path.
+- **Antigravity's `globalPermissionGrants` command matching (`antigravity.google/docs/permissions.md`)**:
+  Business/Enterprise accounts use "Previous permission settings", where `command(...)` and
+  `unsandboxed(...)` are separate actions (`BypassSandbox: true` checks `unsandboxed(...)`, not
+  `command(...)`), whereas personal accounts use `command(...)` for both (and ignore `unsandboxed`
+  with a warning). Keep both in `deny` and `ask` so cross-account dotfiles stay protected.
+  On Windows shells, commands that cannot be cleanly split disable prefix matching and require
+  either a character-for-character match or a full-line `regex:` rule (with trailing `.*` or
+  `(\s.*)?`). When commands *are* token-split (macOS/Linux), each whitespace-separated token in
+  `regex:` is compiled independently as `^(?:pattern)$`, so never put literal spaces inside `(...)`
+  or `[...]` (use `\s` or split into separate rules instead).
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
   not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
   is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.
