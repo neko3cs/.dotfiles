@@ -20,6 +20,15 @@
   },
   "enabledPlugins": {
     "computer-use": true,
-    "browser-use": true
+    "browser-use": true,
+    "dev-process-kit@dev-process-kit": true
+  },
+  "extraKnownMarketplaces": {
+    "dev-process-kit": {
+      "source": {
+        "source": "github",
+        "repo": "neko3cs/dev-process-kit"
+      }
+    }
   }
 }
