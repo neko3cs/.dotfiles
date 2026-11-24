@@ -124,6 +124,11 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   copied rather than symlinked, and machine-specific fields are omitted from the tracked template.
   `userSettings.globalPermissionGrants` in `config.json` is shared with the CLI as its Shared
   Scope, so permission rules are maintained in `config.json` only.
+- **Antigravity's `read_file(...)` / `write_file(...)` rules do not support globs**: putting
+  glob patterns (such as `**/.env*` or `**/secrets/**`) in `globalPermissionGrants.deny` breaks
+  the Terminal Sandbox on every command (`sandbox configuration error: deny ...: globs not
+  supported`). Use concrete file or directory paths instead (`read_file(.env)`,
+  `read_file(secrets/)`); denying `read_file` implicitly denies `write_file` on the same path.
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
   not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
   is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.

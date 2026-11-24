@@ -56,12 +56,10 @@
         "command(gh repo delete)",
         "command(regex:gh api .*(-X ?DELETE|--method[= ]DELETE))",
         "command(regex:gh api graphql.*delete)",
-        "read_file(**/.env*)",
-        "write_file(**/.env*)",
-        "read_file(**/secrets/**)",
-        "write_file(**/secrets/**)",
-        "read_file(**/credentials.json)",
-        "write_file(**/credentials.json)"
+        "read_file(.env)",
+        "read_file(.env.local)",
+        "read_file(secrets/)",
+        "read_file(credentials.json)"
       ]
     },
     "themeMode": "THEME_MODE_INHERIT"
