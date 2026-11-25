@@ -48,7 +48,7 @@ the repo root — do not create directories for them.
 ```
 .claude/settings.json   .copilot/settings.json
 .codex/{config.toml, hooks.json, rules/custom.rules, codex-guard.py}
-.gemini/{config/config.json, antigravity-cli/settings.json}
+.gemini/{config/{config.json, skills.json}, antigravity-cli/settings.json}
 .config/{ghostty/config, bat/config, nvim/init.lua,
          powershell/Microsoft.PowerShell_profile.ps1}
 .starship/starship.toml   .zshrc   .gitconfig   Brewfile

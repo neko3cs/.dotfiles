@@ -31,6 +31,7 @@ if ($IsWindows)
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.copilot/copilot-instructions.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.gemini/GEMINI.md -Value $PSScriptRoot\AGENTS.global.md | Out-Null
     Copy-Item -Force -Path $PSScriptRoot\.gemini\config\config.json -Destination $HOME/.gemini/config/config.json | Out-Null
+    New-Item -ItemType SymbolicLink -Force -Path $HOME/.gemini/config/skills.json -Value $PSScriptRoot\.gemini\config\skills.json | Out-Null
     Copy-Item -Force -Path $PSScriptRoot\.gemini\antigravity-cli\settings.json -Destination $HOME/.gemini/antigravity-cli/settings.json | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.starship/starship.toml -Value $PSScriptRoot\.starship\starship.toml | Out-Null
     New-Item -ItemType SymbolicLink -Force -Path $HOME/.config/bat/config -Value $PSScriptRoot\.config\bat\config | Out-Null
