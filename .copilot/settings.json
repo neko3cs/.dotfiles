@@ -29,6 +29,24 @@
         "source": "github",
         "repo": "neko3cs/dev-process-kit"
       }
+    },
+    "dotnet-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "dotnet/skills"
+      }
+    },
+    "typescript-skills": {
+      "source": {
+        "source": "github",
+        "repo": "microsoft/typescript-skills"
+      }
+    },
+    "hashicorp": {
+      "source": {
+        "source": "github",
+        "repo": "hashicorp/agent-skills"
+      }
     }
   }
 }
