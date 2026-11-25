@@ -1,0 +1,4 @@
+angular/skills
+hashicorp/agent-skills
+neko3cs/dev-process-kit
+neko3cs/skills
