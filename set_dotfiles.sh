@@ -41,6 +41,7 @@ ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.copilot/copilot-instructions.md
 mkdir -p $HOME/.gemini/config $HOME/.gemini/antigravity-cli
 ln -sf $SCRIPT_ROOT/AGENTS.global.md $HOME/.gemini/GEMINI.md
 cp -f $SCRIPT_ROOT/.gemini/config/config.json $HOME/.gemini/config/config.json
+ln -sf $SCRIPT_ROOT/.gemini/config/skills.json $HOME/.gemini/config/skills.json
 cp -f $SCRIPT_ROOT/.gemini/antigravity-cli/settings.json $HOME/.gemini/antigravity-cli/settings.json
 # .gitconfig
 ln -sf $SCRIPT_ROOT/.gitconfig $HOME/.gitconfig
