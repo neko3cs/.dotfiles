@@ -9,13 +9,25 @@
     "enableTerminalSandbox": true,
     "globalPermissionGrants": {
       "allow": [
-        "command(regex:git (commit|push)(\\s.*)?)",
-        "command(regex:gh pr (create|edit|view|list|checks|diff)(\\s.*)?)",
-        "command(regex:gh issue (create|edit|view|list)(\\s.*)?)",
-        "command(regex:xcodebuild test(\\s.*)?)",
-        "command(regex:swiftlint --quiet(\\s.*)?)",
-        "command(regex:xcrun xccov(\\s.*)?)",
-        "command(regex:xcrun simctl list(\\s.*)?)"
+        "command(regex:git (commit|push|pull|fetch)(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:git (push|pull|fetch)(\\s[\\s\\S]*)?)",
+        "command(regex:gh pr (create|edit|view|list|checks|diff|comment|review|status|ready|close|reopen)(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:gh pr (create|edit|view|list|checks|diff|comment|review|status|ready|close|reopen)(\\s[\\s\\S]*)?)",
+        "command(regex:gh issue (create|edit|view|list|comment|status|close|reopen)(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:gh issue (create|edit|view|list|comment|status|close|reopen)(\\s[\\s\\S]*)?)",
+        "command(regex:gh repo view(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:gh repo view(\\s[\\s\\S]*)?)",
+        "command(regex:gh label list(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:gh label list(\\s[\\s\\S]*)?)",
+        "command(regex:gh run (view|list|watch)(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:gh run (view|list|watch)(\\s[\\s\\S]*)?)",
+        "command(regex:xcodebuild test(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:xcodebuild test(\\s[\\s\\S]*)?)",
+        "command(regex:swiftlint --quiet(\\s[\\s\\S]*)?)",
+        "command(regex:xcrun xccov(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:xcrun xccov(\\s[\\s\\S]*)?)",
+        "command(regex:xcrun simctl list(\\s[\\s\\S]*)?)",
+        "unsandboxed(regex:xcrun simctl list(\\s[\\s\\S]*)?)"
       ],
       "ask": [
         "command(regex:.*curl.*-X\\s?DELETE.*)",
