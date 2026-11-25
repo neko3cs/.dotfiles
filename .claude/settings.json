@@ -92,7 +92,6 @@
     "swift-lsp@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
     "remotion@remotion": true,
-    "dev-process-kit@dev-process-kit": true,
     "dotnet-upgrade@dotnet-agent-skills": true,
     "context7@anthropic-plugin-directory": true,
     "dotnet@dotnet-agent-skills": true,
@@ -107,9 +106,7 @@
     "dotnet-nuget@dotnet-agent-skills": true,
     "dotnet-test@dotnet-agent-skills": true,
     "dotnet-test-migration@dotnet-agent-skills": true,
-    "dotnet11@dotnet-agent-skills": true,
-    "typescript@typescript-skills": true,
-    "terraform@hashicorp": true
+    "dotnet11@dotnet-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -124,28 +121,10 @@
         "repo": "remotion-dev/claude-code-plugin"
       }
     },
-    "dev-process-kit": {
-      "source": {
-        "source": "github",
-        "repo": "neko3cs/dev-process-kit"
-      }
-    },
     "dotnet-agent-skills": {
       "source": {
         "source": "github",
         "repo": "dotnet/skills"
-      }
-    },
-    "typescript-skills": {
-      "source": {
-        "source": "github",
-        "repo": "microsoft/typescript-skills"
-      }
-    },
-    "hashicorp": {
-      "source": {
-        "source": "github",
-        "repo": "hashicorp/agent-skills"
       }
     }
   },
