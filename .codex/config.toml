@@ -44,9 +44,6 @@ enabled = false
 [plugins."visualize@openai-bundled"]
 enabled = true
 
-[plugins."dev-process-kit@dev-process-kit"]
-enabled = true
-
 [plugins."dotnet@dotnet-agent-skills"]
 enabled = true
 
@@ -83,19 +80,8 @@ enabled = true
 [plugins."dotnet11@dotnet-agent-skills"]
 enabled = true
 
-[plugins."typescript@typescript-skills"]
-enabled = true
-
+# Git の marketplace だけを置く。ローカルパスの marketplace
+# (openai-bundled など) はマシンごとに Codex が書き込むので含めない。
 [marketplaces.dotnet-agent-skills]
 source_type = "git"
 source = "https://github.com/dotnet/skills.git"
-
-[marketplaces.typescript-skills]
-source_type = "git"
-source = "https://github.com/microsoft/typescript-skills.git"
-
-# Git の marketplace だけを置く。ローカルパスの marketplace
-# (openai-bundled など) はマシンごとに Codex が書き込むので含めない。
-[marketplaces.dev-process-kit]
-source_type = "git"
-source = "https://github.com/neko3cs/dev-process-kit.git"
