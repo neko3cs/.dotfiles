@@ -55,7 +55,7 @@ the repo root — do not create directories for them.
 bootstrap_macOS.sh  bootstrap_fedora.sh  Bootstrap-Windows.ps1
 set_dotfiles.sh  Set-DotFiles.ps1  set_completions.sh  Set-Completions.ps1
 dnf-packages.txt  winget-package.json  msstore-apps.json  go-tools.txt
-dotnet-tools.txt  vscode-extensions.txt
+dotnet-tools.txt  vscode-extensions.txt  agent-skills.txt
 ```
 
 **Multiple destinations** (cannot live at a single mirror path):
