@@ -2,6 +2,7 @@
   "Apps": [
     { "Name": "Microsoft 365 Copilot", "Id": "9WZDNCRD29V9" },
     { "Name": "ChatGPT", "Id": "9PLM9XGG6VKS" },
+    { "Name": "Hakonexa - WSL Containers Manager", "Id": "9NFZ8JR6HH0B" },
     { "Name": "RunCat 365", "Id": "9NW5LPNVWFWJ" },
     { "Name": "Windows App", "Id": "9N1F85V9T8BN" }
   ]
