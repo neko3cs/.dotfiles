@@ -141,6 +141,13 @@ instead, send `initialize` then `thread/start` to `codex app-server` and watch f
   `(\s.*)?`). When commands *are* token-split (macOS/Linux), each whitespace-separated token in
   `regex:` is compiled independently as `^(?:pattern)$`, so never put literal spaces inside `(...)`
   or `[...]` (use `\s` or split into separate rules instead).
+- **Antigravity's `~/.gemini/config/skills.json` does not expand `~` or `$HOME`** (measured on
+  Antigravity language server 2.35.2; the built-in `agy-customizations` doc `json_configs.md`
+  outdatedly claims `~/` works). Both fail with `path is not absolute`. Use a relative path from
+  `~/.gemini/config/` (`../../.agents/skills`) instead of machine-specific absolute paths so the
+  tracked file stays cross-platform (macOS/Linux/Windows) and symlinked. On Windows, `npx skills`
+  NTFS junctions under `~/.gemini/config/skills/` are also skipped by Antigravity, so pointing
+  `skills.json` directly at the real directories in `~/.agents/skills` avoids that too.
 - **Codex permission routing is documented in `codex-guard.py`'s docstring.** Two things that are
   not written there: decision precedence is forbidden > prompt > allow, and `permission_profiles`
   is enterprise-only (`requirements.toml`) — do not use it, and do not re-investigate it.
